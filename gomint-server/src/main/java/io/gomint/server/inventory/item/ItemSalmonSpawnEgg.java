@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:salmon_spawn_egg" )
-public class ItemSalmonSpawnEgg extends ItemStack< io.gomint.inventory.item.ItemSalmonSpawnEgg> implements io.gomint.inventory.item.ItemSalmonSpawnEgg {
+@RegisterInfo(sId = "minecraft:salmon_spawn_egg")
+public class ItemSalmonSpawnEgg extends ItemStack<io.gomint.inventory.item.ItemSalmonSpawnEgg> implements io.gomint.inventory.item.ItemSalmonSpawnEgg {
 
     @Override
     public ItemType itemType() {

@@ -23,34 +23,34 @@ public class BossBar implements io.gomint.entity.BossBar {
     }
 
     @Override
-    public BossBar addPlayer(EntityPlayer player ) {
-        io.gomint.server.entity.EntityPlayer p =  ( (io.gomint.server.entity.EntityPlayer) player );
-        if ( p.entityVisibilityManager().isVisible( this.entity ) ) {
+    public BossBar addPlayer(EntityPlayer player) {
+        io.gomint.server.entity.EntityPlayer p = ((io.gomint.server.entity.EntityPlayer) player);
+        if (p.entityVisibilityManager().isVisible(this.entity)) {
             PacketBossBar packet = new PacketBossBar();
-            packet.setEntityId( this.entity.id() );
-            packet.setType( PacketBossBar.Type.SHOW );
-            p.connection().addToSendQueue( packet );
+            packet.setEntityId(this.entity.id());
+            packet.setType(PacketBossBar.Type.SHOW);
+            p.connection().addToSendQueue(packet);
         }
 
         return this;
     }
 
     @Override
-    public BossBar removePlayer( EntityPlayer player ) {
-        io.gomint.server.entity.EntityPlayer p =  ( (io.gomint.server.entity.EntityPlayer) player );
-        if ( p.entityVisibilityManager().isVisible( this.entity ) ) {
+    public BossBar removePlayer(EntityPlayer player) {
+        io.gomint.server.entity.EntityPlayer p = ((io.gomint.server.entity.EntityPlayer) player);
+        if (p.entityVisibilityManager().isVisible(this.entity)) {
             PacketBossBar packet = new PacketBossBar();
-            packet.setEntityId( this.entity.id() );
-            packet.setType( PacketBossBar.Type.HIDE );
-            p.connection().addToSendQueue( packet );
+            packet.setEntityId(this.entity.id());
+            packet.setType(PacketBossBar.Type.HIDE);
+            p.connection().addToSendQueue(packet);
         }
 
         return this;
     }
 
     @Override
-    public BossBar title(String title ) {
-        this.entity.nameTag( title );
+    public BossBar title(String title) {
+        this.entity.nameTag(title);
         return this;
     }
 

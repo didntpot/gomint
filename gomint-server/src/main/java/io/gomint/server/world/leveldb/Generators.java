@@ -9,12 +9,12 @@ public enum Generators {
     /**
      * Normal generator for vanilla terrain
      */
-    NORMAL( 1 ),
+    NORMAL(1),
 
     /**
      * Layered generator, named "Flat" in MC:PE
      */
-    FLAT( 2 );
+    FLAT(2);
 
     private final int id;
 
@@ -23,7 +23,7 @@ public enum Generators {
      *
      * @param id of the generator
      */
-    Generators( int id ) {
+    Generators(int id) {
         this.id = id;
     }
 
@@ -37,9 +37,9 @@ public enum Generators {
      * @param id which we want to lookup
      * @return generators enum value or null when not found
      */
-    public static Generators valueOf( int id ) {
-        for ( Generators generators : values() ) {
-            if ( generators.id == id ) {
+    public static Generators valueOf(int id) {
+        for (Generators generators : values()) {
+            if (generators.id == id) {
                 return generators;
             }
         }

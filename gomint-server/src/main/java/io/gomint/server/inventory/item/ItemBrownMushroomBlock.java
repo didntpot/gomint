@@ -1,10 +1,7 @@
 package io.gomint.server.inventory.item;
 
 import io.gomint.inventory.item.ItemType;
-
 import io.gomint.server.registry.RegisterInfo;
-import io.gomint.taglib.NBTTagCompound;
-
 import java.time.Duration;
 
 /**
@@ -12,7 +9,7 @@ import java.time.Duration;
  * @version 1.0
  */
 @RegisterInfo(sId = "minecraft:brown_mushroom_block")
-public class ItemBrownMushroomBlock extends ItemStack< io.gomint.inventory.item.ItemBrownMushroomBlock> implements io.gomint.inventory.item.ItemBrownMushroomBlock {
+public class ItemBrownMushroomBlock extends ItemStack<io.gomint.inventory.item.ItemBrownMushroomBlock> implements io.gomint.inventory.item.ItemBrownMushroomBlock {
 
     @Override
     public Duration burnTime() {

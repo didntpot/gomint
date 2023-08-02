@@ -17,7 +17,9 @@ import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.util.BlockIdentifier;
 import io.gomint.server.world.block.Block;
 import io.gomint.taglib.NBTTagCompound;
-import io.gomint.world.block.data.Facing;;
+import io.gomint.world.block.data.Facing;
+
+;
 
 /**
  * @author geNAZt

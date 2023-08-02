@@ -14,7 +14,7 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketServerSettingsResponse extends Packet {
+public class PacketServerSettingsResponse extends Packet implements PacketClientbound {
 
     private int formId;
     private String json;
@@ -23,17 +23,17 @@ public class PacketServerSettingsResponse extends Packet {
      * Construct a new packet
      */
     public PacketServerSettingsResponse() {
-        super( Protocol.PACKET_SERVER_SETTINGS_RESPONSE );
+        super(Protocol.PACKET_SERVER_SETTINGS_RESPONSE);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeSignedVarInt( this.formId );
-        buffer.writeString( this.json );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeSignedVarInt(this.formId);
+        buffer.writeString(this.json);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 

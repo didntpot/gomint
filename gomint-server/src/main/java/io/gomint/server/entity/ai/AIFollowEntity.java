@@ -6,10 +6,9 @@ import io.gomint.math.Vector;
 import io.gomint.server.entity.Entity;
 import io.gomint.server.entity.pathfinding.PathfindingEngine;
 import io.gomint.server.world.WorldAdapter;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 /**
  * @author geNAZt
@@ -17,7 +16,7 @@ import java.util.List;
  */
 public class AIFollowEntity extends AIState {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger( AIFollowEntity.class );
+    private static final Logger LOGGER = LoggerFactory.getLogger(AIFollowEntity.class);
 
     private final WorldAdapter world;
     private final PathfindingEngine pathfinding;
@@ -34,8 +33,8 @@ public class AIFollowEntity extends AIState {
      * @param world       The world the parent entity lives in
      * @param pathfinding The pathfinding engine this entity is using
      */
-    public AIFollowEntity( AIStateMachine machine, WorldAdapter world, PathfindingEngine pathfinding ) {
-        super( machine );
+    public AIFollowEntity(AIStateMachine machine, WorldAdapter world, PathfindingEngine pathfinding) {
+        super(machine);
         this.world = world;
         this.pathfinding = pathfinding;
     }
@@ -45,49 +44,49 @@ public class AIFollowEntity extends AIState {
      *
      * @param entity the new entity to follow
      */
-    public AIFollowEntity followEntity(Entity<?> entity ) {
+    public AIFollowEntity followEntity(Entity<?> entity) {
         this.followEntity = entity;
         return this;
     }
 
     @Override
-    protected void update( long currentTimeMS, float dT ) {
+    protected void update(long currentTimeMS, float dT) {
         // No target to follow
-        if ( this.followEntity == null ) {
+        if (this.followEntity == null) {
             return;
         }
 
-        if ( this.path != null && this.currentPathNode < this.path.size() ) {
+        if (this.path != null && this.currentPathNode < this.path.size()) {
             Vector position = this.pathfinding.transform().position();
 
             BlockPosition blockPosition = new BlockPosition(
-                MathUtils.fastFloor( position.x() ),
-                MathUtils.fastFloor( position.y() ),
-                MathUtils.fastFloor( position.z() )
+                MathUtils.fastFloor(position.x()),
+                MathUtils.fastFloor(position.y()),
+                MathUtils.fastFloor(position.z())
             );
 
-            BlockPosition node = this.path.get( this.currentPathNode );
+            BlockPosition node = this.path.get(this.currentPathNode);
 
             // Check if we need to jump
             boolean jump = node.y() > position.y();
 
-            Vector direction = node.toVector().add( .5f, 0, .5f ).subtract( position ).normalize().multiply( 4.31f * dT ); // 4.31 is the normal player movement speed per second
-            if ( jump ) {
-                direction.y( 1f ); // Default jump height
+            Vector direction = node.toVector().add(.5f, 0, .5f).subtract(position).normalize().multiply(4.31f * dT); // 4.31 is the normal player movement speed per second
+            if (jump) {
+                direction.y(1f); // Default jump height
             }
 
-            this.pathfinding.transform().motion( direction.x(), direction.y(), direction.z() );
+            this.pathfinding.transform().motion(direction.x(), direction.y(), direction.z());
 
-            LOGGER.debug( "Current pos: {}; Needed: {}; Direction: {}", position, node, direction );
+            LOGGER.debug("Current pos: {}; Needed: {}; Direction: {}", position, node, direction);
 
-            if ( blockPosition.equals( node ) ) {
+            if (blockPosition.equals(node)) {
                 this.currentPathNode++;
             }
-        } else if ( this.followEntity.onGround() ) {
-            LOGGER.debug( "Current follow position: {}", this.followEntity.location() );
+        } else if (this.followEntity.onGround()) {
+            LOGGER.debug("Current follow position: {}", this.followEntity.location());
 
             this.path = this.pathfinding
-                .goal( this.followEntity.location() )
+                .goal(this.followEntity.location())
                 .path();
 
             this.currentPathNode = 0;

@@ -9,14 +9,13 @@ package io.gomint.server.network.packet;
 
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.Protocol;
-
 import java.util.List;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-public class PacketPlayerEnchantmentOptions extends Packet {
+public class PacketPlayerEnchantmentOptions extends Packet implements PacketClientbound {
 
     public static class Enchantment {
         private byte type;

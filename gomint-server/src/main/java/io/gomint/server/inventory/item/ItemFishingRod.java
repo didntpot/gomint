@@ -1,8 +1,7 @@
 package io.gomint.server.inventory.item;
 
-import io.gomint.inventory.item.ItemType;
-
 import io.gomint.event.entity.projectile.ProjectileLaunchEvent;
+import io.gomint.inventory.item.ItemType;
 import io.gomint.math.Vector;
 import io.gomint.server.entity.EntityPlayer;
 import io.gomint.server.entity.projectile.EntityFishingHook;
@@ -10,7 +9,6 @@ import io.gomint.server.inventory.item.annotation.CanBeDamaged;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.Block;
 import io.gomint.world.block.data.Facing;
-
 import java.time.Duration;
 
 /**
@@ -18,8 +16,8 @@ import java.time.Duration;
  * @version 1.0
  */
 @CanBeDamaged
-@RegisterInfo( sId = "minecraft:fishing_rod" )
-public class ItemFishingRod extends ItemStack< io.gomint.inventory.item.ItemFishingRod> implements io.gomint.inventory.item.ItemFishingRod {
+@RegisterInfo(sId = "minecraft:fishing_rod")
+public class ItemFishingRod extends ItemStack<io.gomint.inventory.item.ItemFishingRod> implements io.gomint.inventory.item.ItemFishingRod {
 
     @Override
     public Duration burnTime() {
@@ -37,33 +35,33 @@ public class ItemFishingRod extends ItemStack< io.gomint.inventory.item.ItemFish
     }
 
     @Override
-    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock ) {
-        if ( entity.getFishingHook() == null ) {
-            EntityFishingHook hook = new EntityFishingHook( entity, entity.world() );
-            ProjectileLaunchEvent event = new ProjectileLaunchEvent( hook, ProjectileLaunchEvent.Cause.FISHING_ROD );
-            entity.world().server().pluginManager().callEvent( event );
+    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock) {
+        if (entity.getFishingHook() == null) {
+            EntityFishingHook hook = new EntityFishingHook(entity, entity.world());
+            ProjectileLaunchEvent event = new ProjectileLaunchEvent(hook, ProjectileLaunchEvent.Cause.FISHING_ROD);
+            entity.world().server().pluginManager().callEvent(event);
 
-            if ( !event.cancelled() ) {
-                entity.world().spawnEntityAt( hook, hook.positionX(), hook.positionY(), hook.positionZ(), hook.yaw(), hook.pitch() );
-                entity.setFishingHook( hook );
+            if (!event.cancelled()) {
+                entity.world().spawnEntityAt(hook, hook.positionX(), hook.positionY(), hook.positionZ(), hook.yaw(), hook.pitch());
+                entity.setFishingHook(hook);
             }
         } else {
             int damage = entity.getFishingHook().retract();
-            entity.setFishingHook( null );
+            entity.setFishingHook(null);
 
-            this.calculateUsageAndUpdate( damage );
+            this.calculateUsageAndUpdate(damage);
         }
 
         return true;
     }
 
     @Override
-    public void removeFromHand( EntityPlayer entity ) {
-        if ( entity.getFishingHook() != null ) {
+    public void removeFromHand(EntityPlayer entity) {
+        if (entity.getFishingHook() != null) {
             int damage = entity.getFishingHook().retract();
-            this.data( (short) ( this.data() + damage ) );
-            entity.setFishingHook( null );
-            this.calculateUsageAndUpdate( damage );
+            this.data((short) (this.data() + damage));
+            entity.setFishingHook(null);
+            this.calculateUsageAndUpdate(damage);
         }
     }
 

@@ -14,7 +14,7 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketBookEdit extends Packet {
+public class PacketBookEdit extends Packet implements PacketServerbound {
 
     private byte type;
     private byte inventorySlot;
@@ -35,20 +35,20 @@ public class PacketBookEdit extends Packet {
      * Construct a new packet
      */
     public PacketBookEdit() {
-        super( Protocol.PACKET_BOOK_EDIT );
+        super(Protocol.PACKET_BOOK_EDIT);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
+    public void serialize(PacketBuffer buffer, int protocolID) {
 
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.type = buffer.readByte();
         this.inventorySlot = buffer.readByte();
 
-        switch ( this.type ) {
+        switch (this.type) {
             case 0: // Replace content
             case 1: // Add page
                 this.pageNumber = buffer.readByte();

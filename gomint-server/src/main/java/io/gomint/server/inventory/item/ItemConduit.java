@@ -15,7 +15,7 @@ import io.gomint.server.registry.RegisterInfo;
  * @version 1.0
  */
 @RegisterInfo(sId = "minecraft:conduit")
-public class ItemConduit extends ItemStack< io.gomint.inventory.item.ItemConduit> implements io.gomint.inventory.item.ItemConduit {
+public class ItemConduit extends ItemStack<io.gomint.inventory.item.ItemConduit> implements io.gomint.inventory.item.ItemConduit {
 
     @Override
     public ItemType itemType() {

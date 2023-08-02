@@ -11,7 +11,6 @@ import io.gomint.permission.Group;
 import it.unimi.dsi.fastutil.objects.Object2BooleanMap;
 import it.unimi.dsi.fastutil.objects.Object2BooleanOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
-
 import java.util.Objects;
 
 /**
@@ -32,7 +31,7 @@ public class PermissionGroup implements Group {
      * @param manager which created this group
      * @param name    of the group
      */
-    PermissionGroup( PermissionGroupManager manager, String name ) {
+    PermissionGroup(PermissionGroupManager manager, String name) {
         this.name = name;
         this.manager = manager;
     }
@@ -47,31 +46,31 @@ public class PermissionGroup implements Group {
     }
 
     @Override
-    public Group permission(String permission, boolean value ) {
-        if ( this.permissions == null ) {
+    public Group permission(String permission, boolean value) {
+        if (this.permissions == null) {
             this.permissions = new Object2BooleanOpenHashMap<>();
         }
 
-        this.permissions.put( permission, value );
+        this.permissions.put(permission, value);
         this.dirty = true;
-        this.manager.setDirty( true );
+        this.manager.setDirty(true);
         return this;
     }
 
     @Override
-    public Group removePermission( String permission ) {
-        if ( this.permissions != null ) {
-            this.permissions.remove( permission );
+    public Group removePermission(String permission) {
+        if (this.permissions != null) {
+            this.permissions.remove(permission);
         }
 
         this.dirty = true;
-        this.manager.setDirty( true );
+        this.manager.setDirty(true);
         return this;
     }
 
     @Override
     public ObjectSet<Object2BooleanMap.Entry<String>> cursor() {
-        if ( this.permissions == null ) {
+        if (this.permissions == null) {
             return null;
         }
 
@@ -91,8 +90,8 @@ public class PermissionGroup implements Group {
      * @param permission which we need the setting for
      * @return true or false
      */
-    public Boolean get( String permission ) {
-        return this.permissions.get( permission );
+    public Boolean get(String permission) {
+        return this.permissions.get(permission);
     }
 
     @Override

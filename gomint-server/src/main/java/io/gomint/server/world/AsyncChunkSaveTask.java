@@ -20,8 +20,8 @@ public class AsyncChunkSaveTask extends AsyncChunkTask {
      *
      * @param chunk The chunk which should be saved
      */
-    AsyncChunkSaveTask( ChunkAdapter chunk ) {
-        super( Type.SAVE );
+    AsyncChunkSaveTask(ChunkAdapter chunk) {
+        super(Type.SAVE);
         this.chunk = chunk;
     }
 

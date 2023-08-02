@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:filled_map" )
-public class ItemFilledMap extends ItemStack< io.gomint.inventory.item.ItemFilledMap> implements io.gomint.inventory.item.ItemFilledMap {
+@RegisterInfo(sId = "minecraft:filled_map")
+public class ItemFilledMap extends ItemStack<io.gomint.inventory.item.ItemFilledMap> implements io.gomint.inventory.item.ItemFilledMap {
 
     @Override
     public ItemType itemType() {

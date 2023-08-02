@@ -2,13 +2,12 @@ package io.gomint.server.world.block;
 
 import io.gomint.inventory.item.ItemDirt;
 import io.gomint.inventory.item.ItemStack;
+import io.gomint.server.registry.RegisterInfo;
+import io.gomint.server.world.UpdateReason;
+import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.world.block.BlockGrassBlock;
 import io.gomint.world.block.BlockType;
-import io.gomint.server.registry.RegisterInfo;
-import io.gomint.server.world.block.helper.ToolPresets;
-import io.gomint.server.world.UpdateReason;
 import io.gomint.world.block.data.Facing;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:grass" )
+@RegisterInfo(sId = "minecraft:grass")
 public class GrassBlock extends Block implements BlockGrassBlock {
 
     @Override
@@ -25,11 +24,11 @@ public class GrassBlock extends Block implements BlockGrassBlock {
     }
 
     @Override
-    public long update( UpdateReason updateReason, long currentTimeMS, float dT ) {
-        Block block = this.side( Facing.UP );
+    public long update(UpdateReason updateReason, long currentTimeMS, float dT) {
+        Block block = this.side(Facing.UP);
         byte lightLevel = block.skyLightLevel();
 
-        if ( lightLevel >= 9 ) {
+        if (lightLevel >= 9) {
 
         }
 
@@ -57,9 +56,9 @@ public class GrassBlock extends Block implements BlockGrassBlock {
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
-        return new ArrayList<>(){{
-            add( ItemDirt.create( 1 ) );
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
+        return new ArrayList<>() {{
+            add(ItemDirt.create(1));
         }};
     }
 

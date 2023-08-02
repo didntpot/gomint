@@ -10,7 +10,7 @@ package io.gomint.server.network.packet;
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.Protocol;
 
-public class PacketViolationWarning extends Packet {
+public class PacketViolationWarning extends Packet implements PacketServerbound {
 
     private int type;
     private int severity;

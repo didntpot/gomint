@@ -24,7 +24,7 @@ import io.gomint.world.block.data.Facing;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:soul_campfire" )
+@RegisterInfo(sId = "minecraft:soul_campfire")
 public class SoulCampfire extends Block implements BlockSoulCampfire {
 
     private static final DirectionBlockState DIRECTION = new DirectionBlockState(() -> new String[]{"direction"}); // Rotation is always clockwise

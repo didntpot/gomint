@@ -9,7 +9,6 @@ package io.gomint.server.world.leveldb;
 
 import com.google.common.io.Files;
 import io.gomint.leveldb.DB;
-import io.gomint.leveldb.Iterator;
 import io.gomint.leveldb.LibraryLoader;
 import io.gomint.leveldb.WriteBatch;
 import io.gomint.math.BlockPosition;
@@ -18,14 +17,7 @@ import io.gomint.server.GoMintServer;
 import io.gomint.server.entity.EntityPlayer;
 import io.gomint.server.plugin.PluginClassloader;
 import io.gomint.server.util.Allocator;
-import io.gomint.server.util.DumpUtil;
-import io.gomint.server.util.Values;
-import io.gomint.server.world.BlockRuntimeIDs;
-import io.gomint.server.world.ChunkAdapter;
-import io.gomint.server.world.ChunkCache;
-import io.gomint.server.world.WorldAdapter;
-import io.gomint.server.world.WorldCreateException;
-import io.gomint.server.world.WorldLoadException;
+import io.gomint.server.world.*;
 import io.gomint.server.world.block.Block;
 import io.gomint.taglib.AllocationLimitReachedException;
 import io.gomint.taglib.NBTReader;
@@ -42,14 +34,6 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.buffer.Unpooled;
 import io.netty.buffer.UnpooledByteBufAllocator;
-import org.apache.logging.log4j.core.util.UuidUtil;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -59,6 +43,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import org.apache.logging.log4j.core.util.UuidUtil;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author geNAZt
@@ -312,8 +303,8 @@ public class LevelDBWorldAdapter extends WorldAdapter {
                                     byte blockData = ((Long) layerConfig.get("block_data")).byteValue();
 
                                     Block block = this.server.blocks().get(BlockRuntimeIDs.toBlockIdentifier(blockId, null));
-                                    for ( int i = 0; i < count; i++ ) {
-                                        blocks.add( block );
+                                    for (int i = 0; i < count; i++) {
+                                        blocks.add(block);
                                     }
                                 }
                             }

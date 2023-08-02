@@ -11,8 +11,8 @@ public enum ResourceResponseStatus {
     HAVE_ALL_PACKS,
     COMPLETED;
 
-    public static ResourceResponseStatus valueOf( int statusId ) {
-        switch ( statusId ) {
+    public static ResourceResponseStatus valueOf(int statusId) {
+        switch (statusId) {
             case 1:
                 return REFUSED;
             case 2:

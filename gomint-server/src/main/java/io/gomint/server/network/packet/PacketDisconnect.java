@@ -7,25 +7,29 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketDisconnect extends Packet {
+public class PacketDisconnect extends Packet implements PacketClientbound, PacketServerbound {
 
     private boolean hideDisconnectionScreen = false;
     private String message;
 
     public PacketDisconnect() {
-        super( Protocol.PACKET_DISCONNECT );
+        super(Protocol.PACKET_DISCONNECT);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeBoolean( this.hideDisconnectionScreen );
-        buffer.writeString( this.message );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeBoolean(this.hideDisconnectionScreen);
+        if (message != null) {
+            buffer.writeString(this.message);
+        }
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.hideDisconnectionScreen = buffer.readBoolean();
-        this.message = buffer.readString();
+        if (!hideDisconnectionScreen) {
+            this.message = buffer.readString();
+        }
     }
 
     public boolean isHideDisconnectionScreen() {

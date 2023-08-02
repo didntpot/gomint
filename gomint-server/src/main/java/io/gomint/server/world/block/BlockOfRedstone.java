@@ -1,11 +1,11 @@
 package io.gomint.server.world.block;
 
-import io.gomint.inventory.item.*;
+import io.gomint.inventory.item.ItemBlockOfRedstone;
+import io.gomint.inventory.item.ItemStack;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.world.block.BlockBlockOfRedstone;
 import io.gomint.world.block.BlockType;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:redstone_block" )
+@RegisterInfo(sId = "minecraft:redstone_block")
 public class BlockOfRedstone extends Block implements BlockBlockOfRedstone {
 
     @Override
@@ -42,10 +42,10 @@ public class BlockOfRedstone extends Block implements BlockBlockOfRedstone {
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
-        if ( isCorrectTool( itemInHand ) ) {
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
+        if (isCorrectTool(itemInHand)) {
             return new ArrayList<>() {{
-                add( ItemBlockOfRedstone.create( 1 ) );
+                add(ItemBlockOfRedstone.create(1));
             }};
         }
 

@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:standing_sign" )
-public class ItemStandingSign extends ItemStack< io.gomint.inventory.item.ItemStandingSign> implements io.gomint.inventory.item.ItemStandingSign {
+@RegisterInfo(sId = "minecraft:standing_sign")
+public class ItemStandingSign extends ItemStack<io.gomint.inventory.item.ItemStandingSign> implements io.gomint.inventory.item.ItemStandingSign {
 
     @Override
     public ItemType itemType() {

@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:hard_glass" )
-public class ItemHardGlass extends ItemStack< io.gomint.inventory.item.ItemHardGlass> implements io.gomint.inventory.item.ItemHardGlass {
+@RegisterInfo(sId = "minecraft:hard_glass")
+public class ItemHardGlass extends ItemStack<io.gomint.inventory.item.ItemHardGlass> implements io.gomint.inventory.item.ItemHardGlass {
 
     @Override
     public ItemType itemType() {

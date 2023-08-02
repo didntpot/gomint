@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:popped_chorus_fruit" )
-public class ItemPoppedChorusFruit extends ItemStack< io.gomint.inventory.item.ItemPoppedChorusFruit> implements io.gomint.inventory.item.ItemPoppedChorusFruit {
+@RegisterInfo(sId = "minecraft:popped_chorus_fruit")
+public class ItemPoppedChorusFruit extends ItemStack<io.gomint.inventory.item.ItemPoppedChorusFruit> implements io.gomint.inventory.item.ItemPoppedChorusFruit {
 
     @Override
     public ItemType itemType() {

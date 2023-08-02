@@ -6,6 +6,6 @@ package io.gomint.server.registry;
  */
 public interface Generator<E> {
 
-    E generate( Object ... init );
+    E generate(Object... init);
 
 }

@@ -6,7 +6,6 @@ import io.gomint.server.network.PlayerConnection;
 import io.gomint.server.network.packet.PacketCommandOutput;
 import io.gomint.server.network.packet.PacketCommandRequest;
 import io.gomint.server.network.type.OutputMessage;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,17 +16,17 @@ import java.util.List;
 public class PacketCommandRequestHandler implements PacketHandler<PacketCommandRequest> {
 
     @Override
-    public void handle( PacketCommandRequest packet, long currentTimeMillis, PlayerConnection connection ) {
+    public void handle(PacketCommandRequest packet, long currentTimeMillis, PlayerConnection connection) {
         // Sanity stuff
-        if ( !packet.getInputCommand().startsWith( "/" ) ) {
+        if (!packet.getInputCommand().startsWith("/")) {
             return;
         }
 
-        CommandOutput commandOutput = connection.entity().dispatchCommand( packet.getInputCommand() );
-        if ( commandOutput != null ) {
+        CommandOutput commandOutput = connection.entity().dispatchCommand(packet.getInputCommand());
+        if (commandOutput != null) {
 
             PacketCommandOutput packetCommandOutput = new PacketCommandOutput();
-            packetCommandOutput.setSuccess(commandOutput.success());
+            packetCommandOutput.setSuccessCount(commandOutput.success() ? 1 : 0);
             packetCommandOutput.setOrigin(packet.getCommandOrigin().type((byte) 3));
 
             // Remap outputs

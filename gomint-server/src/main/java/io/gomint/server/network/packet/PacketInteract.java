@@ -10,34 +10,37 @@ import io.gomint.server.network.Protocol;
  */
 public class PacketInteract extends Packet {
 
+    public static final int ACTION_LEAVE_VEHICLE = 3;
+    public static final int ACTION_MOUSEOVER = 4;
+    public static final int ACTION_OPEN_NPC = 5;
+    public static final int ACTION_OPEN_INVENTORY = 6;
+
     private InteractAction action;
     private long entityId;
     private Vector position;
 
     public PacketInteract() {
-        super( Protocol.PACKET_INTERACT );
+        super(Protocol.PACKET_INTERACT);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeByte( this.action.getId() );
-        buffer.writeUnsignedVarLong( this.entityId );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeByte(this.action.getId());
+        buffer.writeUnsignedVarLong(this.entityId);
 
-        if ( this.action == InteractAction.MOUSEOVER ) {
-            writeVector( this.position, buffer );
+        if (this.action == InteractAction.MOUSEOVER || this.action == InteractAction.LEAVE_VEHICLE) {
+            writeVector(this.position, buffer);
         }
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
-        this.action = InteractAction.valueOf( buffer.readByte() );
+    public void deserialize(PacketBuffer buffer, int protocolID) {
+        this.action = InteractAction.valueOf(buffer.readByte());
         this.entityId = buffer.readUnsignedVarLong();
 
-        if ( this.action == InteractAction.MOUSEOVER ) {
-            if ( buffer.getRemaining() > 0 ) {
+        if (this.action == InteractAction.MOUSEOVER || this.action == InteractAction.LEAVE_VEHICLE) {
+            if (buffer.getRemaining() > 0) {
                 this.position = readVector(buffer);
-            } else {
-                System.out.println("No position on mouseover interaction");
             }
         }
     }
@@ -67,16 +70,16 @@ public class PacketInteract extends Packet {
     }
 
     public enum InteractAction {
-        INTERACT( 1 ),
-        ATTACK( 2 ),
-        LEAVE_VEHICLE( 3 ),
-        MOUSEOVER( 4 ),
-        OPEN_NPC( 5 ),
-        OPEN_INVENTORY( 6 );
+        INTERACT(1),
+        ATTACK(2),
+        LEAVE_VEHICLE(3),
+        MOUSEOVER(4),
+        OPEN_NPC(5),
+        OPEN_INVENTORY(6);
 
         private final byte id;
 
-        InteractAction( int id ) {
+        InteractAction(int id) {
             this.id = (byte) id;
         }
 
@@ -84,8 +87,8 @@ public class PacketInteract extends Packet {
             return this.id;
         }
 
-        public static InteractAction valueOf(byte actionId ) {
-            switch ( actionId ) {
+        public static InteractAction valueOf(byte actionId) {
+            switch (actionId) {
                 case 1:
                     return INTERACT;
                 case 2:

@@ -15,7 +15,7 @@ import io.gomint.world.block.BlockType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:barrier" )
+@RegisterInfo(sId = "minecraft:barrier")
 public class Barrier extends Block implements BlockBarrier {
 
     @Override
@@ -29,7 +29,7 @@ public class Barrier extends Block implements BlockBarrier {
     }
 
     @Override
-    public boolean onBreak( boolean creative ) {
+    public boolean onBreak(boolean creative) {
         return creative;
     }
 

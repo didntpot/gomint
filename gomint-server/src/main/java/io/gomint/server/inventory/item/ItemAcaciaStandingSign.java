@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:acacia_standing_sign" )
-public class ItemAcaciaStandingSign extends ItemStack< io.gomint.inventory.item.ItemAcaciaStandingSign> implements io.gomint.inventory.item.ItemAcaciaStandingSign {
+@RegisterInfo(sId = "minecraft:acacia_standing_sign")
+public class ItemAcaciaStandingSign extends ItemStack<io.gomint.inventory.item.ItemAcaciaStandingSign> implements io.gomint.inventory.item.ItemAcaciaStandingSign {
 
     @Override
     public ItemType itemType() {

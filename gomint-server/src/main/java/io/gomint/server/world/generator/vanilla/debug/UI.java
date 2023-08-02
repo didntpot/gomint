@@ -16,13 +16,15 @@ package io.gomint.server.world.generator.vanilla.debug;
 
 import io.gomint.server.util.Pair;
 import io.gomint.world.Chunk;
-
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.border.Border;
+import javax.swing.border.MatteBorder;
 
 /**
  * @author geNAZt
@@ -37,19 +39,20 @@ public class UI {
     public UI() {
         EventQueue.invokeLater(() -> {
             try {
-                UIManager.setLookAndFeel( UIManager.getSystemLookAndFeelClassName() );
-            } catch ( ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex ) {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                     UnsupportedLookAndFeelException ex) {
                 ex.printStackTrace();
             }
 
-            JFrame frame = new JFrame( "Testing" );
-            frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-            frame.setLayout( new BorderLayout() );
-            frame.add( new TestPane() );
-            frame.setPreferredSize( new Dimension( 2560, 1080 ) );
+            JFrame frame = new JFrame("Testing");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setLayout(new BorderLayout());
+            frame.add(new TestPane());
+            frame.setPreferredSize(new Dimension(2560, 1080));
             frame.pack();
-            frame.setLocationRelativeTo( null );
-            frame.setVisible( true );
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
 
             this.reset();
         });
@@ -57,12 +60,12 @@ public class UI {
 
     public void loadedChunk(Chunk chunk) {
         EventQueue.invokeLater(() -> {
-            int x = ( SIZE / 2 ) + chunk.x();
-            int z = ( SIZE / 2 ) + chunk.z();
+            int x = (SIZE / 2) + chunk.x();
+            int z = (SIZE / 2) + chunk.z();
 
-            CellPane pane = this.panes.get( new Pair<>( x, z ) );
-            if ( pane != null ) {
-                pane.setBackground( Color.GREEN );
+            CellPane pane = this.panes.get(new Pair<>(x, z));
+            if (pane != null) {
+                pane.setBackground(Color.GREEN);
             }
         });
     }
@@ -70,8 +73,8 @@ public class UI {
     public void reset() {
         // Reset UI
         EventQueue.invokeLater(() -> {
-            for ( CellPane pane : this.panes.values() ) {
-                pane.setBackground( Color.WHITE );
+            for (CellPane pane : this.panes.values()) {
+                pane.setBackground(Color.WHITE);
             }
         });
     }
@@ -82,21 +85,21 @@ public class UI {
         private int height = SIZE;
 
         public TestPane() {
-            setLayout( new GridBagLayout() );
+            setLayout(new GridBagLayout());
 
             GridBagConstraints gbc = new GridBagConstraints();
-            for ( int row = 0; row <= this.height; row++ ) {
-                for ( int col = 0; col <= this.width; col++ ) {
+            for (int row = 0; row <= this.height; row++) {
+                for (int col = 0; col <= this.width; col++) {
                     gbc.gridx = col;
                     gbc.gridy = row;
 
                     CellPane cellPane = new CellPane();
-                    Border border = new MatteBorder( 1, 1, ( row == this.height ? 1 : 0 ), ( col == this.width ? 1 : 0 ), Color.GRAY );
+                    Border border = new MatteBorder(1, 1, (row == this.height ? 1 : 0), (col == this.width ? 1 : 0), Color.GRAY);
 
-                    UI.this.panes.put( new Pair<>( col, row ), cellPane );
+                    UI.this.panes.put(new Pair<>(col, row), cellPane);
 
-                    cellPane.setBorder( border );
-                    this.add( cellPane, gbc );
+                    cellPane.setBorder(border);
+                    this.add(cellPane, gbc);
                 }
             }
         }
@@ -110,7 +113,7 @@ public class UI {
 
         @Override
         public Dimension getPreferredSize() {
-            return new Dimension( 16, 16 );
+            return new Dimension(16, 16);
         }
     }
 

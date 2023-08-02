@@ -14,7 +14,7 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 14 )
+@RegisterInfo(id = 14)
 public class Invisibility extends Effect {
 
     @Override
@@ -23,18 +23,18 @@ public class Invisibility extends Effect {
     }
 
     @Override
-    public void apply( EntityLiving<?> entity ) {
-        entity.invisible( true );
+    public void apply(EntityLiving<?> entity) {
+        entity.invisible(true);
     }
 
     @Override
-    public void update( long currentTimeMillis, float dT ) {
+    public void update(long currentTimeMillis, float dT) {
 
     }
 
     @Override
-    public void remove( EntityLiving<?> entity ) {
-        entity.invisible( false );
+    public void remove(EntityLiving<?> entity) {
+        entity.invisible(false);
     }
 
 }

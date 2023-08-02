@@ -20,7 +20,6 @@ import io.gomint.server.util.Values;
 import io.gomint.server.world.WorldAdapter;
 import io.gomint.taglib.NBTTagCompound;
 import io.gomint.world.Gamemode;
-
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -28,7 +27,7 @@ import java.util.concurrent.TimeUnit;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "item" )
+@RegisterInfo(sId = "item")
 public class EntityItem extends Entity<EntityItemDrop> implements EntityItemDrop {
 
     private ItemStack<?> itemStack;
@@ -43,8 +42,8 @@ public class EntityItem extends Entity<EntityItemDrop> implements EntityItemDrop
      * @param itemStack The itemstack which should be dropped
      * @param world     The world in which this entity is in
      */
-    public EntityItem( ItemStack<?> itemStack, WorldAdapter world ) {
-        super( EntityType.ITEM_DROP, world );
+    public EntityItem(ItemStack<?> itemStack, WorldAdapter world) {
+        super(EntityType.ITEM_DROP, world);
         this.itemStack = itemStack;
         this.initEntity();
     }
@@ -53,13 +52,13 @@ public class EntityItem extends Entity<EntityItemDrop> implements EntityItemDrop
      * Create new entity item for API
      */
     public EntityItem() {
-        super( EntityType.ITEM_DROP, null );
+        super(EntityType.ITEM_DROP, null);
         this.initEntity();
     }
 
     private void initEntity() {
-        this.size( 0.25f, 0.25f );
-        pickupDelay( 500, TimeUnit.MILLISECONDS );
+        this.size(0.25f, 0.25f);
+        pickupDelay(500, TimeUnit.MILLISECONDS);
 
         this.gravity = 0.04f;
         this.offsetY = 0.125f;
@@ -67,12 +66,12 @@ public class EntityItem extends Entity<EntityItemDrop> implements EntityItemDrop
 
     @Override
     public <T extends ItemStack<T>> T itemStack() {
-        return (T) ( (io.gomint.server.inventory.item.ItemStack<T>) this.itemStack ).clone();
+        return (T) ((io.gomint.server.inventory.item.ItemStack<T>) this.itemStack).clone();
     }
 
     @Override
-    public <T extends ItemStack<T>> EntityItem itemStack(T itemStack ) {
-        if ( this.world == null ) {
+    public <T extends ItemStack<T>> EntityItem itemStack(T itemStack) {
+        if (this.world == null) {
             this.itemStack = itemStack.clone();
         }
 
@@ -80,24 +79,24 @@ public class EntityItem extends Entity<EntityItemDrop> implements EntityItemDrop
     }
 
     @Override
-    public EntityItem pickupDelay(long duration, TimeUnit timeUnit ) {
-        this.pickupTime = ( (GoMintServer) GoMint.instance() ).currentTickTime() + timeUnit.toMillis( duration );
+    public EntityItem pickupDelay(long duration, TimeUnit timeUnit) {
+        this.pickupTime = ((GoMintServer) GoMint.instance()).currentTickTime() + timeUnit.toMillis(duration);
         return this;
     }
 
     @Override
-    public void update( long currentTimeMS, float dT ) {
+    public void update(long currentTimeMS, float dT) {
         // Entity base tick (movement)
-        super.update( currentTimeMS, dT );
+        super.update(currentTimeMS, dT);
 
         this.lastUpdateDT += dT;
-        if ( Values.CLIENT_TICK_RATE - this.lastUpdateDT < MathUtils.EPSILON ) {
-            if ( this.isCollided && !this.isReset && this.velocity().length() < 0.01f ) {
-                this.velocity( Vector.ZERO ); // Reset velocity
+        if (Values.CLIENT_TICK_RATE - this.lastUpdateDT < MathUtils.EPSILON) {
+            if (this.isCollided && !this.isReset && this.velocity().length() < 0.01f) {
+                this.velocity(Vector.ZERO); // Reset velocity
                 this.isReset = true;
             }
 
-            if ( this.age > 6000 ) { // 5 Minutes
+            if (this.age > 6000) { // 5 Minutes
                 this.despawn();
             }
 
@@ -111,10 +110,10 @@ public class EntityItem extends Entity<EntityItemDrop> implements EntityItemDrop
     }
 
     @Override
-    public boolean damage( EntityDamageEvent damageEvent ) {
-        if ( damageEvent.damageSource() == EntityDamageEvent.DamageSource.FALL ||
+    public boolean damage(EntityDamageEvent damageEvent) {
+        if (damageEvent.damageSource() == EntityDamageEvent.DamageSource.FALL ||
             damageEvent.damageSource() == EntityDamageEvent.DamageSource.FIRE ||
-            damageEvent.damageSource() == EntityDamageEvent.DamageSource.ENTITY_EXPLODE ) {
+            damageEvent.damageSource() == EntityDamageEvent.DamageSource.ENTITY_EXPLODE) {
             this.despawn();
             return true;
         }
@@ -123,51 +122,51 @@ public class EntityItem extends Entity<EntityItemDrop> implements EntityItemDrop
     }
 
     @Override
-    public Packet createSpawnPacket( EntityPlayer receiver ) {
+    public Packet createSpawnPacket(EntityPlayer receiver) {
         PacketAddItemEntity packetAddItemEntity = new PacketAddItemEntity();
-        packetAddItemEntity.setEntityId( this.id() );
-        packetAddItemEntity.setItemStack( this.itemStack );
-        packetAddItemEntity.setX( this.positionX() );
-        packetAddItemEntity.setY( this.positionY() );
-        packetAddItemEntity.setZ( this.positionZ() );
-        packetAddItemEntity.setMotionX( this.getMotionX() );
-        packetAddItemEntity.setMotionY( this.getMotionY() );
-        packetAddItemEntity.setMotionZ( this.getMotionZ() );
-        packetAddItemEntity.setMetadata( this.metadata() );
+        packetAddItemEntity.setEntityId(this.id());
+        packetAddItemEntity.setItemStack(this.itemStack);
+        packetAddItemEntity.setX(this.positionX());
+        packetAddItemEntity.setY(this.positionY());
+        packetAddItemEntity.setZ(this.positionZ());
+        packetAddItemEntity.setMotionX(this.getMotionX());
+        packetAddItemEntity.setMotionY(this.getMotionY());
+        packetAddItemEntity.setMotionZ(this.getMotionZ());
+        packetAddItemEntity.setMetadata(this.metadata());
         return packetAddItemEntity;
     }
 
     @Override
-    public void onCollideWithPlayer( EntityPlayer player ) {
+    public void onCollideWithPlayer(EntityPlayer player) {
         // Check if we can pick it up
-        if ( this.world.server().currentTickTime() > this.pickupTime() && !this.dead() ) {
+        if (this.world.server().currentTickTime() > this.pickupTime() && !this.dead()) {
             // Check if we have place in out inventory to store this item
-            if ( !player.inventory().hasPlaceFor( this.itemStack() ) ) {
+            if (!player.inventory().hasPlaceFor(this.itemStack())) {
                 return;
             }
 
             // Ask the API is we can pickup
-            PlayerPickupItemEvent event = new PlayerPickupItemEvent( player, this, this.itemStack() );
-            if ( player.gamemode() == Gamemode.SPECTATOR ) {
-                event.cancelled( true );
+            PlayerPickupItemEvent event = new PlayerPickupItemEvent(player, this, this.itemStack());
+            if (player.gamemode() == Gamemode.SPECTATOR) {
+                event.cancelled(true);
             }
 
-            this.world.server().pluginManager().callEvent( event );
+            this.world.server().pluginManager().callEvent(event);
 
-            if ( !event.cancelled() ) {
+            if (!event.cancelled()) {
                 // Consume the item
                 PacketPickupItemEntity packet = new PacketPickupItemEntity();
-                packet.setItemEntityId( this.id() );
-                packet.setPlayerEntityId( player.id() );
+                packet.setItemEntityId(this.id());
+                packet.setPlayerEntityId(player.id());
 
-                for ( io.gomint.entity.EntityPlayer announcePlayer : this.world.onlinePlayers() ) {
-                    if ( announcePlayer instanceof EntityPlayer ) {
-                        ( (EntityPlayer) announcePlayer ).connection().addToSendQueue( packet );
+                for (io.gomint.entity.EntityPlayer announcePlayer : this.world.onlinePlayers()) {
+                    if (announcePlayer instanceof EntityPlayer) {
+                        ((EntityPlayer) announcePlayer).connection().addToSendQueue(packet);
                     }
                 }
 
                 // Manipulate inventory
-                player.inventory().addItem( event.itemStack() );
+                player.inventory().addItem(event.itemStack());
                 this.despawn();
             }
         }
@@ -179,8 +178,8 @@ public class EntityItem extends Entity<EntityItemDrop> implements EntityItemDrop
     }
 
     @Override
-    public void initFromNBT( NBTTagCompound compound ) {
-        super.initFromNBT( compound );
+    public void initFromNBT(NBTTagCompound compound) {
+        super.initFromNBT(compound);
 
 
         // DumpUtil.dumpNBTCompund( compound );

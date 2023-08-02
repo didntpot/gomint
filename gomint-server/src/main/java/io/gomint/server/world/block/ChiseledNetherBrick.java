@@ -9,7 +9,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:chiseled_nether_bricks" )
+@RegisterInfo(sId = "minecraft:chiseled_nether_bricks")
 public class ChiseledNetherBrick extends Block {
 
     @Override

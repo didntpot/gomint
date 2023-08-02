@@ -1,10 +1,7 @@
 package io.gomint.server.inventory.item;
 
 import io.gomint.inventory.item.ItemType;
-
 import io.gomint.server.registry.RegisterInfo;
-import io.gomint.taglib.NBTTagCompound;
-
 import java.time.Duration;
 
 /**
@@ -12,7 +9,7 @@ import java.time.Duration;
  * @version 1.0
  */
 @RegisterInfo(sId = "minecraft:trapped_chest")
-public class ItemTrappedChest extends ItemStack< io.gomint.inventory.item.ItemTrappedChest> implements io.gomint.inventory.item.ItemTrappedChest {
+public class ItemTrappedChest extends ItemStack<io.gomint.inventory.item.ItemTrappedChest> implements io.gomint.inventory.item.ItemTrappedChest {
 
     @Override
     public Duration burnTime() {

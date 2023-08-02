@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:mojang_banner_pattern" )
-public class ItemMojangBannerPattern extends ItemStack< io.gomint.inventory.item.ItemMojangBannerPattern> implements io.gomint.inventory.item.ItemMojangBannerPattern {
+@RegisterInfo(sId = "minecraft:mojang_banner_pattern")
+public class ItemMojangBannerPattern extends ItemStack<io.gomint.inventory.item.ItemMojangBannerPattern> implements io.gomint.inventory.item.ItemMojangBannerPattern {
 
     @Override
     public ItemType itemType() {

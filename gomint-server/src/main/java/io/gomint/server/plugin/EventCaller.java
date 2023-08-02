@@ -22,6 +22,6 @@ public interface EventCaller {
      * @param <T>   The type of event which we handle
      * @return the handled and changed event
      */
-    <T extends Event> T callEvent( T event );
+    <T extends Event> T callEvent(T event);
 
 }

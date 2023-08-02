@@ -15,27 +15,27 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketRespawnPosition extends Packet {
+public class PacketRespawnPosition extends Packet implements PacketClientbound, PacketServerbound {
 
     private Vector position;
     private RespawnState state;
     private long entityId;
 
     public PacketRespawnPosition() {
-        super( Protocol.PACKET_RESPAWN_POSITION );
+        super(Protocol.PACKET_RESPAWN_POSITION);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        writeVector( this.position, buffer );
-        buffer.writeByte( this.state.getId() );
-        buffer.writeUnsignedVarLong( this.entityId );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        writeVector(this.position, buffer);
+        buffer.writeByte(this.state.getId());
+        buffer.writeUnsignedVarLong(this.entityId);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
-        this.position = this.readVector( buffer );
-        this.state = RespawnState.valueOf( buffer.readByte() );
+    public void deserialize(PacketBuffer buffer, int protocolID) {
+        this.position = this.readVector(buffer);
+        this.state = RespawnState.valueOf(buffer.readByte());
         this.entityId = buffer.readUnsignedVarLong();
     }
 
@@ -64,9 +64,9 @@ public class PacketRespawnPosition extends Packet {
     }
 
     public enum RespawnState {
-        SEARCHING_FOR_SPAWN( (byte) 0 ),
-        READY_TO_SPAWN( (byte) 1 ),
-        CLIENT_READY_TO_SPAWN( (byte) 2 );
+        SEARCHING_FOR_SPAWN((byte) 0),
+        READY_TO_SPAWN((byte) 1),
+        CLIENT_READY_TO_SPAWN((byte) 2);
 
         private final byte id;
 
@@ -74,8 +74,8 @@ public class PacketRespawnPosition extends Packet {
             this.id = id;
         }
 
-        public static RespawnState valueOf( byte state ) {
-            switch ( state ) {
+        public static RespawnState valueOf(byte state) {
+            switch (state) {
                 case 0:
                     return SEARCHING_FOR_SPAWN;
                 case 1:

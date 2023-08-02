@@ -15,7 +15,8 @@ import io.gomint.world.block.BlockType;
 @RegisterInfo(sId = "minecraft:light_block")
 public class LightBlock extends Block implements BlockLightBlock {
 
-    private static final ProgressBlockState LIGHT_LEVEL = new ProgressBlockState(() -> new String[]{"block_light_level"}, 15, a -> {});
+    private static final ProgressBlockState LIGHT_LEVEL = new ProgressBlockState(() -> new String[]{"block_light_level"}, 15, a -> {
+    });
 
     @Override
     public float blastResistance() {

@@ -28,8 +28,8 @@ public class AsyncChunkLoadTask extends AsyncChunkTask {
      * @param generate Is it allowed to generate the chunk if its missing?
      * @param callback A delegate which is called when the task has been completed
      */
-    AsyncChunkLoadTask( int x, int z, boolean generate, Delegate<ChunkAdapter> callback ) {
-        super( Type.LOAD );
+    AsyncChunkLoadTask(int x, int z, boolean generate, Delegate<ChunkAdapter> callback) {
+        super(Type.LOAD);
         this.x = x;
         this.z = z;
         this.generate = generate;

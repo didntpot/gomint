@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:scute" )
-public class ItemScute extends ItemStack< io.gomint.inventory.item.ItemScute> implements io.gomint.inventory.item.ItemScute {
+@RegisterInfo(sId = "minecraft:scute")
+public class ItemScute extends ItemStack<io.gomint.inventory.item.ItemScute> implements io.gomint.inventory.item.ItemScute {
 
     @Override
     public ItemType itemType() {

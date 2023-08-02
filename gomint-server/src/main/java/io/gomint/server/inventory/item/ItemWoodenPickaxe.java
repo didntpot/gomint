@@ -6,14 +6,13 @@ import io.gomint.server.entity.AttributeModifier;
 import io.gomint.server.entity.AttributeModifierType;
 import io.gomint.server.entity.EntityPlayer;
 import io.gomint.server.registry.RegisterInfo;
-
 import java.time.Duration;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:wooden_pickaxe" )
+@RegisterInfo(sId = "minecraft:wooden_pickaxe")
 public class ItemWoodenPickaxe extends ItemReduceTierWooden<io.gomint.inventory.item.ItemWoodenPickaxe> implements io.gomint.inventory.item.ItemWoodenPickaxe {
 
     @Override
@@ -22,17 +21,17 @@ public class ItemWoodenPickaxe extends ItemReduceTierWooden<io.gomint.inventory.
     }
 
     @Override
-    public void gotInHand( EntityPlayer player ) {
+    public void gotInHand(EntityPlayer player) {
         player
-            .attributeInstance( Attribute.ATTACK_DAMAGE )
-            .setModifier( AttributeModifier.ITEM_ATTACK_DAMAGE, AttributeModifierType.ADDITION, 2 ); // 2 from pickaxe type
+            .attributeInstance(Attribute.ATTACK_DAMAGE)
+            .setModifier(AttributeModifier.ITEM_ATTACK_DAMAGE, AttributeModifierType.ADDITION, 2); // 2 from pickaxe type
     }
 
     @Override
-    public void removeFromHand( EntityPlayer player ) {
+    public void removeFromHand(EntityPlayer player) {
         player
-            .attributeInstance( Attribute.ATTACK_DAMAGE )
-            .removeModifier( AttributeModifier.ITEM_ATTACK_DAMAGE );
+            .attributeInstance(Attribute.ATTACK_DAMAGE)
+            .removeModifier(AttributeModifier.ITEM_ATTACK_DAMAGE);
     }
 
     @Override

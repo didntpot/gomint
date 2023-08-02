@@ -14,7 +14,7 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 22 )
+@RegisterInfo(id = 22)
 public class Absorption extends Effect {
 
     @Override
@@ -23,8 +23,8 @@ public class Absorption extends Effect {
     }
 
     @Override
-    public void apply( EntityLiving<?> player ) {
-        player.absorptionHearts( player.absorptionHearts() + 4 * ( this.amplifier + 1 ) );
+    public void apply(EntityLiving<?> player) {
+        player.absorptionHearts(player.absorptionHearts() + 4 * (this.amplifier + 1));
     }
 
     /**
@@ -34,13 +34,13 @@ public class Absorption extends Effect {
      * @param dT                percentage of a whole second done
      */
     @Override
-    public void update( long currentTimeMillis, float dT ) {
+    public void update(long currentTimeMillis, float dT) {
         // There is no update needed for this effect
     }
 
     @Override
-    public void remove( EntityLiving<?> player ) {
-        player.absorptionHearts( player.absorptionHearts() - ( 4 * ( this.amplifier + 1 ) ) );
+    public void remove(EntityLiving<?> player) {
+        player.absorptionHearts(player.absorptionHearts() - (4 * (this.amplifier + 1)));
     }
 
 }

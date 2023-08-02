@@ -11,7 +11,7 @@ import io.gomint.world.block.BlockSand;
  * @version 1.0
  */
 @RegisterInfo(sId = "minecraft:sand")
-public class ItemSand extends ItemStack< io.gomint.inventory.item.ItemSand> implements io.gomint.inventory.item.ItemSand {
+public class ItemSand extends ItemStack<io.gomint.inventory.item.ItemSand> implements io.gomint.inventory.item.ItemSand {
 
     @Override
     public ItemType itemType() {

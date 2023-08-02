@@ -33,7 +33,7 @@ public class MetadataPosition extends MetadataValue {
      * @param y The y-value to set
      * @param z The z-value to set
      */
-    public MetadataPosition( int x, int y, int z ) {
+    public MetadataPosition(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -53,7 +53,7 @@ public class MetadataPosition extends MetadataValue {
      *
      * @param x The x-value to set
      */
-    public void setX( int x ) {
+    public void setX(int x) {
         this.x = x;
     }
 
@@ -71,7 +71,7 @@ public class MetadataPosition extends MetadataValue {
      *
      * @param y The y-value to set
      */
-    public void setY( int y ) {
+    public void setY(int y) {
         this.y = y;
     }
 
@@ -89,7 +89,7 @@ public class MetadataPosition extends MetadataValue {
      *
      * @param z The z-value to set
      */
-    public void setZ( int z ) {
+    public void setZ(int z) {
         this.z = z;
     }
 
@@ -100,7 +100,7 @@ public class MetadataPosition extends MetadataValue {
      * @param y The y-value to set
      * @param z The z-value to set
      */
-    public void set( int x, int y, int z ) {
+    public void set(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -108,15 +108,15 @@ public class MetadataPosition extends MetadataValue {
 
     // ========================== METADATA VALUE ========================== //
     @Override
-    void serialize( PacketBuffer buffer, int index ) {
-        super.serialize( buffer, index );
-        buffer.writeSignedVarInt( this.x );
-        buffer.writeSignedVarInt( this.y );
-        buffer.writeSignedVarInt( this.z );
+    void serialize(PacketBuffer buffer, int index) {
+        super.serialize(buffer, index);
+        buffer.writeSignedVarInt(this.x);
+        buffer.writeSignedVarInt(this.y);
+        buffer.writeSignedVarInt(this.z);
     }
 
     @Override
-    void deserialize( PacketBuffer buffer ) {
+    void deserialize(PacketBuffer buffer) {
         this.x = buffer.readSignedVarInt();
         this.y = buffer.readByte() & 0xFF;
         this.z = buffer.readSignedVarInt();

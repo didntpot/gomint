@@ -11,7 +11,7 @@ import io.gomint.world.block.data.LogType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:trapdoor", def = true )
+@RegisterInfo(sId = "minecraft:trapdoor", def = true)
 @RegisterInfo(sId = "minecraft:jungle_trapdoor")
 @RegisterInfo(sId = "minecraft:spruce_trapdoor")
 @RegisterInfo(sId = "minecraft:acacia_trapdoor")
@@ -30,6 +30,7 @@ public class WoodenTrapdoor extends Trapdoor<BlockWoodenTrapdoor> implements Blo
         WARPED("minecraft:warped_trapdoor");
 
         private final String blockId;
+
         LogTypeMagic(String blockId) {
             this.blockId = blockId;
         }

@@ -8,14 +8,13 @@
 package io.gomint.server.registry;
 
 import io.gomint.server.util.ClassPath;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nonnull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author geNAZt
@@ -60,7 +59,7 @@ public class StringRegistry<R> {
     /**
      * Build a new generator registry
      *
-     * @param callback  which is used to generate a generator for each found element
+     * @param callback which is used to generate a generator for each found element
      */
     public StringRegistry(GeneratorCallback<R, String> callback) {
         this.generatorCallback = callback;
@@ -70,7 +69,7 @@ public class StringRegistry<R> {
      * Register all classes which can be found in given path
      *
      * @param classPathSearcher which should be used to search classes
-     * @param classPath which should be searched
+     * @param classPath         which should be searched
      */
     public void register(ClassPath classPathSearcher, String classPath) {
         LOGGER.debug("Going to scan: {}", classPath);

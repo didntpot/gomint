@@ -27,11 +27,11 @@ public class PermissionGroupManager implements GroupManager {
      * @param currentTimeMS The current system time in milliseconds
      * @param dT            The time that has passed since the last tick in 1/s
      */
-    public void update( long currentTimeMS, float dT ) {
-        if ( this.groupMap != null && this.dirty ) {
-            for ( Object2ObjectMap.Entry<String, Group> entry : this.groupMap.object2ObjectEntrySet() ) {
-                if ( entry.getValue() instanceof PermissionGroup ) {
-                    ( (PermissionGroup) entry.getValue() ).resetDirty();
+    public void update(long currentTimeMS, float dT) {
+        if (this.groupMap != null && this.dirty) {
+            for (Object2ObjectMap.Entry<String, Group> entry : this.groupMap.object2ObjectEntrySet()) {
+                if (entry.getValue() instanceof PermissionGroup) {
+                    ((PermissionGroup) entry.getValue()).resetDirty();
                 }
             }
 
@@ -40,28 +40,28 @@ public class PermissionGroupManager implements GroupManager {
     }
 
     @Override
-    public Group group(String name ) {
+    public Group group(String name) {
         // Check if this is the first group we get/create
-        if ( this.groupMap == null ) {
+        if (this.groupMap == null) {
             this.groupMap = new Object2ObjectOpenHashMap<>();
 
-            PermissionGroup group = new PermissionGroup( this, name );
-            this.groupMap.put( name, group );
+            PermissionGroup group = new PermissionGroup(this, name);
+            this.groupMap.put(name, group);
             return group;
         }
 
-        Group group = this.groupMap.get( name );
-        if ( group == null ) {
-            group = new PermissionGroup( this, name );
-            this.groupMap.put( name, group );
+        Group group = this.groupMap.get(name);
+        if (group == null) {
+            group = new PermissionGroup(this, name);
+            this.groupMap.put(name, group);
         }
 
         return group;
     }
 
     @Override
-    public GroupManager remove(Group group ) {
-        this.groupMap.remove( group.name() );
+    public GroupManager remove(Group group) {
+        this.groupMap.remove(group.name());
         return this;
     }
 

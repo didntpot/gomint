@@ -3,7 +3,6 @@ package io.gomint.server.inventory.item;
 import io.gomint.inventory.item.ItemType;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.data.LogType;
-
 import java.time.Duration;
 
 /**
@@ -18,7 +17,7 @@ import java.time.Duration;
 @RegisterInfo(sId = "minecraft:spruce_button")
 @RegisterInfo(sId = "minecraft:crimson_button")
 @RegisterInfo(sId = "minecraft:warped_button")
-public class ItemWoodenButton extends ItemStack< io.gomint.inventory.item.ItemWoodenButton> implements io.gomint.inventory.item.ItemWoodenButton {
+public class ItemWoodenButton extends ItemStack<io.gomint.inventory.item.ItemWoodenButton> implements io.gomint.inventory.item.ItemWoodenButton {
 
     @Override
     public Duration burnTime() {

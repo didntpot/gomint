@@ -7,7 +7,6 @@ import io.gomint.inventory.item.ItemStack;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockBlockOfGold;
 import io.gomint.world.block.BlockType;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:gold_block" )
+@RegisterInfo(sId = "minecraft:gold_block")
 public class BlockOfGold extends Block implements BlockBlockOfGold {
 
     @Override
@@ -42,16 +41,16 @@ public class BlockOfGold extends Block implements BlockBlockOfGold {
     public Class<? extends ItemStack<?>>[] toolInterfaces() {
         // Only iron and up
         return new Class[]{
-        ItemIronPickaxe.class,
-        ItemDiamondPickaxe.class
+            ItemIronPickaxe.class,
+            ItemDiamondPickaxe.class
         };
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
-        if ( isCorrectTool( itemInHand ) ) {
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
+        if (isCorrectTool(itemInHand)) {
             return new ArrayList<>() {{
-                add( ItemBlockOfGold.create( 1 ) );
+                add(ItemBlockOfGold.create(1));
             }};
         }
 

@@ -9,9 +9,6 @@ package io.gomint.server.network;
 
 import io.gomint.server.network.packet.Packet;
 import io.gomint.server.util.Values;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Objects;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -20,6 +17,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author geNAZt
@@ -27,19 +26,19 @@ import java.util.function.Consumer;
  */
 public class PostProcessExecutor implements Runnable {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger( PostProcessExecutor.class );
+    private static final Logger LOGGER = LoggerFactory.getLogger(PostProcessExecutor.class);
 
-    private final AtomicInteger connectionsInUse = new AtomicInteger( 0 );
+    private final AtomicInteger connectionsInUse = new AtomicInteger(0);
     private Queue<PostProcessWorker> workers = new ConcurrentLinkedQueue<>();
     private float load;
     private Future<?> future;
-    private AtomicBoolean running = new AtomicBoolean( true );
+    private AtomicBoolean running = new AtomicBoolean(true);
     private final Object waiter = new Object();
     private final ExecutorService executorService;
 
-    public PostProcessExecutor( ExecutorService executorService ) {
+    public PostProcessExecutor(ExecutorService executorService) {
         this.executorService = executorService;
-        this.future = executorService.submit( this );
+        this.future = executorService.submit(this);
     }
 
     public float load() {
@@ -70,45 +69,45 @@ public class PostProcessExecutor implements Runnable {
     }
 
     public void addWork(ConnectionWithState connection, Packet[] packets, Consumer<Void> callback) {
-        this.workers.offer( new PostProcessWorker( connection, packets, callback ) );
+        this.workers.offer(new PostProcessWorker(connection, packets, callback));
 
-        synchronized ( this.waiter ) {
+        synchronized (this.waiter) {
             this.waiter.notifyAll();
         }
     }
 
     public void stop() {
-        this.running.set( false );
-        this.future.cancel( true );
+        this.running.set(false);
+        this.future.cancel(true);
     }
 
     @Override
     public void run() {
-        while ( this.running.get() && !this.executorService.isShutdown() ) {
+        while (this.running.get() && !this.executorService.isShutdown()) {
             long start = System.currentTimeMillis();
 
-            while ( !this.workers.isEmpty() ) {
+            while (!this.workers.isEmpty()) {
                 PostProcessWorker worker = this.workers.poll();
-                if ( worker != null ) {
+                if (worker != null) {
                     try {
                         worker.run();
-                    } catch ( Throwable t ) {
+                    } catch (Throwable t) {
                         t.printStackTrace();
                     }
                 }
             }
 
-            this.load = ( ( System.currentTimeMillis() - start ) / Values.CLIENT_TICK_MS ) * 100;
-            if ( this.load > 60 ) {
-                LOGGER.debug( "Post processor load > 60%: {}", this.load );
+            this.load = ((System.currentTimeMillis() - start) / Values.CLIENT_TICK_MS) * 100;
+            if (this.load > 60) {
+                LOGGER.debug("Post processor load > 60%: {}", this.load);
             }
 
             // Wait on the next worker
-            if ( this.workers.isEmpty() ) {
-                synchronized ( this.waiter ) {
+            if (this.workers.isEmpty()) {
+                synchronized (this.waiter) {
                     try {
-                        this.waiter.wait( 500 );
-                    } catch ( InterruptedException e ) {
+                        this.waiter.wait(500);
+                    } catch (InterruptedException e) {
                         // Ignored
                     }
                 }

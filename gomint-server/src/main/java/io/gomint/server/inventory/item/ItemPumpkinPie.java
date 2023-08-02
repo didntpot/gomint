@@ -1,16 +1,14 @@
 package io.gomint.server.inventory.item;
-import io.gomint.inventory.item.ItemType;
 
+import io.gomint.inventory.item.ItemType;
 import io.gomint.server.registry.RegisterInfo;
-import io.gomint.taglib.NBTTagCompound;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:pumpkin_pie" )
+@RegisterInfo(sId = "minecraft:pumpkin_pie")
 public class ItemPumpkinPie extends ItemFood<io.gomint.inventory.item.ItemPumpkinPie> implements io.gomint.inventory.item.ItemPumpkinPie {
-
 
 
     @Override

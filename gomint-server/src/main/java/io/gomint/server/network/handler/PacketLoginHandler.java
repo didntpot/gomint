@@ -12,29 +12,14 @@ import io.gomint.player.DeviceInfo;
 import io.gomint.server.GoMintServer;
 import io.gomint.server.config.ServerConfig;
 import io.gomint.server.entity.EntityPlayer;
-import io.gomint.server.jwt.EncryptionRequestForger;
-import io.gomint.server.jwt.JwtAlgorithm;
-import io.gomint.server.jwt.JwtSignatureException;
-import io.gomint.server.jwt.JwtToken;
-import io.gomint.server.jwt.MojangChainValidator;
-import io.gomint.server.network.EncryptionHandler;
-import io.gomint.server.network.EncryptionKeyFactory;
-import io.gomint.server.network.PlayerConnection;
-import io.gomint.server.network.PlayerConnectionState;
-import io.gomint.server.network.Protocol;
+import io.gomint.server.jwt.*;
+import io.gomint.server.network.*;
 import io.gomint.server.network.packet.PacketEncryptionRequest;
 import io.gomint.server.network.packet.PacketLogin;
 import io.gomint.server.network.packet.PacketPlayState;
 import io.gomint.server.player.PlayerSkin;
 import io.gomint.server.scheduler.SyncScheduledTask;
 import io.gomint.server.world.WorldAdapter;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
@@ -43,10 +28,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import static io.gomint.player.DeviceInfo.DeviceOS.ANDROID;
-import static io.gomint.player.DeviceInfo.DeviceOS.IOS;
-import static io.gomint.player.DeviceInfo.DeviceOS.WINDOWS;
+import static io.gomint.player.DeviceInfo.DeviceOS.*;
 
 /**
  * @author geNAZt

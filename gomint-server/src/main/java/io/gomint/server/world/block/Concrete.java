@@ -12,7 +12,7 @@ import io.gomint.world.block.data.BlockColor;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:concrete" )
+@RegisterInfo(sId = "minecraft:concrete")
 public class Concrete extends Block implements BlockConcrete {
 
     private static final BlockColorBlockState COLOR = new BlockColorBlockState(() -> new String[]{"color"});
@@ -53,8 +53,8 @@ public class Concrete extends Block implements BlockConcrete {
     }
 
     @Override
-    public BlockConcrete color(BlockColor color ) {
-        COLOR.state( this, color );
+    public BlockConcrete color(BlockColor color) {
+        COLOR.state(this, color);
         return this;
     }
 

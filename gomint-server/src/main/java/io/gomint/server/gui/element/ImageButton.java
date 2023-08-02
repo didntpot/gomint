@@ -10,8 +10,8 @@ public class ImageButton extends Button {
 
     private final String image;
 
-    public ImageButton( String id, String text, String image ) {
-        super( id, text );
+    public ImageButton(String id, String text, String image) {
+        super(id, text);
         this.image = image;
     }
 
@@ -19,9 +19,9 @@ public class ImageButton extends Button {
     public JSONObject toJSON() {
         JSONObject button = super.toJSON();
         JSONObject jsonIcon = new JSONObject();
-        jsonIcon.put( "type", this.image.startsWith( "http" ) || this.image.startsWith( "https" ) ? "url" : "path" );
-        jsonIcon.put( "data", this.image );
-        button.put( "image", jsonIcon );
+        jsonIcon.put("type", this.image.startsWith("http") || this.image.startsWith("https") ? "url" : "path");
+        jsonIcon.put("data", this.image);
+        button.put("image", jsonIcon);
         return button;
     }
 

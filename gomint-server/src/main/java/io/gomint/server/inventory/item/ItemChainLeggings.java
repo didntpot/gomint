@@ -11,7 +11,7 @@ import io.gomint.world.block.data.Facing;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:chainmail_leggings" )
+@RegisterInfo(sId = "minecraft:chainmail_leggings")
 public class ItemChainLeggings extends ItemChainArmor<io.gomint.inventory.item.ItemChainLeggings> implements io.gomint.inventory.item.ItemChainLeggings {
 
     @Override
@@ -20,12 +20,12 @@ public class ItemChainLeggings extends ItemChainArmor<io.gomint.inventory.item.I
     }
 
     @Override
-    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock ) {
-        if ( clickedBlock == null ) {
-            if ( isBetter( (ItemStack<?>) entity.armorInventory().leggings() ) ) {
+    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock) {
+        if (clickedBlock == null) {
+            if (isBetter((ItemStack<?>) entity.armorInventory().leggings())) {
                 ItemStack<?> old = (ItemStack<?>) entity.armorInventory().leggings();
-                entity.armorInventory().leggings( this );
-                entity.inventory().item( entity.inventory().itemInHandSlot(), old );
+                entity.armorInventory().leggings(this);
+                entity.inventory().item(entity.inventory().itemInHandSlot(), old);
             }
         }
 

@@ -10,7 +10,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:ancient_debris" )
+@RegisterInfo(sId = "minecraft:ancient_debris")
 public class AncientDebris extends Block implements BlockAncientDebris {
 
     @Override

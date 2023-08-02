@@ -12,7 +12,6 @@ import io.gomint.taglib.NBTTagCompound;
 import io.gomint.world.block.BlockEnderChest;
 import io.gomint.world.block.BlockType;
 import io.gomint.world.block.data.Facing;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +19,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:ender_chest" )
+@RegisterInfo(sId = "minecraft:ender_chest")
 public class EnderChest extends ContainerBlock<BlockEnderChest> implements BlockEnderChest {
 
     @Override
@@ -34,10 +33,10 @@ public class EnderChest extends ContainerBlock<BlockEnderChest> implements Block
     }
 
     @Override
-    public boolean interact(Entity<?> entity, Facing face, Vector facePos, ItemStack<?> item ) {
+    public boolean interact(Entity<?> entity, Facing face, Vector facePos, ItemStack<?> item) {
         EnderChestTileEntity tileEntity = this.tileEntity();
-        if ( tileEntity != null ) {
-            tileEntity.interact( entity, face, facePos, item );
+        if (tileEntity != null) {
+            tileEntity.interact(entity, face, facePos, item);
             return true;
         }
 
@@ -65,13 +64,13 @@ public class EnderChest extends ContainerBlock<BlockEnderChest> implements Block
     }
 
     @Override
-    TileEntity createTileEntity( NBTTagCompound compound ) {
-        super.createTileEntity( compound );
+    TileEntity createTileEntity(NBTTagCompound compound) {
+        super.createTileEntity(compound);
         return this.tileEntities.construct(EnderChestTileEntity.class, compound, this, this.items);
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
         return new ArrayList<>() {{
             add(ItemObsidian.create(8));
         }};
@@ -81,5 +80,5 @@ public class EnderChest extends ContainerBlock<BlockEnderChest> implements Block
     public Class<? extends ItemStack<?>>[] toolInterfaces() {
         return ToolPresets.PICKAXE;
     }
-    
+
 }

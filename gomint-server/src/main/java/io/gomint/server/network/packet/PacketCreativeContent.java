@@ -15,7 +15,7 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketCreativeContent extends Packet {
+public class PacketCreativeContent extends Packet implements PacketClientbound {
 
     private ItemStack<?>[] items;
 

@@ -13,7 +13,6 @@ import io.gomint.server.entity.Attribute;
 import io.gomint.server.entity.EntityType;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.WorldAdapter;
-
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -22,7 +21,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 @RegisterInfo(sId = "minecraft:cat")
 public class EntityCat extends EntityAgeableAnimal<io.gomint.entity.animal.EntityCat> implements io.gomint.entity.animal.EntityCat {
-    
+
     /**
      * Constructs a new EntityCat
      *
@@ -59,16 +58,16 @@ public class EntityCat extends EntityAgeableAnimal<io.gomint.entity.animal.Entit
         if (dead() || baby()) {
             return;
         }
-        
+
         // Entity drops
         Location location = this.location();
-        
+
         ThreadLocalRandom random = ThreadLocalRandom.current();
         int amount = random.nextInt(3);
         if (amount > 0) {
             this.world.dropItem(location, ItemString.create(amount));
         }
-        
+
         if (isLastDamageCausedByPlayer()) {
             this.world.createExpOrb(location, random.nextInt(1, 4));
         }

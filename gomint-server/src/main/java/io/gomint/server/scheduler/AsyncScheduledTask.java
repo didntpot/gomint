@@ -10,12 +10,11 @@ package io.gomint.server.scheduler;
 import io.gomint.scheduler.Task;
 import io.gomint.util.CompleteHandler;
 import io.gomint.util.ExceptionHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author geNAZt
@@ -23,7 +22,7 @@ import java.util.concurrent.Future;
  */
 public class AsyncScheduledTask implements Task, Runnable {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger( AsyncScheduledTask.class );
+    private static final Logger LOGGER = LoggerFactory.getLogger(AsyncScheduledTask.class);
     private final Runnable runnable;
 
     private ExceptionHandler exceptionHandler;
@@ -36,28 +35,28 @@ public class AsyncScheduledTask implements Task, Runnable {
      *
      * @param runnable runnable which should be executed
      */
-    public AsyncScheduledTask( Runnable runnable ) {
+    public AsyncScheduledTask(Runnable runnable) {
         this.runnable = runnable;
     }
 
     @Override
     public void cancel() {
-        this.future.cancel( true );
+        this.future.cancel(true);
     }
 
     @Override
-    public AsyncScheduledTask onException( ExceptionHandler exceptionHandler ) {
+    public AsyncScheduledTask onException(ExceptionHandler exceptionHandler) {
         this.exceptionHandler = exceptionHandler;
         return this;
     }
 
     @Override
-    public AsyncScheduledTask onComplete( CompleteHandler completeHandler ) {
-        if ( this.completeHandlerList == null ) {
+    public AsyncScheduledTask onComplete(CompleteHandler completeHandler) {
+        if (this.completeHandlerList == null) {
             this.completeHandlerList = new ArrayList<>();
         }
 
-        this.completeHandlerList.add( completeHandler );
+        this.completeHandlerList.add(completeHandler);
         return this;
     }
 
@@ -66,22 +65,22 @@ public class AsyncScheduledTask implements Task, Runnable {
         // CHECKSTYLE:OFF
         try {
             this.runnable.run();
-        } catch ( Exception e ) {
-            if ( this.exceptionHandler != null ) {
-                if ( !this.exceptionHandler.onException( e ) ) {
+        } catch (Exception e) {
+            if (this.exceptionHandler != null) {
+                if (!this.exceptionHandler.onException(e)) {
                     this.fireCompleteHandlers();
                     this.cancel();
                 }
             } else {
-                LOGGER.error( "No exception handler given", e );
+                LOGGER.error("No exception handler given", e);
             }
         }
         // CHECKSTYLE:ON
     }
 
     private void fireCompleteHandlers() {
-        if ( this.completeHandlerList != null ) {
-            for ( CompleteHandler completeHandler : this.completeHandlerList ) {
+        if (this.completeHandlerList != null) {
+            for (CompleteHandler completeHandler : this.completeHandlerList) {
                 completeHandler.onComplete();
             }
 
@@ -94,7 +93,7 @@ public class AsyncScheduledTask implements Task, Runnable {
      *
      * @param future of this task
      */
-    void assignFuture( Future<?> future ) {
+    void assignFuture(Future<?> future) {
         this.future = future;
     }
 

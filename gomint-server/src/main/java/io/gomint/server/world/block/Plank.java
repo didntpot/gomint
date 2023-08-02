@@ -12,20 +12,20 @@ import io.gomint.world.block.data.LogType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:planks", def = true )
-@RegisterInfo( sId = "minecraft:crimson_planks" )
-@RegisterInfo( sId = "minecraft:warped_planks" )
+@RegisterInfo(sId = "minecraft:planks", def = true)
+@RegisterInfo(sId = "minecraft:crimson_planks")
+@RegisterInfo(sId = "minecraft:warped_planks")
 public class Plank extends Block implements BlockPlank {
 
     private static final String PLANK_ID = "minecraft:planks";
 
     private enum LogTypeMagic {
-        OAK(PLANK_ID,"oak"),
-        SPRUCE(PLANK_ID,"spruce"),
-        BIRCH(PLANK_ID,"birch"),
-        JUNGLE(PLANK_ID,"jungle"),
-        ACACIA(PLANK_ID,"acacia"),
-        DARK_OAK(PLANK_ID,"dark_oak"),
+        OAK(PLANK_ID, "oak"),
+        SPRUCE(PLANK_ID, "spruce"),
+        BIRCH(PLANK_ID, "birch"),
+        JUNGLE(PLANK_ID, "jungle"),
+        ACACIA(PLANK_ID, "acacia"),
+        DARK_OAK(PLANK_ID, "dark_oak"),
         CRIMSON("minecraft:crimson_planks", ""),
         WARPED("minecraft:warped_planks", "");
 

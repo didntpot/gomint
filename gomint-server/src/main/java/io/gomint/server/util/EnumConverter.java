@@ -19,6 +19,6 @@ public interface EnumConverter {
      * @param v value from the enum
      * @return value from the other enum
      */
-    Enum convert( Enum v );
+    Enum convert(Enum v);
 
 }

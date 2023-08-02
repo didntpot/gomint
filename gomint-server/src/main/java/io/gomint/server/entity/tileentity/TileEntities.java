@@ -11,7 +11,6 @@ import io.gomint.server.inventory.item.Items;
 import io.gomint.server.registry.Generator;
 import io.gomint.server.registry.StringRegistry;
 import io.gomint.server.util.ClassPath;
-import io.gomint.server.world.block.Banner;
 import io.gomint.server.world.block.Block;
 import io.gomint.taglib.NBTTagCompound;
 import org.slf4j.Logger;

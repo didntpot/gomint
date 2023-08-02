@@ -15,17 +15,17 @@ public class PacketMobEquipmentHandler implements PacketHandler<PacketMobEquipme
     private static final Logger LOGGER = LoggerFactory.getLogger(PacketMobEquipmentHandler.class);
 
     @Override
-    public void handle( PacketMobEquipment packet, long currentTimeMillis, PlayerConnection connection ) {
+    public void handle(PacketMobEquipment packet, long currentTimeMillis, PlayerConnection connection) {
         // Anti crash checks
-        if ( packet.getSelectedSlot() > 8 ) {
+        if (packet.getSelectedSlot() > 8) {
             return;
         }
 
         // Ok the client wants to switch hotbar slot (itemInHand)
-        ItemStack<?> wanted = connection.entity().inventory().item( packet.getSelectedSlot() );
-        if ( wanted != null && wanted.equals( packet.getStack() ) && wanted.amount() == packet.getStack().amount() ) {
-            connection.entity().inventory().setItemInHand( packet.getSelectedSlot() );
-            connection.entity().setUsingItem( false );
+        ItemStack<?> wanted = connection.entity().inventory().item(packet.getSelectedSlot());
+        if (wanted != null && wanted.equals(packet.getStack()) && wanted.amount() == packet.getStack().amount()) {
+            connection.entity().inventory().setItemInHand(packet.getSelectedSlot());
+            connection.entity().setUsingItem(false);
         } else {
             // Reset client
             LOGGER.debug("Item mismatch: {} / {}", packet.getStack(), wanted);

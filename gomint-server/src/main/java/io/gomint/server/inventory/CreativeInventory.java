@@ -16,19 +16,19 @@ public class CreativeInventory extends Inventory<CreativeInventory> {
      * @param owner of this inventory, should be the server in this case
      * @param size  of the inventory
      */
-    public CreativeInventory( InventoryHolder owner, int size ) {
-        super( null, owner, size );
+    public CreativeInventory(InventoryHolder owner, int size) {
+        super(null, owner, size);
     }
 
     @Override
-    public void sendContents( PlayerConnection playerConnection ) {
+    public void sendContents(PlayerConnection playerConnection) {
         PacketCreativeContent inventoryContent = new PacketCreativeContent();
         inventoryContent.setItems(contents());
-        playerConnection.addToSendQueue( inventoryContent );
+        playerConnection.addToSendQueue(inventoryContent);
     }
 
     @Override
-    public void sendContents( int slot, PlayerConnection playerConnection ) {
+    public void sendContents(int slot, PlayerConnection playerConnection) {
         // This is a virtual inventory, only sendContents is used
     }
 

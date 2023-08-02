@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:warped_wall_sign" )
-public class ItemWarpedWallSign extends ItemStack< io.gomint.inventory.item.ItemWarpedWallSign> implements io.gomint.inventory.item.ItemWarpedWallSign {
+@RegisterInfo(sId = "minecraft:warped_wall_sign")
+public class ItemWarpedWallSign extends ItemStack<io.gomint.inventory.item.ItemWarpedWallSign> implements io.gomint.inventory.item.ItemWarpedWallSign {
 
     @Override
     public ItemType itemType() {

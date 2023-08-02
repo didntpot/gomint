@@ -5,10 +5,10 @@ package io.gomint.server.player;
  */
 public enum PlayerPermission {
 
-    VISITOR( 0 ),
-    MEMBER( 1 ),
-    OPERATOR( 2 ),
-    CUSTOM( 3 );
+    VISITOR(0),
+    MEMBER(1),
+    OPERATOR(2),
+    CUSTOM(3);
 
     private int id;
 

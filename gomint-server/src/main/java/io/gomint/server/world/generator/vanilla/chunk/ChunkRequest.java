@@ -10,7 +10,6 @@ package io.gomint.server.world.generator.vanilla.chunk;
 import io.gomint.math.BlockPosition;
 import io.gomint.server.async.Future;
 import io.gomint.server.world.ChunkAdapter;
-
 import java.util.Objects;
 
 public class ChunkRequest {
@@ -43,7 +42,7 @@ public class ChunkRequest {
         if (o == null || getClass() != o.getClass()) return false;
         ChunkRequest that = (ChunkRequest) o;
         return this.x == that.x &&
-                this.z == that.z;
+            this.z == that.z;
     }
 
     @Override

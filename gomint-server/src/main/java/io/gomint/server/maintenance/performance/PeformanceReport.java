@@ -13,7 +13,7 @@ public class PeformanceReport {
      *
      * @param enabled Default enabled or not
      */
-    public PeformanceReport( boolean enabled ) {
+    public PeformanceReport(boolean enabled) {
         this.enabled = enabled;
     }
 
@@ -22,9 +22,9 @@ public class PeformanceReport {
      *
      * @param currentTimeMillis when the tick started
      */
-    public void startTick( long currentTimeMillis ) {
+    public void startTick(long currentTimeMillis) {
         // Fast out
-        if ( !this.enabled ) {
+        if (!this.enabled) {
             return;
         }
 

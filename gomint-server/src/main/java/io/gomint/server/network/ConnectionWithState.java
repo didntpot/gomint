@@ -16,10 +16,14 @@ import io.gomint.server.network.packet.Packet;
  */
 public interface ConnectionWithState {
 
-    void send( Packet packet );
+    void send(Packet packet);
+
     PlayerConnectionState state();
+
     boolean isPlayer();
+
     int protocolID();
+
     Processor outputProcessor();
 
 }

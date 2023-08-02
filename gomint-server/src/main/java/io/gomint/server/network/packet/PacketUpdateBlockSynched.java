@@ -15,7 +15,11 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketUpdateBlockSynched extends Packet {
+public class PacketUpdateBlockSynched extends Packet implements PacketClientbound {
+
+    public static final int TYPE_NONE = 0;
+    public static final int TYPE_CREATE = 1;
+    public static final int TYPE_DESTROY = 2;
 
     private BlockPosition position;
     private int blockId;
@@ -26,22 +30,22 @@ public class PacketUpdateBlockSynched extends Packet {
     private long action;
 
     public PacketUpdateBlockSynched() {
-        super( Protocol.PACKET_UPDATE_BLOCK_SYNCHED );
+        super(Protocol.PACKET_UPDATE_BLOCK_SYNCHED);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        writeBlockPosition( this.position, buffer );
-        buffer.writeUnsignedVarInt( this.blockId );
-        buffer.writeUnsignedVarInt( this.flags );
-        buffer.writeUnsignedVarInt( this.layer );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        writeBlockPosition(this.position, buffer);
+        buffer.writeUnsignedVarInt(this.blockId);
+        buffer.writeUnsignedVarInt(this.flags);
+        buffer.writeUnsignedVarInt(this.layer);
 
-        buffer.writeUnsignedVarLong( this.entityId );
-        buffer.writeUnsignedVarLong( this.action );
+        buffer.writeUnsignedVarLong(this.entityId);
+        buffer.writeUnsignedVarLong(this.action);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 

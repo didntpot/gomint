@@ -16,8 +16,8 @@ import java.lang.annotation.Target;
  * @author geNAZt
  * @version 1.0
  */
-@Retention( RetentionPolicy.RUNTIME )
-@Target( ElementType.TYPE )
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
 public @interface RegisterInfos {
 
     RegisterInfo[] value();

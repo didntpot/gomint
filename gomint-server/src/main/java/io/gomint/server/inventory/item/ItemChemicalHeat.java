@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:chemical_heat" )
-public class ItemChemicalHeat extends ItemStack< io.gomint.inventory.item.ItemChemicalHeat> implements io.gomint.inventory.item.ItemChemicalHeat {
+@RegisterInfo(sId = "minecraft:chemical_heat")
+public class ItemChemicalHeat extends ItemStack<io.gomint.inventory.item.ItemChemicalHeat> implements io.gomint.inventory.item.ItemChemicalHeat {
 
     @Override
     public ItemType itemType() {

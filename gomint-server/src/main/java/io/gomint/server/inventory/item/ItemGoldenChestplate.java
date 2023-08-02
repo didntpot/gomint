@@ -11,7 +11,7 @@ import io.gomint.world.block.data.Facing;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:golden_chestplate" )
+@RegisterInfo(sId = "minecraft:golden_chestplate")
 public class ItemGoldenChestplate extends ItemGoldenArmor<io.gomint.inventory.item.ItemGoldenChestplate> implements io.gomint.inventory.item.ItemGoldenChestplate {
 
     @Override
@@ -20,12 +20,12 @@ public class ItemGoldenChestplate extends ItemGoldenArmor<io.gomint.inventory.it
     }
 
     @Override
-    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock ) {
-        if ( clickedBlock == null ) {
-            if ( isBetter( (ItemStack<?>) entity.armorInventory().chestplate() ) ) {
+    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock) {
+        if (clickedBlock == null) {
+            if (isBetter((ItemStack<?>) entity.armorInventory().chestplate())) {
                 ItemStack<?> old = (ItemStack<?>) entity.armorInventory().chestplate();
-                entity.armorInventory().chestplate( this );
-                entity.inventory().item( entity.inventory().itemInHandSlot(), old );
+                entity.armorInventory().chestplate(this);
+                entity.inventory().item(entity.inventory().itemInHandSlot(), old);
             }
         }
 

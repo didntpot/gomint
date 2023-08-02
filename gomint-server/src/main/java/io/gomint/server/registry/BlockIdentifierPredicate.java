@@ -8,12 +8,7 @@
 package io.gomint.server.registry;
 
 import io.gomint.server.util.BlockIdentifier;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class BlockIdentifierPredicate implements Predicate<BlockIdentifier> {
@@ -39,7 +34,7 @@ public class BlockIdentifierPredicate implements Predicate<BlockIdentifier> {
                 return true;
             }
 
-            for (String key : blockIdentifier.states().keySet()) { 
+            for (String key : blockIdentifier.states().keySet()) {
                 Predicate<String> predicate = this.statePredicates.get(key);
                 if (predicate != null) {
                     if (!predicate.test(String.valueOf(blockIdentifier.states().get(key)))) {

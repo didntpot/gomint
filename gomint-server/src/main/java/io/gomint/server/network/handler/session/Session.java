@@ -24,7 +24,6 @@ public interface Session {
     Inventory<?> getOutput();
 
     /**
-     *
      * @return
      */
     boolean process();

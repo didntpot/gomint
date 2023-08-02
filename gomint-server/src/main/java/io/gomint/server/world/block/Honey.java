@@ -8,7 +8,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:honey_block" )
+@RegisterInfo(sId = "minecraft:honey_block")
 public class Honey extends Block implements BlockHoney {
 
     @Override

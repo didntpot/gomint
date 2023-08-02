@@ -22,11 +22,10 @@ import io.gomint.server.util.EnumConnectors;
 import io.gomint.server.util.Values;
 import io.gomint.server.world.WorldAdapter;
 import io.gomint.taglib.NBTTagCompound;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Common base class for all entities that live. All living entities possess
@@ -391,11 +390,11 @@ public abstract class EntityLiving<E extends io.gomint.entity.Entity<E>> extends
         this.attackCoolDown = 10;
         return true;
     }
-    
+
     protected boolean isLastDamageCausedByPlayer() {
         var lastDamageEntity = this.lastDamageEntity;
-        return lastDamageEntity instanceof EntityHuman || 
-            (lastDamageEntity instanceof EntityProjectile 
+        return lastDamageEntity instanceof EntityHuman ||
+            (lastDamageEntity instanceof EntityProjectile
                 && ((EntityProjectile<?>) lastDamageEntity).shooter() instanceof EntityHuman);
     }
 

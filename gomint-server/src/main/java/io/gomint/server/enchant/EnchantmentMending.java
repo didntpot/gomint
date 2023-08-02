@@ -15,28 +15,28 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 26 )
+@RegisterInfo(id = 26)
 public class EnchantmentMending extends Enchantment implements io.gomint.enchant.EnchantmentMending {
 
     /**
      * Create new enchantment mending
      */
     public EnchantmentMending() {
-        super( (short) 1 );
+        super((short) 1);
     }
 
     @Override
-    public int minEnchantAbility( short level ) {
-        return (byte) ( level * 25 );
+    public int minEnchantAbility(short level) {
+        return (byte) (level * 25);
     }
 
     @Override
-    public int maxEnchantAbility( short level ) {
-        return (byte) ( minEnchantAbility( level ) + 50 );
+    public int maxEnchantAbility(short level) {
+        return (byte) (minEnchantAbility(level) + 50);
     }
 
     @Override
-    public boolean canBeApplied(ItemStack<?> itemStack ) {
+    public boolean canBeApplied(ItemStack<?> itemStack) {
         return itemStack.canBeDamaged();
     }
 

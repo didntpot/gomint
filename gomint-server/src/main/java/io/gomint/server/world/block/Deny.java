@@ -8,7 +8,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:deny" )
+@RegisterInfo(sId = "minecraft:deny")
 public class Deny extends Block implements BlockDeny {
 
     @Override
@@ -22,7 +22,7 @@ public class Deny extends Block implements BlockDeny {
     }
 
     @Override
-    public boolean onBreak( boolean creative ) {
+    public boolean onBreak(boolean creative) {
         return creative;
     }
 

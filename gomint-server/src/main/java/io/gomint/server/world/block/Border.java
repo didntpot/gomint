@@ -8,7 +8,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:border_block" )
+@RegisterInfo(sId = "minecraft:border_block")
 public class Border extends Block implements BlockBorder {
 
     @Override
@@ -27,7 +27,7 @@ public class Border extends Block implements BlockBorder {
     }
 
     @Override
-    public boolean onBreak( boolean creative ) {
+    public boolean onBreak(boolean creative) {
         return creative;
     }
 

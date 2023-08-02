@@ -7,23 +7,23 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketTransfer extends Packet {
+public class PacketTransfer extends Packet implements PacketClientbound {
 
     private String address;
     private int port = 19132;
 
     public PacketTransfer() {
-        super( Protocol.PACKET_TRANSFER );
+        super(Protocol.PACKET_TRANSFER);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeString( this.address );
-        buffer.writeLShort( (short) this.port );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeString(this.address);
+        buffer.writeLShort((short) this.port);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.address = buffer.readString();
         this.port = buffer.readLShort();
     }

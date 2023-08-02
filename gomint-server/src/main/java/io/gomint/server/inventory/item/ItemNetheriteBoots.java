@@ -11,7 +11,7 @@ import io.gomint.world.block.data.Facing;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:netherite_boots" )
+@RegisterInfo(sId = "minecraft:netherite_boots")
 public class ItemNetheriteBoots extends ItemNetheriteArmor<io.gomint.inventory.item.ItemNetheriteBoots> implements io.gomint.inventory.item.ItemNetheriteBoots {
 
     @Override
@@ -20,12 +20,12 @@ public class ItemNetheriteBoots extends ItemNetheriteArmor<io.gomint.inventory.i
     }
 
     @Override
-    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock ) {
-        if ( clickedBlock == null ) {
-            if ( isBetter( (ItemStack<?>) entity.armorInventory().boots() ) ) {
+    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock) {
+        if (clickedBlock == null) {
+            if (isBetter((ItemStack<?>) entity.armorInventory().boots())) {
                 ItemStack<?> old = (ItemStack<?>) entity.armorInventory().boots();
-                entity.armorInventory().boots( this );
-                entity.inventory().item( entity.inventory().itemInHandSlot(), old );
+                entity.armorInventory().boots(this);
+                entity.inventory().item(entity.inventory().itemInHandSlot(), old);
             }
         }
 

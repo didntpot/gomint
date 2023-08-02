@@ -8,7 +8,7 @@ import io.gomint.server.registry.RegisterInfo;
  * @version 1.0
  */
 @RegisterInfo(sId = "minecraft:honey_block")
-public class ItemHoneyBlock extends ItemStack< io.gomint.inventory.item.ItemHoneyBlock> implements io.gomint.inventory.item.ItemHoneyBlock {
+public class ItemHoneyBlock extends ItemStack<io.gomint.inventory.item.ItemHoneyBlock> implements io.gomint.inventory.item.ItemHoneyBlock {
     @Override
     public ItemType itemType() {
         return ItemType.HONEY_BLOCK;

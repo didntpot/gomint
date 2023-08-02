@@ -22,7 +22,7 @@ class AStarNode implements Comparable<AStarNode> {
      *
      * @param blockPosition The position of the block
      */
-    public AStarNode( BlockPosition blockPosition ) {
+    public AStarNode(BlockPosition blockPosition) {
         this.blockPosition = blockPosition;
         this.f = Float.MAX_VALUE;
     }
@@ -33,7 +33,7 @@ class AStarNode implements Comparable<AStarNode> {
      * @param blockPosition The position of the block
      * @param f             The node's initial f value
      */
-    public AStarNode( BlockPosition blockPosition, float f ) {
+    public AStarNode(BlockPosition blockPosition, float f) {
         this.blockPosition = blockPosition;
         this.f = f;
     }
@@ -61,7 +61,7 @@ class AStarNode implements Comparable<AStarNode> {
      *
      * @param g The g value to assign
      */
-    public void setG( double g ) {
+    public void setG(double g) {
         this.g = g;
     }
 
@@ -79,7 +79,7 @@ class AStarNode implements Comparable<AStarNode> {
      *
      * @param f The f value to assign
      */
-    public void setF( double f ) {
+    public void setF(double f) {
         this.f = f;
     }
 
@@ -98,7 +98,7 @@ class AStarNode implements Comparable<AStarNode> {
      *
      * @param k The k value to assign
      */
-    public void setK( int k ) {
+    public void setK(int k) {
         this.k = k;
     }
 
@@ -108,7 +108,7 @@ class AStarNode implements Comparable<AStarNode> {
      * @return Whether or not the node is the start node
      */
     public boolean isStart() {
-        return ( this.predecessor == this );
+        return (this.predecessor == this);
     }
 
     /**
@@ -128,17 +128,17 @@ class AStarNode implements Comparable<AStarNode> {
      *
      * @param predecessor The predecessor to set
      */
-    public void setPredecessor( AStarNode predecessor ) {
+    public void setPredecessor(AStarNode predecessor) {
         this.predecessor = predecessor;
     }
 
     @Override
-    public boolean equals( Object other ) {
-        if ( this == other ) {
+    public boolean equals(Object other) {
+        if (this == other) {
             return true;
         }
 
-        if ( !( other instanceof AStarNode ) ) {
+        if (!(other instanceof AStarNode)) {
             return false;
         }
 
@@ -146,7 +146,7 @@ class AStarNode implements Comparable<AStarNode> {
         // no two nodes will refer to the same block whilst the algorithm
         // is running:
         AStarNode o = (AStarNode) other;
-        return ( this.blockPosition.equals( o.blockPosition ) );
+        return (this.blockPosition.equals(o.blockPosition));
     }
 
     @Override
@@ -156,9 +156,9 @@ class AStarNode implements Comparable<AStarNode> {
     }
 
     @Override
-    public int compareTo( AStarNode other ) {
+    public int compareTo(AStarNode other) {
         // Natural sorting order depends on f value instead of block position:
-        return Double.compare( this.f, other.f );
+        return Double.compare(this.f, other.f);
     }
 
 }

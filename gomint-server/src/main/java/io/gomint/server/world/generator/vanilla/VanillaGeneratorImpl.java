@@ -22,13 +22,6 @@ import io.gomint.world.generator.GeneratorContext;
 import io.gomint.world.generator.integrated.VanillaGenerator;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.PooledByteBufAllocator;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import oshi.PlatformEnum;
-import oshi.SystemInfo;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -52,6 +45,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import oshi.PlatformEnum;
+import oshi.SystemInfo;
 
 /**
  * @author geNAZt
@@ -285,9 +284,9 @@ public class VanillaGeneratorImpl extends VanillaGenerator {
     }
 
     private int getRandomPort() {
-        try(DatagramSocket datagramSocket = new DatagramSocket(0)) {
+        try (DatagramSocket datagramSocket = new DatagramSocket(0)) {
             return datagramSocket.getLocalPort();
-        } catch(SocketException e) {
+        } catch (SocketException e) {
             throw new RuntimeException("Could not open socket to find next free port", e);
         }
     }
@@ -409,7 +408,7 @@ public class VanillaGeneratorImpl extends VanillaGenerator {
         ChunkRequest request = new ChunkRequest(x, z, new Future<>());
         if (!this.queue.contains(request)) {
             LOGGER.debug("Offering for client to process");
-          
+
             this.queue.offer(request);
 
             try {

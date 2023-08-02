@@ -13,7 +13,6 @@ import io.gomint.command.CommandOutput;
 import io.gomint.command.PlayerCommandSender;
 import io.gomint.enchant.EnchantmentKnockback;
 import io.gomint.enchant.EnchantmentSharpness;
-import io.gomint.player.ChatType;
 import io.gomint.entity.Entity;
 import io.gomint.entity.potion.PotionEffect;
 import io.gomint.event.entity.EntityDamageByEntityEvent;
@@ -26,6 +25,7 @@ import io.gomint.gui.Form;
 import io.gomint.gui.FormListener;
 import io.gomint.math.Vector;
 import io.gomint.math.*;
+import io.gomint.player.ChatType;
 import io.gomint.player.DeviceInfo;
 import io.gomint.plugin.Plugin;
 import io.gomint.server.GoMintServer;
@@ -53,23 +53,17 @@ import io.gomint.server.world.LevelEvent;
 import io.gomint.server.world.WorldAdapter;
 import io.gomint.server.world.block.Block;
 import io.gomint.taglib.NBTTagCompound;
-import io.gomint.world.Chunk;
-import io.gomint.world.Gamemode;
-import io.gomint.world.Particle;
-import io.gomint.world.ParticleData;
-import io.gomint.world.Sound;
-import io.gomint.world.SoundData;
+import io.gomint.world.*;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.annotation.Nonnull;
 import java.net.InetSocketAddress;
 import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+import javax.annotation.Nonnull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The entity implementation for players. Players are considered living entities even though they
@@ -339,10 +333,10 @@ public class EntityPlayer extends EntityHuman<io.gomint.entity.EntityPlayer> imp
         this.entityVisibilityManager.removeEntity(other);
 
         // Remove from player list
-        PacketPlayerlist packetPlayerlist = new PacketPlayerlist();
+        PacketPlayerList packetPlayerlist = new PacketPlayerList();
         packetPlayerlist.setMode((byte) 1);
         packetPlayerlist.setEntries(new ArrayList<>() {{
-            add(new PacketPlayerlist.Entry(other));
+            add(new PacketPlayerList.Entry(other));
         }});
         connection().addToSendQueue(packetPlayerlist);
 
@@ -361,10 +355,10 @@ public class EntityPlayer extends EntityHuman<io.gomint.entity.EntityPlayer> imp
             EntityPlayer other = (EntityPlayer) player;
 
             // Send tablist and spawn packet
-            PacketPlayerlist packetPlayerlist = new PacketPlayerlist();
+            PacketPlayerList packetPlayerlist = new PacketPlayerList();
             packetPlayerlist.setMode((byte) 0);
             packetPlayerlist.setEntries(new ArrayList<>() {{
-                add(new PacketPlayerlist.Entry(other));
+                add(new PacketPlayerList.Entry(other));
             }});
             connection().addToSendQueue(packetPlayerlist);
 
@@ -732,10 +726,10 @@ public class EntityPlayer extends EntityHuman<io.gomint.entity.EntityPlayer> imp
 
         this.connection.server().creativeInventory().addViewer(this);
 
-        PacketPlayerlist playerlist = new PacketPlayerlist();
+        PacketPlayerList playerlist = new PacketPlayerList();
         playerlist.setMode((byte) 0);
         playerlist.setEntries(new ArrayList<>() {{
-            add(new PacketPlayerlist.Entry(EntityPlayer.this));
+            add(new PacketPlayerList.Entry(EntityPlayer.this));
         }});
         this.connection().addToSendQueue(playerlist);
 
@@ -783,10 +777,10 @@ public class EntityPlayer extends EntityHuman<io.gomint.entity.EntityPlayer> imp
         block.gotOff(this);
 
         // Remove from player list
-        PacketPlayerlist packetPlayerlist = new PacketPlayerlist();
+        PacketPlayerList packetPlayerlist = new PacketPlayerList();
         packetPlayerlist.setMode((byte) 1);
         packetPlayerlist.setEntries(new ArrayList<>() {{
-            add(new PacketPlayerlist.Entry(EntityPlayer.this));
+            add(new PacketPlayerList.Entry(EntityPlayer.this));
         }});
 
         // Cleanup the visibility manager
@@ -1770,7 +1764,7 @@ public class EntityPlayer extends EntityHuman<io.gomint.entity.EntityPlayer> imp
         return this.hoverEntity;
     }
 
-    public void hoverEntity(Entity <?>hoverEntity) {
+    public void hoverEntity(Entity<?> hoverEntity) {
         this.hoverEntity = hoverEntity;
     }
 

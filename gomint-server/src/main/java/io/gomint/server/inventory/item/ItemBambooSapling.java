@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:bamboo_sapling" )
-public class ItemBambooSapling extends ItemStack< io.gomint.inventory.item.ItemBambooSapling> implements io.gomint.inventory.item.ItemBambooSapling {
+@RegisterInfo(sId = "minecraft:bamboo_sapling")
+public class ItemBambooSapling extends ItemStack<io.gomint.inventory.item.ItemBambooSapling> implements io.gomint.inventory.item.ItemBambooSapling {
 
     @Override
     public ItemType itemType() {

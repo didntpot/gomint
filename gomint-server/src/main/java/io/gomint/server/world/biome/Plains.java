@@ -22,7 +22,6 @@ import io.gomint.server.world.biome.component.SpawnableEntitiesComponent;
 import io.gomint.world.block.BlockGrassBlock;
 import io.gomint.world.generator.DefinedBlocks;
 import io.gomint.world.generator.populator.TallGrassPopulator;
-
 import java.util.Collections;
 import java.util.Set;
 
@@ -38,9 +37,9 @@ public class Plains extends AbstractBiome {
      */
     public Plains() {
         super(
-            new ClimateComponent(0.8f,0.4f),
+            new ClimateComponent(0.8f, 0.4f),
             new GroundComponent(63, 68,
-                GoMint.instance().createBlock( BlockGrassBlock.class ),
+                GoMint.instance().createBlock(BlockGrassBlock.class),
                 DefinedBlocks.DIRT,
                 DefinedBlocks.DIRT,
                 DefinedBlocks.DIRT,
@@ -62,7 +61,7 @@ public class Plains extends AbstractBiome {
 
     private static PopulatorComponent createPopulators() {
         TallGrassPopulator populator = new TallGrassPopulator();
-        populator.baseAmount( 12 );
+        populator.baseAmount(12);
         return new PopulatorComponent(Collections.singletonList(populator));
     }
 

@@ -9,7 +9,6 @@ import io.gomint.command.annotation.Description;
 import io.gomint.command.annotation.Name;
 import io.gomint.command.annotation.Permission;
 import io.gomint.plugin.Plugin;
-
 import java.util.Map;
 
 /**

@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:respawn_anchor" )
-public class ItemRespawnAnchor extends ItemStack< io.gomint.inventory.item.ItemRespawnAnchor> implements io.gomint.inventory.item.ItemRespawnAnchor {
+@RegisterInfo(sId = "minecraft:respawn_anchor")
+public class ItemRespawnAnchor extends ItemStack<io.gomint.inventory.item.ItemRespawnAnchor> implements io.gomint.inventory.item.ItemRespawnAnchor {
 
     @Override
     public ItemType itemType() {

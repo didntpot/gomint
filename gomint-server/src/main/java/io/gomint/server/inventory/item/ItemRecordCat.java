@@ -8,15 +8,13 @@ package io.gomint.server.inventory.item;
 
 import io.gomint.inventory.item.ItemType;
 import io.gomint.server.registry.RegisterInfo;
-import io.gomint.taglib.NBTTagCompound;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:record_cat" )
-public class ItemRecordCat extends ItemStack< io.gomint.inventory.item.ItemRecordCat> implements io.gomint.inventory.item.ItemRecordCat {
-
+@RegisterInfo(sId = "minecraft:record_cat")
+public class ItemRecordCat extends ItemStack<io.gomint.inventory.item.ItemRecordCat> implements io.gomint.inventory.item.ItemRecordCat {
 
 
     @Override

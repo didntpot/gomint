@@ -2,12 +2,10 @@ package io.gomint.server.world.block;
 
 import io.gomint.inventory.item.ItemDirt;
 import io.gomint.inventory.item.ItemStack;
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.world.block.BlockPodzol;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +13,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:podzol" )
+@RegisterInfo(sId = "minecraft:podzol")
 public class Podzol extends Block implements BlockPodzol {
 
     @Override
@@ -44,9 +42,9 @@ public class Podzol extends Block implements BlockPodzol {
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
-        return new ArrayList<>(){{
-            add( ItemDirt.create( 1 ) );
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
+        return new ArrayList<>() {{
+            add(ItemDirt.create(1));
         }};
     }
 

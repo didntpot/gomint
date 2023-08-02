@@ -5,7 +5,6 @@ import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.entity.EntityLink;
 import io.gomint.server.entity.metadata.MetadataContainer;
 import io.gomint.server.network.Protocol;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -13,7 +12,7 @@ import java.util.UUID;
  * @author geNAZt
  * @version 1.1
  */
-public class PacketSpawnPlayer extends Packet {
+public class PacketSpawnPlayer extends Packet implements PacketClientbound {
 
     private UUID uuid;
     private String name;
@@ -34,14 +33,9 @@ public class PacketSpawnPlayer extends Packet {
     private float yaw;
 
     private ItemStack<?> itemInHand;
+    private int gameMode;
     private MetadataContainer metadataContainer;
-
-    // Some adventure stuff? Yep this is adventure setting stuff
-    private int flags;
-    private int commandPermission;
-    private int flags2;
-    private int playerPermission;
-    private int customFlags;
+    private PacketUpdateAbilities abilities; // apparently they are using this packet for this
 
     private List<EntityLink> links;
     private String deviceId;
@@ -52,52 +46,50 @@ public class PacketSpawnPlayer extends Packet {
      * Create a new spawn player packet
      */
     public PacketSpawnPlayer() {
-        super( Protocol.PACKET_SPAWN_PLAYER );
+        super(Protocol.PACKET_SPAWN_PLAYER);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeUUID( this.uuid );
-        buffer.writeString( this.name );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeUUID(this.uuid);
+        buffer.writeString(this.name);
 
-        buffer.writeSignedVarLong( this.entityId );
-        buffer.writeUnsignedVarLong( this.runtimeEntityId );
+        buffer.writeSignedVarLong(this.entityId);
+        buffer.writeUnsignedVarLong(this.runtimeEntityId);
 
-        buffer.writeString( this.platformChatId );
+        buffer.writeString(this.platformChatId);
 
-        buffer.writeLFloat( this.x );
-        buffer.writeLFloat( this.y );
-        buffer.writeLFloat( this.z );
+        buffer.writeLFloat(this.x);
+        buffer.writeLFloat(this.y);
+        buffer.writeLFloat(this.z);
 
-        buffer.writeLFloat( this.velocityX );
-        buffer.writeLFloat( this.velocityY );
-        buffer.writeLFloat( this.velocityZ );
+        buffer.writeLFloat(this.velocityX);
+        buffer.writeLFloat(this.velocityY);
+        buffer.writeLFloat(this.velocityZ);
 
-        buffer.writeLFloat( this.pitch );
-        buffer.writeLFloat( this.yaw );
-        buffer.writeLFloat( this.headYaw );
+        buffer.writeLFloat(this.pitch);
+        buffer.writeLFloat(this.yaw);
+        buffer.writeLFloat(this.headYaw);
 
-        writeItemStack( this.itemInHand, buffer );
-        this.metadataContainer.serialize( buffer );
+        writeItemStack(this.itemInHand, buffer);
+        this.metadataContainer.serialize(buffer);
 
-        buffer.writeUnsignedVarInt( this.flags );
-        buffer.writeUnsignedVarInt( this.commandPermission );
-        buffer.writeUnsignedVarInt( this.flags2 );
-        buffer.writeUnsignedVarInt( this.playerPermission );
-        buffer.writeUnsignedVarInt( this.customFlags );
+        try {
+            this.abilities.serialize(buffer, protocolID);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Unable to serialize abilities", e);
+        }
 
-        buffer.writeLLong( this.entityId );
+        buffer.writeLLong(this.entityId);
 
-        writeEntityLinks( this.links, buffer );
+        writeEntityLinks(this.links, buffer);
 
-        buffer.writeString( this.deviceId );
+        buffer.writeString(this.deviceId);
         buffer.writeLInt(this.buildPlatform);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
-        buffer.readUUID();
-        System.out.println( buffer.readString() );
+    public void deserialize(PacketBuffer buffer, int protocolID) {
     }
 
     public UUID getUuid() {
@@ -226,46 +218,6 @@ public class PacketSpawnPlayer extends Packet {
 
     public void setMetadataContainer(MetadataContainer metadataContainer) {
         this.metadataContainer = metadataContainer;
-    }
-
-    public int getFlags() {
-        return this.flags;
-    }
-
-    public void setFlags(int flags) {
-        this.flags = flags;
-    }
-
-    public int getCommandPermission() {
-        return this.commandPermission;
-    }
-
-    public void setCommandPermission(int commandPermission) {
-        this.commandPermission = commandPermission;
-    }
-
-    public int getFlags2() {
-        return this.flags2;
-    }
-
-    public void setFlags2(int flags2) {
-        this.flags2 = flags2;
-    }
-
-    public int getPlayerPermission() {
-        return this.playerPermission;
-    }
-
-    public void setPlayerPermission(int playerPermission) {
-        this.playerPermission = playerPermission;
-    }
-
-    public int getCustomFlags() {
-        return this.customFlags;
-    }
-
-    public void setCustomFlags(int customFlags) {
-        this.customFlags = customFlags;
     }
 
     public List<EntityLink> getLinks() {

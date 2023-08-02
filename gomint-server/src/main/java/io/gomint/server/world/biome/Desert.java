@@ -13,7 +13,6 @@ import io.gomint.entity.monster.EntityZombie;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.biome.component.ClimateComponent;
 import io.gomint.server.world.biome.component.SpawnableEntitiesComponent;
-
 import java.util.Set;
 
 @RegisterInfo(sId = "desert", id = 2)

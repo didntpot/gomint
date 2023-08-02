@@ -15,21 +15,21 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.1
  */
-public class PacketDespawnEntity extends Packet {
+public class PacketDespawnEntity extends Packet implements PacketClientbound {
 
     private long entityId;
 
     public PacketDespawnEntity() {
-        super( Protocol.PACKET_DESPAWN_ENTITY );
+        super(Protocol.PACKET_DESPAWN_ENTITY);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeSignedVarLong( this.entityId );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeSignedVarLong(this.entityId);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.entityId = buffer.readSignedVarLong().longValue();
     }
 

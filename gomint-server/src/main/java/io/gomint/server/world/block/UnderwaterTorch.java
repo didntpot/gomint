@@ -8,7 +8,7 @@ import io.gomint.world.block.BlockUnderwaterTorch;
  * @author Kaooot
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:underwater_torch" )
+@RegisterInfo(sId = "minecraft:underwater_torch")
 public class UnderwaterTorch extends Torch implements BlockUnderwaterTorch {
 
     @Override

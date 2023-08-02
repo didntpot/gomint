@@ -8,7 +8,7 @@ import io.gomint.world.block.BlockWarpedRoots;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:warped_roots" )
+@RegisterInfo(sId = "minecraft:warped_roots")
 public class WarpedRoots extends Block implements BlockWarpedRoots {
 
     @Override

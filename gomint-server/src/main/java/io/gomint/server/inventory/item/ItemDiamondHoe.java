@@ -1,4 +1,5 @@
 package io.gomint.server.inventory.item;
+
 import io.gomint.inventory.item.ItemType;
 import io.gomint.math.Vector;
 import io.gomint.server.entity.Attribute;
@@ -16,14 +17,14 @@ import io.gomint.world.block.data.Facing;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:diamond_hoe" )
+@RegisterInfo(sId = "minecraft:diamond_hoe")
 public class ItemDiamondHoe extends ItemReduceTierDiamond<io.gomint.inventory.item.ItemDiamondHoe> implements io.gomint.inventory.item.ItemDiamondHoe {
 
     @Override
-    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock ) {
-        if ( clickedBlock instanceof Dirt || clickedBlock instanceof GrassBlock ) {
-            clickedBlock.blockType( Farmland.class );
-            this.calculateUsageAndUpdate( 1 );
+    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock) {
+        if (clickedBlock instanceof Dirt || clickedBlock instanceof GrassBlock) {
+            clickedBlock.blockType(Farmland.class);
+            this.calculateUsageAndUpdate(1);
             return true;
         }
 
@@ -31,17 +32,17 @@ public class ItemDiamondHoe extends ItemReduceTierDiamond<io.gomint.inventory.it
     }
 
     @Override
-    public void gotInHand( EntityPlayer player ) {
+    public void gotInHand(EntityPlayer player) {
         player
-            .attributeInstance( Attribute.ATTACK_DAMAGE )
-            .setModifier( AttributeModifier.ITEM_ATTACK_DAMAGE, AttributeModifierType.ADDITION, 4 );
+            .attributeInstance(Attribute.ATTACK_DAMAGE)
+            .setModifier(AttributeModifier.ITEM_ATTACK_DAMAGE, AttributeModifierType.ADDITION, 4);
     }
 
     @Override
-    public void removeFromHand( EntityPlayer player ) {
+    public void removeFromHand(EntityPlayer player) {
         player
-            .attributeInstance( Attribute.ATTACK_DAMAGE )
-            .removeModifier( AttributeModifier.ITEM_ATTACK_DAMAGE );
+            .attributeInstance(Attribute.ATTACK_DAMAGE)
+            .removeModifier(AttributeModifier.ITEM_ATTACK_DAMAGE);
     }
 
     @Override

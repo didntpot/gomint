@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:warped_double_slab" )
-public class ItemWarpedDoubleSlab extends ItemStack< io.gomint.inventory.item.ItemWarpedDoubleSlab> implements io.gomint.inventory.item.ItemWarpedDoubleSlab {
+@RegisterInfo(sId = "minecraft:warped_double_slab")
+public class ItemWarpedDoubleSlab extends ItemStack<io.gomint.inventory.item.ItemWarpedDoubleSlab> implements io.gomint.inventory.item.ItemWarpedDoubleSlab {
 
     @Override
     public ItemType itemType() {

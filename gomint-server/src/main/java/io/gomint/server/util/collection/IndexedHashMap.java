@@ -13,19 +13,19 @@ public class IndexedHashMap<K, V> extends LinkedHashMap<K, V> {
     private final List<K> index = new ArrayList<>();
 
     @Override
-    public V put( K key, V value ) {
-        V ret = super.put( key, value );
+    public V put(K key, V value) {
+        V ret = super.put(key, value);
 
-        this.index.remove( key );
+        this.index.remove(key);
 
-        this.index.add( key );
+        this.index.add(key);
         return ret;
     }
 
     @Override
-    public V remove( Object key ) {
-        V ret = super.remove( key );
-        this.index.remove( key );
+    public V remove(Object key) {
+        V ret = super.remove(key);
+        this.index.remove(key);
         return ret;
     }
 
@@ -35,8 +35,8 @@ public class IndexedHashMap<K, V> extends LinkedHashMap<K, V> {
      * @param key which should be looked up
      * @return index of key or -1 if the key was not found
      */
-    public int getIndex( K key ) {
-        return this.index.indexOf( key );
+    public int getIndex(K key) {
+        return this.index.indexOf(key);
     }
 
 }

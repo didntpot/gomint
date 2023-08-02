@@ -26,9 +26,9 @@ public class AIStateMachine {
      *
      * @param event The event to propagate
      */
-    public void propagateEvent( AIEvent event ) {
-        if ( this.activeState != null ) {
-            this.activeState.onEvent( event );
+    public void propagateEvent(AIEvent event) {
+        if (this.activeState != null) {
+            this.activeState.onEvent(event);
         }
     }
 
@@ -41,15 +41,15 @@ public class AIStateMachine {
      *
      * @param next The state to switch in next
      */
-    public void switchState( AIState next ) {
-        if ( this.activeState != null ) {
+    public void switchState(AIState next) {
+        if (this.activeState != null) {
             this.activeState.onLeave();
         }
 
         AIState old = this.activeState;
         this.activeState = next;
 
-        if ( this.activeState != null ) {
+        if (this.activeState != null) {
             this.activeState.onEnter(old);
         }
     }
@@ -58,7 +58,7 @@ public class AIStateMachine {
      * Stops the execution of any AI state that is currently active.
      */
     public void stopExecution() {
-        this.switchState( null );
+        this.switchState(null);
     }
 
     /**
@@ -67,9 +67,9 @@ public class AIStateMachine {
      * @param currentTimeMS The current system time in milliseconds
      * @param dT            The time that has passed since the last update in seconds
      */
-    public void update( long currentTimeMS, float dT ) {
-        if ( this.activeState != null ) {
-            this.activeState.update( currentTimeMS, dT );
+    public void update(long currentTimeMS, float dT) {
+        if (this.activeState != null) {
+            this.activeState.update(currentTimeMS, dT);
         }
     }
 

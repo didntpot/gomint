@@ -13,7 +13,6 @@ import io.gomint.server.crafting.session.SessionInventory;
 import io.gomint.server.inventory.Inventory;
 import io.gomint.server.inventory.item.ItemStack;
 import io.gomint.server.network.PlayerConnection;
-
 import java.util.Collection;
 
 public class CraftingSession implements Session {

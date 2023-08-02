@@ -8,13 +8,12 @@
 package io.gomint.server.world.block;
 
 import io.gomint.inventory.item.ItemStack;
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.server.world.block.state.BooleanBlockState;
 import io.gomint.server.world.block.state.DirectionBlockState;
 import io.gomint.world.block.BlockFenceGate;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.data.Direction;
 import io.gomint.world.block.data.LogType;
 
@@ -32,9 +31,9 @@ import io.gomint.world.block.data.LogType;
 @RegisterInfo(sId = "minecraft:crimson_fence_gate")
 public class FenceGate extends Block implements BlockFenceGate {
 
-    private final DirectionBlockState DIRECTION = new DirectionBlockState( () -> new String[]{"direction"});
-    private final BooleanBlockState OPEN = new BooleanBlockState( () -> new String[]{"open_bit"});
-    private final BooleanBlockState IN_WALL = new BooleanBlockState( () -> new String[]{"in_wall_bit"});
+    private final DirectionBlockState DIRECTION = new DirectionBlockState(() -> new String[]{"direction"});
+    private final BooleanBlockState OPEN = new BooleanBlockState(() -> new String[]{"open_bit"});
+    private final BooleanBlockState IN_WALL = new BooleanBlockState(() -> new String[]{"in_wall_bit"});
 
     @Override
     public long breakTime() {

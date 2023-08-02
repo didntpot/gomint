@@ -8,7 +8,6 @@ import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockFlower;
 import io.gomint.world.block.BlockType;
 import io.gomint.world.block.data.Facing;
-
 import java.util.HashSet;
 import java.util.Set;
 

@@ -17,7 +17,7 @@ import io.gomint.world.block.BlockLightBlock;
  * @version 1.0
  */
 @RegisterInfo(sId = "minecraft:light_block")
-public class ItemLightBlock extends ItemStack< io.gomint.inventory.item.ItemLightBlock> implements io.gomint.inventory.item.ItemLightBlock {
+public class ItemLightBlock extends ItemStack<io.gomint.inventory.item.ItemLightBlock> implements io.gomint.inventory.item.ItemLightBlock {
 
     private static final float DIVIDER = 1f / 15;
 

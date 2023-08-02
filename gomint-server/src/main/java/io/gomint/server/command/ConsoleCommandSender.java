@@ -24,27 +24,27 @@ public class ConsoleCommandSender implements io.gomint.command.ConsoleCommandSen
      *
      * @param commandName which should be executed with this console command sender
      */
-    ConsoleCommandSender( String commandName ) {
-        this.commandLogger = LoggerFactory.getLogger( "Command '" + commandName + "'" );
+    ConsoleCommandSender(String commandName) {
+        this.commandLogger = LoggerFactory.getLogger("Command '" + commandName + "'");
     }
 
     @Override
-    public ConsoleCommandSender sendMessage( String message ) {
-        this.commandLogger.info( message );
+    public ConsoleCommandSender sendMessage(String message) {
+        this.commandLogger.info(message);
         return this;
     }
 
     @Override
-    public ConsoleCommandSender sendMessage( ChatType type, String... message ) {
-        for ( String s : message ) {
-            this.commandLogger.info( s );
+    public ConsoleCommandSender sendMessage(ChatType type, String... message) {
+        for (String s : message) {
+            this.commandLogger.info(s);
         }
 
         return this;
     }
 
     @Override
-    public boolean hasPermission( String permission ) {
+    public boolean hasPermission(String permission) {
         return true;
     }
 

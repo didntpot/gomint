@@ -10,7 +10,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:target" )
+@RegisterInfo(sId = "minecraft:target")
 public class Target extends Block implements BlockTarget {
 
     @Override

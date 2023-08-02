@@ -5,12 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-package io.gomint.server.test;import io.gomint.server.util.StringUtil;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+package io.gomint.server.test;
 
+import io.gomint.server.util.StringUtil;
 import java.nio.charset.StandardCharsets;
 import java.util.Random;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author geNAZt
@@ -20,22 +21,22 @@ public class TestStringUtil {
 
     @Test
     public void testRandomOutput() {
-        for ( int i = 0; i < 500; i++ ) {
-            String str = randomString( 32 );
-            byte[] a = str.getBytes( StandardCharsets.UTF_8 );
-            byte[] b = StringUtil.getUTF8Bytes( str );
+        for (int i = 0; i < 500; i++) {
+            String str = randomString(32);
+            byte[] a = str.getBytes(StandardCharsets.UTF_8);
+            byte[] b = StringUtil.getUTF8Bytes(str);
 
-            Assertions.assertArrayEquals( a, b );
+            Assertions.assertArrayEquals(a, b);
         }
     }
 
-    public static String randomString( int length ) {
+    public static String randomString(int length) {
         Random rand = new Random();
-        StringBuilder sb = new StringBuilder( length );
-        while ( sb.length() < length ) {
-            char c = (char) ( rand.nextInt() );
-            if ( Character.isDefined( c ) ) {
-                sb.append( c );
+        StringBuilder sb = new StringBuilder(length);
+        while (sb.length() < length) {
+            char c = (char) (rand.nextInt());
+            if (Character.isDefined(c)) {
+                sb.append(c);
             }
         }
 

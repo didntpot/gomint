@@ -11,7 +11,11 @@ public class ResourcePackInfo {
 
     private Map<String, String> loadedResourcePacks = new HashMap<>();
 
-    public void addResourcePack( String id, String packName ) {
-        this.loadedResourcePacks.put( id, packName );
+    public void addResourcePack(String id, String packName) {
+        this.loadedResourcePacks.put(id, packName);
+    }
+
+    public Map<String, String> getLoadedResourcePacks() {
+        return this.loadedResourcePacks;
     }
 }

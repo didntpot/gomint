@@ -1,26 +1,25 @@
 package io.gomint.server.world.block;
 
 import io.gomint.inventory.item.ItemStack;
-import io.gomint.server.world.block.helper.ToolPresets;
-import io.gomint.server.world.block.state.ProgressBlockState;
-import io.gomint.world.block.BlockFarmland;
-import io.gomint.world.block.BlockType;
-
 import io.gomint.math.BlockPosition;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.util.StatefulBlockSearcher;
 import io.gomint.server.world.UpdateReason;
-
+import io.gomint.server.world.block.helper.ToolPresets;
+import io.gomint.server.world.block.state.ProgressBlockState;
+import io.gomint.world.block.BlockFarmland;
+import io.gomint.world.block.BlockType;
 import java.util.function.Function;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:farmland" )
+@RegisterInfo(sId = "minecraft:farmland")
 public class Farmland extends Block implements BlockFarmland {
 
-    private static final ProgressBlockState WATER_LEVEL = new ProgressBlockState( () -> new String[]{"moisturized_amount"}, 7, aVoid -> {} );
+    private static final ProgressBlockState WATER_LEVEL = new ProgressBlockState(() -> new String[]{"moisturized_amount"}, 7, aVoid -> {
+    });
 
     @Override
     public String blockId() {
@@ -38,24 +37,24 @@ public class Farmland extends Block implements BlockFarmland {
     }
 
     @Override
-    public long update( UpdateReason updateReason, long currentTimeMS, float dT ) {
+    public long update(UpdateReason updateReason, long currentTimeMS, float dT) {
         // Check water state when random ticked
-        if ( updateReason == UpdateReason.RANDOM || updateReason == UpdateReason.EXPLOSION ) {
+        if (updateReason == UpdateReason.RANDOM || updateReason == UpdateReason.EXPLOSION) {
             // Do we have a stored block searcher?
-            StatefulBlockSearcher blockSearcher = getFromTemporaryStorage( "blockSearcher" );
-            if ( blockSearcher != null ) {
-                recalc( blockSearcher );
+            StatefulBlockSearcher blockSearcher = getFromTemporaryStorage("blockSearcher");
+            if (blockSearcher != null) {
+                recalc(blockSearcher);
             } else {
                 blockSearcher = new StatefulBlockSearcher(
                     this.world,
-                    this.position.add( new BlockPosition( -4, 0, -4 ) ),
-                    this.position.add( new BlockPosition( 4, 1, 4 ) ),
+                    this.position.add(new BlockPosition(-4, 0, -4)),
+                    this.position.add(new BlockPosition(4, 1, 4)),
                     block -> block instanceof FlowingWater || block instanceof StationaryWater
                 );
 
-                if ( recalc( blockSearcher ) ) {
+                if (recalc(blockSearcher)) {
                     StatefulBlockSearcher finalBlockSearcher = blockSearcher;
-                    storeInTemporaryStorage( "blockSearcher", (Function<StatefulBlockSearcher, StatefulBlockSearcher>) statefulBlockSearcher -> finalBlockSearcher );
+                    storeInTemporaryStorage("blockSearcher", (Function<StatefulBlockSearcher, StatefulBlockSearcher>) statefulBlockSearcher -> finalBlockSearcher);
                 }
             }
         }
@@ -64,16 +63,16 @@ public class Farmland extends Block implements BlockFarmland {
         return -1;
     }
 
-    private boolean recalc( StatefulBlockSearcher blockSearcher ) {
+    private boolean recalc(StatefulBlockSearcher blockSearcher) {
         BlockPosition waterBlock = blockSearcher.validate();
-        if ( waterBlock != null ) {
-            if ( WATER_LEVEL.state(this) < 1f ) {
-                WATER_LEVEL.state(this,  1f );
+        if (waterBlock != null) {
+            if (WATER_LEVEL.state(this) < 1f) {
+                WATER_LEVEL.state(this, 1f);
             }
 
             return true;
-        } else if ( WATER_LEVEL.state(this) > 0 ) {
-            WATER_LEVEL.state(this,  WATER_LEVEL.state(this) - WATER_LEVEL.getStep() );
+        } else if (WATER_LEVEL.state(this) > 0) {
+            WATER_LEVEL.state(this, WATER_LEVEL.state(this) - WATER_LEVEL.getStep());
         }
 
         return false;

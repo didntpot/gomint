@@ -10,8 +10,6 @@ package io.gomint.server.crafting;
 import io.gomint.inventory.item.ItemStack;
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.inventory.Inventory;
-import io.gomint.server.network.packet.Packet;
-
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -26,7 +24,7 @@ import java.util.UUID;
  */
 public class ShapelessRecipe extends CraftingRecipe {
 
-    private final int id;
+    public static int ID = RECIPE_ID.getAndIncrement();
     private final String name;
     private final String block;
     private final ItemStack<?>[] ingredients;
@@ -38,8 +36,6 @@ public class ShapelessRecipe extends CraftingRecipe {
         this.block = block;
         this.ingredients = ingredients;
         this.outcome = outcome;
-
-        this.id = this.getNewID();
     }
 
     @Override
@@ -49,23 +45,6 @@ public class ShapelessRecipe extends CraftingRecipe {
 
     @Override
     public void serialize(PacketBuffer buffer) {
-        buffer.writeSignedVarInt(0);
-
-        buffer.writeString(this.name);
-        buffer.writeUnsignedVarInt(this.ingredients.length);
-        for (ItemStack<?> ingredient : this.ingredients) {
-            Packet.writeRecipeInput(ingredient, buffer);
-        }
-
-        buffer.writeUnsignedVarInt(this.outcome.length);
-        for (ItemStack<?> itemStack : this.outcome) {
-            Packet.writeItemStack(itemStack, buffer);
-        }
-
-        buffer.writeUUID(this.uuid());
-        buffer.writeString(this.block);
-        buffer.writeSignedVarInt(this.getPriority());
-        buffer.writeUnsignedVarInt(this.id);
     }
 
     @Override
@@ -107,4 +86,9 @@ public class ShapelessRecipe extends CraftingRecipe {
         return consumeSlots;
     }
 
+
+    @Override
+    public int getId() {
+        return ID;
+    }
 }

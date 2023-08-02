@@ -11,7 +11,6 @@ import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.Protocol;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.PooledByteBufAllocator;
-
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -19,7 +18,7 @@ import java.util.Objects;
  * @author BlackyPaw
  * @version 1.0
  */
-public class PacketWorldChunk extends Packet {
+public class PacketWorldChunk extends Packet implements PacketClientbound {
 
     private int x;
     private int z;
@@ -126,9 +125,9 @@ public class PacketWorldChunk extends Packet {
         if (o == null || getClass() != o.getClass()) return false;
         PacketWorldChunk that = (PacketWorldChunk) o;
         return this.x == that.x &&
-                this.z == that.z &&
-                this.cached == that.cached &&
-                this.subChunkCount == that.subChunkCount &&
+            this.z == that.z &&
+            this.cached == that.cached &&
+            this.subChunkCount == that.subChunkCount &&
             Arrays.equals(this.hashes, that.hashes) &&
             Objects.equals(this.data, that.data);
     }

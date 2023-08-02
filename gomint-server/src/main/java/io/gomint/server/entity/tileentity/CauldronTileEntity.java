@@ -11,7 +11,6 @@ import io.gomint.server.inventory.item.Items;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.Block;
 import io.gomint.taglib.NBTTagCompound;
-
 import java.awt.Color;
 
 /**
@@ -26,40 +25,40 @@ public class CauldronTileEntity extends TileEntity {
     private short potionId;
     private short potionType;
 
-    public CauldronTileEntity( Block block, Items items) {
-        super( block, items );
+    public CauldronTileEntity(Block block, Items items) {
+        super(block, items);
     }
 
     @Override
-    public void fromCompound( NBTTagCompound compound ) {
-        super.fromCompound( compound );
+    public void fromCompound(NBTTagCompound compound) {
+        super.fromCompound(compound);
 
-        int argb = compound.getInteger( "CustomColor", 0 );
-        if ( argb != 0 ) {
-            this.color = new Color( argb, true );
+        int argb = compound.getInteger("CustomColor", 0);
+        if (argb != 0) {
+            this.color = new Color(argb, true);
         }
 
-        this.potionId = compound.getShort( "PotionId", (short) -1 );
-        this.potionType = compound.getShort( "PotionType", (short) 0 );
+        this.potionId = compound.getShort("PotionId", (short) -1);
+        this.potionType = compound.getShort("PotionType", (short) 0);
     }
 
     @Override
-    public void update( long currentMillis, float dT ) {
+    public void update(long currentMillis, float dT) {
 
     }
 
     @Override
-    public void toCompound( NBTTagCompound compound, SerializationReason reason ) {
-        super.toCompound( compound, reason );
+    public void toCompound(NBTTagCompound compound, SerializationReason reason) {
+        super.toCompound(compound, reason);
 
-        compound.addValue( "id", "Cauldron" );
+        compound.addValue("id", "Cauldron");
 
-        if ( this.color != null ) {
-            compound.addValue( "CustomColor", this.color.getRGB() );
+        if (this.color != null) {
+            compound.addValue("CustomColor", this.color.getRGB());
         }
 
-        compound.addValue( "PotionId", this.potionId );
-        compound.addValue( "PotionType", this.potionType );
+        compound.addValue("PotionId", this.potionId);
+        compound.addValue("PotionType", this.potionType);
     }
 
 }

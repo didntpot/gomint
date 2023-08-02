@@ -1,4 +1,5 @@
 package io.gomint.server.inventory.item;
+
 import io.gomint.inventory.item.ItemReduceBreaktime;
 import io.gomint.server.inventory.item.annotation.CanBeDamaged;
 

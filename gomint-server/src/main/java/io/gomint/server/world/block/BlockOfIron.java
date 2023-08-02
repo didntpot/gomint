@@ -4,7 +4,6 @@ import io.gomint.inventory.item.*;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockBlockOfIron;
 import io.gomint.world.block.BlockType;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:iron_block" )
+@RegisterInfo(sId = "minecraft:iron_block")
 public class BlockOfIron extends Block implements BlockBlockOfIron {
 
     @Override
@@ -46,10 +45,10 @@ public class BlockOfIron extends Block implements BlockBlockOfIron {
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
-        if ( isCorrectTool( itemInHand ) ) {
-            return new ArrayList<>(){{
-                add( ItemBlockOfIron.create( 1 ) );
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
+        if (isCorrectTool(itemInHand)) {
+            return new ArrayList<>() {{
+                add(ItemBlockOfIron.create(1));
             }};
         }
 

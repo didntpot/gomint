@@ -1,6 +1,6 @@
 package io.gomint.server.world.block;
 
-import io.gomint.inventory.item.*;
+import io.gomint.inventory.item.ItemStack;
 import io.gomint.math.Vector;
 import io.gomint.server.entity.Entity;
 import io.gomint.server.entity.tileentity.ShulkerBoxTileEntity;
@@ -9,8 +9,8 @@ import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.taglib.NBTTagCompound;
 import io.gomint.world.block.BlockShulkerBox;
-import io.gomint.world.block.data.Facing;
 import io.gomint.world.block.BlockType;
+import io.gomint.world.block.data.Facing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

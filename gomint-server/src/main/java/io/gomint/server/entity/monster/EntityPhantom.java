@@ -20,7 +20,6 @@ import io.gomint.server.entity.EntityTags;
 import io.gomint.server.entity.EntityType;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.WorldAdapter;
-
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -28,7 +27,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author joserobjr
  * @since 2021-01-12
  */
-@RegisterInfo( sId = "minecraft:phantom" )
+@RegisterInfo(sId = "minecraft:phantom")
 public class EntityPhantom extends EntityLiving<io.gomint.entity.monster.EntityPhantom> implements io.gomint.entity.monster.EntityPhantom {
 
     /**
@@ -36,8 +35,8 @@ public class EntityPhantom extends EntityLiving<io.gomint.entity.monster.EntityP
      *
      * @param world The world in which this entity is in
      */
-    public EntityPhantom( WorldAdapter world ) {
-        super( EntityType.PHANTOM, world );
+    public EntityPhantom(WorldAdapter world) {
+        super(EntityType.PHANTOM, world);
         this.initEntity();
     }
 
@@ -45,15 +44,15 @@ public class EntityPhantom extends EntityLiving<io.gomint.entity.monster.EntityP
      * Create new entity phantom for API
      */
     public EntityPhantom() {
-        super( EntityType.PHANTOM, null );
+        super(EntityType.PHANTOM, null);
         this.initEntity();
     }
 
     private void initEntity() {
-        this.size( 0.9f, 0.5f );
-        this.attribute( Attribute.HEALTH );
-        this.maxHealth( 20 );
-        this.health( 20 );
+        this.size(0.9f, 0.5f);
+        this.attribute(Attribute.HEALTH);
+        this.maxHealth(20);
+        this.health(20);
     }
 
     @Override
@@ -63,7 +62,7 @@ public class EntityPhantom extends EntityLiving<io.gomint.entity.monster.EntityP
         if (dead()) {
             return;
         }
-        
+
         if (!isLastDamageCausedByPlayer()) {
             return;
         }
@@ -85,14 +84,14 @@ public class EntityPhantom extends EntityLiving<io.gomint.entity.monster.EntityP
             ItemStack<?> drop = ItemPhantomMembrane.create(amount);
             this.world.dropItem(this.location(), drop);
         }
-        
+
         // Drop xp
         this.world.createExpOrb(location, 5);
     }
 
     @Override
-    public void update( long currentTimeMS, float dT ) {
-        super.update( currentTimeMS, dT );
+    public void update(long currentTimeMS, float dT) {
+        super.update(currentTimeMS, dT);
     }
 
     @Override

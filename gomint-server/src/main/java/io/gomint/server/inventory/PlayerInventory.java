@@ -227,7 +227,7 @@ public class PlayerInventory extends ContainerInventory<io.gomint.inventory.Play
         PacketMobEquipment packet = this.createMobEquipmentPacket(player);
 
         // Send it to our own if needed
-        if ( player instanceof EntityPlayer ) {
+        if (player instanceof EntityPlayer) {
             EntityPlayer p = (EntityPlayer) player;
             p.connection().addToSendQueue(packet);
         }

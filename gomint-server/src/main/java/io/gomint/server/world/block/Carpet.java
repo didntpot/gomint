@@ -4,7 +4,6 @@ import io.gomint.math.AxisAlignedBB;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockCarpet;
 import io.gomint.world.block.BlockType;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -12,7 +11,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:carpet" )
+@RegisterInfo(sId = "minecraft:carpet")
 public class Carpet extends Block implements BlockCarpet {
 
     @Override
@@ -27,14 +26,14 @@ public class Carpet extends Block implements BlockCarpet {
 
     @Override
     public List<AxisAlignedBB> boundingBoxes() {
-        return Collections.singletonList( new AxisAlignedBB(
+        return Collections.singletonList(new AxisAlignedBB(
             this.location.x(),
             this.location.y(),
             this.location.z(),
             this.location.x() + 1,
             this.location.y() + 0.0625f,
             this.location.z() + 1
-        ) );
+        ));
     }
 
     @Override

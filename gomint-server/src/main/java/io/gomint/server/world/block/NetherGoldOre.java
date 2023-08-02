@@ -10,7 +10,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:nether_gold_ore" )
+@RegisterInfo(sId = "minecraft:nether_gold_ore")
 public class NetherGoldOre extends Block implements BlockNetherGoldOre {
 
     @Override

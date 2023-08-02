@@ -11,21 +11,21 @@ import io.gomint.server.registry.RegisterInfo;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:netherite_pickaxe" )
+@RegisterInfo(sId = "minecraft:netherite_pickaxe")
 public class ItemNetheritePickaxe extends ItemReduceTierNetherite<io.gomint.inventory.item.ItemNetheritePickaxe> implements io.gomint.inventory.item.ItemNetheritePickaxe {
 
     @Override
-    public void gotInHand( EntityPlayer player ) {
+    public void gotInHand(EntityPlayer player) {
         player
-            .attributeInstance( Attribute.ATTACK_DAMAGE )
-            .setModifier( AttributeModifier.ITEM_ATTACK_DAMAGE, AttributeModifierType.ADDITION, 6 );
+            .attributeInstance(Attribute.ATTACK_DAMAGE)
+            .setModifier(AttributeModifier.ITEM_ATTACK_DAMAGE, AttributeModifierType.ADDITION, 6);
     }
 
     @Override
-    public void removeFromHand( EntityPlayer player ) {
+    public void removeFromHand(EntityPlayer player) {
         player
-            .attributeInstance( Attribute.ATTACK_DAMAGE )
-            .removeModifier( AttributeModifier.ITEM_ATTACK_DAMAGE );
+            .attributeInstance(Attribute.ATTACK_DAMAGE)
+            .removeModifier(AttributeModifier.ITEM_ATTACK_DAMAGE);
     }
 
     @Override

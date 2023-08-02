@@ -15,6 +15,6 @@ public interface EntityComponent {
      * @param currentTimeMS The current system time in milliseconds
      * @param dT            The time that has passed since the last update in seconds
      */
-    void update( long currentTimeMS, float dT );
+    void update(long currentTimeMS, float dT);
 
 }

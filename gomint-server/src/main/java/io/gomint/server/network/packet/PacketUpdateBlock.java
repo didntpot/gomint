@@ -8,7 +8,7 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketUpdateBlock extends Packet {
+public class PacketUpdateBlock extends Packet implements PacketClientbound {
 
     public static final int FLAG_NONE = 0b0000;
     public static final int FLAG_NEIGHBORS = 0b0001;
@@ -24,19 +24,19 @@ public class PacketUpdateBlock extends Packet {
     private int layer;
 
     public PacketUpdateBlock() {
-        super( Protocol.PACKET_UPDATE_BLOCK );
+        super(Protocol.PACKET_UPDATE_BLOCK);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        writeBlockPosition( this.position, buffer );
-        buffer.writeUnsignedVarInt( this.blockId );
-        buffer.writeUnsignedVarInt( this.flags );
-        buffer.writeUnsignedVarInt( this.layer );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        writeBlockPosition(this.position, buffer);
+        buffer.writeUnsignedVarInt(this.blockId);
+        buffer.writeUnsignedVarInt(this.flags);
+        buffer.writeUnsignedVarInt(this.layer);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 

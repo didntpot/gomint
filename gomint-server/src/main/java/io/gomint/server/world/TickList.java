@@ -8,7 +8,6 @@
 package io.gomint.server.world;
 
 import io.gomint.math.BlockPosition;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -26,43 +25,43 @@ public class TickList {
      * @param key     which should be used to sort the element
      * @param element which should be stored
      */
-    public synchronized void add( long key, BlockPosition element ) {
+    public synchronized void add(long key, BlockPosition element) {
         // Check if we have a head state
-        if ( this.head == null ) {
-            this.head = new LongElement( key, null, new LinkedList<>() {{
-                add( element );
-            }} );
+        if (this.head == null) {
+            this.head = new LongElement(key, null, new LinkedList<>() {{
+                add(element);
+            }});
         } else {
             LongElement longElement = this.head;
             LongElement previousLongElement = null;
 
             // Check until we got a element with a key higher than us or we reached the end
-            while ( longElement != null && longElement.getKey() < key ) {
+            while (longElement != null && longElement.getKey() < key) {
                 previousLongElement = longElement;
                 longElement = longElement.getNext();
             }
 
             // We are at the end of the chain
-            if ( longElement == null ) {
-                previousLongElement.setNext( new LongElement( key, null, new LinkedList<>() {{
-                    add( element );
-                }} ) );
+            if (longElement == null) {
+                previousLongElement.setNext(new LongElement(key, null, new LinkedList<>() {{
+                    add(element);
+                }}));
             } else {
                 // Check if we need to insert a element
-                if ( longElement.getKey() != key ) {
-                    LongElement newLongElement = new LongElement( key, longElement, new LinkedList<>() {{
-                        add( element );
-                    }} );
+                if (longElement.getKey() != key) {
+                    LongElement newLongElement = new LongElement(key, longElement, new LinkedList<>() {{
+                        add(element);
+                    }});
 
-                    if ( previousLongElement != null ) {
-                        previousLongElement.setNext( newLongElement );
+                    if (previousLongElement != null) {
+                        previousLongElement.setNext(newLongElement);
                     } else {
                         // We added a new head
                         this.head = newLongElement;
                     }
                 } else {
                     // We already have this key, append task
-                    longElement.getValues().add( element );
+                    longElement.getValues().add(element);
                 }
             }
         }
@@ -82,53 +81,53 @@ public class TickList {
      */
     public synchronized BlockPosition getNextElement() {
         // There is nothing we can reach
-        if ( this.head == null ) return null;
+        if (this.head == null) return null;
 
         // Check if we have a head node
-        while ( this.head != null && this.head.getValues().size() == 0 ) {
+        while (this.head != null && this.head.getValues().size() == 0) {
             // This head is empty, remove it
             this.head = this.head.getNext();
         }
 
         // This list has reached its end
-        if ( this.head == null ) return null;
+        if (this.head == null) return null;
 
         // Extract the element
         BlockPosition element = this.head.getValues().poll();
-        while ( this.head.getValues().size() == 0 ) {
+        while (this.head.getValues().size() == 0) {
             this.head = this.head.getNext();
-            if ( this.head == null ) break;
+            if (this.head == null) break;
         }
 
         return element;
     }
 
-    public synchronized int size( long key ) {
+    public synchronized int size(long key) {
         LongElement element = this.head;
-        if ( element == null ) {
+        if (element == null) {
             return 0;
         }
 
         do {
-            if ( element.getKey() == key ) {
+            if (element.getKey() == key) {
                 return element.getValues().size();
             }
-        } while ( ( element = element.getNext() ) != null );
+        } while ((element = element.getNext()) != null);
 
         return 0;
     }
 
-    public synchronized boolean contains( BlockPosition hash ) {
+    public synchronized boolean contains(BlockPosition hash) {
         LongElement element = this.head;
-        if ( element == null ) {
+        if (element == null) {
             return false;
         }
 
         do {
-            if ( element.getValues().contains( hash ) ) {
+            if (element.getValues().contains(hash)) {
                 return true;
             }
-        } while ( ( element = element.getNext() ) != null );
+        } while ((element = element.getNext()) != null);
 
         return false;
     }

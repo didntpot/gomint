@@ -8,14 +8,14 @@ import org.json.simple.JSONObject;
  */
 public class Label extends Element {
 
-    public Label( String id, String text ) {
-        super( id, text );
+    public Label(String id, String text) {
+        super(id, text);
     }
 
     @Override
     public JSONObject toJSON() {
         JSONObject obj = super.toJSON();
-        obj.put( "type", "label" );
+        obj.put("type", "label");
         return obj;
     }
 

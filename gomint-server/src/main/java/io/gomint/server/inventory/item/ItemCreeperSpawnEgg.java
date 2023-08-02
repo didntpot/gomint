@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:creeper_spawn_egg" )
-public class ItemCreeperSpawnEgg extends ItemStack< io.gomint.inventory.item.ItemCreeperSpawnEgg> implements io.gomint.inventory.item.ItemCreeperSpawnEgg {
+@RegisterInfo(sId = "minecraft:creeper_spawn_egg")
+public class ItemCreeperSpawnEgg extends ItemStack<io.gomint.inventory.item.ItemCreeperSpawnEgg> implements io.gomint.inventory.item.ItemCreeperSpawnEgg {
 
     @Override
     public ItemType itemType() {

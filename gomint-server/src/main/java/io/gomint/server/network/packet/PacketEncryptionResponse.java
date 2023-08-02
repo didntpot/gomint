@@ -7,18 +7,18 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketEncryptionResponse extends Packet {
+public class PacketEncryptionResponse extends Packet implements PacketServerbound {
 
     public PacketEncryptionResponse() {
-        super( Protocol.PACKET_ENCRYPTION_RESPONSE );
+        super(Protocol.PACKET_ENCRYPTION_RESPONSE);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
+    public void serialize(PacketBuffer buffer, int protocolID) {
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 

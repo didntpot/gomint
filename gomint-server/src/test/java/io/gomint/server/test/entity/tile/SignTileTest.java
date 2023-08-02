@@ -16,12 +16,7 @@ import io.gomint.taglib.NBTTagCompound;
 import io.gomint.world.WorldType;
 import io.gomint.world.generator.CreateOptions;
 import io.gomint.world.generator.integrated.LayeredGenerator;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 
 /**
  * @author geNAZt

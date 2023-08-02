@@ -13,12 +13,11 @@ import io.gomint.server.inventory.item.ItemStack;
 import io.gomint.server.util.Pair;
 import io.gomint.server.util.random.WeightedRandom;
 import io.gomint.util.random.FastRandom;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author geNAZt
@@ -99,7 +98,7 @@ public class EnchantmentSelector {
             if (LOGGER.isDebugEnabled()) {
                 LOGGER.debug("Selected enchants: ");
                 for (Enchantment enchantment : selected) {
-                    LOGGER.debug(" > {}: {}", enchantment.getClass().getSimpleName(), enchantment.level() );
+                    LOGGER.debug(" > {}: {}", enchantment.getClass().getSimpleName(), enchantment.level());
                 }
             }
         }

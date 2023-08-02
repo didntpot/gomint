@@ -1,21 +1,20 @@
 package io.gomint.server.world.block;
 
-import io.gomint.server.world.block.helper.ToolPresets;
-import io.gomint.world.block.data.Facing;
-import io.gomint.world.block.BlockType;
-
-import io.gomint.server.entity.Entity;
 import io.gomint.inventory.item.ItemStack;
 import io.gomint.math.Vector;
+import io.gomint.server.entity.Entity;
 import io.gomint.server.entity.tileentity.NoteblockTileEntity;
 import io.gomint.server.registry.RegisterInfo;
+import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.world.block.BlockNoteblock;
+import io.gomint.world.block.BlockType;
+import io.gomint.world.block.data.Facing;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:noteblock" )
+@RegisterInfo(sId = "minecraft:noteblock")
 public class NoteBlock extends Block implements BlockNoteblock {
 
     @Override
@@ -29,10 +28,10 @@ public class NoteBlock extends Block implements BlockNoteblock {
     }
 
     @Override
-    public boolean interact(Entity<?> entity, Facing face, Vector facePos, ItemStack<?> item ) {
+    public boolean interact(Entity<?> entity, Facing face, Vector facePos, ItemStack<?> item) {
         NoteblockTileEntity tileEntity = tileEntity();
-        if ( tileEntity != null ) {
-            tileEntity.interact( entity, face, facePos, item );
+        if (tileEntity != null) {
+            tileEntity.interact(entity, face, facePos, item);
         }
 
         return true;
@@ -41,7 +40,7 @@ public class NoteBlock extends Block implements BlockNoteblock {
     @Override
     public BlockNoteblock playNote() {
         NoteblockTileEntity tileEntity = tileEntity();
-        if ( tileEntity != null ) {
+        if (tileEntity != null) {
             tileEntity.playSound();
         }
 

@@ -15,7 +15,7 @@ import io.gomint.server.network.PlayerConnection;
 
 /**
  * @author geNAZt
- *
+ * <p>
  * This inventory is used to hold items which are "consumed" by the crafting action issued
  */
 public class SessionInventory extends Inventory<SessionInventory> {

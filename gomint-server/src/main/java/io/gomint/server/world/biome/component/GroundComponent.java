@@ -10,7 +10,6 @@ package io.gomint.server.world.biome.component;
 import com.google.common.collect.Lists;
 import io.gomint.world.biome.component.Ground;
 import io.gomint.world.block.Block;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class GroundComponent implements Component, Ground {
     private final int min;
     private final int max;
 
-    public GroundComponent(int min, int max, Block ... blocks) {
+    public GroundComponent(int min, int max, Block... blocks) {
         this.blocks = Collections.unmodifiableList(Lists.newArrayList(blocks));
         this.min = min;
         this.max = max;
@@ -31,7 +30,7 @@ public class GroundComponent implements Component, Ground {
         this.min = min;
         this.max = max;
     }
-    
+
     @Override
     public List<Block> blocks() {
         return this.blocks;

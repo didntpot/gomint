@@ -8,7 +8,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:allow" )
+@RegisterInfo(sId = "minecraft:allow")
 public class Allow extends Block implements BlockAllow {
 
     @Override
@@ -22,7 +22,7 @@ public class Allow extends Block implements BlockAllow {
     }
 
     @Override
-    public boolean onBreak( boolean creative ) {
+    public boolean onBreak(boolean creative) {
         return creative;
     }
 

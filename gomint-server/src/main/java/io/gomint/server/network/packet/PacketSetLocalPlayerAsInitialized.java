@@ -9,7 +9,7 @@ package io.gomint.server.network.packet;
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.Protocol;
 
-public class PacketSetLocalPlayerAsInitialized extends Packet {
+public class PacketSetLocalPlayerAsInitialized extends Packet implements PacketServerbound {
 
     private long entityId;
 
@@ -17,16 +17,16 @@ public class PacketSetLocalPlayerAsInitialized extends Packet {
      * Construct a new packet
      */
     public PacketSetLocalPlayerAsInitialized() {
-        super( Protocol.PACKET_SET_LOCAL_PLAYER_INITIALIZED );
+        super(Protocol.PACKET_SET_LOCAL_PLAYER_INITIALIZED);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeUnsignedVarLong( this.entityId );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeUnsignedVarLong(this.entityId);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.entityId = buffer.readUnsignedVarLong();
     }
 

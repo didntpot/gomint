@@ -15,28 +15,28 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 7 )
+@RegisterInfo(id = 7)
 public class EnchantmentDepthStrider extends Enchantment implements io.gomint.enchant.EnchantmentDepthStrider {
 
     /**
      * Create new enchantment depth strider
      */
     public EnchantmentDepthStrider() {
-        super( (short) 3 );
+        super((short) 3);
     }
 
     @Override
-    public int minEnchantAbility( short level ) {
-        return (byte) ( level * 10 );
+    public int minEnchantAbility(short level) {
+        return (byte) (level * 10);
     }
 
     @Override
-    public int maxEnchantAbility( short level ) {
-        return (byte) ( minEnchantAbility( level ) + 15 );
+    public int maxEnchantAbility(short level) {
+        return (byte) (minEnchantAbility(level) + 15);
     }
 
     @Override
-    public boolean canBeApplied(ItemStack<?> itemStack ) {
+    public boolean canBeApplied(ItemStack<?> itemStack) {
         return EnchantmentHelper.canBeAppliedToBoots(itemStack);
     }
 

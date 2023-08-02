@@ -14,7 +14,17 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketEntityRelativeMovement extends Packet {
+public class PacketEntityRelativeMovement extends Packet implements PacketClientbound {
+
+    public static final int FLAG_HAS_X = 0x01;
+    public static final int FLAG_HAS_Y = 0x02;
+    public static final int FLAG_HAS_Z = 0x04;
+    public static final int FLAG_HAS_PITCH = 0x08;
+    public static final int FLAG_HAS_YAW = 0x10;
+    public static final int FLAG_HAS_HEAD_YAW = 0x20;
+    public static final int FLAG_GROUND = 0x40;
+    public static final int FLAG_TELEPORT = 0x80;
+    public static final int FLAG_FORCE_MOVE_LOCAL_ENTITY = 0x100;
 
     private long entityId;
     private short flags;
@@ -39,91 +49,91 @@ public class PacketEntityRelativeMovement extends Packet {
      * Construct a new packet
      */
     public PacketEntityRelativeMovement() {
-        super( Protocol.PACKET_ENTITY_RELATIVE_MOVEMENT );
+        super(Protocol.PACKET_ENTITY_RELATIVE_MOVEMENT);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeUnsignedVarLong( this.entityId );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeUnsignedVarLong(this.entityId);
 
         short flags = 0;
-        if ( this.x != this.oldX ) {
-            flags |= 1;
+        if (this.x != this.oldX) {
+            flags |= FLAG_HAS_X;
         }
 
-        if ( this.y != this.oldY ) {
-            flags |= 2;
+        if (this.y != this.oldY) {
+            flags |= FLAG_HAS_Y;
         }
 
-        if ( this.z != this.oldZ ) {
-            flags |= 4;
+        if (this.z != this.oldZ) {
+            flags |= FLAG_HAS_Z;
         }
 
-        if ( this.pitch != this.oldPitch ) {
-            flags |= 8;
+        if (this.pitch != this.oldPitch) {
+            flags |= FLAG_HAS_PITCH;
         }
 
-        if ( this.headYaw != this.oldHeadYaw ) {
-            flags |= 16;
+        if (this.headYaw != this.oldHeadYaw) {
+            flags |= FLAG_HAS_YAW;
         }
 
-        if ( this.yaw != this.oldYaw ) {
-            flags |= 32;
+        if (this.yaw != this.oldYaw) {
+            flags |= FLAG_HAS_HEAD_YAW;
         }
 
-        buffer.writeLShort( flags );
+        buffer.writeLShort(flags);
 
-        if ( this.x != this.oldX ) {
-            buffer.writeLFloat( this.x );
+        if (this.x != this.oldX) {
+            buffer.writeLFloat(this.x);
         }
 
-        if ( this.y != this.oldY ) {
-            buffer.writeLFloat( this.y );
+        if (this.y != this.oldY) {
+            buffer.writeLFloat(this.y);
         }
 
-        if ( this.z != this.oldZ ) {
-            buffer.writeLFloat( this.z );
+        if (this.z != this.oldZ) {
+            buffer.writeLFloat(this.z);
         }
 
-        if ( this.pitch != this.oldPitch ) {
-            writeByteRotation( this.pitch, buffer );
+        if (this.pitch != this.oldPitch) {
+            writeByteRotation(this.pitch, buffer);
         }
 
-        if ( this.headYaw != this.oldHeadYaw ) {
-            writeByteRotation( this.headYaw, buffer );
+        if (this.headYaw != this.oldHeadYaw) {
+            writeByteRotation(this.headYaw, buffer);
         }
 
-        if ( this.yaw != this.oldYaw ) {
-            writeByteRotation( this.yaw, buffer );
+        if (this.yaw != this.oldYaw) {
+            writeByteRotation(this.yaw, buffer);
         }
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.entityId = buffer.readUnsignedVarLong();
         this.flags = buffer.readLShort();
 
-        if ( ( this.flags & 1 ) == 1 ) {
+        if ((this.flags & 1) == 1) {
             this.x = buffer.readLFloat();
         }
 
-        if ( ( this.flags & 2 ) == 2 ) {
+        if ((this.flags & 2) == 2) {
             this.y = buffer.readLFloat();
         }
 
-        if ( ( this.flags & 4 ) == 4 ) {
+        if ((this.flags & 4) == 4) {
             this.z = buffer.readLFloat();
         }
 
-        if ( ( this.flags & 8 ) == 8 ) {
+        if ((this.flags & 8) == 8) {
             this.pitch = readByteRotation(buffer);
         }
 
-        if ( ( this.flags & 16 ) == 16 ) {
+        if ((this.flags & 16) == 16) {
             this.headYaw = readByteRotation(buffer);
         }
 
-        if ( ( this.flags & 32 ) == 32 ) {
+        if ((this.flags & 32) == 32) {
             this.yaw = readByteRotation(buffer);
         }
     }

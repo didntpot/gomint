@@ -7,11 +7,10 @@
 
 package io.gomint.server.util.performance;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author geNAZt
@@ -19,16 +18,16 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class ReflectionAccessFactory<T> implements ConstructionFactory<T> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger( ReflectionAccessFactory.class );
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReflectionAccessFactory.class);
 
     private Constructor<T> constructor;
 
-    public ReflectionAccessFactory( Class<T> clazz ) {
+    public ReflectionAccessFactory(Class<T> clazz) {
         try {
             this.constructor = clazz.getConstructor();
-            this.constructor.setAccessible( true );
-        } catch ( NoSuchMethodException e ) {
-            LOGGER.error( "Can't construct access factory for {}", clazz.getName(), e );
+            this.constructor.setAccessible(true);
+        } catch (NoSuchMethodException e) {
+            LOGGER.error("Can't construct access factory for {}", clazz.getName(), e);
         }
     }
 
@@ -36,8 +35,8 @@ public class ReflectionAccessFactory<T> implements ConstructionFactory<T> {
     public T newInstance() {
         try {
             return this.constructor.newInstance();
-        } catch ( InstantiationException | InvocationTargetException | IllegalAccessException e ) {
-            LOGGER.error( "Can't construct new object", e );
+        } catch (InstantiationException | InvocationTargetException | IllegalAccessException e) {
+            LOGGER.error("Can't construct new object", e);
         }
 
         return null;

@@ -3,7 +3,6 @@ package io.gomint.server.network.packet;
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.Protocol;
 import io.gomint.server.resource.ResourcePack;
-
 import java.util.List;
 
 /**
@@ -17,32 +16,32 @@ public class PacketResourcePackStack extends Packet {
     private List<ResourcePack> resourcePackEntries;
 
     public PacketResourcePackStack() {
-        super( Protocol.PACKET_RESOURCEPACK_STACK );
+        super(Protocol.PACKET_RESOURCEPACK_STACK);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeBoolean( this.mustAccept );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeBoolean(this.mustAccept);
 
-        buffer.writeUnsignedVarInt( ( this.behaviourPackEntries == null ? 0 : this.behaviourPackEntries.size() ) );
-        if ( this.behaviourPackEntries != null ) {
-            for ( ResourcePack entry : this.behaviourPackEntries ) {
-                buffer.writeString( entry.version().id().toString() );
-                buffer.writeString( entry.version().version() );
-                buffer.writeString( "" );
+        buffer.writeUnsignedVarInt((this.behaviourPackEntries == null ? 0 : this.behaviourPackEntries.size()));
+        if (this.behaviourPackEntries != null) {
+            for (ResourcePack entry : this.behaviourPackEntries) {
+                buffer.writeString(entry.version().id().toString());
+                buffer.writeString(entry.version().version());
+                buffer.writeString("");
             }
         }
 
-        buffer.writeUnsignedVarInt( (short) ( this.resourcePackEntries == null ? 0 : this.resourcePackEntries.size() ) );
-        if ( this.resourcePackEntries != null ) {
-            for ( ResourcePack entry : this.resourcePackEntries ) {
-                buffer.writeString( entry.version().id().toString() );
-                buffer.writeString( entry.version().version() );
-                buffer.writeString( "" );
+        buffer.writeUnsignedVarInt((short) (this.resourcePackEntries == null ? 0 : this.resourcePackEntries.size()));
+        if (this.resourcePackEntries != null) {
+            for (ResourcePack entry : this.resourcePackEntries) {
+                buffer.writeString(entry.version().id().toString());
+                buffer.writeString(entry.version().version());
+                buffer.writeString("");
             }
         }
 
-        buffer.writeString( Protocol.MINECRAFT_PE_NETWORK_VERSION );
+        buffer.writeString(Protocol.MINECRAFT_PE_NETWORK_VERSION);
 
         // Experiments
         buffer.writeInt(0);
@@ -50,18 +49,18 @@ public class PacketResourcePackStack extends Packet {
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         buffer.readBoolean();
 
         int amount = buffer.readUnsignedVarInt();
-        for ( int i = 0; i < amount; i++ ) {
+        for (int i = 0; i < amount; i++) {
             buffer.readString();
             buffer.readString();
             buffer.readString();
         }
 
         amount = buffer.readUnsignedVarInt();
-        for ( int i = 0; i < amount; i++ ) {
+        for (int i = 0; i < amount; i++) {
             buffer.readString();
             buffer.readString();
             buffer.readString();
@@ -70,7 +69,7 @@ public class PacketResourcePackStack extends Packet {
         buffer.readString();
 
         amount = buffer.readLInt();
-        for ( int i = 0; i < amount; i++ ) {
+        for (int i = 0; i < amount; i++) {
             buffer.readString();
             buffer.readBoolean();
         }

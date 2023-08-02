@@ -10,7 +10,6 @@ import io.gomint.command.validator.TargetValidator;
 import io.gomint.math.BlockPosition;
 import io.gomint.math.Location;
 import io.gomint.server.entity.EntityPlayer;
-
 import java.util.Map;
 
 /**

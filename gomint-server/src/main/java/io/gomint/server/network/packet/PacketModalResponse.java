@@ -7,22 +7,22 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketModalResponse extends Packet {
+public class PacketModalResponse extends Packet implements PacketServerbound {
 
     private int formId;
     private String json;
 
     public PacketModalResponse() {
-        super( Protocol.PACKET_MODAL_RESPONSE );
+        super(Protocol.PACKET_MODAL_RESPONSE);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
+    public void serialize(PacketBuffer buffer, int protocolID) {
 
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.formId = buffer.readSignedVarInt();
         this.json = buffer.readString();
     }

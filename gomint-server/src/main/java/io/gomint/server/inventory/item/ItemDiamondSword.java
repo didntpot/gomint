@@ -12,21 +12,21 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:diamond_sword" )
+@RegisterInfo(sId = "minecraft:diamond_sword")
 public class ItemDiamondSword extends ItemReduceTierSpecial<io.gomint.inventory.item.ItemDiamondSword> implements io.gomint.inventory.item.ItemDiamondSword, ItemSword {
 
     @Override
-    public void gotInHand( EntityPlayer player ) {
+    public void gotInHand(EntityPlayer player) {
         player
-            .attributeInstance( Attribute.ATTACK_DAMAGE )
-            .setModifier( AttributeModifier.ITEM_ATTACK_DAMAGE, AttributeModifierType.ADDITION, 7 ); // 4 from sword type, 3 from diamond material
+            .attributeInstance(Attribute.ATTACK_DAMAGE)
+            .setModifier(AttributeModifier.ITEM_ATTACK_DAMAGE, AttributeModifierType.ADDITION, 7); // 4 from sword type, 3 from diamond material
     }
 
     @Override
-    public void removeFromHand( EntityPlayer player ) {
+    public void removeFromHand(EntityPlayer player) {
         player
-            .attributeInstance( Attribute.ATTACK_DAMAGE )
-            .removeModifier( AttributeModifier.ITEM_ATTACK_DAMAGE );
+            .attributeInstance(Attribute.ATTACK_DAMAGE)
+            .removeModifier(AttributeModifier.ITEM_ATTACK_DAMAGE);
     }
 
     @Override

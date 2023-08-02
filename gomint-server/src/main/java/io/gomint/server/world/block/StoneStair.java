@@ -1,11 +1,10 @@
 package io.gomint.server.world.block;
 
 import io.gomint.inventory.item.ItemStack;
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.world.block.BlockStoneStair;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.data.StoneType;
 
 /**
@@ -82,6 +81,7 @@ public class StoneStair extends Stair<BlockStoneStair> implements BlockStoneStai
         POLISHED_BLACKSTONE_BRICK("minecraft:polished_blackstone_brick_stairs");
 
         private final String blockId;
+
         StoneTypeMagic() {
             this.blockId = null;
         }

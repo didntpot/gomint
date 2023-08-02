@@ -16,28 +16,28 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 2 )
+@RegisterInfo(id = 2)
 public class EnchantmentFeatherfalling extends Enchantment implements io.gomint.enchant.EnchantmentFeatherfalling {
 
     /**
      * Create new enchantment feather falling
      */
     public EnchantmentFeatherfalling() {
-        super( (short) 4 );
+        super((short) 4);
     }
 
     @Override
-    public int minEnchantAbility( short level ) {
-        return (byte) ( 5 + ( level - 1 ) * 6 );
+    public int minEnchantAbility(short level) {
+        return (byte) (5 + (level - 1) * 6);
     }
 
     @Override
-    public int maxEnchantAbility( short level ) {
-        return (byte) ( minEnchantAbility( level ) + 10 );
+    public int maxEnchantAbility(short level) {
+        return (byte) (minEnchantAbility(level) + 10);
     }
 
     @Override
-    public boolean canBeApplied(ItemStack<?> itemStack ) {
+    public boolean canBeApplied(ItemStack<?> itemStack) {
         return itemStack.itemType() == ItemType.CHAIN_BOOTS ||
             itemStack.itemType() == ItemType.DIAMOND_BOOTS ||
             itemStack.itemType() == ItemType.GOLDEN_BOOTS ||

@@ -7,20 +7,20 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketSetCommandsEnabled extends Packet {
+public class PacketSetCommandsEnabled extends Packet implements PacketClientbound {
     private boolean enabled;
 
     public PacketSetCommandsEnabled() {
-        super( Protocol.PACKET_SET_COMMANDS_ENABLED );
+        super(Protocol.PACKET_SET_COMMANDS_ENABLED);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeBoolean( this.enabled );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeBoolean(this.enabled);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 

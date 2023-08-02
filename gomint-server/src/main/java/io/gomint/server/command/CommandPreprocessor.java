@@ -5,14 +5,11 @@ import io.gomint.command.ParamValidator;
 import io.gomint.server.entity.EntityPlayer;
 import io.gomint.server.network.packet.PacketAvailableCommands;
 import io.gomint.server.network.type.CommandData;
+import io.gomint.server.network.type.CommandEnum;
 import io.gomint.server.util.collection.IndexedHashMap;
+import java.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author geNAZt
@@ -21,38 +18,6 @@ import java.util.Map;
 public class CommandPreprocessor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CommandPreprocessor.class);
-
-    // Those a static values which are used for PE to identify the type
-    /**
-     * This flag is set on all types EXCEPT the TEMPLATE type. Not completely sure what this is for, but it is required
-     * for the argtype to work correctly. VALID seems as good a name as any.
-     */
-    private static final int ARG_FLAG_VALID = 0x100000;
-
-    /**
-     * Basic parameter types. These must be combined with the ARG_FLAG_VALID private static final intant.
-     * ARG_FLAG_VALID | (type private static final int)
-     */
-    private static final int ARG_TYPE_INT = 0x01;
-    private static final int ARG_TYPE_FLOAT = 0x02;
-    private static final int ARG_TYPE_VALUE = 0x03;
-    // WILDCARD_INT
-    private static final int ARG_TYPE_TARGET = 0x06;
-    // WILDCARD_TARGET
-    private static final int ARG_TYPE_STRING = 0x1d;
-    private static final int ARG_TYPE_POSITION = 0x25;
-    private static final int ARG_TYPE_RAWTEXT = 0x2b;
-
-    /**
-     * Enums are a little different: they are composed as follows:
-     * ARG_FLAG_ENUM | ARG_FLAG_VALID | (enum index)
-     */
-    private static final int ARG_FLAG_ENUM = 0x200000;
-
-    /**
-     * This is used for for /xp <level: int>L.
-     */
-    private static final int ARG_FLAG_POSTFIX = 0x1000000;
 
     // Enums are stored in an indexed list at the start. Enums are just collections of a name and
     // a integer list reflecting the index inside enumValues
@@ -118,87 +83,108 @@ public class CommandPreprocessor {
         // Now we should have sorted any enums. Move on to write the command data
         List<CommandData> commandDataList = new ArrayList<>();
         for (CommandHolder command : commands) {
-            // Construct new data helper for the packet
-            CommandData commandData = new CommandData(command.getName(), command.getDescription());
-            commandData.flags((byte) 0);
-            commandData.permission((byte) command.getCommandPermission().getId());
-
-            // Put in alias index
-            if (command.getAlias() != null) {
-                commandData.aliasIndex(this.aliasIndex.get(command));
-            } else {
-                commandData.aliasIndex(-1);
+            String lname = command.getName().toLowerCase();
+            Set<String> aliases = command.getAlias();
+            CommandEnum aliasObj = null;
+            if (!aliases.isEmpty()) {
+                if (!aliases.contains(lname)) {
+                    aliases.add(lname);
+                }
+                aliasObj = new CommandEnum(command.getName() + "Aliases", Collections.list(Collections.enumeration(aliases)));
             }
+
+            ArrayList<io.gomint.server.network.type.CommandOverload> o = new ArrayList<>();
+            o.add(new io.gomint.server.network.type.CommandOverload(
+                false,
+                new ArrayList<>(
+                    Collections.singletonList(
+                        CommandData.Parameter.standard(
+                            "args",
+                            PacketAvailableCommands.ARG_TYPE_RAWTEXT,
+                            0,
+                            true
+                        )
+                    )
+                )
+            ));
+
+            // Construct new data helper for the packet
+            CommandData commandData = new CommandData(
+                command.getName(),
+                command.getDescription(),
+                (byte) 0,
+                (byte) 0,
+                aliasObj,
+                o,
+                Collections.emptyList()
+            );
 
             // Do we need to hack a bit here?
-            List<List<CommandData.Parameter>> overloads = new ArrayList<>();
-
-            if (command.getOverload() != null) {
-                for (CommandOverload overload : command.getOverload()) {
-                    if (overload.permission().isEmpty() || player.hasPermission(overload.permission())) {
-                        List<CommandData.Parameter> parameters = new ArrayList<>();
-                        if (overload.parameters() != null) {
-                            for (Map.Entry<String, ParamValidator<?>> entry : overload.parameters().entrySet()) {
-                                // Build together type
-                                int paramType = 0; // We don't support postfixes yet
-
-                                switch (entry.getValue().type()) {
-                                    case INT:
-                                        if (entry.getValue().postfix() != null) {
-                                            paramType |= ARG_FLAG_POSTFIX;
-                                            paramType |= this.postfixes.indexOf(entry.getValue().postfix());
-                                        } else {
-                                            paramType |= ARG_FLAG_VALID;
-                                            paramType |= ARG_TYPE_INT;
-                                        }
-
-                                        break;
-                                    case BOOL:
-                                    case STRING_ENUM:
-                                        paramType |= ARG_FLAG_ENUM;
-                                        paramType |= ARG_FLAG_VALID;
-                                        paramType |= this.enumIndexes.get(command.getName() + "#" + entry.getKey());
-                                        break;
-                                    case TARGET:
-                                        paramType |= ARG_FLAG_VALID;
-                                        paramType |= ARG_TYPE_TARGET;
-                                        break;
-                                    case STRING:
-                                        paramType |= ARG_FLAG_VALID;
-                                        paramType |= ARG_TYPE_STRING;
-                                        break;
-                                    case BLOCK_POS:
-                                        paramType |= ARG_FLAG_VALID;
-                                        paramType |= ARG_TYPE_POSITION;
-                                        break;
-                                    case TEXT:
-                                        paramType |= ARG_FLAG_VALID;
-                                        paramType |= ARG_TYPE_RAWTEXT;
-                                        break;
-                                    case FLOAT:
-                                        paramType |= ARG_FLAG_VALID;
-                                        paramType |= ARG_TYPE_FLOAT;
-                                        break;
-                                    case COMMAND:
-                                        paramType |= ARG_FLAG_ENUM;
-                                        paramType |= ARG_FLAG_VALID;
-                                        paramType |= this.enumIndexes.get(command.getName() + "#" + entry.getKey());
-                                        break;
-                                    default:
-                                        paramType |= ARG_FLAG_VALID;
-                                        paramType |= ARG_TYPE_VALUE;
-                                }
-
-                                parameters.add(new CommandData.Parameter(entry.getKey(), paramType, entry.getValue().optional()));
-                            }
-                        }
-
-                        overloads.add(parameters);
-                    }
-                }
-            }
-
-            commandData.parameters(overloads);
+            // TODO: overload
+//            List<List<CommandData.Parameter>> overloads = new ArrayList<>();
+//
+//            if (command.getOverload() != null) {
+//                for (CommandOverload overload : command.getOverload()) {
+//                    if (overload.permission().isEmpty() || player.hasPermission(overload.permission())) {
+//                        List<CommandData.Parameter> parameters = new ArrayList<>();
+//                        if (overload.parameters() != null) {
+//                            for (Map.Entry<String, ParamValidator<?>> entry : overload.parameters().entrySet()) {
+//                                // Build together type
+//                                int paramType = 0; // We don't support postfixes yet
+//
+//                                switch (entry.getValue().type()) {
+//                                    case INT:
+//                                        if (entry.getValue().postfix() != null) {
+//                                            paramType |= PacketAvailableCommands.ARG_FLAG_POSTFIX;
+//                                            paramType |= this.postfixes.indexOf(entry.getValue().postfix());
+//                                        } else {
+//                                            paramType |= PacketAvailableCommands.ARG_FLAG_VALID;
+//                                            paramType |= PacketAvailableCommands.ARG_TYPE_INT;
+//                                        }
+//
+//                                        break;
+//                                    case BOOL:
+//                                    case STRING_ENUM:
+//                                    case COMMAND:
+//                                        paramType |= PacketAvailableCommands.ARG_FLAG_ENUM;
+//                                        paramType |= PacketAvailableCommands.ARG_FLAG_VALID;
+//                                        paramType |= this.enumIndexes.get(command.getName() + "#" + entry.getKey());
+//                                        break;
+//                                    case TARGET:
+//                                        paramType |= PacketAvailableCommands.ARG_FLAG_VALID;
+//                                        paramType |= PacketAvailableCommands.ARG_TYPE_TARGET;
+//                                        break;
+//                                    case STRING:
+//                                        paramType |= PacketAvailableCommands.ARG_FLAG_VALID;
+//                                        paramType |= PacketAvailableCommands.ARG_TYPE_STRING;
+//                                        break;
+//                                    case BLOCK_POS:
+//                                        paramType |= PacketAvailableCommands.ARG_FLAG_VALID;
+//                                        paramType |= PacketAvailableCommands.ARG_TYPE_POSITION;
+//                                        break;
+//                                    case TEXT:
+//                                        paramType |= PacketAvailableCommands.ARG_FLAG_VALID;
+//                                        paramType |= PacketAvailableCommands.ARG_TYPE_RAWTEXT;
+//                                        break;
+//                                    case FLOAT:
+//                                        paramType |= PacketAvailableCommands.ARG_FLAG_VALID;
+//                                        paramType |= PacketAvailableCommands.ARG_TYPE_FLOAT;
+//                                        break;
+//                                    default:
+//                                        paramType |= PacketAvailableCommands.ARG_FLAG_VALID;
+//                                        paramType |= PacketAvailableCommands.ARG_TYPE_VALUE;
+//                                }
+//
+//                                parameters.add(new CommandData.Parameter(entry.getKey(), paramType, entry.getValue().optional()));
+//                            }
+//                        }
+//
+//                        overloads.add(parameters);
+//                    }
+//                }
+//            }
+//
+//            commandData.parameters(overloads);
             commandDataList.add(commandData);
         }
 
@@ -208,12 +194,10 @@ public class CommandPreprocessor {
     private void addEnum(String name, String value) {
         // Check if we already know this enum value
         int enumValueIndex;
-        if (this.enumValues.contains(value)) {
-            enumValueIndex = this.enumValues.indexOf(value);
-        } else {
+        if (!this.enumValues.contains(value)) {
             this.enumValues.add(value);
-            enumValueIndex = this.enumValues.indexOf(value);
         }
+        enumValueIndex = this.enumValues.indexOf(value);
 
         // Create / add this value to the enum
         List<Integer> old = this.enums.get(name);

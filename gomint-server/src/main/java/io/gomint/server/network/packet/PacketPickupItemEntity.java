@@ -7,23 +7,23 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketPickupItemEntity extends Packet {
+public class PacketPickupItemEntity extends Packet implements PacketClientbound {
 
     private long itemEntityId;
     private long playerEntityId;
 
     public PacketPickupItemEntity() {
-        super( Protocol.PACKET_PICKUP_ITEM_ENTITY );
+        super(Protocol.PACKET_PICKUP_ITEM_ENTITY);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeUnsignedVarLong( this.itemEntityId );
-        buffer.writeUnsignedVarLong( this.playerEntityId );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeUnsignedVarLong(this.itemEntityId);
+        buffer.writeUnsignedVarLong(this.playerEntityId);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 

@@ -5,15 +5,13 @@ import io.gomint.inventory.item.ItemStack;
 import io.gomint.math.Location;
 import io.gomint.math.Vector;
 import io.gomint.server.entity.EntityLiving;
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.state.BooleanBlockState;
 import io.gomint.server.world.block.state.EnumBlockState;
 import io.gomint.world.block.BlockSapling;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.data.Facing;
 import io.gomint.world.block.data.LogType;
-
 import java.util.Collections;
 import java.util.List;
 

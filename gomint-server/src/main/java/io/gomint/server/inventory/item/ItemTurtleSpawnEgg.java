@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:turtle_spawn_egg" )
-public class ItemTurtleSpawnEgg extends ItemStack< io.gomint.inventory.item.ItemTurtleSpawnEgg> implements io.gomint.inventory.item.ItemTurtleSpawnEgg {
+@RegisterInfo(sId = "minecraft:turtle_spawn_egg")
+public class ItemTurtleSpawnEgg extends ItemStack<io.gomint.inventory.item.ItemTurtleSpawnEgg> implements io.gomint.inventory.item.ItemTurtleSpawnEgg {
 
     @Override
     public ItemType itemType() {

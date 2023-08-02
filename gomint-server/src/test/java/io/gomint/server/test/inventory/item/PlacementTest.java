@@ -9,24 +9,18 @@ package io.gomint.server.test.inventory.item;
 
 import io.gomint.inventory.item.ItemStack;
 import io.gomint.math.Location;
-import io.gomint.server.entity.EntityPlayer;
 import io.gomint.math.Vector;
-
+import io.gomint.server.entity.EntityPlayer;
 import io.gomint.server.test.IntegrationTest;
 import io.gomint.server.util.ClassPath;
 import io.gomint.server.world.WorldAdapter;
-import io.gomint.world.WorldType;
 import io.gomint.server.world.block.Block;
+import io.gomint.world.WorldType;
 import io.gomint.world.block.BlockAir;
 import io.gomint.world.block.data.Facing;
 import io.gomint.world.generator.CreateOptions;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestMethodOrder;
-
 import java.io.IOException;
+import org.junit.jupiter.api.*;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

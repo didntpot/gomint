@@ -5,7 +5,6 @@ import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.world.block.BlockPistonHead;
 import io.gomint.world.block.BlockType;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +12,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:stickyPistonArmCollision" )
+@RegisterInfo(sId = "minecraft:stickyPistonArmCollision")
 public class StickyPistonHead extends Block implements BlockPistonHead {
 
     @Override
@@ -32,7 +31,7 @@ public class StickyPistonHead extends Block implements BlockPistonHead {
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
         return new ArrayList<>();
     }
 

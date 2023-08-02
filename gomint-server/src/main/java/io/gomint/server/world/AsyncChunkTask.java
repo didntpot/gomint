@@ -20,7 +20,7 @@ public abstract class AsyncChunkTask {
      *
      * @param type The type of the task
      */
-    protected AsyncChunkTask( Type type ) {
+    protected AsyncChunkTask(Type type) {
         this.type = type;
     }
 

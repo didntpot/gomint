@@ -1,10 +1,8 @@
 package io.gomint.server.world.block;
 
 import io.gomint.inventory.item.ItemStack;
-
 import io.gomint.server.entity.tileentity.BannerTileEntity;
 import io.gomint.server.entity.tileentity.TileEntity;
-
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.taglib.NBTTagCompound;
 
@@ -40,9 +38,9 @@ public abstract class Banner extends Block {
     }
 
     @Override
-    TileEntity createTileEntity( NBTTagCompound compound ) {
-        super.createTileEntity( compound );
+    TileEntity createTileEntity(NBTTagCompound compound) {
+        super.createTileEntity(compound);
         return this.tileEntities.construct(BannerTileEntity.class, compound, this, this.items);
     }
-	
+
 }

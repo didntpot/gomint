@@ -10,8 +10,8 @@ import io.gomint.server.network.packet.PacketModalResponse;
 public class PacketModalResponseHandler implements PacketHandler<PacketModalResponse> {
 
     @Override
-    public void handle( PacketModalResponse packet, long currentTimeMillis, PlayerConnection connection ) {
-        connection.entity().parseGUIResponse( packet.getFormId(), packet.getJson() );
+    public void handle(PacketModalResponse packet, long currentTimeMillis, PlayerConnection connection) {
+        connection.entity().parseGUIResponse(packet.getFormId(), packet.getJson());
     }
 
 }

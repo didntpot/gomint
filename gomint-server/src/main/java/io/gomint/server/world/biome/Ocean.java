@@ -16,7 +16,6 @@ import io.gomint.server.world.biome.component.PopulatorComponent;
 import io.gomint.server.world.biome.component.SpawnableEntitiesComponent;
 import io.gomint.world.block.BlockGravel;
 import io.gomint.world.generator.populator.TallGrassPopulator;
-
 import java.util.Collections;
 import java.util.Set;
 
@@ -50,7 +49,7 @@ public class Ocean extends AbstractBiome {
 
     private static PopulatorComponent createPopulators() {
         TallGrassPopulator populator = new TallGrassPopulator();
-        populator.baseAmount( 5 );
+        populator.baseAmount(5);
         return new PopulatorComponent(Collections.singletonList(populator));
     }
 

@@ -31,28 +31,28 @@ public class EnderChestTileEntity extends ContainerTileEntity implements Invento
      * @param block where the ender chest should be placed
      */
     public EnderChestTileEntity(Block block, Items items) {
-        super( block, items );
+        super(block, items);
     }
 
     @Override
-    public void update( long currentMillis, float dT ) {
+    public void update(long currentMillis, float dT) {
 
     }
 
     @Override
-    public void interact(Entity<?> entity, Facing face, Vector facePos, ItemStack<?> item ) {
+    public void interact(Entity<?> entity, Facing face, Vector facePos, ItemStack<?> item) {
         // Open the chest inventory for the entity
-        if ( entity instanceof EntityPlayer ) {
+        if (entity instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entity;
-            player.enderChestInventory().containerPosition( this.block.position() );
-            player.openInventory( player.enderChestInventory() );
+            player.enderChestInventory().containerPosition(this.block.position());
+            player.openInventory(player.enderChestInventory());
         }
     }
 
     @Override
-    public void toCompound( NBTTagCompound compound, SerializationReason reason ) {
-        super.toCompound( compound, reason );
-        compound.addValue( "id", "EnderChest" );
+    public void toCompound(NBTTagCompound compound, SerializationReason reason) {
+        super.toCompound(compound, reason);
+        compound.addValue("id", "EnderChest");
     }
 
 }

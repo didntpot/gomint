@@ -12,7 +12,6 @@ import io.gomint.server.world.biome.component.Component;
 import io.gomint.world.biome.Biome;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-
 import java.util.Set;
 
 /**
@@ -29,7 +28,7 @@ public class AbstractBiome implements Biome {
      *
      * @param components which this biome should have
      */
-    public AbstractBiome(Component ... components) {
+    public AbstractBiome(Component... components) {
         for (Component component : components) {
             this.components.put(component.getClass(), component);
 
@@ -42,7 +41,7 @@ public class AbstractBiome implements Biome {
         }
     }
 
-    public void tags(String ... tags) {
+    public void tags(String... tags) {
         this.tags = Sets.newHashSet(tags);
     }
 

@@ -10,7 +10,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:polished_blackstone" )
+@RegisterInfo(sId = "minecraft:polished_blackstone")
 public class PolishedBlackStone extends Block implements BlockPolishedBlackStone {
 
     @Override

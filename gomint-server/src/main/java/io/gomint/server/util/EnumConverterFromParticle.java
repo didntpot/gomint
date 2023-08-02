@@ -16,9 +16,9 @@ import io.gomint.world.Particle;
 public class EnumConverterFromParticle implements EnumConverter {
 
     @Override
-    public Enum convert( Enum value ) {
+    public Enum convert(Enum value) {
         int id = value.ordinal();
-        switch ( id ) {
+        switch (id) {
             case 0:
                 return Particle.BUBBLE;
             case 2:

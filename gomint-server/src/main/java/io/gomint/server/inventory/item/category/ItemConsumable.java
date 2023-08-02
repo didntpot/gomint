@@ -20,6 +20,6 @@ public interface ItemConsumable {
      *
      * @param player which consumes this item
      */
-    void onConsume( EntityPlayer player );
+    void onConsume(EntityPlayer player);
 
 }

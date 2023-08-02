@@ -15,6 +15,9 @@ import io.gomint.math.BlockPosition;
 import io.gomint.math.Vector;
 import io.gomint.server.GoMintServer;
 import io.gomint.server.entity.EntityLink;
+import io.gomint.server.network.packet.types.gamerule.*;
+import io.gomint.server.network.packet.types.recipe.*;
+import io.gomint.server.network.packet.util.PacketDecodeException;
 import io.gomint.server.network.type.CommandOrigin;
 import io.gomint.server.player.PlayerSkin;
 import io.gomint.server.util.Things;
@@ -24,14 +27,14 @@ import io.gomint.taglib.NBTTagCompound;
 import io.gomint.taglib.NBTWriter;
 import io.gomint.world.Gamerule;
 import io.gomint.world.block.data.Facing;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.nio.ByteOrder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author BlackyPaw
@@ -178,6 +181,76 @@ public abstract class Packet {
         buffer.writeSignedVarInt(material);
         buffer.writeSignedVarInt(impl.data());
         buffer.writeSignedVarInt(ingredient.amount());
+    }
+
+    public static void writeRecipeIngredient(RecipeIngredient ingredient, PacketBuffer buffer) {
+        ItemDescriptor type = ingredient.getItemDescriptor();
+        buffer.writeByte((byte) (type == null ? 0 : type.getTypeId()));
+        if (type != null) {
+            type.write(buffer);
+        }
+        buffer.writeSignedVarInt(ingredient.getCount());
+    }
+
+    public static RecipeIngredient getRecipeIngredient(PacketBuffer buffer) {
+        int descriptorType = buffer.readByte();
+        ItemDescriptor descriptor = null;
+        switch (descriptorType) {
+            case ItemDescriptorType.INT_ID_META:
+                descriptor = IntIdMetaItemDescriptor.read(buffer);
+                break;
+            case ItemDescriptorType.STRING_ID_META:
+                descriptor = StringIdMetaItemDescriptor.read(buffer);
+                break;
+            case ItemDescriptorType.TAG:
+                descriptor = TagItemDescriptor.read(buffer);
+                break;
+            case ItemDescriptorType.MOLANG:
+                descriptor = MolangItemDescriptor.read(buffer);
+                break;
+            case ItemDescriptorType.COMPLEX_ALIAS:
+                descriptor = ComplexAliasItemDescriptor.read(buffer);
+                break;
+            default:
+                break;
+        }
+        int count = buffer.readSignedVarInt();
+        return new RecipeIngredient(descriptor, count);
+    }
+
+    public static Map<String, GameRule> getGameRules(PacketBuffer buffer) {
+        int count = buffer.readUnsignedVarInt();
+        Map<String, GameRule> gameRules = new HashMap<>(count);
+        for (int i = 0; i < count; ++i) {
+            String name = buffer.readString();
+            boolean isPlayerModifiable = buffer.readBoolean();
+            int type = buffer.readUnsignedVarInt();
+            gameRules.put(name, readGameRule(buffer, type, isPlayerModifiable));
+        }
+        return gameRules;
+    }
+
+    private static GameRule readGameRule(PacketBuffer buffer, int type, boolean isPlayerModifiable) {
+        switch (type) {
+            case GameRuleType.BOOLEAN:
+                return BooleanGameRule.decode(buffer, isPlayerModifiable);
+            case GameRuleType.INTEGER:
+                return IntegerGameRule.decode(buffer, isPlayerModifiable);
+            case GameRuleType.FLOAT:
+                return FloatGameRule.decode(buffer, isPlayerModifiable);
+            default:
+                throw new PacketDecodeException("Unknown game rule type: " + type);
+        }
+    }
+
+    public static void writeGameRules(PacketBuffer buffer, Map<String, GameRule> gameRules) {
+        buffer.writeUnsignedVarInt(gameRules.size());
+        for (Map.Entry<String, GameRule> entry : gameRules.entrySet()) {
+            buffer.writeString(entry.getKey());
+            buffer.writeBoolean(entry.getValue().isPlayerModifiable());
+            buffer.writeUnsignedVarInt(entry.getValue().getTypeId());
+            entry.getValue().encode(buffer);
+        }
     }
 
     /**
@@ -426,7 +499,7 @@ public abstract class Packet {
         buffer.writeBytes(data);
     }
 
-    public BlockPosition readBlockPosition(PacketBuffer buffer) {
+    public static BlockPosition readBlockPosition(PacketBuffer buffer) {
         return new BlockPosition(buffer.readSignedVarInt(), buffer.readUnsignedVarInt(), buffer.readSignedVarInt());
     }
 
@@ -434,7 +507,7 @@ public abstract class Packet {
         return new BlockPosition(buffer.readSignedVarInt(), buffer.readSignedVarInt(), buffer.readSignedVarInt());
     }
 
-    public void writeBlockPosition(BlockPosition position, PacketBuffer buffer) {
+    public static void writeBlockPosition(BlockPosition position, PacketBuffer buffer) {
         buffer.writeSignedVarInt(position.x());
         buffer.writeUnsignedVarInt(position.y());
         buffer.writeSignedVarInt(position.z());
@@ -460,13 +533,13 @@ public abstract class Packet {
         }
     }
 
-    void writeVector(Vector vector, PacketBuffer buffer) {
+    public static void writeVector(Vector vector, PacketBuffer buffer) {
         buffer.writeLFloat(vector.x());
         buffer.writeLFloat(vector.y());
         buffer.writeLFloat(vector.z());
     }
 
-    Vector readVector(PacketBuffer buffer) {
+    public static Vector readVector(PacketBuffer buffer) {
         return new Vector(buffer.readLFloat(), buffer.readLFloat(), buffer.readLFloat());
     }
 
@@ -476,15 +549,22 @@ public abstract class Packet {
     }
 
     void writeCommandOrigin(CommandOrigin commandOrigin, PacketBuffer buffer) {
-        buffer.writeByte(commandOrigin.unknown1());
+        buffer.writeUnsignedVarInt(commandOrigin.type());
         buffer.writeUUID(commandOrigin.uuid());
-        buffer.writeByte(commandOrigin.unknown2());
-        buffer.writeByte(commandOrigin.type());
+        buffer.writeString(String.valueOf(commandOrigin.requestId()));
+
+        if (commandOrigin.type() == CommandOrigin.ORIGIN_DEV_CONSOLE || commandOrigin.type() == CommandOrigin.ORIGIN_TEST) {
+            buffer.writeSignedVarLong(commandOrigin.playerEntityUniqueId());
+        }
     }
 
-    Facing readBlockFace(PacketBuffer buffer) {
+    public static Facing readBlockFace(PacketBuffer buffer) {
         int value = buffer.readSignedVarInt();
         return Things.convertFromDataToBlockFace((byte) value);
+    }
+
+    public static void writeBlockFace(Facing face, PacketBuffer buffer) {
+        buffer.writeSignedVarInt(Objects.requireNonNull(Things.convertBlockFaceToData(face)));
     }
 
     void writeByteRotation(float rotation, PacketBuffer buffer) {

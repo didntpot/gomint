@@ -13,24 +13,15 @@ import io.gomint.event.entity.EntityDespawnEvent;
 import io.gomint.event.entity.EntitySpawnEvent;
 import io.gomint.math.Location;
 import io.gomint.server.network.PlayerConnectionState;
-import io.gomint.server.network.packet.Packet;
-import io.gomint.server.network.packet.PacketEntityMetadata;
-import io.gomint.server.network.packet.PacketEntityMotion;
-import io.gomint.server.network.packet.PacketEntityRelativeMovement;
-import io.gomint.server.network.packet.PacketPlayerlist;
+import io.gomint.server.network.packet.*;
 import io.gomint.server.util.Values;
 import io.gomint.world.Chunk;
-import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
-import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
-import it.unimi.dsi.fastutil.longs.LongIterator;
-import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
-import it.unimi.dsi.fastutil.longs.LongSet;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import it.unimi.dsi.fastutil.longs.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Helper class that manages all entities inside a world.
@@ -394,16 +385,16 @@ public class EntityManager {
         // If this is a player send full playerlist
         if (entity instanceof io.gomint.server.entity.EntityPlayer) {
             io.gomint.server.entity.EntityPlayer entityPlayer = (io.gomint.server.entity.EntityPlayer) entity;
-            PacketPlayerlist playerlist = null;
+            PacketPlayerList playerlist = null;
 
             // Remap all current living entities
             for (EntityPlayer player : entityPlayer.world().server().onlinePlayers()) {
                 if (!player.isHidden(entityPlayer) && !player.equals(entityPlayer)) {
                     if (playerlist == null) {
-                        playerlist = new PacketPlayerlist();
+                        playerlist = new PacketPlayerList();
                         playerlist.setMode((byte) 0);
-                        playerlist.setEntries(new ArrayList<PacketPlayerlist.Entry>() {{
-                            add(new PacketPlayerlist.Entry(entityPlayer));
+                        playerlist.setEntries(new ArrayList<PacketPlayerList.Entry>() {{
+                            add(new PacketPlayerList.Entry(entityPlayer));
                         }});
                     }
 
@@ -477,7 +468,7 @@ public class EntityManager {
 
     public Set<Entity<?>> findEntities(String tag) {
         Set<Entity<?>> entities = null;
-        for ( Long2ObjectMap.Entry<Entity<?>> entry : this.entitiesById.long2ObjectEntrySet() ) {
+        for (Long2ObjectMap.Entry<Entity<?>> entry : this.entitiesById.long2ObjectEntrySet()) {
             Entity<?> entity = entry.getValue();
             if (entity.tags().contains(tag)) {
                 if (entities == null) {

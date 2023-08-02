@@ -13,7 +13,6 @@ import io.gomint.server.entity.EntityLiving;
 import io.gomint.server.world.block.Block;
 import io.gomint.world.block.data.Axis;
 import io.gomint.world.block.data.Facing;
-
 import java.util.function.Supplier;
 
 public class AxisBlockState extends BlockState<Axis, String> {

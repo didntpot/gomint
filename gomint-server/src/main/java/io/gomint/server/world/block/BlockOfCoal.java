@@ -1,11 +1,11 @@
 package io.gomint.server.world.block;
 
-import io.gomint.inventory.item.*;
+import io.gomint.inventory.item.ItemBlockOfCoal;
+import io.gomint.inventory.item.ItemStack;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.world.block.BlockBlockOfCoal;
 import io.gomint.world.block.BlockType;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:coal_block" )
+@RegisterInfo(sId = "minecraft:coal_block")
 public class BlockOfCoal extends Block implements BlockBlockOfCoal {
 
     @Override
@@ -42,10 +42,10 @@ public class BlockOfCoal extends Block implements BlockBlockOfCoal {
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
-        if ( isCorrectTool( itemInHand ) ) {
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
+        if (isCorrectTool(itemInHand)) {
             return new ArrayList<>() {{
-                add( ItemBlockOfCoal.create( 1 ) );
+                add(ItemBlockOfCoal.create(1));
             }};
         }
 

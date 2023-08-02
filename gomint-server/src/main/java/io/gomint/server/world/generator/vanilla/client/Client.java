@@ -9,39 +9,14 @@ package io.gomint.server.world.generator.vanilla.client;
 
 import com.google.common.util.concurrent.ListenableScheduledFuture;
 import io.gomint.crypto.Processor;
-import io.gomint.jraknet.ClientSocket;
-import io.gomint.jraknet.Connection;
-import io.gomint.jraknet.EncapsulatedPacket;
-import io.gomint.jraknet.PacketBuffer;
-import io.gomint.jraknet.PacketReliability;
-import io.gomint.jraknet.SocketEvent;
+import io.gomint.jraknet.*;
 import io.gomint.math.BlockPosition;
 import io.gomint.math.Location;
 import io.gomint.server.entity.tileentity.TileEntity;
 import io.gomint.server.jwt.JwtSignatureException;
 import io.gomint.server.jwt.JwtToken;
-import io.gomint.server.network.ConnectionWithState;
-import io.gomint.server.network.EncryptionHandler;
-import io.gomint.server.network.EncryptionKeyFactory;
-import io.gomint.server.network.NetworkManager;
-import io.gomint.server.network.PlayerConnectionState;
-import io.gomint.server.network.PostProcessExecutor;
-import io.gomint.server.network.Protocol;
-import io.gomint.server.network.packet.Packet;
-import io.gomint.server.network.packet.PacketAdventureSettings;
-import io.gomint.server.network.packet.PacketBatch;
-import io.gomint.server.network.packet.PacketClientCacheStatus;
-import io.gomint.server.network.packet.PacketDisconnect;
-import io.gomint.server.network.packet.PacketEncryptionRequest;
-import io.gomint.server.network.packet.PacketEncryptionResponse;
-import io.gomint.server.network.packet.PacketLogin;
-import io.gomint.server.network.packet.PacketMovePlayer;
-import io.gomint.server.network.packet.PacketPlayState;
-import io.gomint.server.network.packet.PacketRequestChunkRadius;
-import io.gomint.server.network.packet.PacketResourcePackResponse;
-import io.gomint.server.network.packet.PacketSetLocalPlayerAsInitialized;
-import io.gomint.server.network.packet.PacketStartGame;
-import io.gomint.server.network.packet.PacketWorldChunk;
+import io.gomint.server.network.*;
+import io.gomint.server.network.packet.*;
 import io.gomint.server.resource.ResourceResponseStatus;
 import io.gomint.server.util.Palette;
 import io.gomint.server.util.Values;
@@ -53,36 +28,23 @@ import io.gomint.server.world.generator.vanilla.debug.UI;
 import io.gomint.taglib.NBTReader;
 import io.gomint.taglib.NBTTagCompound;
 import io.netty.buffer.ByteBuf;
-import org.apache.logging.log4j.core.util.UuidUtil;
-import org.json.simple.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.security.PublicKey;
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Queue;
-import java.util.UUID;
-import java.util.ArrayList;
-import java.util.Base64;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
+import org.apache.logging.log4j.core.util.UuidUtil;
+import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import static io.gomint.server.network.Protocol.PACKET_DISCONNECT;
-import static io.gomint.server.network.Protocol.PACKET_WORLD_CHUNK;
-import static io.gomint.server.network.Protocol.PACKET_PLAY_STATE;
-import static io.gomint.server.network.Protocol.PACKET_ENCRYPTION_REQUEST;
-import static io.gomint.server.network.Protocol.PACKET_RESOURCEPACK_INFO;
-import static io.gomint.server.network.Protocol.PACKET_RESOURCEPACK_STACK;
-import static io.gomint.server.network.Protocol.PACKET_START_GAME;
-import static io.gomint.server.network.Protocol.PACKET_MOVE_PLAYER;
+import static io.gomint.server.network.Protocol.*;
 
 /**
  * @author geNAZt
@@ -536,7 +498,7 @@ public class Client implements ConnectionWithState {
                         }
                     }
                 }
-              
+
                 LOGGER.debug("Adding chunk {} / {} to cache", chunkAdapter.x(), chunkAdapter.z());
 
                 chunkAdapter.populated(true);
@@ -622,7 +584,7 @@ public class Client implements ConnectionWithState {
         if (packet.getId() == PACKET_START_GAME) {
             PacketStartGame startGame = ((PacketStartGame) packet);
 
-            this.spawn = startGame.getSpawn();
+            this.spawn = startGame.getLocation();
             this.ownId = startGame.getEntityId();
             this.runtimeId = startGame.getRuntimeEntityId();
 
@@ -634,10 +596,11 @@ public class Client implements ConnectionWithState {
                 this.move(this.spawn);
 
                 // Send flying
-                PacketAdventureSettings packetAdventureSettings = new PacketAdventureSettings();
-                packetAdventureSettings.setFlags(0x40 | 0x200);
-                packetAdventureSettings.setEntityId(this.runtimeId);
-                this.send(packetAdventureSettings);
+//                PacketAdventureSettings packetAdventureSettings = new PacketAdventureSettings();
+//                packetAdventureSettings.setFlags(0x40 | 0x200);
+//                packetAdventureSettings.setEntityId(this.runtimeId);
+//                this.send(packetAdventureSettings);
+                // TODO: ?????? what the hell are you doing here...
 
                 // Send movement to the top of the map
                 Location target = new Location(null, this.currentPos.x(), 255, this.currentPos.z(), 0f, 0f);

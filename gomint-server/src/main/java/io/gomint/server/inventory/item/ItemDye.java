@@ -25,7 +25,7 @@ import io.gomint.world.block.data.BlockColor;
 @RegisterInfo(sId = ItemDye.ORANGE)
 @RegisterInfo(sId = ItemDye.WHITE)
 @RegisterInfo(sId = "minecraft:dye") // Only for vanilla conversion
-public class ItemDye extends ItemStack< io.gomint.inventory.item.ItemDye> implements io.gomint.inventory.item.ItemDye {
+public class ItemDye extends ItemStack<io.gomint.inventory.item.ItemDye> implements io.gomint.inventory.item.ItemDye {
 
     public static final String BLACK = "minecraft:black_dye";
     public static final String RED = "minecraft:red_dye";

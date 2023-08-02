@@ -10,8 +10,8 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo(sId = "minecraft:basalt" )
-@RegisterInfo(sId = "minecraft:polished_basalt" ) //TODO Item, BlockState
+@RegisterInfo(sId = "minecraft:basalt")
+@RegisterInfo(sId = "minecraft:polished_basalt") //TODO Item, BlockState
 public class Basalt extends Block implements BlockBasalt {
 
     @Override

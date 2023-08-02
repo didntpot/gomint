@@ -11,19 +11,12 @@ import io.gomint.math.MathUtils;
 import io.gomint.server.entity.EntityPlayer;
 import io.gomint.server.util.Values;
 import it.unimi.dsi.fastutil.Hash;
-import it.unimi.dsi.fastutil.HashCommon;
-import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
-import it.unimi.dsi.fastutil.longs.Long2ObjectOpenCustomHashMap;
-import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
-import it.unimi.dsi.fastutil.longs.LongIterator;
-import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
-import it.unimi.dsi.fastutil.longs.LongSet;
+import it.unimi.dsi.fastutil.longs.*;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Arrays;
 import java.util.function.Consumer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author BlackyPaw
@@ -31,7 +24,7 @@ import java.util.function.Consumer;
  */
 public class ChunkCache {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger( ChunkCache.class );
+    private static final Logger LOGGER = LoggerFactory.getLogger(ChunkCache.class);
 
     // CHECKSTYLE:OFF
     // ==================================== FIELDS ==================================== //
@@ -45,7 +38,7 @@ public class ChunkCache {
     private LongSet alreadyTicked = new LongOpenHashSet();
     private final LongSet toDeleteHashes = new LongOpenHashSet();
 
-    public ChunkCache( WorldAdapter world ) {
+    public ChunkCache(WorldAdapter world) {
         this.world = world;
         this.cachedChunks = new Long2ObjectOpenHashMap<>(
             world.config().amountOfChunksForSpawnArea() * world.config().amountOfChunksForSpawnArea(),
@@ -60,10 +53,10 @@ public class ChunkCache {
      *
      * @param currentTimeMS The current time in milliseconds. Used to reduce the number of calls to System#currentTimeMillis()
      */
-    public synchronized void tick( long currentTimeMS ) {
+    public synchronized void tick(long currentTimeMS) {
         // Check for gc
-        int spawnXChunk = CoordinateUtils.fromBlockToChunk( (int) this.world.spawnLocation().x() );
-        int spawnZChunk = CoordinateUtils.fromBlockToChunk( (int) this.world.spawnLocation().z() );
+        int spawnXChunk = CoordinateUtils.fromBlockToChunk((int) this.world.spawnLocation().x());
+        int spawnZChunk = CoordinateUtils.fromBlockToChunk((int) this.world.spawnLocation().z());
 
         int spawnAreaSize = this.world.config().amountOfChunksForSpawnArea();
 
@@ -75,37 +68,37 @@ public class ChunkCache {
 
         Long2ObjectMap.FastEntrySet<ChunkAdapter> fastEntrySet = (Long2ObjectMap.FastEntrySet<ChunkAdapter>) this.cachedChunks.long2ObjectEntrySet();
         ObjectIterator<Long2ObjectMap.Entry<ChunkAdapter>> iterator = fastEntrySet.fastIterator();
-        while ( iterator.hasNext() ) {
+        while (iterator.hasNext()) {
             Long2ObjectMap.Entry<ChunkAdapter> entry = iterator.next();
             ChunkAdapter chunk = entry.getValue();
-            if ( checkChunkSave &&
+            if (checkChunkSave &&
                 currentTimeMS - chunk.lastSavedTimestamp() >= this.autoSaveInterval &&
-                chunk.isNeedsPersistence() ) {
-                chunk.lastSavedTimestamp( currentTimeMS );
-                this.world.saveChunkAsynchronously( chunk );
+                chunk.isNeedsPersistence()) {
+                chunk.lastSavedTimestamp(currentTimeMS);
+                this.world.saveChunkAsynchronously(chunk);
             }
 
-            int currentX = (int) ( entry.getLongKey() >> 32 );
-            int currentZ = (int) ( entry.getLongKey() ) + Integer.MIN_VALUE;
+            int currentX = (int) (entry.getLongKey() >> 32);
+            int currentZ = (int) (entry.getLongKey()) + Integer.MIN_VALUE;
 
             // Check if this is part of the spawn
-            if ( spawnAreaSize > 0 &&
-                ( Math.abs( currentX ) - spawnXChunk <= spawnAreaSize &&
-                    Math.abs( currentZ ) - spawnZChunk <= spawnAreaSize ) ) {
+            if (spawnAreaSize > 0 &&
+                (Math.abs(currentX) - spawnXChunk <= spawnAreaSize &&
+                    Math.abs(currentZ) - spawnZChunk <= spawnAreaSize)) {
                 continue;
             }
 
             // Calculate the hashes which are used by players view distances
-            if ( this.isInAnyViewDistance( entry.getLongKey() ) ) {
+            if (this.isInAnyViewDistance(entry.getLongKey())) {
                 continue;
             }
 
-            if ( chunk == null ) {
-                chunk = this.cachedChunks.get( entry.getLongKey() );
+            if (chunk == null) {
+                chunk = this.cachedChunks.get(entry.getLongKey());
             }
 
             // Ask this chunk if he wants to be gced
-            if ( !chunk.canBeGCed( currentTimeMS ) ) {
+            if (!chunk.canBeGCed(currentTimeMS)) {
                 continue;
             }
 
@@ -114,17 +107,17 @@ public class ChunkCache {
             }
 
             // Ask this chunk if he wants to be gced
-            this.toDeleteHashes.add( entry.getLongKey() );
+            this.toDeleteHashes.add(entry.getLongKey());
         }
 
-        if ( !this.toDeleteHashes.isEmpty() ) {
+        if (!this.toDeleteHashes.isEmpty()) {
             LongIterator toRemoveCursor = this.toDeleteHashes.iterator();
-            while ( toRemoveCursor.hasNext() ) {
+            while (toRemoveCursor.hasNext()) {
                 long chunkKey = toRemoveCursor.nextLong();
                 LOGGER.debug("Should remove chunk {}", chunkKey);
 
-                ChunkAdapter adapter = this.cachedChunks.remove( chunkKey );
-                if ( adapter == null ) {
+                ChunkAdapter adapter = this.cachedChunks.remove(chunkKey);
+                if (adapter == null) {
                     LOGGER.warn("Double unloading chunk {}", chunkKey);
                     continue;
                 }
@@ -133,7 +126,7 @@ public class ChunkCache {
 
                 if (this.world.config().saveOnUnload() &&
                     adapter.isNeedsPersistence()) {
-                    adapter.lastSavedTimestamp( currentTimeMS );
+                    adapter.lastSavedTimestamp(currentTimeMS);
                     this.world.saveChunk(adapter);
 
                     LOGGER.debug("Persisting chunk {} / {}", adapter.x(), adapter.z());
@@ -144,10 +137,10 @@ public class ChunkCache {
         }
     }
 
-    private boolean isInAnyViewDistance( long key ) {
-        for ( EntityPlayer player : this.world.getPlayers0().keySet() ) {
-            if ( player.connection().playerChunks().contains( key ) ||
-                player.connection().loadingChunks().contains( key ) ) {
+    private boolean isInAnyViewDistance(long key) {
+        for (EntityPlayer player : this.world.getPlayers0().keySet()) {
+            if (player.connection().playerChunks().contains(key) ||
+                player.connection().loadingChunks().contains(key)) {
                 return true;
             }
         }
@@ -164,9 +157,9 @@ public class ChunkCache {
      * @param z The z-coordinate of the chunk
      * @return The chunk if it is loaded or null otherwise
      */
-    public synchronized ChunkAdapter getChunk( int x, int z ) {
-        long chunkHash = CoordinateUtils.toLong( x, z );
-        return this.getChunkInternal( chunkHash );
+    public synchronized ChunkAdapter getChunk(int x, int z) {
+        long chunkHash = CoordinateUtils.toLong(x, z);
+        return this.getChunkInternal(chunkHash);
     }
 
     /**
@@ -175,11 +168,11 @@ public class ChunkCache {
      * @param chunk The chunk to put into the cache
      * @return true when chunk has been cached, false otherwise
      */
-    public synchronized boolean putChunk( ChunkAdapter chunk ) {
-        long key = CoordinateUtils.toLong( chunk.x(), chunk.z() );
+    public synchronized boolean putChunk(ChunkAdapter chunk) {
+        long key = CoordinateUtils.toLong(chunk.x(), chunk.z());
         ChunkAdapter adapter = this.cachedChunks.get(key);
         if (adapter == null) {
-            this.cachedChunks.put( key, chunk );
+            this.cachedChunks.put(key, chunk);
             return true;
         }
 
@@ -212,45 +205,45 @@ public class ChunkCache {
      * @param chunkHash which should be get
      * @return chunk adapter for the given hash or null when the hash has no chunk attached
      */
-    synchronized ChunkAdapter getChunkInternal( long chunkHash ) {
-        return this.cachedChunks.get( chunkHash );
+    synchronized ChunkAdapter getChunkInternal(long chunkHash) {
+        return this.cachedChunks.get(chunkHash);
     }
 
-    synchronized long[] getTickingChunks( float dT ) {
+    synchronized long[] getTickingChunks(float dT) {
         this.lastFullTickDT += dT;
-        if ( Values.CLIENT_TICK_RATE - this.lastFullTickDT < MathUtils.EPSILON ) {
+        if (Values.CLIENT_TICK_RATE - this.lastFullTickDT < MathUtils.EPSILON) {
             // We need to tick all chunks which haven't been ticked until now
             long[] returnVal = new long[this.cachedChunks.size()];
             int index = 0;
 
             Long2ObjectMap.FastEntrySet<ChunkAdapter> set = (Long2ObjectMap.FastEntrySet<ChunkAdapter>) this.cachedChunks.long2ObjectEntrySet();
             ObjectIterator<Long2ObjectMap.Entry<ChunkAdapter>> iterator = set.fastIterator();
-            while ( iterator.hasNext() ) {
+            while (iterator.hasNext()) {
                 long l = iterator.next().getLongKey();
-                if ( !this.alreadyTicked.contains( l ) ) {
+                if (!this.alreadyTicked.contains(l)) {
                     returnVal[index++] = l;
                 }
             }
 
             this.lastFullTickDT = 0;
             this.alreadyTicked.clear();
-            return Arrays.copyOf( returnVal, index );
+            return Arrays.copyOf(returnVal, index);
         } else {
             // Check how many chunks we need to tick
             int max = this.cachedChunks.size();
-            if ( max == 0 ) {
+            if (max == 0) {
                 return new long[0];
             }
 
-            int needCurrent = MathUtils.fastFloor( max * ( this.lastFullTickDT / Values.CLIENT_TICK_RATE ) );
+            int needCurrent = MathUtils.fastFloor(max * (this.lastFullTickDT / Values.CLIENT_TICK_RATE));
 
             // This only happens on first tick though
-            if ( this.alreadyTicked.size() == needCurrent ) {
+            if (this.alreadyTicked.size() == needCurrent) {
                 return new long[0];
             }
 
             int needed = needCurrent - this.alreadyTicked.size();
-            if ( needed <= 0 ) {
+            if (needed <= 0) {
                 return new long[0];
             }
 
@@ -259,23 +252,23 @@ public class ChunkCache {
 
             Long2ObjectMap.FastEntrySet<ChunkAdapter> set = (Long2ObjectMap.FastEntrySet<ChunkAdapter>) this.cachedChunks.long2ObjectEntrySet();
             ObjectIterator<Long2ObjectMap.Entry<ChunkAdapter>> iterator = set.fastIterator();
-            while ( iterator.hasNext() ) {
+            while (iterator.hasNext()) {
                 long l = iterator.next().getLongKey();
-                if ( !this.alreadyTicked.contains( l ) ) {
+                if (!this.alreadyTicked.contains(l)) {
                     returnVal[index++] = l;
-                    this.alreadyTicked.add( l );
+                    this.alreadyTicked.add(l);
 
-                    if ( index == needed ) {
+                    if (index == needed) {
                         break;
                     }
                 }
             }
 
-            if ( index == needed ) {
+            if (index == needed) {
                 return returnVal;
             }
 
-            return Arrays.copyOf( returnVal, index );
+            return Arrays.copyOf(returnVal, index);
         }
     }
 
@@ -283,8 +276,8 @@ public class ChunkCache {
      * Save all chunks and persist them to disk
      */
     synchronized void saveAll() {
-        for ( long l : this.cachedChunks.keySet() ) {
-            ChunkAdapter chunkAdapter = this.cachedChunks.get( l );
+        for (long l : this.cachedChunks.keySet()) {
+            ChunkAdapter chunkAdapter = this.cachedChunks.get(l);
             if (chunkAdapter.isNeedsPersistence()) {
                 this.world.saveChunk(chunkAdapter);
                 chunkAdapter.lastSavedTimestamp(this.world.server().currentTickTime());
@@ -292,9 +285,9 @@ public class ChunkCache {
         }
     }
 
-    public synchronized void iterateAll( Consumer<ChunkAdapter> chunkConsumer ) {
-        for ( long l : this.cachedChunks.keySet() ) {
-            chunkConsumer.accept( this.cachedChunks.get( l ) );
+    public synchronized void iterateAll(Consumer<ChunkAdapter> chunkConsumer) {
+        for (long l : this.cachedChunks.keySet()) {
+            chunkConsumer.accept(this.cachedChunks.get(l));
         }
     }
 
@@ -307,7 +300,7 @@ public class ChunkCache {
         if (adapter != null) {
             if (this.world.config().saveOnUnload() &&
                 adapter.isNeedsPersistence()) {
-                adapter.lastSavedTimestamp( this.world.server.currentTickTime() );
+                adapter.lastSavedTimestamp(this.world.server.currentTickTime());
                 this.world.saveChunk(adapter);
                 adapter.release();
             } else {
@@ -319,7 +312,7 @@ public class ChunkCache {
     public void unloadAll() {
         Long2ObjectMap.FastEntrySet<ChunkAdapter> fastEntrySet = (Long2ObjectMap.FastEntrySet<ChunkAdapter>) this.cachedChunks.long2ObjectEntrySet();
         ObjectIterator<Long2ObjectMap.Entry<ChunkAdapter>> iterator = fastEntrySet.fastIterator();
-        while ( iterator.hasNext() ) {
+        while (iterator.hasNext()) {
             Long2ObjectMap.Entry<ChunkAdapter> entry = iterator.next();
             ChunkAdapter chunk = entry.getValue();
             chunk.release();

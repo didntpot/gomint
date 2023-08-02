@@ -29,7 +29,7 @@ public class MetadataShort extends MetadataValue {
      *
      * @param value The value to initialize the metadata short with
      */
-    public MetadataShort( short value ) {
+    public MetadataShort(short value) {
         this.value = value;
     }
 
@@ -47,19 +47,19 @@ public class MetadataShort extends MetadataValue {
      *
      * @param value The value of this metadata short
      */
-    public void setValue( short value ) {
+    public void setValue(short value) {
         this.value = value;
     }
 
     // ========================== METADATA VALUE ========================== //
     @Override
-    void serialize( PacketBuffer buffer, int index ) {
-        super.serialize( buffer, index );
-        buffer.writeLShort( this.value );
+    void serialize(PacketBuffer buffer, int index) {
+        super.serialize(buffer, index);
+        buffer.writeLShort(this.value);
     }
 
     @Override
-    void deserialize( PacketBuffer buffer ) {
+    void deserialize(PacketBuffer buffer) {
         this.value = buffer.readLShort();
     }
 

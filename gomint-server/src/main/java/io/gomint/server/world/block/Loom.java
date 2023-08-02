@@ -10,7 +10,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:loom" )
+@RegisterInfo(sId = "minecraft:loom")
 public class Loom extends Block implements BlockLoom {
 
     @Override

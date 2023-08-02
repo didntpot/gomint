@@ -13,7 +13,7 @@ import io.gomint.server.registry.RegisterInfo;
 @RegisterInfo(sId = "minecraft:jungle_sign")
 @RegisterInfo(sId = "minecraft:acacia_sign")
 @RegisterInfo(sId = "minecraft:darkoak_sign")
-public class ItemSign extends ItemStack< io.gomint.inventory.item.ItemSign> implements io.gomint.inventory.item.ItemSign {
+public class ItemSign extends ItemStack<io.gomint.inventory.item.ItemSign> implements io.gomint.inventory.item.ItemSign {
 
     @Override
     public ItemType itemType() {

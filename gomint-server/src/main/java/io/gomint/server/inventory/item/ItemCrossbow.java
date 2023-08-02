@@ -21,7 +21,6 @@ import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.Gamemode;
 import io.gomint.world.block.Block;
 import io.gomint.world.block.data.Facing;
-
 import java.time.Duration;
 
 /**
@@ -29,8 +28,8 @@ import java.time.Duration;
  * @version 1.0
  */
 @CanBeDamaged
-@RegisterInfo( sId = "minecraft:crossbow" )
-public class ItemCrossbow extends ItemStack< io.gomint.inventory.item.ItemCrossbow> implements io.gomint.inventory.item.ItemCrossbow {
+@RegisterInfo(sId = "minecraft:crossbow")
+public class ItemCrossbow extends ItemStack<io.gomint.inventory.item.ItemCrossbow> implements io.gomint.inventory.item.ItemCrossbow {
 
     @Override
     public Duration burnTime() {
@@ -58,41 +57,41 @@ public class ItemCrossbow extends ItemStack< io.gomint.inventory.item.ItemCrossb
      *
      * @param player which will shoot this bow
      */
-    public void shoot( EntityPlayer player ) {
+    public void shoot(EntityPlayer player) {
         // Check if player did start
-        if ( player.actionStart() == -1 ) {
+        if (player.actionStart() == -1) {
             return;
         }
 
         // Check for force calculation
-        float force = calculateForce( player );
-        if ( force == -1f ) {
+        float force = calculateForce(player);
+        if (force == -1f) {
             return;
         }
 
-        player.setUsingItem( false );
+        player.setUsingItem(false);
 
         // Check for arrows in inventory
         boolean foundArrow = false;
-        for (int i = 0; i < player.inventory().size(); i++ ) {
-            ItemStack<?> itemStack = (ItemStack<?>) player.inventory().item( i );
-            if ( itemStack instanceof ItemArrow ) {
+        for (int i = 0; i < player.inventory().size(); i++) {
+            ItemStack<?> itemStack = (ItemStack<?>) player.inventory().item(i);
+            if (itemStack instanceof ItemArrow) {
                 foundArrow = true;
 
-                if ( this.enchantment( EnchantmentInfinity.class ) == null ) {
+                if (this.enchantment(EnchantmentInfinity.class) == null) {
                     itemStack.afterPlacement();
                 }
             }
         }
 
         // Check offhand if not found
-        if ( !foundArrow ) {
-            for ( int i = 0; i < player.getOffhandInventory().size(); i++ ) {
-                ItemStack<?> itemStack = (ItemStack<?>) player.inventory().item( i );
-                if ( itemStack instanceof ItemArrow ) {
+        if (!foundArrow) {
+            for (int i = 0; i < player.getOffhandInventory().size(); i++) {
+                ItemStack<?> itemStack = (ItemStack<?>) player.inventory().item(i);
+                if (itemStack instanceof ItemArrow) {
                     foundArrow = true;
 
-                    if ( this.enchantment( EnchantmentInfinity.class ) == null ) {
+                    if (this.enchantment(EnchantmentInfinity.class) == null) {
                         itemStack.afterPlacement();
                     }
                 }
@@ -100,48 +99,48 @@ public class ItemCrossbow extends ItemStack< io.gomint.inventory.item.ItemCrossb
         }
 
         // Don't shoot without arrow
-        if ( !foundArrow && player.gamemode() != Gamemode.CREATIVE ) {
+        if (!foundArrow && player.gamemode() != Gamemode.CREATIVE) {
             return;
         }
 
         // Get bow enchantments
         int powerModifier = 0;
-        EnchantmentPower power = this.enchantment( EnchantmentPower.class );
-        if ( power != null ) {
+        EnchantmentPower power = this.enchantment(EnchantmentPower.class);
+        if (power != null) {
             powerModifier = power.level();
         }
 
         int punchModifier = 0;
-        EnchantmentPunch punch = this.enchantment( EnchantmentPunch.class );
-        if ( punch != null ) {
+        EnchantmentPunch punch = this.enchantment(EnchantmentPunch.class);
+        if (punch != null) {
             punchModifier = punch.level();
         }
 
         int flameModifier = 0;
-        EnchantmentFlame flame = this.enchantment( EnchantmentFlame.class );
-        if ( flame != null ) {
+        EnchantmentFlame flame = this.enchantment(EnchantmentFlame.class);
+        if (flame != null) {
             flameModifier = flame.level();
         }
 
         // Create arrow
-        EntityArrow arrow = new EntityArrow( player, player.world(), force, powerModifier, punchModifier, flameModifier );
-        ProjectileLaunchEvent event = new ProjectileLaunchEvent( arrow, ProjectileLaunchEvent.Cause.BOW_SHOT );
-        player.world().server().pluginManager().callEvent( event );
-        if ( !event.cancelled() ) {
+        EntityArrow arrow = new EntityArrow(player, player.world(), force, powerModifier, punchModifier, flameModifier);
+        ProjectileLaunchEvent event = new ProjectileLaunchEvent(arrow, ProjectileLaunchEvent.Cause.BOW_SHOT);
+        player.world().server().pluginManager().callEvent(event);
+        if (!event.cancelled()) {
             // Use the bow
-            this.calculateUsageAndUpdate( 1 );
-            player.world().spawnEntityAt( arrow, arrow.positionX(), arrow.positionY(), arrow.positionZ(), arrow.yaw(), arrow.pitch() );
+            this.calculateUsageAndUpdate(1);
+            player.world().spawnEntityAt(arrow, arrow.positionX(), arrow.positionY(), arrow.positionZ(), arrow.yaw(), arrow.pitch());
         }
     }
 
-    private float calculateForce( EntityPlayer player ) {
+    private float calculateForce(EntityPlayer player) {
         long currentDraw = player.world().server().currentTickTime() - player.actionStart();
         float force = (float) currentDraw / 1000f;
-        if ( force < 0.1f ) {
+        if (force < 0.1f) {
             return -1f;
         }
 
-        if ( force > 1.0f ) {
+        if (force > 1.0f) {
             force = 1.0f;
         }
 

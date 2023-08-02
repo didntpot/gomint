@@ -9,23 +9,12 @@ package io.gomint.server.network.packet;
 
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.Protocol;
-import io.gomint.server.network.packet.types.InventoryAction;
-import io.gomint.server.network.packet.types.InventoryConsumeAction;
-import io.gomint.server.network.packet.types.InventoryCraftAction;
-import io.gomint.server.network.packet.types.InventoryCraftingResultAction;
-import io.gomint.server.network.packet.types.InventoryDestroyCreativeAction;
-import io.gomint.server.network.packet.types.InventoryDropAction;
-import io.gomint.server.network.packet.types.InventoryGetCreativeAction;
-import io.gomint.server.network.packet.types.InventoryMoveAction;
-import io.gomint.server.network.packet.types.InventoryPlaceAction;
-import io.gomint.server.network.packet.types.InventorySwapAction;
-
+import io.gomint.server.network.packet.types.stackrequest.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
-public class PacketItemStackRequest extends Packet {
+public class PacketItemStackRequest extends Packet implements PacketServerbound {
 
     public static class Request {
         private int requestId;

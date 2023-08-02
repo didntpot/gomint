@@ -12,7 +12,7 @@ public enum EntityEvent {
 
     private final byte id;
 
-    EntityEvent( int id ) {
+    EntityEvent(int id) {
         this.id = (byte) id;
     }
 

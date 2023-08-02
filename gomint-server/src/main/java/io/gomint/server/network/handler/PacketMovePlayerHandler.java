@@ -13,43 +13,43 @@ import org.slf4j.LoggerFactory;
  */
 public class PacketMovePlayerHandler implements PacketHandler<PacketMovePlayer> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger( PacketMovePlayer.class );
+    private static final Logger LOGGER = LoggerFactory.getLogger(PacketMovePlayer.class);
 
     @Override
-    public void handle( PacketMovePlayer packet, long currentTimeMillis, PlayerConnection connection ) {
+    public void handle(PacketMovePlayer packet, long currentTimeMillis, PlayerConnection connection) {
         EntityPlayer entity = connection.entity();
         Location to = entity.location();
-        to.x( packet.getX() );
-        to.y( packet.getY() - entity.eyeHeight() ); // Subtract eye height since client sends it at the eyes
-        to.z( packet.getZ() );
-        to.headYaw( packet.getHeadYaw() );
-        to.yaw( packet.getYaw() );
-        to.pitch( packet.getPitch() );
+        to.x(packet.getX());
+        to.y(packet.getY() - entity.eyeHeight()); // Subtract eye height since client sends it at the eyes
+        to.z(packet.getZ());
+        to.headYaw(packet.getHeadYaw());
+        to.yaw(packet.getYaw());
+        to.pitch(packet.getPitch());
 
         // Does the entity have a teleport open?
-        if ( connection.entity().teleportPosition() != null ) {
-            if ( connection.entity().teleportPosition().distanceSquared( to ) > 0.2 ) {
-                LOGGER.warn( "Player {} did not teleport to {}", connection.entity().name(), connection.entity().teleportPosition(), to );
-                connection.sendMovePlayer( connection.entity().teleportPosition() );
+        if (connection.entity().teleportPosition() != null) {
+            if (connection.entity().teleportPosition().distanceSquared(to) > 0.2) {
+                LOGGER.warn("Player {} did not teleport to {}", connection.entity().name(), connection.entity().teleportPosition(), to);
+                connection.sendMovePlayer(connection.entity().teleportPosition());
                 return;
             } else {
-                connection.entity().setTeleportPosition( null );
+                connection.entity().setTeleportPosition(null);
             }
         }
 
         Location from = entity.location();
 
         // The packet did not contain any movement? skip it
-        if ( from.x() - to.x() == 0 &&
+        if (from.x() - to.x() == 0 &&
             from.y() - to.y() == 0 &&
             from.z() - to.z() == 0 &&
             from.headYaw() - to.headYaw() == 0 &&
             from.yaw() - to.yaw() == 0 &&
-            from.pitch() - to.pitch() == 0 ) {
+            from.pitch() - to.pitch() == 0) {
             return;
         }
 
-        connection.entity().setNextMovement( to );
+        connection.entity().setNextMovement(to);
     }
 
 }

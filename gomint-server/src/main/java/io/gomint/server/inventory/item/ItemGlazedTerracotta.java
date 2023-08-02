@@ -31,7 +31,7 @@ import io.gomint.world.block.data.BlockColor;
 @RegisterInfo(sId = ItemGlazedTerracotta.GREEN)
 @RegisterInfo(sId = ItemGlazedTerracotta.RED)
 @RegisterInfo(sId = ItemGlazedTerracotta.BLACK)
-public class ItemGlazedTerracotta extends ItemStack< io.gomint.inventory.item.ItemGlazedTerracotta> implements io.gomint.inventory.item.ItemGlazedTerracotta {
+public class ItemGlazedTerracotta extends ItemStack<io.gomint.inventory.item.ItemGlazedTerracotta> implements io.gomint.inventory.item.ItemGlazedTerracotta {
 
     public static final String PURPLE = "minecraft:purple_glazed_terracotta";
     public static final String WHITE = "minecraft:white_glazed_terracotta";

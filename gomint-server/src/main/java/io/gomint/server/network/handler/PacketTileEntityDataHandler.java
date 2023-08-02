@@ -18,10 +18,10 @@ import io.gomint.server.world.block.Block;
 public class PacketTileEntityDataHandler implements PacketHandler<PacketTileEntityData> {
 
     @Override
-    public void handle( PacketTileEntityData packet, long currentTimeMillis, PlayerConnection connection ) throws Exception {
-        Block block = connection.entity().world().blockAt( packet.getPosition() );
-        if ( block.tileEntity() != null ) {
-            block.tileEntity().applyClientData( connection.entity(), packet.getCompound() );
+    public void handle(PacketTileEntityData packet, long currentTimeMillis, PlayerConnection connection) throws Exception {
+        Block block = connection.entity().world().blockAt(packet.getPosition());
+        if (block.tileEntity() != null) {
+            block.tileEntity().applyClientData(connection.entity(), packet.getCompound());
         }
     }
 

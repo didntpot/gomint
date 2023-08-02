@@ -1,11 +1,10 @@
 package io.gomint.server.world.block;
 
 import io.gomint.inventory.item.ItemStack;
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.server.world.block.state.EnumBlockState;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockWoodenSlab;
 import io.gomint.world.block.data.LogType;
 
@@ -22,11 +21,11 @@ public class WoodenSlab extends Slab<BlockWoodenSlab> implements BlockWoodenSlab
 
     private enum LogTypeMagic {
         OAK(WOODEN_ID, "oak"),
-        SPRUCE(WOODEN_ID,"spruce"),
-        BIRCH(WOODEN_ID,"birch"),
-        JUNGLE(WOODEN_ID,"jungle"),
-        ACACIA(WOODEN_ID,"acacia"),
-        DARK_OAK(WOODEN_ID,"dark_oak"),
+        SPRUCE(WOODEN_ID, "spruce"),
+        BIRCH(WOODEN_ID, "birch"),
+        JUNGLE(WOODEN_ID, "jungle"),
+        ACACIA(WOODEN_ID, "acacia"),
+        DARK_OAK(WOODEN_ID, "dark_oak"),
         CRIMSON("minecraft:crimson_slab", ""),
         WARPED("minecraft:warped_slab", "");
 
@@ -39,7 +38,7 @@ public class WoodenSlab extends Slab<BlockWoodenSlab> implements BlockWoodenSlab
         }
     }
 
-    private static final EnumBlockState<LogTypeMagic, String> VARIANT = new EnumBlockState<>( v -> new String[]{"wood_type"}, LogTypeMagic.values(), v -> v.value, v -> {
+    private static final EnumBlockState<LogTypeMagic, String> VARIANT = new EnumBlockState<>(v -> new String[]{"wood_type"}, LogTypeMagic.values(), v -> v.value, v -> {
         for (LogTypeMagic value : LogTypeMagic.values()) {
             if (value.value.equals(v)) {
                 return value;

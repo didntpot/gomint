@@ -12,7 +12,7 @@ import io.gomint.world.block.data.BlockColor;
  */
 @RegisterInfo(sId = "minecraft:bed", def = true)
 @RegisterInfo(sId = "minecraft:item.bed")
-public class ItemBed extends ItemStack< io.gomint.inventory.item.ItemBed> implements io.gomint.inventory.item.ItemBed {
+public class ItemBed extends ItemStack<io.gomint.inventory.item.ItemBed> implements io.gomint.inventory.item.ItemBed {
 
     @Override
     public byte maximumAmount() {

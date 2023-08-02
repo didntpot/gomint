@@ -11,7 +11,7 @@ import io.gomint.world.block.BlockType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:cactus" )
+@RegisterInfo(sId = "minecraft:cactus")
 public class Cactus extends Block implements BlockCactus {
 
     @Override
@@ -30,9 +30,9 @@ public class Cactus extends Block implements BlockCactus {
     }
 
     @Override
-    public void onEntityCollision(Entity<?> entity ) {
-        if ( entity instanceof EntityLiving ) {
-            ( (EntityLiving<?>) entity ).attack( 1.0f, EntityDamageEvent.DamageSource.CACTUS );
+    public void onEntityCollision(Entity<?> entity) {
+        if (entity instanceof EntityLiving) {
+            ((EntityLiving<?>) entity).attack(1.0f, EntityDamageEvent.DamageSource.CACTUS);
         }
     }
 

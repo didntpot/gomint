@@ -22,9 +22,9 @@ public class EnumConverterFromSoundMagicNumbers implements EnumConverter {
     }
 
     @Override
-    public Enum convert( Enum value ) {
+    public Enum convert(Enum value) {
         int id = value.ordinal();
-        if ( id >= this.values.length ) {
+        if (id >= this.values.length) {
             return null;
         }
 

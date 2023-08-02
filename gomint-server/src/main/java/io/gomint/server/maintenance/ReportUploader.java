@@ -17,10 +17,9 @@ import io.gomint.server.maintenance.report.PlayerReportData;
 import io.gomint.server.maintenance.report.WorldData;
 import io.gomint.server.plugin.PluginClassloader;
 import io.gomint.server.world.WorldAdapter;
-import oshi.SystemInfo;
-
 import java.util.HashMap;
 import java.util.Map;
+import oshi.SystemInfo;
 
 /**
  * @author geNAZt

@@ -1,16 +1,15 @@
 package io.gomint.server.world.block;
 
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.state.BooleanBlockState;
 import io.gomint.world.block.BlockBedrock;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:bedrock" )
+@RegisterInfo(sId = "minecraft:bedrock")
 public class Bedrock extends Block implements BlockBedrock {
 
     private static final BooleanBlockState INFINI_BURN = new BooleanBlockState(() -> new String[]{"infiniburn_bit"});
@@ -26,7 +25,7 @@ public class Bedrock extends Block implements BlockBedrock {
     }
 
     @Override
-    public boolean onBreak( boolean creative ) {
+    public boolean onBreak(boolean creative) {
         return creative;
     }
 

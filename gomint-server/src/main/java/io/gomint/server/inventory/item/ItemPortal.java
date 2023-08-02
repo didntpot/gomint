@@ -1,7 +1,6 @@
 package io.gomint.server.inventory.item;
 
 import io.gomint.inventory.item.ItemType;
-
 import io.gomint.server.registry.RegisterInfo;
 
 /**
@@ -9,7 +8,7 @@ import io.gomint.server.registry.RegisterInfo;
  * @version 1.0
  */
 @RegisterInfo(sId = "minecraft:portal")
-public class ItemPortal extends ItemStack< io.gomint.inventory.item.ItemPortal> implements io.gomint.inventory.item.ItemPortal {
+public class ItemPortal extends ItemStack<io.gomint.inventory.item.ItemPortal> implements io.gomint.inventory.item.ItemPortal {
 
     @Override
     public ItemType itemType() {

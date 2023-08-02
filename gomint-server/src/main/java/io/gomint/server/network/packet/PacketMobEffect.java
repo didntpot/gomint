@@ -14,7 +14,7 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketMobEffect extends Packet {
+public class PacketMobEffect extends Packet implements PacketClientbound {
 
     // CHECKSTYLE:OFF
     public static final byte EVENT_ADD = 1;
@@ -33,21 +33,21 @@ public class PacketMobEffect extends Packet {
      * Construct a new packet
      */
     public PacketMobEffect() {
-        super( Protocol.PACKET_MOB_EFFECT );
+        super(Protocol.PACKET_MOB_EFFECT);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeUnsignedVarLong( this.entityId );
-        buffer.writeByte( this.action );
-        buffer.writeSignedVarInt( this.effectId );
-        buffer.writeSignedVarInt( this.amplifier );
-        buffer.writeBoolean( this.visible );
-        buffer.writeSignedVarInt( this.duration );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeUnsignedVarLong(this.entityId);
+        buffer.writeByte(this.action);
+        buffer.writeSignedVarInt(this.effectId);
+        buffer.writeSignedVarInt(this.amplifier);
+        buffer.writeBoolean(this.visible);
+        buffer.writeSignedVarInt(this.duration);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 

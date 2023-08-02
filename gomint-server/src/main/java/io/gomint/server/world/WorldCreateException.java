@@ -11,12 +11,12 @@ public class WorldCreateException extends Exception {
      *
      * @param message which should be printed as the reason
      */
-    public WorldCreateException( String message ) {
-        super( message );
+    public WorldCreateException(String message) {
+        super(message);
     }
 
-    public WorldCreateException( String message, Exception e ) {
-        super( message, e );
+    public WorldCreateException(String message, Exception e) {
+        super(message, e);
     }
 
 }

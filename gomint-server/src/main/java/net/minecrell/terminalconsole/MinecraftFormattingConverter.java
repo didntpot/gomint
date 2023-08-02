@@ -23,14 +23,13 @@
 
 package net.minecrell.terminalconsole;
 
+import java.util.List;
 import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.config.Configuration;
 import org.apache.logging.log4j.core.config.plugins.Plugin;
 import org.apache.logging.log4j.core.layout.PatternLayout;
 import org.apache.logging.log4j.core.pattern.*;
 import org.apache.logging.log4j.util.PerformanceSensitive;
-
-import java.util.List;
 
 /**
  * Replaces Minecraft formatting codes in the result of a pattern with
@@ -43,14 +42,14 @@ import java.util.List;
  *
  * @author geNAZt
  * @version 2.0
- *
+ * <p>
  * 2.0: Removed all config properties
  * @see <a href="http://minecraft.gamepedia.com/Formatting_codes">
  * Formatting Codes</a>
  */
-@Plugin( name = "minecraftFormatting", category = PatternConverter.CATEGORY )
-@ConverterKeys( { "minecraftFormatting" } )
-@PerformanceSensitive( "allocation" )
+@Plugin(name = "minecraftFormatting", category = PatternConverter.CATEGORY)
+@ConverterKeys({"minecraftFormatting"})
+@PerformanceSensitive("allocation")
 public class MinecraftFormattingConverter extends LogEventPatternConverter {
 
     private static final String ANSI_RESET = "\u001B[39;0m";
@@ -92,61 +91,61 @@ public class MinecraftFormattingConverter extends LogEventPatternConverter {
      * @param formatters The pattern formatters to generate the text to manipulate
      * @param strip      If true, the converter will strip all formatting codes
      */
-    protected MinecraftFormattingConverter( List<PatternFormatter> formatters, boolean strip ) {
-        super( "minecraftFormatting", null );
+    protected MinecraftFormattingConverter(List<PatternFormatter> formatters, boolean strip) {
+        super("minecraftFormatting", null);
         this.formatters = formatters;
         this.ansi = !strip;
     }
 
     @Override
-    public void format( LogEvent event, StringBuilder toAppendTo ) {
+    public void format(LogEvent event, StringBuilder toAppendTo) {
         int start = toAppendTo.length();
         //noinspection ForLoopReplaceableByForEach
-        for ( int i = 0, size = this.formatters.size(); i < size; i++ ) {
-            this.formatters.get( i ).format( event, toAppendTo );
+        for (int i = 0, size = this.formatters.size(); i < size; i++) {
+            this.formatters.get(i).format(event, toAppendTo);
         }
 
-        if ( toAppendTo.length() == start ) {
+        if (toAppendTo.length() == start) {
             // Skip replacement if disabled or if the content is empty
             return;
         }
 
-        String content = toAppendTo.substring( start );
-        format( content, toAppendTo, start, this.ansi);
+        String content = toAppendTo.substring(start);
+        format(content, toAppendTo, start, this.ansi);
     }
 
-    private static void format( String s, StringBuilder result, int start, boolean ansi ) {
-        int next = s.indexOf( COLOR_CHAR );
+    private static void format(String s, StringBuilder result, int start, boolean ansi) {
+        int next = s.indexOf(COLOR_CHAR);
         int last = s.length() - 1;
-        if ( next == -1 || next == last ) {
+        if (next == -1 || next == last) {
             return;
         }
 
-        result.setLength( start + next );
+        result.setLength(start + next);
 
         int pos = next;
         int format;
         do {
-            if ( pos != next ) {
-                result.append( s, pos, next );
+            if (pos != next) {
+                result.append(s, pos, next);
             }
 
-            format = LOOKUP.indexOf( s.charAt( next + 1 ) );
-            if ( format != -1 ) {
-                if ( ansi ) {
-                    result.append( ansiCodes[format] );
+            format = LOOKUP.indexOf(s.charAt(next + 1));
+            if (format != -1) {
+                if (ansi) {
+                    result.append(ansiCodes[format]);
                 }
                 pos = next += 2;
             } else {
                 next++;
             }
 
-            next = s.indexOf( COLOR_CHAR, next );
-        } while ( next != -1 && next < last );
+            next = s.indexOf(COLOR_CHAR, next);
+        } while (next != -1 && next < last);
 
-        result.append( s, pos, s.length() );
-        if ( ansi ) {
-            result.append( ANSI_RESET );
+        result.append(s, pos, s.length());
+        if (ansi) {
+            result.append(ANSI_RESET);
         }
     }
 
@@ -159,21 +158,21 @@ public class MinecraftFormattingConverter extends LogEventPatternConverter {
      * @return The new instance
      * @see MinecraftFormattingConverter
      */
-    public static MinecraftFormattingConverter newInstance( Configuration config, String[] options ) {
-        if ( options.length < 1 || options.length > 2 ) {
-            LOGGER.error( "Incorrect number of options on minecraftFormatting. Expected at least 1, max 2 received " + options.length );
+    public static MinecraftFormattingConverter newInstance(Configuration config, String[] options) {
+        if (options.length < 1 || options.length > 2) {
+            LOGGER.error("Incorrect number of options on minecraftFormatting. Expected at least 1, max 2 received " + options.length);
             return null;
         }
 
-        if ( options[0] == null ) {
-            LOGGER.error( "No pattern supplied on minecraftFormatting" );
+        if (options[0] == null) {
+            LOGGER.error("No pattern supplied on minecraftFormatting");
             return null;
         }
 
-        PatternParser parser = PatternLayout.createPatternParser( config );
-        List<PatternFormatter> formatters = parser.parse( options[0] );
-        boolean strip = options.length > 1 && "strip".equals( options[1] );
-        return new MinecraftFormattingConverter( formatters, strip );
+        PatternParser parser = PatternLayout.createPatternParser(config);
+        List<PatternFormatter> formatters = parser.parse(options[0]);
+        boolean strip = options.length > 1 && "strip".equals(options[1]);
+        return new MinecraftFormattingConverter(formatters, strip);
     }
 
 }

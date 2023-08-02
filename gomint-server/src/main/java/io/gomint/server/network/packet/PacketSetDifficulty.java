@@ -7,21 +7,21 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketSetDifficulty extends Packet {
+public class PacketSetDifficulty extends Packet implements PacketClientbound, PacketServerbound {
 
     private int difficulty;
 
     public PacketSetDifficulty() {
-        super( Protocol.PACKET_SET_DIFFICULTY );
+        super(Protocol.PACKET_SET_DIFFICULTY);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeUnsignedVarInt( this.difficulty );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeUnsignedVarInt(this.difficulty);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 

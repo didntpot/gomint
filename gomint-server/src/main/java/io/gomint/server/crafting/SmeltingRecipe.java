@@ -11,7 +11,6 @@ import io.gomint.inventory.item.ItemStack;
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.inventory.Inventory;
 import io.gomint.server.network.packet.Packet;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.UUID;

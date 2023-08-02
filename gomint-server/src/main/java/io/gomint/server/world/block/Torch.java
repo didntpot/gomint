@@ -10,7 +10,6 @@ import io.gomint.server.world.block.state.EnumBlockState;
 import io.gomint.world.block.BlockTorch;
 import io.gomint.world.block.BlockType;
 import io.gomint.world.block.data.Facing;
-
 import java.util.Collections;
 import java.util.List;
 

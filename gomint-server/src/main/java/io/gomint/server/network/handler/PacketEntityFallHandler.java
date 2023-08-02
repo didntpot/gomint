@@ -17,7 +17,7 @@ import io.gomint.server.network.packet.PacketEntityFall;
 public class PacketEntityFallHandler implements PacketHandler<PacketEntityFall> {
 
     @Override
-    public void handle( PacketEntityFall packet, long currentTimeMillis, PlayerConnection connection ) {
+    public void handle(PacketEntityFall packet, long currentTimeMillis, PlayerConnection connection) {
 
     }
 

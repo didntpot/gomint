@@ -10,11 +10,9 @@ package io.gomint.server.entity.metadata;
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.math.Vector;
 import io.gomint.server.entity.EntityFlag;
-import io.gomint.server.inventory.item.ItemStack;
 import io.gomint.taglib.NBTTagCompound;
 import it.unimi.dsi.fastutil.bytes.Byte2ObjectMap;
 import it.unimi.dsi.fastutil.bytes.Byte2ObjectOpenHashMap;
-
 import java.util.Observable;
 
 /**
@@ -195,7 +193,7 @@ public class MetadataContainer extends Observable {
      * Constructs a new, empty metadata container.
      */
     public MetadataContainer() {
-        this( 8 );
+        this(8);
     }
 
     /**
@@ -204,8 +202,8 @@ public class MetadataContainer extends Observable {
      *
      * @param capacity The capacity to pre-allocate
      */
-    public MetadataContainer( int capacity ) {
-        this.entries = new Byte2ObjectOpenHashMap<>( ( capacity > 32 ? 32 : capacity ) );
+    public MetadataContainer(int capacity) {
+        this.entries = new Byte2ObjectOpenHashMap<>((capacity > 32 ? 32 : capacity));
     }
 
     /**
@@ -215,8 +213,8 @@ public class MetadataContainer extends Observable {
      * @param flagId  The flag id used to encrypt the boolean
      * @return true when the flag has been set, false when not
      */
-    public boolean getDataFlag( int indexId, EntityFlag flagId ) {
-        return ( indexId == DATA_PLAYER_FLAGS ? this.getByte( indexId ) & 0xff : this.getLong( indexId ) & ( 1L << flagId.getId() ) ) > 0;
+    public boolean getDataFlag(int indexId, EntityFlag flagId) {
+        return (indexId == DATA_PLAYER_FLAGS ? this.getByte(indexId) & 0xff : this.getLong(indexId) & (1L << flagId.getId())) > 0;
     }
 
     /**
@@ -226,16 +224,16 @@ public class MetadataContainer extends Observable {
      * @param flagId  The flag id used to encrypt the boolean
      * @param value   The boolean to encrypt
      */
-    public void setDataFlag( int indexId, EntityFlag flagId, boolean value ) {
-        if ( this.getDataFlag( indexId, flagId ) != value ) {
-            if ( indexId == DATA_PLAYER_FLAGS ) {
-                byte flags = this.getByte( indexId );
+    public void setDataFlag(int indexId, EntityFlag flagId, boolean value) {
+        if (this.getDataFlag(indexId, flagId) != value) {
+            if (indexId == DATA_PLAYER_FLAGS) {
+                byte flags = this.getByte(indexId);
                 flags ^= 1 << flagId.getId();
-                this.putByte( indexId, flags );
+                this.putByte(indexId, flags);
             } else {
-                long flags = this.getLong( indexId );
+                long flags = this.getLong(indexId);
                 flags ^= 1L << flagId.getId();
-                this.putLong( indexId, flags );
+                this.putLong(indexId, flags);
             }
         }
     }
@@ -246,13 +244,13 @@ public class MetadataContainer extends Observable {
      * @param index The index to put the value into
      * @param value The value to put into the container
      */
-    public void put( int index, MetadataValue value ) {
-        this.entries.put( (byte) index, value );
+    public void put(int index, MetadataValue value) {
+        this.entries.put((byte) index, value);
         this.dirty = true;
 
         // Trigger observers
         this.setChanged();
-        this.notifyObservers( index );
+        this.notifyObservers(index);
     }
 
     /**
@@ -261,8 +259,8 @@ public class MetadataContainer extends Observable {
      * @param index The index of the value
      * @return Whether or not the container holds a value at the specified index
      */
-    public boolean has( int index ) {
-        return this.entries.containsKey( (byte) index );
+    public boolean has(int index) {
+        return this.entries.containsKey((byte) index);
     }
 
     /**
@@ -271,8 +269,8 @@ public class MetadataContainer extends Observable {
      * @param index The index where the value is stored (must be in the range of 0-31)
      * @return The value if found or null otherwise
      */
-    public MetadataValue get( int index ) {
-        return this.entries.get( (byte) index );
+    public MetadataValue get(int index) {
+        return this.entries.get((byte) index);
     }
 
     /**
@@ -281,8 +279,8 @@ public class MetadataContainer extends Observable {
      * @param index The index to put the value into
      * @param value The value to put into the container
      */
-    public void putBoolean( int index, boolean value ) {
-        this.putByte( index, (byte) ( value ? 1 : 0 ) );
+    public void putBoolean(int index, boolean value) {
+        this.putByte(index, (byte) (value ? 1 : 0));
     }
 
     /**
@@ -292,8 +290,8 @@ public class MetadataContainer extends Observable {
      * @return The value stored at the specified index
      * @throws IllegalArgumentException Thrown in case no value is stored at the specified index or the value is not a boolean
      */
-    public boolean getBoolean( int index ) {
-        return ( this.getByte( index ) != 0 );
+    public boolean getBoolean(int index) {
+        return (this.getByte(index) != 0);
     }
 
     /**
@@ -302,8 +300,8 @@ public class MetadataContainer extends Observable {
      * @param index The index to put the value into
      * @param value The value to put into the container
      */
-    public void putByte( int index, byte value ) {
-        this.put( index, new MetadataByte( value ) );
+    public void putByte(int index, byte value) {
+        this.put(index, new MetadataByte(value));
     }
 
     /**
@@ -313,17 +311,17 @@ public class MetadataContainer extends Observable {
      * @return The value stored at the specified index
      * @throws IllegalArgumentException Thrown in case no value is stored at the specified index or the value is not a byte
      */
-    public byte getByte( int index ) {
-        MetadataValue value = this.get( index );
-        if ( value == null ) {
-            throw new IllegalArgumentException( "No value stored at index " + index );
+    public byte getByte(int index) {
+        MetadataValue value = this.get(index);
+        if (value == null) {
+            throw new IllegalArgumentException("No value stored at index " + index);
         }
 
-        if ( value.getTypeId() != METADATA_BYTE ) {
-            throw new IllegalArgumentException( "Value of different type stored at index " + index );
+        if (value.getTypeId() != METADATA_BYTE) {
+            throw new IllegalArgumentException("Value of different type stored at index " + index);
         }
 
-        return ( (MetadataByte) value ).getValue();
+        return ((MetadataByte) value).getValue();
     }
 
     /**
@@ -332,8 +330,8 @@ public class MetadataContainer extends Observable {
      * @param index The index to put the value into
      * @param value The value to put into the container
      */
-    public void putShort( int index, short value ) {
-        this.put( index, new MetadataShort( value ) );
+    public void putShort(int index, short value) {
+        this.put(index, new MetadataShort(value));
     }
 
     /**
@@ -343,17 +341,17 @@ public class MetadataContainer extends Observable {
      * @return The value stored at the specified index
      * @throws IllegalArgumentException Thrown in case no value is stored at the specified index or the value is not a short
      */
-    public short getShort( int index ) {
-        MetadataValue value = this.get( index );
-        if ( value == null ) {
-            throw new IllegalArgumentException( "No value stored at index " + index );
+    public short getShort(int index) {
+        MetadataValue value = this.get(index);
+        if (value == null) {
+            throw new IllegalArgumentException("No value stored at index " + index);
         }
 
-        if ( value.getTypeId() != METADATA_SHORT ) {
-            throw new IllegalArgumentException( "Value of different type stored at index " + index );
+        if (value.getTypeId() != METADATA_SHORT) {
+            throw new IllegalArgumentException("Value of different type stored at index " + index);
         }
 
-        return ( (MetadataShort) value ).getValue();
+        return ((MetadataShort) value).getValue();
     }
 
     /**
@@ -362,8 +360,8 @@ public class MetadataContainer extends Observable {
      * @param index The index to put the value into
      * @param value The value to put into the container
      */
-    public void putInt( int index, int value ) {
-        this.put( index, new MetadataInt( value ) );
+    public void putInt(int index, int value) {
+        this.put(index, new MetadataInt(value));
     }
 
     /**
@@ -373,17 +371,17 @@ public class MetadataContainer extends Observable {
      * @return The value stored at the specified index
      * @throws IllegalArgumentException Thrown in case no value is stored at the specified index or the value is not an int
      */
-    public int getInt( int index ) {
-        MetadataValue value = this.get( index );
-        if ( value == null ) {
-            throw new IllegalArgumentException( "No value stored at index " + index );
+    public int getInt(int index) {
+        MetadataValue value = this.get(index);
+        if (value == null) {
+            throw new IllegalArgumentException("No value stored at index " + index);
         }
 
-        if ( value.getTypeId() != METADATA_INT ) {
-            throw new IllegalArgumentException( "Value of different type stored at index " + index );
+        if (value.getTypeId() != METADATA_INT) {
+            throw new IllegalArgumentException("Value of different type stored at index " + index);
         }
 
-        return ( (MetadataInt) value ).getValue();
+        return ((MetadataInt) value).getValue();
     }
 
     /**
@@ -392,8 +390,8 @@ public class MetadataContainer extends Observable {
      * @param index The index to put the value into
      * @param value The value to put into the container
      */
-    public void putFloat( int index, float value ) {
-        this.put( index, new MetadataFloat( value ) );
+    public void putFloat(int index, float value) {
+        this.put(index, new MetadataFloat(value));
     }
 
     /**
@@ -403,17 +401,17 @@ public class MetadataContainer extends Observable {
      * @return The value stored at the specified index
      * @throws IllegalArgumentException Thrown in case no value is stored at the specified index or the value is not an float
      */
-    public float getFloat( int index ) {
-        MetadataValue value = this.get( index );
-        if ( value == null ) {
-            throw new IllegalArgumentException( "No value stored at index " + index );
+    public float getFloat(int index) {
+        MetadataValue value = this.get(index);
+        if (value == null) {
+            throw new IllegalArgumentException("No value stored at index " + index);
         }
 
-        if ( value.getTypeId() != METADATA_FLOAT ) {
-            throw new IllegalArgumentException( "Value of different type stored at index " + index );
+        if (value.getTypeId() != METADATA_FLOAT) {
+            throw new IllegalArgumentException("Value of different type stored at index " + index);
         }
 
-        return ( (MetadataFloat) value ).getValue();
+        return ((MetadataFloat) value).getValue();
     }
 
     /**
@@ -422,8 +420,8 @@ public class MetadataContainer extends Observable {
      * @param index The index to put the value into
      * @param value The value to put into the container
      */
-    public void putString( int index, String value ) {
-        this.put( index, new MetadataString( value ) );
+    public void putString(int index, String value) {
+        this.put(index, new MetadataString(value));
     }
 
     /**
@@ -433,17 +431,17 @@ public class MetadataContainer extends Observable {
      * @return The value stored at the specified index
      * @throws IllegalArgumentException Thrown in case no value is stored at the specified index or the value is not a string
      */
-    public String getString( int index ) {
-        MetadataValue value = this.get( index );
-        if ( value == null ) {
-            throw new IllegalArgumentException( "No value stored at index " + index );
+    public String getString(int index) {
+        MetadataValue value = this.get(index);
+        if (value == null) {
+            throw new IllegalArgumentException("No value stored at index " + index);
         }
 
-        if ( value.getTypeId() != METADATA_STRING ) {
-            throw new IllegalArgumentException( "Value of different type stored at index " + index );
+        if (value.getTypeId() != METADATA_STRING) {
+            throw new IllegalArgumentException("Value of different type stored at index " + index);
         }
 
-        return ( (MetadataString) value ).getValue();
+        return ((MetadataString) value).getValue();
     }
 
     /**
@@ -452,8 +450,8 @@ public class MetadataContainer extends Observable {
      * @param index The index to put the value into
      * @param value The value to put into the container
      */
-    public void putNBT( int index, NBTTagCompound value ) {
-        this.put( index, new MetadataNBT( value ) );
+    public void putNBT(int index, NBTTagCompound value) {
+        this.put(index, new MetadataNBT(value));
     }
 
     /**
@@ -463,17 +461,17 @@ public class MetadataContainer extends Observable {
      * @return The value stored at the specified index
      * @throws IllegalArgumentException Thrown in case no value is stored at the specified index or the value is not a item
      */
-    public NBTTagCompound getNBT( int index ) {
-        MetadataValue value = this.get( index );
-        if ( value == null ) {
-            throw new IllegalArgumentException( "No value stored at index " + index );
+    public NBTTagCompound getNBT(int index) {
+        MetadataValue value = this.get(index);
+        if (value == null) {
+            throw new IllegalArgumentException("No value stored at index " + index);
         }
 
-        if ( value.getTypeId() != METADATA_NBT) {
-            throw new IllegalArgumentException( "Value of different type stored at index " + index );
+        if (value.getTypeId() != METADATA_NBT) {
+            throw new IllegalArgumentException("Value of different type stored at index " + index);
         }
 
-        return ( (MetadataNBT) value ).getValue();
+        return ((MetadataNBT) value).getValue();
     }
 
     /**
@@ -484,8 +482,8 @@ public class MetadataContainer extends Observable {
      * @param y     The y-value of the position to put into the container
      * @param z     The z-value of the position to put into the container
      */
-    public void putPosition( int index, int x, int y, int z ) {
-        this.put( index, new MetadataPosition( x, y, z ) );
+    public void putPosition(int index, int x, int y, int z) {
+        this.put(index, new MetadataPosition(x, y, z));
     }
 
     /**
@@ -495,18 +493,18 @@ public class MetadataContainer extends Observable {
      * @return The value stored at the specified index
      * @throws IllegalArgumentException Thrown in case no value is stored at the specified index or the value is not an position
      */
-    public Vector getPosition( int index ) {
-        MetadataValue value = this.get( index );
-        if ( value == null ) {
-            throw new IllegalArgumentException( "No value stored at index " + index );
+    public Vector getPosition(int index) {
+        MetadataValue value = this.get(index);
+        if (value == null) {
+            throw new IllegalArgumentException("No value stored at index " + index);
         }
 
-        if ( value.getTypeId() != METADATA_POSITION ) {
-            throw new IllegalArgumentException( "Value of different type stored at index " + index );
+        if (value.getTypeId() != METADATA_POSITION) {
+            throw new IllegalArgumentException("Value of different type stored at index " + index);
         }
 
         MetadataPosition position = (MetadataPosition) value;
-        return new Vector( position.getX(), position.getY(), position.getZ() );
+        return new Vector(position.getX(), position.getY(), position.getZ());
     }
 
     /**
@@ -515,8 +513,8 @@ public class MetadataContainer extends Observable {
      * @param index The index to put the value into
      * @param value The value to put into the container
      */
-    public void putLong( int index, long value ) {
-        this.put( index, new MetadataLong( value ) );
+    public void putLong(int index, long value) {
+        this.put(index, new MetadataLong(value));
     }
 
     /**
@@ -526,17 +524,17 @@ public class MetadataContainer extends Observable {
      * @return The value stored at the specified index
      * @throws IllegalArgumentException Thrown in case no value is stored at the specified index or the value is not an long
      */
-    public long getLong( int index ) {
-        MetadataValue value = this.get( index );
-        if ( value == null ) {
-            throw new IllegalArgumentException( "No value stored at index " + index );
+    public long getLong(int index) {
+        MetadataValue value = this.get(index);
+        if (value == null) {
+            throw new IllegalArgumentException("No value stored at index " + index);
         }
 
-        if ( value.getTypeId() != METADATA_LONG ) {
-            throw new IllegalArgumentException( "Value of different type stored at index " + index );
+        if (value.getTypeId() != METADATA_LONG) {
+            throw new IllegalArgumentException("Value of different type stored at index " + index);
         }
 
-        return ( (MetadataLong) value ).getValue();
+        return ((MetadataLong) value).getValue();
     }
 
     /**
@@ -545,8 +543,8 @@ public class MetadataContainer extends Observable {
      * @param index The index to put the value into
      * @param value The value to put into the container
      */
-    public void putVector( int index, Vector value ) {
-        this.put( index, new MetadataVector( value ) );
+    public void putVector(int index, Vector value) {
+        this.put(index, new MetadataVector(value));
     }
 
     /**
@@ -556,17 +554,17 @@ public class MetadataContainer extends Observable {
      * @return The value stored at the specified index
      * @throws IllegalArgumentException Thrown in case no value is stored at the specified index or the value is not an vector
      */
-    public Vector getVector( int index ) {
-        MetadataValue value = this.get( index );
-        if ( value == null ) {
-            throw new IllegalArgumentException( "No value stored at index " + index );
+    public Vector getVector(int index) {
+        MetadataValue value = this.get(index);
+        if (value == null) {
+            throw new IllegalArgumentException("No value stored at index " + index);
         }
 
-        if ( value.getTypeId() != METADATA_VECTOR ) {
-            throw new IllegalArgumentException( "Value of different type stored at index " + index );
+        if (value.getTypeId() != METADATA_VECTOR) {
+            throw new IllegalArgumentException("Value of different type stored at index " + index);
         }
 
-        return ( (MetadataVector) value ).getValue();
+        return ((MetadataVector) value).getValue();
     }
 
     /**
@@ -574,10 +572,10 @@ public class MetadataContainer extends Observable {
      *
      * @param buffer The buffer to serialize this metadata container into
      */
-    public void serialize( PacketBuffer buffer ) {
-        buffer.writeUnsignedVarInt( this.entries.size() );
-        for ( Byte2ObjectMap.Entry<MetadataValue> entry : this.entries.byte2ObjectEntrySet() ) {
-            entry.getValue().serialize( buffer, entry.getByteKey() );
+    public void serialize(PacketBuffer buffer) {
+        buffer.writeUnsignedVarInt(this.entries.size());
+        for (Byte2ObjectMap.Entry<MetadataValue> entry : this.entries.byte2ObjectEntrySet()) {
+            entry.getValue().serialize(buffer, entry.getByteKey());
         }
     }
 
@@ -587,16 +585,16 @@ public class MetadataContainer extends Observable {
      * @param buffer The buffer to deserialize this metadata container from
      * @return Whether or not the metadata container could be deserialized successfully
      */
-    public boolean deserialize( PacketBuffer buffer ) {
+    public boolean deserialize(PacketBuffer buffer) {
         this.entries.clear();
 
         int size = buffer.readUnsignedVarInt();
-        for ( int i = 0; i < size; i++ ) {
+        for (int i = 0; i < size; i++) {
             int index = buffer.readUnsignedVarInt();
             int type = buffer.readUnsignedVarInt();
 
             MetadataValue value = null;
-            switch ( type ) {
+            switch (type) {
                 case METADATA_BYTE:
                     value = new MetadataByte();
                     break;
@@ -626,12 +624,12 @@ public class MetadataContainer extends Observable {
                     break;
             }
 
-            if ( value == null ) {
+            if (value == null) {
                 return false;
             }
 
-            value.deserialize( buffer );
-            this.entries.put( (byte) index, value );
+            value.deserialize(buffer);
+            this.entries.put((byte) index, value);
         }
 
         return true;

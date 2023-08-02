@@ -6,17 +6,17 @@ import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.server.world.block.state.BlockfaceBlockState;
 import io.gomint.world.block.BlockLadder;
-import io.gomint.world.block.data.Facing;
 import io.gomint.world.block.BlockType;
+import io.gomint.world.block.data.Facing;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:ladder" )
+@RegisterInfo(sId = "minecraft:ladder")
 public class Ladder extends Block implements BlockLadder {
 
-    private static final BlockfaceBlockState ATTACHED = new BlockfaceBlockState( () -> new String[]{"facing_direction"} );
+    private static final BlockfaceBlockState ATTACHED = new BlockfaceBlockState(() -> new String[]{"facing_direction"});
 
     @Override
     public String blockId() {
@@ -44,7 +44,7 @@ public class Ladder extends Block implements BlockLadder {
     }
 
     @Override
-    public void stepOn(Entity<?> entity ) {
+    public void stepOn(Entity<?> entity) {
         // Reset fall distance
         entity.resetFallDistance();
     }
@@ -70,8 +70,8 @@ public class Ladder extends Block implements BlockLadder {
     }
 
     @Override
-    public BlockLadder attachSide(Facing attachSide ) {
-        ATTACHED.state( this, attachSide );
+    public BlockLadder attachSide(Facing attachSide) {
+        ATTACHED.state(this, attachSide);
         return this;
     }
 

@@ -12,7 +12,7 @@ import io.gomint.server.network.packet.PacketSetLocalPlayerAsInitialized;
 public class PacketSetLocalPlayerAsInitializedHandler implements PacketHandler<PacketSetLocalPlayerAsInitialized> {
 
     @Override
-    public void handle( PacketSetLocalPlayerAsInitialized packet, long currentTimeMillis, PlayerConnection connection ) {
+    public void handle(PacketSetLocalPlayerAsInitialized packet, long currentTimeMillis, PlayerConnection connection) {
         // Client seems to be ready to spawn players
         connection.spawnPlayerEntities();
     }

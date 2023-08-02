@@ -11,7 +11,6 @@ import io.gomint.inventory.item.ItemStack;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.world.block.BlockCartographyTable;
-import io.gomint.world.block.BlockSmithingTable;
 import io.gomint.world.block.BlockType;
 
 @RegisterInfo(sId = "minecraft:cartography_table")

@@ -19,22 +19,22 @@ public class PacketContainerOpen extends Packet {
      * Construct a new container open packet
      */
     public PacketContainerOpen() {
-        super( Protocol.PACKET_CONTAINER_OPEN );
+        super(Protocol.PACKET_CONTAINER_OPEN);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeByte( this.windowId );
-        buffer.writeByte( this.type );
-        writeBlockPosition( this.location, buffer );
-        buffer.writeSignedVarLong( this.entityId );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeByte(this.windowId);
+        buffer.writeByte(this.type);
+        writeBlockPosition(this.location, buffer);
+        buffer.writeSignedVarLong(this.entityId);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.windowId = buffer.readByte();
         this.type = buffer.readByte();
-        this.location = readBlockPosition( buffer );
+        this.location = readBlockPosition(buffer);
         this.entityId = buffer.readSignedVarLong().longValue();
     }
 

@@ -49,7 +49,7 @@ public abstract class Enchantment implements io.gomint.enchant.Enchantment {
      * @param level of enchantment
      * @return minimum needed enchant ability
      */
-    public int minEnchantAbility( short level ) {
+    public int minEnchantAbility(short level) {
         return 1 + level * 10;
     }
 
@@ -59,8 +59,8 @@ public abstract class Enchantment implements io.gomint.enchant.Enchantment {
      * @param level of enchantment
      * @return maximum needed enchant ability
      */
-    public int maxEnchantAbility( short level ) {
-        return minEnchantAbility( level ) + 5;
+    public int maxEnchantAbility(short level) {
+        return minEnchantAbility(level) + 5;
     }
 
     /**
@@ -69,7 +69,7 @@ public abstract class Enchantment implements io.gomint.enchant.Enchantment {
      * @param itemStack which wants this enchantment applied
      * @return true when it can be applied, false otherwise
      */
-    public boolean canBeApplied(ItemStack<?> itemStack ) {
+    public boolean canBeApplied(ItemStack<?> itemStack) {
         return true;
     }
 

@@ -1,11 +1,9 @@
 package io.gomint.server.world.block;
 
-import io.gomint.world.block.BlockGlass;
-import io.gomint.world.block.BlockType;
-
 import io.gomint.inventory.item.ItemStack;
 import io.gomint.server.registry.RegisterInfo;
-
+import io.gomint.world.block.BlockGlass;
+import io.gomint.world.block.BlockType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +11,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:glass" )
+@RegisterInfo(sId = "minecraft:glass")
 public class Glass extends Block implements BlockGlass {
 
     @Override
@@ -37,7 +35,7 @@ public class Glass extends Block implements BlockGlass {
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
         return new ArrayList<>();
     }
 

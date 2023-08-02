@@ -19,7 +19,6 @@ import io.gomint.server.world.block.state.HalfBlockState;
 import io.gomint.world.block.BlockTrapdoor;
 import io.gomint.world.block.data.Direction;
 import io.gomint.world.block.data.Facing;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -85,7 +84,7 @@ public abstract class Trapdoor<B> extends Block implements BlockTrapdoor<B> {
     public boolean beforePlacement(EntityLiving<?> entity, ItemStack<?> item, Facing face, Location location, Vector clickVector) {
         DIRECTION.detectFromPlacement(this, entity, item, face, clickVector);
         OPEN.detectFromPlacement(this, entity, item, face, clickVector);
-        TOP.detectFromPlacement(this,entity,item,face,clickVector);
+        TOP.detectFromPlacement(this, entity, item, face, clickVector);
         return super.beforePlacement(entity, item, face, location, clickVector);
     }
 

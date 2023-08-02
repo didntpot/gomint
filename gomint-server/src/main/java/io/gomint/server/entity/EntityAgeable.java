@@ -29,12 +29,12 @@ public abstract class EntityAgeable<E extends Entity<E>> extends EntityLiving<E>
 
     @Override
     public boolean baby() {
-        return this.metadataContainer.getDataFlag( MetadataContainer.DATA_INDEX, EntityFlag.BABY );
+        return this.metadataContainer.getDataFlag(MetadataContainer.DATA_INDEX, EntityFlag.BABY);
     }
 
     @Override
-    public E baby(boolean value ) {
-        this.metadataContainer.setDataFlag( MetadataContainer.DATA_INDEX, EntityFlag.BABY, value );
+    public E baby(boolean value) {
+        this.metadataContainer.setDataFlag(MetadataContainer.DATA_INDEX, EntityFlag.BABY, value);
         return (E) this;
     }
 

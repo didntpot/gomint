@@ -22,7 +22,7 @@ import io.gomint.world.block.data.Facing;
 public class CommandBlock extends ContainerBlock<BlockCommandBlock> implements BlockCommandBlock {
 
     private static final BooleanBlockState CONDITIONAL = new BooleanBlockState(() -> new String[]{"conditional_bit"});
-    private static final BlockfaceBlockState FACING = new BlockfaceBlockState( () -> new String[]{"facing_direction"});
+    private static final BlockfaceBlockState FACING = new BlockfaceBlockState(() -> new String[]{"facing_direction"});
 
     @Override
     public boolean beforePlacement(EntityLiving<?> entity, ItemStack<?> item, Facing face, Location location, Vector clickVector) {

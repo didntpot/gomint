@@ -23,7 +23,6 @@ import io.gomint.server.entity.EntityType;
 import io.gomint.server.inventory.item.ItemStack;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.WorldAdapter;
-
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -39,8 +38,8 @@ public class EntityZombiePiglin extends EntityAgeable<io.gomint.entity.monster.E
      *
      * @param world The world in which this entity is in
      */
-    public EntityZombiePiglin( WorldAdapter world ) {
-        super( EntityType.ZOMBIE_PIGLIN, world );
+    public EntityZombiePiglin(WorldAdapter world) {
+        super(EntityType.ZOMBIE_PIGLIN, world);
         this.initEntity();
     }
 
@@ -48,7 +47,7 @@ public class EntityZombiePiglin extends EntityAgeable<io.gomint.entity.monster.E
      * Create new entity zombie piglin for API
      */
     public EntityZombiePiglin() {
-        super( EntityType.ZOMBIE_PIGLIN, null );
+        super(EntityType.ZOMBIE_PIGLIN, null);
         this.initEntity();
     }
 
@@ -56,9 +55,9 @@ public class EntityZombiePiglin extends EntityAgeable<io.gomint.entity.monster.E
         this.attribute(Attribute.HEALTH);
         this.maxHealth(20);
         this.health(20);
-        if(this.baby()) {
+        if (this.baby()) {
             this.size(0.3f, 0.95f);
-        }else{
+        } else {
             this.size(0.6f, 1.9f);
         }
     }
@@ -92,20 +91,20 @@ public class EntityZombiePiglin extends EntityAgeable<io.gomint.entity.monster.E
         if (amount > 0) {
             this.world.dropItem(location, ItemGoldNugget.create(amount));
         }
-        
+
         double chanceIncrease = Math.min(looting, 3) / 100.0;
         double chance = 0.025 + chanceIncrease;
         if (random.nextDouble() <= chance) {
             this.world.dropItem(location, ItemGoldIngot.create(1));
         }
-        
+
         chance = 0.085 + chanceIncrease;
         if (random.nextDouble() <= chance) {
             ItemStack<?> drop = (ItemStack<?>) ItemGoldenSword.create(1);
             drop.damage(random.nextInt(drop.maxDamage()));
             this.world.dropItem(location, drop);
         }
-        
+
         if (isLastDamageCausedByPlayer()) {
             if (baby()) {
                 this.world.createExpOrb(location, 12);
@@ -116,13 +115,13 @@ public class EntityZombiePiglin extends EntityAgeable<io.gomint.entity.monster.E
     }
 
     @Override
-    public void update( long currentTimeMS, float dT ) {
-        super.update( currentTimeMS, dT );
+    public void update(long currentTimeMS, float dT) {
+        super.update(currentTimeMS, dT);
     }
 
     @Override
     public Set<String> tags() {
         return EntityTags.HOSTILE_MOB;
     }
-    
+
 }

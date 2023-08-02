@@ -8,22 +8,22 @@ import java.util.List;
  */
 public class OutputMessage {
 
-    private String format;
-    private boolean success;
+    private String messageId;
+    private boolean internal;
     private List<String> parameters;
 
-    public OutputMessage(String format, boolean success, List<String> parameters) {
-        this.format = format;
-        this.success = success;
+    public OutputMessage(String messageId, boolean success, List<String> parameters) {
+        this.messageId = messageId;
+        this.internal = success;
         this.parameters = parameters;
     }
 
-    public String format() {
-        return this.format;
+    public String messageId() {
+        return this.messageId;
     }
 
-    public boolean success() {
-        return this.success;
+    public boolean internal() {
+        return this.internal;
     }
 
     public List<String> parameters() {

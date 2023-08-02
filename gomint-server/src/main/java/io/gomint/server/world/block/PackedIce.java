@@ -1,11 +1,9 @@
 package io.gomint.server.world.block;
 
 import io.gomint.inventory.item.ItemStack;
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockPackedIce;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +11,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:packed_ice" )
+@RegisterInfo(sId = "minecraft:packed_ice")
 public class PackedIce extends Block implements BlockPackedIce {
 
     @Override
@@ -37,7 +35,7 @@ public class PackedIce extends Block implements BlockPackedIce {
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
         return new ArrayList<>();
     }
 

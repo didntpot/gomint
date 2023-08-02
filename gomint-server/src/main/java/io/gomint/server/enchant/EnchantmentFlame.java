@@ -16,28 +16,28 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 21 )
+@RegisterInfo(id = 21)
 public class EnchantmentFlame extends Enchantment implements io.gomint.enchant.EnchantmentFlame {
 
     /**
      * Create new enchantment fire
      */
     public EnchantmentFlame() {
-        super( (short) 1 );
+        super((short) 1);
     }
 
     @Override
-    public int minEnchantAbility( short level ) {
+    public int minEnchantAbility(short level) {
         return 20;
     }
 
     @Override
-    public int maxEnchantAbility( short level ) {
+    public int maxEnchantAbility(short level) {
         return 50;
     }
 
     @Override
-    public boolean canBeApplied(ItemStack<?> itemStack ) {
+    public boolean canBeApplied(ItemStack<?> itemStack) {
         return itemStack.itemType() == ItemType.BOW;
     }
 

@@ -16,9 +16,9 @@ import io.netty.buffer.PooledByteBufAllocator;
  */
 public class Allocator {
 
-    public static ByteBuf allocate( byte[] data ) {
-        ByteBuf buf = PooledByteBufAllocator.DEFAULT.directBuffer( data.length );
-        buf.writeBytes( data );
+    public static ByteBuf allocate(byte[] data) {
+        ByteBuf buf = PooledByteBufAllocator.DEFAULT.directBuffer(data.length);
+        buf.writeBytes(data);
         return buf;
     }
 

@@ -5,7 +5,6 @@ import io.gomint.taglib.AllocationLimitReachedException;
 import io.gomint.taglib.NBTReader;
 import io.gomint.taglib.NBTTagCompound;
 import io.gomint.taglib.NBTWriter;
-
 import java.io.IOException;
 import java.nio.ByteOrder;
 

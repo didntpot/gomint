@@ -10,7 +10,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:soul_soil" )
+@RegisterInfo(sId = "minecraft:soul_soil")
 public class SoulSoil extends Block implements BlockSoulSoil {
 
     @Override

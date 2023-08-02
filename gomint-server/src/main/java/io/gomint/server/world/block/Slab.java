@@ -9,7 +9,6 @@ import io.gomint.server.world.block.state.BooleanBlockState;
 import io.gomint.server.world.block.state.HalfBlockState;
 import io.gomint.world.block.BlockSlab;
 import io.gomint.world.block.data.Facing;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -19,17 +18,17 @@ import java.util.List;
  */
 public abstract class Slab<B> extends Block implements BlockSlab<B> {
 
-    protected static final BooleanBlockState TOP = new HalfBlockState( () -> new String[]{"top_slot_bit"} );
+    protected static final BooleanBlockState TOP = new HalfBlockState(() -> new String[]{"top_slot_bit"});
 
     @Override
-    public B top(boolean top ) {
-        TOP.state( this, top );
+    public B top(boolean top) {
+        TOP.state(this, top);
         return (B) this;
     }
 
     @Override
     public boolean top() {
-        return TOP.state( this );
+        return TOP.state(this);
     }
 
     @Override
@@ -40,24 +39,24 @@ public abstract class Slab<B> extends Block implements BlockSlab<B> {
 
     @Override
     public List<AxisAlignedBB> boundingBoxes() {
-        if ( this.top() ) {
-            return Collections.singletonList( new AxisAlignedBB(
+        if (this.top()) {
+            return Collections.singletonList(new AxisAlignedBB(
                 this.location.x(),
                 this.location.y() + 0.5f,
                 this.location.z(),
                 this.location.x() + 1,
                 this.location.y() + 1,
                 this.location.z() + 1
-            ) );
+            ));
         } else {
-            return Collections.singletonList( new AxisAlignedBB(
+            return Collections.singletonList(new AxisAlignedBB(
                 this.location.x(),
                 this.location.y(),
                 this.location.z(),
                 this.location.x() + 1,
                 this.location.y() + 0.5f,
                 this.location.z() + 1
-            ) );
+            ));
         }
     }
 

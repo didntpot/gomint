@@ -14,6 +14,11 @@ package io.gomint.server.network;
 public enum PlayerConnectionState {
 
     /**
+     * The player is still waiting for the network settings packet.
+     */
+    NETWORK_SETTINGS,
+
+    /**
      * The player is still waiting for the login packet.
      */
     HANDSHAKE,

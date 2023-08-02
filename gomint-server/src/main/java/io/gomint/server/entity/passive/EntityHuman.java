@@ -18,35 +18,18 @@ import io.gomint.player.DeviceInfo;
 import io.gomint.player.DeviceInfo.DeviceOS;
 import io.gomint.player.DeviceInfo.UI;
 import io.gomint.player.PlayerSkin;
-import io.gomint.server.entity.Attribute;
-import io.gomint.server.entity.AttributeInstance;
-import io.gomint.server.entity.AttributeModifier;
-import io.gomint.server.entity.AttributeModifierType;
-import io.gomint.server.entity.EntityCreature;
-import io.gomint.server.entity.EntityFlag;
-import io.gomint.server.entity.EntityPlayer;
-import io.gomint.server.entity.EntityTags;
-import io.gomint.server.entity.EntityType;
+import io.gomint.server.entity.*;
 import io.gomint.server.entity.metadata.MetadataContainer;
 import io.gomint.server.inventory.ArmorInventory;
 import io.gomint.server.inventory.PlayerInventory;
 import io.gomint.server.network.PlayerConnection;
-import io.gomint.server.network.packet.Packet;
-import io.gomint.server.network.packet.PacketEntityMetadata;
-import io.gomint.server.network.packet.PacketMovePlayer;
-import io.gomint.server.network.packet.PacketPlayerlist;
-import io.gomint.server.network.packet.PacketSpawnPlayer;
+import io.gomint.server.network.packet.*;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.util.Values;
 import io.gomint.server.world.WorldAdapter;
 import io.gomint.taglib.NBTTagCompound;
 import io.gomint.world.Difficulty;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author geNAZt
@@ -520,15 +503,15 @@ public class EntityHuman<E extends Entity<E>> extends EntityCreature<E> implemen
     }
 
     private void updatePlayerList() {
-        List<PacketPlayerlist.Entry> singleEntry = Collections.singletonList(new PacketPlayerlist.Entry(EntityHuman.this));
+        List<PacketPlayerList.Entry> singleEntry = Collections.singletonList(new PacketPlayerList.Entry(EntityHuman.this));
 
-        PacketPlayerlist packetPlayerlist = new PacketPlayerlist();
+        PacketPlayerList packetPlayerlist = new PacketPlayerList();
         packetPlayerlist.setMode((byte) 0);
         packetPlayerlist.setEntries(singleEntry);
 
-        PacketPlayerlist removeFromList = null;
+        PacketPlayerList removeFromList = null;
         if (!(this instanceof EntityPlayer)) {
-            removeFromList = new PacketPlayerlist();
+            removeFromList = new PacketPlayerList();
             removeFromList.setMode((byte) 1);
             removeFromList.setEntries(singleEntry);
         }
@@ -596,10 +579,10 @@ public class EntityHuman<E extends Entity<E>> extends EntityCreature<E> implemen
 
     @Override
     public void preSpawn(PlayerConnection connection) {
-        PacketPlayerlist packetPlayerlist = new PacketPlayerlist();
+        PacketPlayerList packetPlayerlist = new PacketPlayerList();
         packetPlayerlist.setMode((byte) 0);
-        packetPlayerlist.setEntries(new ArrayList<PacketPlayerlist.Entry>() {{
-            add(new PacketPlayerlist.Entry(EntityHuman.this));
+        packetPlayerlist.setEntries(new ArrayList<PacketPlayerList.Entry>() {{
+            add(new PacketPlayerList.Entry(EntityHuman.this));
         }});
 
         connection.addToSendQueue(packetPlayerlist);
@@ -614,10 +597,10 @@ public class EntityHuman<E extends Entity<E>> extends EntityCreature<E> implemen
         metadata.setTick(this.world.server().currentTickTime() / (int) Values.CLIENT_TICK_MS);
         connection.addToSendQueue(metadata);
 
-        PacketPlayerlist packetPlayerlist = new PacketPlayerlist();
+        PacketPlayerList packetPlayerlist = new PacketPlayerList();
         packetPlayerlist.setMode((byte) 1);
         packetPlayerlist.setEntries(new ArrayList<>() {{
-            add(new PacketPlayerlist.Entry(EntityHuman.this));
+            add(new PacketPlayerList.Entry(EntityHuman.this));
         }});
 
         connection.addToSendQueue(packetPlayerlist);
@@ -671,7 +654,7 @@ public class EntityHuman<E extends Entity<E>> extends EntityCreature<E> implemen
         if (o == null || getClass() != o.getClass()) return false;
         EntityHuman<?> that = (EntityHuman<?>) o;
         return this.uuid.getMostSignificantBits() == that.uuid.getMostSignificantBits() &&
-                this.uuid.getLeastSignificantBits() == that.uuid.getLeastSignificantBits();
+            this.uuid.getLeastSignificantBits() == that.uuid.getLeastSignificantBits();
     }
 
     @Override

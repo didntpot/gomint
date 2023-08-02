@@ -10,7 +10,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:lodestone" )
+@RegisterInfo(sId = "minecraft:lodestone")
 public class LodeStone extends Block implements BlockLodeStone {
 
     @Override

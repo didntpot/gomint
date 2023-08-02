@@ -8,7 +8,7 @@ import io.gomint.world.block.BlockWeepingVines;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:weeping_vines" )
+@RegisterInfo(sId = "minecraft:weeping_vines")
 public class WeepingVines extends Block implements BlockWeepingVines {
 
     @Override

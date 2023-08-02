@@ -8,7 +8,7 @@ import io.gomint.server.registry.RegisterInfo;
  * @version 1.0
  */
 @RegisterInfo(sId = "minecraft:nether_brick_stairs")
-public class ItemNetherBrickStairs extends ItemStack< io.gomint.inventory.item.ItemNetherBrickStairs> implements io.gomint.inventory.item.ItemNetherBrickStairs {
+public class ItemNetherBrickStairs extends ItemStack<io.gomint.inventory.item.ItemNetherBrickStairs> implements io.gomint.inventory.item.ItemNetherBrickStairs {
 
     @Override
     public ItemType itemType() {

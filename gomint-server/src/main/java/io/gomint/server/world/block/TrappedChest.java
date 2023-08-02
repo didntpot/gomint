@@ -2,17 +2,16 @@ package io.gomint.server.world.block;
 
 import io.gomint.inventory.ChestInventory;
 import io.gomint.inventory.Inventory;
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockTrappedChest;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.data.Facing;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:trapped_chest" )
+@RegisterInfo(sId = "minecraft:trapped_chest")
 public class TrappedChest extends ChestBase<BlockTrappedChest> implements BlockTrappedChest {
 
     @Override

@@ -9,18 +9,18 @@ package io.gomint.server.world.block.state;
 
 import io.gomint.math.MathUtils;
 import io.gomint.server.world.block.Block;
-
 import java.util.function.Supplier;
 
 public class RedstoneSignalStrength extends ProgressBlockState {
 
     public RedstoneSignalStrength(Supplier<String[]> key) {
-        super(key, 15, aVoid -> {});
+        super(key, 15, aVoid -> {
+        });
     }
 
     public void decrease(Block block) {
         if (this.state(block) - this.getStep() <= MathUtils.EPSILON) {
-            this.state(block,this.state(block) - this.getStep());
+            this.state(block, this.state(block) - this.getStep());
         }
     }
 
@@ -31,11 +31,11 @@ public class RedstoneSignalStrength extends ProgressBlockState {
     }
 
     public void on(Block block) {
-        this.state(block,1f);
+        this.state(block, 1f);
     }
 
     public void off(Block block) {
-        this.state(block,0f);
+        this.state(block, 0f);
     }
 
 }

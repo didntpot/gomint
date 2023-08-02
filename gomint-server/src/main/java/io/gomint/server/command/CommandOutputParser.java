@@ -16,28 +16,28 @@ import java.util.List;
  */
 public class CommandOutputParser {
 
-    public static String parse( String format, List<String> params ) {
+    public static String parse(String format, List<String> params) {
         StringBuilder output = new StringBuilder();
         Iterator<String> paramIterator = params.iterator();
 
         // We currently only translate '%%s' since it seems the only format MC:BE understands
-        for ( int i = 0; i < format.length(); i++ ) {
-            char c = format.charAt( i );
-            if ( c == '%' ) {
+        for (int i = 0; i < format.length(); i++) {
+            char c = format.charAt(i);
+            if (c == '%') {
                 // Do we have 2 chars remaining?
-                if ( format.length() - ( i + 1 ) >= 2 ) {
+                if (format.length() - (i + 1) >= 2) {
                     // Do we have params to pass in left?
-                    if ( paramIterator.hasNext() ) {
-                        output.append( paramIterator.next() );
+                    if (paramIterator.hasNext()) {
+                        output.append(paramIterator.next());
                         i += 2;
                     } else {
-                        output.append( c );
+                        output.append(c);
                     }
                 } else {
-                    output.append( c );
+                    output.append(c);
                 }
             } else {
-                output.append( c );
+                output.append(c);
             }
         }
 

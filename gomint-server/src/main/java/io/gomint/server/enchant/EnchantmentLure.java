@@ -16,28 +16,28 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 24 )
+@RegisterInfo(id = 24)
 public class EnchantmentLure extends Enchantment implements io.gomint.enchant.EnchantmentLure {
 
     /**
      * Create new enchantment lure
      */
     public EnchantmentLure() {
-        super( (short) 3 );
+        super((short) 3);
     }
 
     @Override
-    public int minEnchantAbility( short level ) {
-        return (byte) ( 15 + ( level - 1 ) * 9 );
+    public int minEnchantAbility(short level) {
+        return (byte) (15 + (level - 1) * 9);
     }
 
     @Override
-    public int maxEnchantAbility( short level ) {
-        return (byte) ( minEnchantAbility( level ) + 50 );
+    public int maxEnchantAbility(short level) {
+        return (byte) (minEnchantAbility(level) + 50);
     }
 
     @Override
-    public boolean canBeApplied(ItemStack<?> itemStack ) {
+    public boolean canBeApplied(ItemStack<?> itemStack) {
         return itemStack.itemType() == ItemType.FISHING_ROD;
     }
 

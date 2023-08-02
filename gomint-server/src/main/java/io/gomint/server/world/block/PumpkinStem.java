@@ -1,15 +1,14 @@
 package io.gomint.server.world.block;
 
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockPumpkinStem;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:pumpkin_stem" )
+@RegisterInfo(sId = "minecraft:pumpkin_stem")
 public class PumpkinStem extends Growable implements BlockPumpkinStem {
 
     @Override

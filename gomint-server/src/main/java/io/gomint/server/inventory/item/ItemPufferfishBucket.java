@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:pufferfish_bucket" )
-public class ItemPufferfishBucket extends ItemStack< io.gomint.inventory.item.ItemPufferfishBucket> implements io.gomint.inventory.item.ItemPufferfishBucket {
+@RegisterInfo(sId = "minecraft:pufferfish_bucket")
+public class ItemPufferfishBucket extends ItemStack<io.gomint.inventory.item.ItemPufferfishBucket> implements io.gomint.inventory.item.ItemPufferfishBucket {
 
     @Override
     public ItemType itemType() {

@@ -15,7 +15,7 @@ import io.gomint.world.block.BlockType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:bamboo" )
+@RegisterInfo(sId = "minecraft:bamboo")
 public class Bamboo extends Block implements BlockBamboo {
 
     @Override

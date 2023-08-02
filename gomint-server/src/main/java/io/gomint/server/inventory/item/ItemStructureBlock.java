@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:structure_block" )
-public class ItemStructureBlock extends ItemStack< io.gomint.inventory.item.ItemStructureBlock> implements io.gomint.inventory.item.ItemStructureBlock {
+@RegisterInfo(sId = "minecraft:structure_block")
+public class ItemStructureBlock extends ItemStack<io.gomint.inventory.item.ItemStructureBlock> implements io.gomint.inventory.item.ItemStructureBlock {
 
     @Override
     public ItemType itemType() {

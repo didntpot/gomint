@@ -16,28 +16,28 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 13 )
+@RegisterInfo(id = 13)
 public class EnchantmentFireAspect extends Enchantment implements io.gomint.enchant.EnchantmentFireAspect {
 
     /**
      * Create new enchantment fire aspect
      */
     public EnchantmentFireAspect() {
-        super( (short) 2 );
+        super((short) 2);
     }
 
     @Override
-    public int minEnchantAbility( short level ) {
-        return (byte) ( 10 + ( level - 1 ) * 20 );
+    public int minEnchantAbility(short level) {
+        return (byte) (10 + (level - 1) * 20);
     }
 
     @Override
-    public int maxEnchantAbility( short level ) {
-        return (byte) ( minEnchantAbility( level ) + 50 );
+    public int maxEnchantAbility(short level) {
+        return (byte) (minEnchantAbility(level) + 50);
     }
 
     @Override
-    public boolean canBeApplied(ItemStack<?> itemStack ) {
+    public boolean canBeApplied(ItemStack<?> itemStack) {
         return itemStack.itemType() == ItemType.DIAMOND_SWORD ||
             itemStack.itemType() == ItemType.STONE_SWORD ||
             itemStack.itemType() == ItemType.GOLDEN_SWORD ||

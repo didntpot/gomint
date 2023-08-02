@@ -10,7 +10,6 @@ package io.gomint.server.world.leveldb;
 import io.gomint.entity.EntityPlayer;
 import io.gomint.server.GoMintServer;
 import io.gomint.server.world.WorldLoadException;
-
 import java.io.*;
 import java.util.function.Consumer;
 import java.util.zip.ZipEntry;
@@ -30,8 +29,8 @@ public final class ZippedLevelDBWorldAdapter extends LevelDBWorldAdapter {
      * @param name     of the world
      * @throws WorldLoadException Thrown in case the world could not be loaded successfully
      */
-    private ZippedLevelDBWorldAdapter( GoMintServer server, File worldDir, String name ) throws WorldLoadException {
-        super( server, worldDir, name );
+    private ZippedLevelDBWorldAdapter(GoMintServer server, File worldDir, String name) throws WorldLoadException {
+        super(server, worldDir, name);
     }
 
     /**
@@ -45,48 +44,48 @@ public final class ZippedLevelDBWorldAdapter extends LevelDBWorldAdapter {
      * @return The leveldb world adapter used to access the world
      * @throws WorldLoadException Thrown in case the world could not be loaded successfully
      */
-    public static ZippedLevelDBWorldAdapter load( GoMintServer server, File pathToWorld, String name ) throws WorldLoadException {
+    public static ZippedLevelDBWorldAdapter load(GoMintServer server, File pathToWorld, String name) throws WorldLoadException {
         // Extract to a temporary dir
-        File tempDir = new File( System.getProperty( "java.io.tmpdir" ) );
-        File worldDir = new File( tempDir, "gomint_world_" + System.currentTimeMillis() );
-        if ( !worldDir.mkdirs() ) {
-            throw new WorldLoadException( "Could not create temporary world dir " + worldDir.getAbsolutePath() );
+        File tempDir = new File(System.getProperty("java.io.tmpdir"));
+        File worldDir = new File(tempDir, "gomint_world_" + System.currentTimeMillis());
+        if (!worldDir.mkdirs()) {
+            throw new WorldLoadException("Could not create temporary world dir " + worldDir.getAbsolutePath());
         }
 
         // mcworld data is a zip
         try {
-            unzip( pathToWorld, worldDir );
-        } catch ( IOException e ) {
-            throw new WorldLoadException( "Could not extract to dir " + worldDir.getAbsolutePath(), e );
+            unzip(pathToWorld, worldDir);
+        } catch (IOException e) {
+            throw new WorldLoadException("Could not extract to dir " + worldDir.getAbsolutePath(), e);
         }
 
         // Be sure to delete on exit
         worldDir.deleteOnExit();
-        return new ZippedLevelDBWorldAdapter( server, worldDir, name );
+        return new ZippedLevelDBWorldAdapter(server, worldDir, name);
     }
 
-    private static void unzip( File source, File out ) throws IOException, WorldLoadException {
-        try ( ZipInputStream zis = new ZipInputStream( new FileInputStream( source ) ) ) {
+    private static void unzip(File source, File out) throws IOException, WorldLoadException {
+        try (ZipInputStream zis = new ZipInputStream(new FileInputStream(source))) {
             ZipEntry entry = zis.getNextEntry();
-            while ( entry != null ) {
-                File file = new File( out, entry.getName() );
-                if ( entry.isDirectory() ) {
-                    if ( !file.mkdirs() ) {
-                        throw new WorldLoadException( "Could not create dir from extraction " + file.getAbsolutePath() );
+            while (entry != null) {
+                File file = new File(out, entry.getName());
+                if (entry.isDirectory()) {
+                    if (!file.mkdirs()) {
+                        throw new WorldLoadException("Could not create dir from extraction " + file.getAbsolutePath());
                     }
                 } else {
                     File parent = file.getParentFile();
-                    if ( !parent.exists() && !parent.mkdirs() ) {
-                        throw new WorldLoadException( "Could not create dir from extraction " + file.getAbsolutePath() );
+                    if (!parent.exists() && !parent.mkdirs()) {
+                        throw new WorldLoadException("Could not create dir from extraction " + file.getAbsolutePath());
                     }
 
-                    try ( BufferedOutputStream bos = new BufferedOutputStream( new FileOutputStream( file ) ) ) {
-                        if ( entry.getSize() > 0 ) {
+                    try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file))) {
+                        if (entry.getSize() > 0) {
                             byte[] buffer = new byte[(int) entry.getSize()];
                             int location;
 
-                            while ( ( location = zis.read( buffer ) ) != -1 ) {
-                                bos.write( buffer, 0, location );
+                            while ((location = zis.read(buffer)) != -1) {
+                                bos.write(buffer, 0, location);
                             }
                         }
                     }
@@ -98,11 +97,11 @@ public final class ZippedLevelDBWorldAdapter extends LevelDBWorldAdapter {
     }
 
     @Override
-    public void unload( Consumer<EntityPlayer> playerConsumer ) {
-        super.unload( playerConsumer );
+    public void unload(Consumer<EntityPlayer> playerConsumer) {
+        super.unload(playerConsumer);
 
-        if ( !this.worldDir.delete() ) {
-            this.logger.warn( "Could not delete temp directory" );
+        if (!this.worldDir.delete()) {
+            this.logger.warn("Could not delete temp directory");
         }
     }
 

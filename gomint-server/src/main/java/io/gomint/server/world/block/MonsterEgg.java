@@ -1,15 +1,14 @@
 package io.gomint.server.world.block;
 
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockMonsterEgg;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:monster_egg" )
+@RegisterInfo(sId = "minecraft:monster_egg")
 public class MonsterEgg extends Block implements BlockMonsterEgg {
 
     @Override

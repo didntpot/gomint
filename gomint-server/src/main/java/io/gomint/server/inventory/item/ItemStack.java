@@ -23,16 +23,10 @@ import io.gomint.server.world.block.Blocks;
 import io.gomint.taglib.NBTTagCompound;
 import io.gomint.world.block.Block;
 import io.gomint.world.block.data.Facing;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Represents a stack of up to 255 items of the same type which may
@@ -367,7 +361,7 @@ public abstract class ItemStack<I extends io.gomint.inventory.item.ItemStack<I>>
             clone.blocks = this.blocks;
 
             if (!clone.isAir()) {
-                clone.stackId = STACK_ID.getAndAdd( 1);
+                clone.stackId = STACK_ID.getAndAdd(1);
             }
 
             return clone;
@@ -609,7 +603,7 @@ public abstract class ItemStack<I extends io.gomint.inventory.item.ItemStack<I>>
         if (o == null || getClass() != o.getClass()) return false;
         ItemStack<?> itemStack = (ItemStack<?>) o;
         return this.material.equals(itemStack.material) &&
-                this.data == itemStack.data &&
+            this.data == itemStack.data &&
             Objects.equals(this.nbt, itemStack.nbt);
     }
 

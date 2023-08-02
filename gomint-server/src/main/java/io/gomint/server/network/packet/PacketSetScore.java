@@ -9,14 +9,16 @@ package io.gomint.server.network.packet;
 
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.Protocol;
-
 import java.util.List;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-public class PacketSetScore extends Packet {
+public class PacketSetScore extends Packet implements PacketClientbound {
+
+    public static final int TYPE_CHANGE = 0;
+    public static final int TYPE_REMOVE = 1;
 
     private byte type;
     private List<ScoreEntry> entries;
@@ -25,36 +27,38 @@ public class PacketSetScore extends Packet {
      * Construct a new packet
      */
     public PacketSetScore() {
-        super( Protocol.PACKET_SET_SCORE );
+        super(Protocol.PACKET_SET_SCORE);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeByte( this.type );
-        buffer.writeUnsignedVarInt( this.entries.size() );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeByte(this.type);
+        buffer.writeUnsignedVarInt(this.entries.size());
 
-        for ( ScoreEntry entry : this.entries ) {
-            buffer.writeSignedVarLong( entry.scoreId );
-            buffer.writeString( entry.objective );
-            buffer.writeLInt( entry.score );
+        for (ScoreEntry entry : this.entries) {
+            buffer.writeSignedVarLong(entry.scoreId);
+            buffer.writeString(entry.objective);
+            buffer.writeLInt(entry.score);
 
-            if ( this.type == 0 ) {
-                buffer.writeByte( entry.entityType );
-                switch ( entry.entityType ) {
-                    case 3: // Fake entity
-                        buffer.writeString( entry.fakeEntity );
+            if (this.type == TYPE_CHANGE) {
+                buffer.writeByte(entry.entityType);
+                switch (entry.entityType) {
+                    case ScoreEntry.TYPE_FAKE_PLAYER: // Fake entity
+                        buffer.writeString(entry.fakeEntity);
                         break;
-                    case 1:
-                    case 2:
-                        buffer.writeUnsignedVarLong( entry.entityId );
+                    case ScoreEntry.TYPE_PLAYER:
+                    case ScoreEntry.TYPE_ENTITY:
+                        buffer.writeUnsignedVarLong(entry.entityId);
                         break;
+                    default:
+                        throw new IllegalArgumentException("Unknown entity type " + entry.entityType + " for score entry");
                 }
             }
         }
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 
@@ -75,6 +79,11 @@ public class PacketSetScore extends Packet {
     }
 
     public static class ScoreEntry {
+
+        public static final int TYPE_PLAYER = 1;
+        public static final int TYPE_ENTITY = 2;
+        public static final int TYPE_FAKE_PLAYER = 3;
+
         private final long scoreId;
         private final String objective;
         private final int score;

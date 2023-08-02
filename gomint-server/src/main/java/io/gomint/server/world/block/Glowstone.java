@@ -2,11 +2,9 @@ package io.gomint.server.world.block;
 
 import io.gomint.inventory.item.ItemGlowstoneDust;
 import io.gomint.inventory.item.ItemStack;
-import io.gomint.world.block.BlockType;
-
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockGlowstone;
-
+import io.gomint.world.block.BlockType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -15,7 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:glowstone" )
+@RegisterInfo(sId = "minecraft:glowstone")
 public class Glowstone extends Block implements BlockGlowstone {
 
     @Override
@@ -49,9 +47,9 @@ public class Glowstone extends Block implements BlockGlowstone {
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
         return new ArrayList<>() {{
-            add( ItemGlowstoneDust.create( ThreadLocalRandom.current().nextBoolean() ? 2 : 4 ) );
+            add(ItemGlowstoneDust.create(ThreadLocalRandom.current().nextBoolean() ? 2 : 4));
         }};
     }
 }

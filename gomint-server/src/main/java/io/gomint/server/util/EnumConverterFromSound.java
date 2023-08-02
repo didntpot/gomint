@@ -16,9 +16,9 @@ import io.gomint.world.Sound;
 public class EnumConverterFromSound implements EnumConverter {
 
     @Override
-    public Enum convert( Enum value ) {
+    public Enum convert(Enum value) {
         int id = value.ordinal();
-        switch ( id ) {
+        switch (id) {
             case 0:
                 return Sound.ITEM_USE_ON;
             case 1:

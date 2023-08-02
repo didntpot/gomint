@@ -21,39 +21,39 @@ import org.slf4j.LoggerFactory;
  */
 public class Entities {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger( Entities.class );
+    private static final Logger LOGGER = LoggerFactory.getLogger(Entities.class);
     private final StringRegistry<io.gomint.server.entity.Entity<?>> generators;
 
-    public Entities( ClassPath classPath ) {
-        this.generators = new StringRegistry<>( (clazz, id) -> {
+    public Entities(ClassPath classPath) {
+        this.generators = new StringRegistry<>((clazz, id) -> {
             LambdaConstructionFactory<io.gomint.server.entity.Entity<?>> factory = new LambdaConstructionFactory<>(clazz);
             return in -> {
                 return factory.newInstance();
             };
-        } );
+        });
 
         // Register all subgroups
-        this.generators.register( classPath,"io.gomint.server.entity" );
-        this.generators.register( classPath,"io.gomint.server.entity.active" );
-        this.generators.register( classPath,"io.gomint.server.entity.animal" );
-        this.generators.register( classPath,"io.gomint.server.entity.monster" );
-        this.generators.register( classPath,"io.gomint.server.entity.passive" );
-        this.generators.register( classPath,"io.gomint.server.entity.projectile" );
+        this.generators.register(classPath, "io.gomint.server.entity");
+        this.generators.register(classPath, "io.gomint.server.entity.active");
+        this.generators.register(classPath, "io.gomint.server.entity.animal");
+        this.generators.register(classPath, "io.gomint.server.entity.monster");
+        this.generators.register(classPath, "io.gomint.server.entity.passive");
+        this.generators.register(classPath, "io.gomint.server.entity.projectile");
     }
 
-    public <T extends Entity<T>> T create( Class<T> entityClass ) {
-        Generator<T> entityGenerator = (Generator<T>) this.generators.getGenerator( entityClass );
-        if ( entityGenerator == null ) {
+    public <T extends Entity<T>> T create(Class<T> entityClass) {
+        Generator<T> entityGenerator = (Generator<T>) this.generators.getGenerator(entityClass);
+        if (entityGenerator == null) {
             return null;
         }
 
         return (T) entityGenerator.generate();
     }
 
-    public <T extends Entity<T>> T create( String entityId ) {
-        Generator<T> entityGenerator = (Generator<T>) this.generators.getGenerator( entityId );
-        if ( entityGenerator == null ) {
-            LOGGER.warn( "Could not find entity generator for id {}", entityId );
+    public <T extends Entity<T>> T create(String entityId) {
+        Generator<T> entityGenerator = (Generator<T>) this.generators.getGenerator(entityId);
+        if (entityGenerator == null) {
+            LOGGER.warn("Could not find entity generator for id {}", entityId);
             return null;
         }
 

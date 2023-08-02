@@ -31,8 +31,8 @@ public abstract class EntityCreature<E extends Entity<E>> extends EntityLiving<E
      * @param type  The type of the Entity
      * @param world The world in which this entity is in
      */
-    protected EntityCreature( EntityType type, WorldAdapter world ) {
-        super( type, world );
+    protected EntityCreature(EntityType type, WorldAdapter world) {
+        super(type, world);
     }
 
     @Override
@@ -41,17 +41,17 @@ public abstract class EntityCreature<E extends Entity<E>> extends EntityLiving<E
     }
 
     @Override
-    public void initFromNBT( NBTTagCompound compound ) {
-        super.initFromNBT( compound );
+    public void initFromNBT(NBTTagCompound compound) {
+        super.initFromNBT(compound);
 
-        this.armorInventory.initFromNBT( compound.getList("Armor", false ) );
+        this.armorInventory.initFromNBT(compound.getList("Armor", false));
     }
 
     @Override
     public NBTTagCompound persistToNBT() {
         NBTTagCompound compound = super.persistToNBT();
 
-        compound.addValue("Armor", this.armorInventory.persistToNBT() );
+        compound.addValue("Armor", this.armorInventory.persistToNBT());
 
         return compound;
     }

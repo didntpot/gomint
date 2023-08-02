@@ -9,7 +9,7 @@ import io.gomint.server.world.SoundMagicNumbers;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketWorldSoundEvent extends Packet {
+public class PacketWorldSoundEvent extends Packet implements PacketClientbound, PacketServerbound {
 
     private SoundMagicNumbers type;
     private Vector position;
@@ -19,25 +19,25 @@ public class PacketWorldSoundEvent extends Packet {
     private boolean disableRelativeVolume;
 
     public PacketWorldSoundEvent() {
-        super( Protocol.PACKET_WORLD_SOUND_EVENT );
+        super(Protocol.PACKET_WORLD_SOUND_EVENT);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeUnsignedVarInt( this.type.soundId() );
-        buffer.writeLFloat( this.position.x() );
-        buffer.writeLFloat( this.position.y() );
-        buffer.writeLFloat( this.position.z() );
-        buffer.writeSignedVarInt( this.extraData );
-        buffer.writeString( this.entityId );
-        buffer.writeBoolean( this.isBabyMob );
-        buffer.writeBoolean( this.disableRelativeVolume );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeUnsignedVarInt(this.type.soundId());
+        buffer.writeLFloat(this.position.x());
+        buffer.writeLFloat(this.position.y());
+        buffer.writeLFloat(this.position.z());
+        buffer.writeSignedVarInt(this.extraData);
+        buffer.writeString(this.entityId);
+        buffer.writeBoolean(this.isBabyMob);
+        buffer.writeBoolean(this.disableRelativeVolume);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
-        this.type = SoundMagicNumbers.valueOf( buffer.readUnsignedVarInt() );
-        this.position = new Vector( buffer.readLFloat(), buffer.readLFloat(), buffer.readLFloat() );
+    public void deserialize(PacketBuffer buffer, int protocolID) {
+        this.type = SoundMagicNumbers.valueOf(buffer.readUnsignedVarInt());
+        this.position = new Vector(buffer.readLFloat(), buffer.readLFloat(), buffer.readLFloat());
         this.extraData = buffer.readSignedVarInt();
         this.entityId = buffer.readString();
         this.isBabyMob = buffer.readBoolean();

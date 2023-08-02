@@ -15,7 +15,7 @@ import io.gomint.world.block.BlockType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:nether_wart_block" )
+@RegisterInfo(sId = "minecraft:nether_wart_block")
 public class NetherWartBlock extends Block implements BlockNetherWartBlock {
 
     @Override

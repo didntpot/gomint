@@ -10,7 +10,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:nether_sprouts" )
+@RegisterInfo(sId = "minecraft:nether_sprouts")
 public class NetherSprouts extends Block implements BlockNetherSprouts {
 
     @Override

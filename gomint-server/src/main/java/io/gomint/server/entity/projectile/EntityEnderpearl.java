@@ -18,7 +18,6 @@ import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.util.Values;
 import io.gomint.server.world.WorldAdapter;
 import io.gomint.world.block.Block;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,7 +25,7 @@ import java.util.Set;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:ender_pearl" )
+@RegisterInfo(sId = "minecraft:ender_pearl")
 public class EntityEnderpearl extends EntityThrowable<io.gomint.entity.projectile.EntityEnderpearl> implements io.gomint.entity.projectile.EntityEnderpearl {
 
     private float lastUpdateDT;
@@ -35,7 +34,7 @@ public class EntityEnderpearl extends EntityThrowable<io.gomint.entity.projectil
      * Create entity for API
      */
     public EntityEnderpearl() {
-        super( null, EntityType.THROWN_ENDERPEARL, null );
+        super(null, EntityType.THROWN_ENDERPEARL, null);
     }
 
     /**
@@ -44,8 +43,8 @@ public class EntityEnderpearl extends EntityThrowable<io.gomint.entity.projectil
      * @param player which spawned this hook
      * @param world  The world in which this entity is in
      */
-    public EntityEnderpearl( EntityPlayer player, WorldAdapter world ) {
-        super( player, EntityType.THROWN_ENDERPEARL, world );
+    public EntityEnderpearl(EntityPlayer player, WorldAdapter world) {
+        super(player, EntityType.THROWN_ENDERPEARL, world);
 
         // Calculate starting position
         Location position = this.positionFromShooter();
@@ -58,23 +57,23 @@ public class EntityEnderpearl extends EntityThrowable<io.gomint.entity.projectil
     }
 
     @Override
-    public void update( long currentTimeMS, float dT ) {
-        super.update( currentTimeMS, dT );
+    public void update(long currentTimeMS, float dT) {
+        super.update(currentTimeMS, dT);
 
         // Ender pearls which hit are gone
-        if ( this.hitEntity != null ) {
+        if (this.hitEntity != null) {
             // Teleport
             this.teleportShooter();
             this.despawn();
         }
 
         this.lastUpdateDT += dT;
-        if ( Values.CLIENT_TICK_RATE - this.lastUpdateDT < MathUtils.EPSILON ) {
-            if ( this.isCollided ) {
-                Set<Block> blocks = new HashSet<>( this.collidedWith );
-                ProjectileHitBlocksEvent hitBlocksEvent = new ProjectileHitBlocksEvent( blocks, this );
-                this.world.server().pluginManager().callEvent( hitBlocksEvent );
-                if ( !hitBlocksEvent.cancelled() ) {
+        if (Values.CLIENT_TICK_RATE - this.lastUpdateDT < MathUtils.EPSILON) {
+            if (this.isCollided) {
+                Set<Block> blocks = new HashSet<>(this.collidedWith);
+                ProjectileHitBlocksEvent hitBlocksEvent = new ProjectileHitBlocksEvent(blocks, this);
+                this.world.server().pluginManager().callEvent(hitBlocksEvent);
+                if (!hitBlocksEvent.cancelled()) {
                     // Teleport
                     this.teleportShooter();
                     this.despawn();
@@ -82,7 +81,7 @@ public class EntityEnderpearl extends EntityThrowable<io.gomint.entity.projectil
             }
 
             // Despawn after 1200 ticks ( 1 minute )
-            if ( this.age >= 1200 ) {
+            if (this.age >= 1200) {
                 this.despawn();
             }
 
@@ -91,8 +90,8 @@ public class EntityEnderpearl extends EntityThrowable<io.gomint.entity.projectil
     }
 
     private void teleportShooter() {
-        this.shooter.attack( 5.0f, EntityDamageEvent.DamageSource.FALL );
-        this.shooter.teleport( this.location(), EntityTeleportEvent.Cause.ENDERPEARL );
+        this.shooter.attack(5.0f, EntityDamageEvent.DamageSource.FALL);
+        this.shooter.teleport(this.location(), EntityTeleportEvent.Cause.ENDERPEARL);
     }
 
 }

@@ -7,7 +7,6 @@ import io.gomint.server.entity.EntityPlayer;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockFire;
 import io.gomint.world.block.BlockType;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -16,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:fire" )
+@RegisterInfo(sId = "minecraft:fire")
 public class Fire extends Block implements BlockFire {
 
     @Override
@@ -25,7 +24,7 @@ public class Fire extends Block implements BlockFire {
     }
 
     @Override
-    public boolean canBeReplaced(ItemStack<?> item ) {
+    public boolean canBeReplaced(ItemStack<?> item) {
         return true;
     }
 
@@ -45,14 +44,14 @@ public class Fire extends Block implements BlockFire {
     }
 
     @Override
-    public void onEntityStanding(EntityLiving<?> entityLiving ) {
-        entityLiving.attack( 1.0f, EntityDamageEvent.DamageSource.FIRE );
-        entityLiving.burning( 8, TimeUnit.SECONDS );
+    public void onEntityStanding(EntityLiving<?> entityLiving) {
+        entityLiving.attack(1.0f, EntityDamageEvent.DamageSource.FIRE);
+        entityLiving.burning(8, TimeUnit.SECONDS);
     }
 
     @Override
-    public boolean punch( EntityPlayer player ) {
-        this.blockType( Air.class );
+    public boolean punch(EntityPlayer player) {
+        this.blockType(Air.class);
         return true;
     }
 
@@ -62,7 +61,7 @@ public class Fire extends Block implements BlockFire {
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
         return new ArrayList<>();
     }
 

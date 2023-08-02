@@ -21,28 +21,28 @@ public class ComparatorTileEntity extends TileEntity {
 
     private int outputSignal;
 
-    public ComparatorTileEntity( Block block, Items items ) {
-        super( block, items );
+    public ComparatorTileEntity(Block block, Items items) {
+        super(block, items);
     }
 
     @Override
-    public void fromCompound( NBTTagCompound compound ) {
-        super.fromCompound( compound );
+    public void fromCompound(NBTTagCompound compound) {
+        super.fromCompound(compound);
 
-        this.outputSignal = compound.getInteger( "OutputSignal", 0 );
+        this.outputSignal = compound.getInteger("OutputSignal", 0);
     }
 
     @Override
-    public void update( long currentMillis, float dT ) {
+    public void update(long currentMillis, float dT) {
 
     }
 
     @Override
-    public void toCompound( NBTTagCompound compound, SerializationReason reason ) {
-        super.toCompound( compound, reason );
+    public void toCompound(NBTTagCompound compound, SerializationReason reason) {
+        super.toCompound(compound, reason);
 
-        compound.addValue( "id", "Comparator" );
-        compound.addValue( "OutputSignal", this.outputSignal );
+        compound.addValue("id", "Comparator");
+        compound.addValue("OutputSignal", this.outputSignal);
     }
 
 }

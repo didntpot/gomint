@@ -18,7 +18,6 @@ import io.gomint.server.entity.Attribute;
 import io.gomint.server.entity.EntityType;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.WorldAdapter;
-
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -63,7 +62,7 @@ public class EntityDolphin extends EntityAgeableAnimal<io.gomint.entity.animal.E
         if (dead()) {
             return;
         }
-        
+
         if (this.baby()) {
             return;
         }
@@ -77,17 +76,17 @@ public class EntityDolphin extends EntityAgeableAnimal<io.gomint.entity.animal.E
                 looting = enchantment.level();
             }
         }
-        
+
         int amount = ThreadLocalRandom.current().nextInt(2 + looting);
         if (amount > 0) {
-            
+
             ItemStack<?> drop;
             if (this.burning()) {
                 drop = ItemCookedCod.create(amount);
             } else {
                 drop = ItemCod.create(amount);
             }
-            
+
             this.world.dropItem(this.location(), drop);
         }
     }

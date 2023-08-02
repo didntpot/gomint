@@ -29,7 +29,7 @@ public class MetadataInt extends MetadataValue {
      *
      * @param value The value to initialize the metadata int with
      */
-    public MetadataInt( int value ) {
+    public MetadataInt(int value) {
         this.value = value;
     }
 
@@ -47,19 +47,19 @@ public class MetadataInt extends MetadataValue {
      *
      * @param value The value of this metadata int
      */
-    public void setValue( int value ) {
+    public void setValue(int value) {
         this.value = value;
     }
 
     // ========================== METADATA VALUE ========================== //
     @Override
-    void serialize( PacketBuffer buffer, int index ) {
-        super.serialize( buffer, index );
-        buffer.writeSignedVarInt( this.value );
+    void serialize(PacketBuffer buffer, int index) {
+        super.serialize(buffer, index);
+        buffer.writeSignedVarInt(this.value);
     }
 
     @Override
-    void deserialize( PacketBuffer buffer ) {
+    void deserialize(PacketBuffer buffer) {
         this.value = buffer.readSignedVarInt();
     }
 

@@ -11,10 +11,10 @@ import io.gomint.world.block.data.StoneType;
  * @version 1.0
  */
 @RegisterInfo(sId = "minecraft:cobblestone_wall", def = true)
-@RegisterInfo( sId = "minecraft:polished_blackstone_brick_wall" )
-@RegisterInfo( sId = "minecraft:polished_blackstone_wall" )
-@RegisterInfo( sId = "minecraft:blackstone_wall" )
-public class ItemWall extends ItemStack< io.gomint.inventory.item.ItemWall> implements io.gomint.inventory.item.ItemWall {
+@RegisterInfo(sId = "minecraft:polished_blackstone_brick_wall")
+@RegisterInfo(sId = "minecraft:polished_blackstone_wall")
+@RegisterInfo(sId = "minecraft:blackstone_wall")
+public class ItemWall extends ItemStack<io.gomint.inventory.item.ItemWall> implements io.gomint.inventory.item.ItemWall {
 
     private static final String WALL_ID = "minecraft:cobblestone_wall";
 
@@ -57,6 +57,7 @@ public class ItemWall extends ItemStack< io.gomint.inventory.item.ItemWall> impl
 
         private final String wallId;
         private final short data;
+
         StoneTypeMagic(String wallId, short data) {
             this.wallId = wallId;
             this.data = data;

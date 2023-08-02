@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:basalt" )
-public class ItemBasalt extends ItemStack< io.gomint.inventory.item.ItemBasalt> implements io.gomint.inventory.item.ItemBasalt {
+@RegisterInfo(sId = "minecraft:basalt")
+public class ItemBasalt extends ItemStack<io.gomint.inventory.item.ItemBasalt> implements io.gomint.inventory.item.ItemBasalt {
 
     @Override
     public ItemType itemType() {

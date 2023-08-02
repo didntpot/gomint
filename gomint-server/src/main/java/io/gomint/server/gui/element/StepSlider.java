@@ -1,11 +1,10 @@
 package io.gomint.server.gui.element;
 
 import io.gomint.server.gui.CustomForm;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  * @author geNAZt
@@ -17,25 +16,25 @@ public class StepSlider extends Element implements io.gomint.gui.element.StepSli
     private List<String> steps = new ArrayList<>();
     private int defaultStep = 0;
 
-    public StepSlider( CustomForm form, String id, String text ) {
-        super( id, text );
+    public StepSlider(CustomForm form, String id, String text) {
+        super(id, text);
         this.form = form;
     }
 
     @Override
-    public io.gomint.gui.element.StepSlider step(String step ) {
-        this.steps.add( step );
+    public io.gomint.gui.element.StepSlider step(String step) {
+        this.steps.add(step);
         this.form.dirty();
         return this;
     }
 
     @Override
-    public io.gomint.gui.element.StepSlider step(String step, boolean defaultStep ) {
-        if ( defaultStep ) {
+    public io.gomint.gui.element.StepSlider step(String step, boolean defaultStep) {
+        if (defaultStep) {
             this.defaultStep = this.steps.size();
         }
 
-        this.steps.add( step );
+        this.steps.add(step);
         this.form.dirty();
         return null;
     }
@@ -43,22 +42,22 @@ public class StepSlider extends Element implements io.gomint.gui.element.StepSli
     @Override
     public JSONObject toJSON() {
         JSONObject obj = super.toJSON();
-        obj.put( "type", "step_slider" );
+        obj.put("type", "step_slider");
 
         JSONArray jsonSteps = new JSONArray();
-        for ( String step : this.steps ) {
-            jsonSteps.add( step );
+        for (String step : this.steps) {
+            jsonSteps.add(step);
         }
 
-        obj.put( "steps", jsonSteps );
-        obj.put( "default", this.defaultStep );
+        obj.put("steps", jsonSteps);
+        obj.put("default", this.defaultStep);
         return obj;
     }
 
     @Override
-    public Object getAnswer( Object answerOption ) {
+    public Object getAnswer(Object answerOption) {
         String answer = (String) answerOption;
-        this.defaultStep = this.steps.indexOf( answer );
+        this.defaultStep = this.steps.indexOf(answer);
         return answer;
     }
 

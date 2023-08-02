@@ -1,17 +1,16 @@
 package io.gomint.server.world.block;
 
 import io.gomint.inventory.item.ItemStack;
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.world.block.BlockGlowingRedstoneOre;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:lit_redstone_ore" )
+@RegisterInfo(sId = "minecraft:lit_redstone_ore")
 public class GlowingRedstoneOre extends Block implements BlockGlowingRedstoneOre {
 
     @Override

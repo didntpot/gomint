@@ -10,14 +10,14 @@ import io.gomint.server.network.packet.PacketWorldSoundEvent;
 public class PacketWorldSoundEventHandler implements PacketHandler<PacketWorldSoundEvent> {
 
     @Override
-    public void handle( PacketWorldSoundEvent packet, long currentTimeMillis, PlayerConnection connection ) {
-        switch ( packet.getType() ) {
+    public void handle(PacketWorldSoundEvent packet, long currentTimeMillis, PlayerConnection connection) {
+        switch (packet.getType()) {
             case STOP_JUKEBOX:
                 return;
         }
 
         // Relay to all other players which can see this entity
-        connection.entity().world().sendToVisible( packet.getPosition().toBlockPosition(), packet, entity -> true );
+        connection.entity().world().sendToVisible(packet.getPosition().toBlockPosition(), packet, entity -> true);
     }
 
 }

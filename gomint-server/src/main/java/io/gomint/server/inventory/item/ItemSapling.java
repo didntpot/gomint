@@ -5,7 +5,6 @@ import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.Block;
 import io.gomint.world.block.BlockSapling;
 import io.gomint.world.block.data.LogType;
-
 import java.time.Duration;
 
 /**
@@ -13,9 +12,9 @@ import java.time.Duration;
  * @version 1.0
  */
 @RegisterInfo(sId = "minecraft:sapling")
-@RegisterInfo( sId = "minecraft:crimson_fungus" )
-@RegisterInfo( sId = "minecraft:warped_fungus" )
-public class ItemSapling extends ItemStack< io.gomint.inventory.item.ItemSapling> implements io.gomint.inventory.item.ItemSapling {
+@RegisterInfo(sId = "minecraft:crimson_fungus")
+@RegisterInfo(sId = "minecraft:warped_fungus")
+public class ItemSapling extends ItemStack<io.gomint.inventory.item.ItemSapling> implements io.gomint.inventory.item.ItemSapling {
 
     private enum LogTypeMagic {
         OAK("minecraft:sapling", (short) 0),
@@ -29,6 +28,7 @@ public class ItemSapling extends ItemStack< io.gomint.inventory.item.ItemSapling
 
         private final String id;
         private final short data;
+
         LogTypeMagic(String id, short data) {
             this.id = id;
             this.data = data;

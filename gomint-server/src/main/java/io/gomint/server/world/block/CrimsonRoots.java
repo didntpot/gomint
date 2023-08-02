@@ -8,7 +8,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:crimson_roots" )
+@RegisterInfo(sId = "minecraft:crimson_roots")
 public class CrimsonRoots extends Block implements BlockCrimsonRoots {
 
     @Override

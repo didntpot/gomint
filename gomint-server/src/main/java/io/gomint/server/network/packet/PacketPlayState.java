@@ -9,29 +9,28 @@ package io.gomint.server.network.packet;
 
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.Protocol;
-
 import java.util.Objects;
 
 /**
  * @author BlackyPaw
  * @version 1.0
  */
-public class PacketPlayState extends Packet {
+public class PacketPlayState extends Packet implements PacketClientbound {
 
     private PlayState state;
 
     public PacketPlayState() {
-        super( Protocol.PACKET_PLAY_STATE );
+        super(Protocol.PACKET_PLAY_STATE);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeInt( this.state.getValue() );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeInt(this.state.getValue());
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
-        this.state = PlayState.fromValue( buffer.readInt() );
+    public void deserialize(PacketBuffer buffer, int protocolID) {
+        this.state = PlayState.fromValue(buffer.readInt());
     }
 
     public PlayState getState() {
@@ -60,19 +59,19 @@ public class PacketPlayState extends Packet {
      */
     public enum PlayState {
 
-        LOGIN_SUCCESS( 0 ),
-        LOGIN_FAILED_CLIENT( 1 ),
-        LOGIN_FAILED_SERVER( 2 ),
-        SPAWN( 3 );
+        LOGIN_SUCCESS(0),
+        LOGIN_FAILED_CLIENT(1),
+        LOGIN_FAILED_SERVER(2),
+        SPAWN(3);
 
         private final int value;
 
-        PlayState( int value ) {
+        PlayState(int value) {
             this.value = value;
         }
 
-        public static PlayState fromValue( int value ) {
-            switch ( value ) {
+        public static PlayState fromValue(int value) {
+            switch (value) {
                 case 0:
                     return LOGIN_SUCCESS;
                 case 1:

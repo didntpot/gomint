@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:pillager_spawn_egg" )
-public class ItemPillagerSpawnEgg extends ItemStack< io.gomint.inventory.item.ItemPillagerSpawnEgg> implements io.gomint.inventory.item.ItemPillagerSpawnEgg {
+@RegisterInfo(sId = "minecraft:pillager_spawn_egg")
+public class ItemPillagerSpawnEgg extends ItemStack<io.gomint.inventory.item.ItemPillagerSpawnEgg> implements io.gomint.inventory.item.ItemPillagerSpawnEgg {
 
     @Override
     public ItemType itemType() {

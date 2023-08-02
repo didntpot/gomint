@@ -15,7 +15,7 @@ import io.gomint.world.block.BlockType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:frosted_ice" )
+@RegisterInfo(sId = "minecraft:frosted_ice")
 public class FrostedIce extends Block implements BlockFrostedIce {
 
     @Override

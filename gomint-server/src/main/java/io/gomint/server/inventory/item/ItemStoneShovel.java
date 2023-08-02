@@ -16,14 +16,14 @@ import io.gomint.world.block.data.Facing;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:stone_shovel" )
+@RegisterInfo(sId = "minecraft:stone_shovel")
 public class ItemStoneShovel extends ItemReduceTierStone<io.gomint.inventory.item.ItemStoneShovel> implements io.gomint.inventory.item.ItemStoneShovel {
 
     @Override
-    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock ) {
-        if ( clickedBlock instanceof GrassBlock ) {
-            clickedBlock.blockType( GrassPath.class );
-            this.calculateUsageAndUpdate( 1 );
+    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock) {
+        if (clickedBlock instanceof GrassBlock) {
+            clickedBlock.blockType(GrassPath.class);
+            this.calculateUsageAndUpdate(1);
             return true;
         }
 
@@ -31,17 +31,17 @@ public class ItemStoneShovel extends ItemReduceTierStone<io.gomint.inventory.ite
     }
 
     @Override
-    public void gotInHand( EntityPlayer player ) {
+    public void gotInHand(EntityPlayer player) {
         player
-            .attributeInstance( Attribute.ATTACK_DAMAGE )
-            .setModifier( AttributeModifier.ITEM_ATTACK_DAMAGE, AttributeModifierType.ADDITION, 3 );
+            .attributeInstance(Attribute.ATTACK_DAMAGE)
+            .setModifier(AttributeModifier.ITEM_ATTACK_DAMAGE, AttributeModifierType.ADDITION, 3);
     }
 
     @Override
-    public void removeFromHand( EntityPlayer player ) {
+    public void removeFromHand(EntityPlayer player) {
         player
-            .attributeInstance( Attribute.ATTACK_DAMAGE )
-            .removeModifier( AttributeModifier.ITEM_ATTACK_DAMAGE );
+            .attributeInstance(Attribute.ATTACK_DAMAGE)
+            .removeModifier(AttributeModifier.ITEM_ATTACK_DAMAGE);
     }
 
     @Override

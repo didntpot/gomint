@@ -8,10 +8,10 @@ import io.gomint.server.entity.tileentity.ContainerTileEntity;
  */
 public abstract class ContainerBlock<B> extends Block {
 
-    public B customName(String customName ) {
+    public B customName(String customName) {
         ContainerTileEntity containerTileEntity = this.tileEntity();
-        if ( containerTileEntity != null ) {
-            containerTileEntity.setCustomName( customName );
+        if (containerTileEntity != null) {
+            containerTileEntity.setCustomName(customName);
             this.updateBlock();
         }
 
@@ -20,7 +20,7 @@ public abstract class ContainerBlock<B> extends Block {
 
     public String customName() {
         ContainerTileEntity containerTileEntity = this.tileEntity();
-        if ( containerTileEntity != null ) {
+        if (containerTileEntity != null) {
             return containerTileEntity.getCustomName();
         }
 

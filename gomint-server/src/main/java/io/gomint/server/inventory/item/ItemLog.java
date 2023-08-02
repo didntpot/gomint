@@ -6,7 +6,6 @@ import io.gomint.world.block.Block;
 import io.gomint.world.block.BlockLog;
 import io.gomint.world.block.data.Axis;
 import io.gomint.world.block.data.LogType;
-
 import java.time.Duration;
 
 /**
@@ -108,7 +107,7 @@ public class ItemLog extends ItemStack<io.gomint.inventory.item.ItemLog> impleme
     public LogType type() {
         for (LogTypeMagic value : LogTypeMagic.values()) {
             if ((value.logBlockId.equals(this.material()) && (this.data() & 3) == value.dataValue) ||
-                (value.strippedLogBlockId.equals(this.material()))||
+                (value.strippedLogBlockId.equals(this.material())) ||
                 (value.woodBlockId.equals(this.material()) && (value.woodDataValue == -1 || this.data() == value.woodDataValue)) ||
                 (value.woodBlockId.equals(this.material()) && (value.strippedWoodDataValue == -1 || this.data() == value.strippedWoodDataValue)) ||
                 this.material().equals(value.strippedWoodBlockId)) {

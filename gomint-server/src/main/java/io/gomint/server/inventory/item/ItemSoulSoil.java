@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:soul_soil" )
-public class ItemSoulSoil extends ItemStack< io.gomint.inventory.item.ItemSoulSoil> implements io.gomint.inventory.item.ItemSoulSoil {
+@RegisterInfo(sId = "minecraft:soul_soil")
+public class ItemSoulSoil extends ItemStack<io.gomint.inventory.item.ItemSoulSoil> implements io.gomint.inventory.item.ItemSoulSoil {
 
     @Override
     public ItemType itemType() {

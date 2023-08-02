@@ -14,7 +14,6 @@ import io.gomint.world.Sound;
 import io.gomint.world.block.BlockLiquid;
 import io.gomint.world.block.data.Direction;
 import io.gomint.world.block.data.Facing;
-
 import java.util.HashMap;
 import java.util.Map;
 

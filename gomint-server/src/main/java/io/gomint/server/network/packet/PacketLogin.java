@@ -23,21 +23,21 @@ public class PacketLogin extends Packet {
      * Construct a new login packet which contains all data to login into a MC:PE server
      */
     public PacketLogin() {
-        super( Protocol.PACKET_LOGIN );
+        super(Protocol.PACKET_LOGIN);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeInt( this.protocol );
-        buffer.writeUnsignedVarInt( this.payload.length );
-        buffer.writeBytes( this.payload );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeInt(this.protocol);
+        buffer.writeUnsignedVarInt(this.payload.length);
+        buffer.writeBytes(this.payload);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.protocol = buffer.readInt();
         this.payload = new byte[buffer.readUnsignedVarInt()];
-        buffer.readBytes( this.payload );
+        buffer.readBytes(this.payload);
     }
 
     public int getProtocol() {

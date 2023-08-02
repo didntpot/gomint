@@ -10,7 +10,6 @@ import io.gomint.command.validator.IntegerValidator;
 import io.gomint.command.validator.TargetValidator;
 import io.gomint.server.entity.EntityPlayer;
 import io.gomint.world.Gamemode;
-
 import java.util.Map;
 
 /**

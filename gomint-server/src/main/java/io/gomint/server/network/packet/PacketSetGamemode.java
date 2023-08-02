@@ -7,22 +7,22 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketSetGamemode extends Packet {
+public class PacketSetGamemode extends Packet implements PacketClientbound, PacketServerbound {
 
     private int gameMode;
 
     public PacketSetGamemode() {
-        super( Protocol.PACKET_SET_GAMEMODE );
+        super(Protocol.PACKET_SET_GAMEMODE);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeSignedVarInt( this.gameMode );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeSignedVarInt(this.gameMode);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
-
+    public void deserialize(PacketBuffer buffer, int protocolID) {
+        this.gameMode = buffer.readSignedVarInt();
     }
 
     public int getGameMode() {

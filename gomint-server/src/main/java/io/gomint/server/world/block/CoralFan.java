@@ -19,8 +19,8 @@ import io.gomint.world.block.data.RotationDirection;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:coral_fan", def = true )
-@RegisterInfo( sId = "minecraft:coral_fan_dead" )
+@RegisterInfo(sId = "minecraft:coral_fan", def = true)
+@RegisterInfo(sId = "minecraft:coral_fan_dead")
 public class CoralFan extends Block implements BlockCoralFan {
 
     private enum CoralTypeMagic {
@@ -32,6 +32,7 @@ public class CoralFan extends Block implements BlockCoralFan {
         ;
 
         private final String color;
+
         CoralTypeMagic(String color) {
             this.color = color;
         }

@@ -10,12 +10,11 @@ package io.gomint.server.event;
 import com.google.common.base.Preconditions;
 import io.gomint.event.CancellableEvent;
 import io.gomint.event.Event;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This list sorts and triggers all EventHandlerMethods which have been registered for a event.
@@ -25,7 +24,7 @@ import java.util.Map;
  */
 class EventHandlerList {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger( EventHandlerList.class );
+    private static final Logger LOGGER = LoggerFactory.getLogger(EventHandlerList.class);
 
     // If the handler list is dirty we need to sort it by the event handler priorities:
     private boolean dirty;
@@ -46,17 +45,17 @@ class EventHandlerList {
      * @param key     The key which should be used to store this handler
      * @param handler The handler which should be added
      */
-    void addHandler( String key, EventHandlerMethod handler ) {
-        Preconditions.checkArgument( !this.handlers.containsKey( key ), "EventHandler can't be registered twice. Other instance: " + this.handlers.get( key ) );
+    void addHandler(String key, EventHandlerMethod handler) {
+        Preconditions.checkArgument(!this.handlers.containsKey(key), "EventHandler can't be registered twice. Other instance: " + this.handlers.get(key));
 
-        this.handlers.put( key, handler );
+        this.handlers.put(key, handler);
 
-        LOGGER.debug( "Registering handler {} -> {}", key, handler );
+        LOGGER.debug("Registering handler {} -> {}", key, handler);
 
         // Array copy to bigger array
         EventHandlerMethod[] newArray = new EventHandlerMethod[this.insertIndex + 1];
-        if ( this.sortedHandlerList.length > 0 ) {
-            System.arraycopy( this.sortedHandlerList, 0, newArray, 0, this.sortedHandlerList.length );
+        if (this.sortedHandlerList.length > 0) {
+            System.arraycopy(this.sortedHandlerList, 0, newArray, 0, this.sortedHandlerList.length);
         }
 
         newArray[this.insertIndex++] = handler;
@@ -69,25 +68,25 @@ class EventHandlerList {
      *
      * @param key The key which has been used to store this handler
      */
-    void removeHandler( String key ) {
-        EventHandlerMethod method = this.handlers.remove( key );
-        if ( method != null ) {
+    void removeHandler(String key) {
+        EventHandlerMethod method = this.handlers.remove(key);
+        if (method != null) {
             // Search for the handler method
             int removed = 0;
-            for ( int i = 0; i < this.sortedHandlerList.length; i++ ) {
+            for (int i = 0; i < this.sortedHandlerList.length; i++) {
                 EventHandlerMethod method1 = this.sortedHandlerList[i];
-                if ( method.equals( method1 ) ) {
+                if (method.equals(method1)) {
                     this.sortedHandlerList[i] = null;
                     removed++;
                 }
             }
 
             // Merge array to remove null
-            if ( removed > 0 ) {
+            if (removed > 0) {
                 EventHandlerMethod[] newArr = new EventHandlerMethod[this.sortedHandlerList.length - removed];
                 int index = 0;
-                for ( EventHandlerMethod eventHandlerMethod : this.sortedHandlerList ) {
-                    if ( eventHandlerMethod != null ) {
+                for (EventHandlerMethod eventHandlerMethod : this.sortedHandlerList) {
+                    if (eventHandlerMethod != null) {
                         newArr[index++] = eventHandlerMethod;
                     }
                 }
@@ -106,31 +105,31 @@ class EventHandlerList {
      *
      * @param event The event which gets passed to all handlers
      */
-    void triggerEvent( Event event ) {
-        if ( this.dirty ) {
-            Arrays.sort( this.sortedHandlerList );
+    void triggerEvent(Event event) {
+        if (this.dirty) {
+            Arrays.sort(this.sortedHandlerList);
             this.dirty = false;
         }
 
-        LOGGER.debug( "Starting to handle event: {}", event );
+        LOGGER.debug("Starting to handle event: {}", event);
 
-        if ( event instanceof CancellableEvent ) {
+        if (event instanceof CancellableEvent) {
             CancellableEvent<?> cancelableEvent = (CancellableEvent<?>) event;
-            for ( EventHandlerMethod handler : this.sortedHandlerList ) {
-                LOGGER.debug( "Checking handler {} with event {}", handler, cancelableEvent );
-                if ( cancelableEvent.cancelled() && handler.ignoreCancelled() ) {
-                    LOGGER.debug( "Handler wants to ignore cancelled events {}: {}", handler, cancelableEvent );
+            for (EventHandlerMethod handler : this.sortedHandlerList) {
+                LOGGER.debug("Checking handler {} with event {}", handler, cancelableEvent);
+                if (cancelableEvent.cancelled() && handler.ignoreCancelled()) {
+                    LOGGER.debug("Handler wants to ignore cancelled events {}: {}", handler, cancelableEvent);
                     continue;
                 }
 
-                handler.invoke( event );
-                LOGGER.debug( "Event after handler {}: {}", handler, cancelableEvent );
+                handler.invoke(event);
+                LOGGER.debug("Event after handler {}: {}", handler, cancelableEvent);
             }
         } else {
-            for ( EventHandlerMethod handler : this.sortedHandlerList ) {
-                LOGGER.debug( "Checking handler {} with event {}", handler, event );
-                handler.invoke( event );
-                LOGGER.debug( "Event after handler {}: {}", handler, event );
+            for (EventHandlerMethod handler : this.sortedHandlerList) {
+                LOGGER.debug("Checking handler {} with event {}", handler, event);
+                handler.invoke(event);
+                LOGGER.debug("Event after handler {}: {}", handler, event);
             }
         }
     }

@@ -6,8 +6,8 @@ package io.gomint.server.gui.element;
  */
 public class Button extends Element {
 
-    public Button( String id, String text ) {
-        super( id, text );
+    public Button(String id, String text) {
+        super(id, text);
     }
 
 }

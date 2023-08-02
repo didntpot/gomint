@@ -29,7 +29,7 @@ public class MetadataByte extends MetadataValue {
      *
      * @param value The value to initialize the metadata byte with
      */
-    public MetadataByte( byte value ) {
+    public MetadataByte(byte value) {
         this.value = value;
     }
 
@@ -47,19 +47,19 @@ public class MetadataByte extends MetadataValue {
      *
      * @param value The value of this metadata byte
      */
-    public void setValue( byte value ) {
+    public void setValue(byte value) {
         this.value = value;
     }
 
     // ========================== METADATA VALUE ========================== //
     @Override
-    void serialize( PacketBuffer buffer, int index ) {
-        super.serialize( buffer, index );
-        buffer.writeByte( this.value );
+    void serialize(PacketBuffer buffer, int index) {
+        super.serialize(buffer, index);
+        buffer.writeByte(this.value);
     }
 
     @Override
-    void deserialize( PacketBuffer buffer ) {
+    void deserialize(PacketBuffer buffer) {
         this.value = buffer.readByte();
     }
 

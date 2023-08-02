@@ -23,6 +23,6 @@ public interface Delegate2<T1, T2> {
      * @param arg1 The first argument for the invocation
      * @param arg2 The second argument for the invocation
      */
-    void invoke( T1 arg1, T2 arg2 );
+    void invoke(T1 arg1, T2 arg2);
 
 }

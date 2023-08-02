@@ -17,7 +17,7 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 1 )
+@RegisterInfo(id = 1)
 public class Speed extends Effect {
 
     @Override
@@ -26,20 +26,20 @@ public class Speed extends Effect {
     }
 
     @Override
-    public void apply( EntityLiving<?> player ) {
-        player.attributeInstance( Attribute.MOVEMENT_SPEED )
-            .setModifier( AttributeModifier.SPEED_EFFECT, AttributeModifierType.ADDITION_MULTIPLY, ( ( this.amplifier + 1 ) * 0.2f ) );
+    public void apply(EntityLiving<?> player) {
+        player.attributeInstance(Attribute.MOVEMENT_SPEED)
+            .setModifier(AttributeModifier.SPEED_EFFECT, AttributeModifierType.ADDITION_MULTIPLY, ((this.amplifier + 1) * 0.2f));
     }
 
     @Override
-    public void update( long currentTimeMillis, float dT ) {
+    public void update(long currentTimeMillis, float dT) {
 
     }
 
     @Override
-    public void remove( EntityLiving<?> player ) {
-        player.attributeInstance( Attribute.MOVEMENT_SPEED )
-            .removeModifier( AttributeModifier.SPEED_EFFECT );
+    public void remove(EntityLiving<?> player) {
+        player.attributeInstance(Attribute.MOVEMENT_SPEED)
+            .removeModifier(AttributeModifier.SPEED_EFFECT);
     }
 
 }

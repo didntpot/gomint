@@ -14,9 +14,9 @@ package io.gomint.server.util;
 public class EnumConverterFromGamemodeMagicNumbers implements EnumConverter {
 
     @Override
-    public Enum convert( Enum value ) {
+    public Enum convert(Enum value) {
         int id = value.ordinal();
-        switch ( id ) {
+        switch (id) {
             case 0:
                 return io.gomint.server.world.GamemodeMagicNumbers.SURVIVAL;
             case 1:

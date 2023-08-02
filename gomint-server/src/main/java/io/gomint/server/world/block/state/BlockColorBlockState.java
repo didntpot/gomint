@@ -8,7 +8,6 @@
 package io.gomint.server.world.block.state;
 
 import io.gomint.world.block.data.BlockColor;
-
 import java.util.function.Supplier;
 
 /**
@@ -18,7 +17,7 @@ import java.util.function.Supplier;
 public class BlockColorBlockState extends EnumBlockState<BlockColor, String> {
 
     public BlockColorBlockState(Supplier<String[]> keys) {
-        super(v -> keys.get(), BlockColor.values(), e -> e.name().toLowerCase(), v -> BlockColor.valueOf(v.toUpperCase()) );
+        super(v -> keys.get(), BlockColor.values(), e -> e.name().toLowerCase(), v -> BlockColor.valueOf(v.toUpperCase()));
     }
 
 }

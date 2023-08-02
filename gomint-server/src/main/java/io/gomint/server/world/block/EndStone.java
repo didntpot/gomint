@@ -10,7 +10,7 @@ import io.gomint.world.block.BlockType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:end_stone" )
+@RegisterInfo(sId = "minecraft:end_stone")
 public class EndStone extends Block implements BlockEndStone {
 
     @Override

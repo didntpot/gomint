@@ -23,6 +23,13 @@
     <name>GoMint Server</name>
     <description>Standard server implementation of GoMint</description>
 
+    <repositories>
+        <repository>
+            <id>minjae-repo-snapshots</id>
+            <url>https://repo.minjae.dev/snapshots</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -113,7 +120,7 @@
         <dependency>
             <groupId>io.gomint</groupId>
             <artifactId>jraknet</artifactId>
-            <version>7.0.10-SNAPSHOT</version>
+            <version>7.0.11-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -165,7 +172,9 @@
                 <configuration>
                     <!-- test code needs access to package private level, so we use add-opens -->
                     <argLine>
-                        --add-opens java.base/java.nio=io.netty.common --add-exports java.base/jdk.internal.misc=io.netty.common --add-opens gomint.server/io.gomint.server.entity=ALL-UNNAMED -Dio.netty.tryReflectionSetAccessible=true
+                        --add-opens java.base/java.nio=io.netty.common --add-exports
+                        java.base/jdk.internal.misc=io.netty.common --add-opens
+                        gomint.server/io.gomint.server.entity=ALL-UNNAMED -Dio.netty.tryReflectionSetAccessible=true
                     </argLine>
                     <systemPropertyVariables>
                         <!-- this hidden property force mockito to use method lookup -->
@@ -185,7 +194,8 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>${project.build.directory}/generated-sources/switches</source><!-- adjust folder name to your needs -->
+                                <source>${project.build.directory}/generated-sources/switches
+                                </source><!-- adjust folder name to your needs -->
                             </sources>
                         </configuration>
                     </execution>
@@ -260,6 +270,15 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>14</source>
+                    <target>14</target>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 

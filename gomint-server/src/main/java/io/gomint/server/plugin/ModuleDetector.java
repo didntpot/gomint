@@ -7,19 +7,11 @@
 
 package io.gomint.server.plugin;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.lang.module.FindException;
 import java.lang.module.InvalidModuleDescriptorException;
 import java.lang.module.ModuleDescriptor;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -38,8 +30,7 @@ public class ModuleDetector {
         = new Attributes.Name("Automatic-Module-Name");
 
     public ModuleDescriptor deriveModuleDescriptor(JarFile jf)
-        throws IOException
-    {
+        throws IOException {
         // Read Automatic-Module-Name attribute if present
         Manifest man = jf.getManifest();
         Attributes attrs = null;
@@ -71,7 +62,8 @@ public class ModuleDetector {
                 String tail = name.substring(start + 1);
                 ModuleDescriptor.Version.parse(tail);
                 vs = tail;
-            } catch (IllegalArgumentException ignore) { }
+            } catch (IllegalArgumentException ignore) {
+            }
 
             name = name.substring(0, start);
         }
@@ -164,8 +156,8 @@ public class ModuleDetector {
      * Maps the name of an entry in a JAR or ZIP file to a package name.
      *
      * @throws InvalidModuleDescriptorException if the name is a class file in
-     *         the top-level directory of the JAR/ZIP file (and it's not
-     *         module-info.class)
+     *                                          the top-level directory of the JAR/ZIP file (and it's not
+     *                                          module-info.class)
      */
     private Optional<String> toPackageName(String name) {
         assert !name.endsWith("/");
@@ -212,7 +204,7 @@ public class ModuleDetector {
 
         // drop trailing dots
         int len = mn.length();
-        if (len > 0 && mn.charAt(len-1) == '.')
+        if (len > 0 && mn.charAt(len - 1) == '.')
             mn = Patterns.TRAILING_DOTS.matcher(mn).replaceAll("");
 
         return mn;
@@ -222,7 +214,7 @@ public class ModuleDetector {
     /**
      * Returns the service type corresponding to the name of a services
      * configuration file if it is a legal type name.
-     *
+     * <p>
      * For example, if called with "META-INF/services/p.S" then this method
      * returns a container with the value "p.S".
      */
@@ -243,7 +235,7 @@ public class ModuleDetector {
     /**
      * Reads the next line from the given reader and trims it of comments and
      * leading/trailing white space.
-     *
+     * <p>
      * Returns null if the reader is at EOF.
      */
     private String nextLine(BufferedReader reader) throws IOException {

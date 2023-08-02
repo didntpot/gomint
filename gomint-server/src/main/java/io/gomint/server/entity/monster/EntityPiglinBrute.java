@@ -15,7 +15,6 @@ import io.gomint.server.entity.EntityType;
 import io.gomint.server.inventory.item.ItemStack;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.WorldAdapter;
-
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -31,8 +30,8 @@ public class EntityPiglinBrute extends EntityLiving<io.gomint.entity.monster.Ent
      *
      * @param world The world in which this entity is in
      */
-    public EntityPiglinBrute( WorldAdapter world ) {
-        super( EntityType.PIGLIN_BRUTE, world );
+    public EntityPiglinBrute(WorldAdapter world) {
+        super(EntityType.PIGLIN_BRUTE, world);
         this.initEntity();
     }
 
@@ -40,15 +39,15 @@ public class EntityPiglinBrute extends EntityLiving<io.gomint.entity.monster.Ent
      * Create new entity piglin brute for API
      */
     public EntityPiglinBrute() {
-        super( EntityType.PIGLIN_BRUTE, null );
+        super(EntityType.PIGLIN_BRUTE, null);
         this.initEntity();
     }
 
     private void initEntity() {
-        this.size( 0.6f, 1.9f );
-        this.attribute( Attribute.HEALTH );
-        this.maxHealth( 50 );
-        this.health( 50 );
+        this.size(0.6f, 1.9f);
+        this.attribute(Attribute.HEALTH);
+        this.maxHealth(50);
+        this.health(50);
     }
 
     @Override
@@ -66,15 +65,15 @@ public class EntityPiglinBrute extends EntityLiving<io.gomint.entity.monster.Ent
             goldenAxe.damage(1 + random.nextInt(goldenAxe.maxDamage()));
             this.world.dropItem(this.location(), goldenAxe);
         }
-        
+
         if (isLastDamageCausedByPlayer()) {
             this.world.createExpOrb(this.location(), 20);
         }
     }
 
     @Override
-    public void update( long currentTimeMS, float dT ) {
-        super.update( currentTimeMS, dT );
+    public void update(long currentTimeMS, float dT) {
+        super.update(currentTimeMS, dT);
     }
 
     @Override

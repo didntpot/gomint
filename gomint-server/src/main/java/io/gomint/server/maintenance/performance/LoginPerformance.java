@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
  */
 public class LoginPerformance {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger( LoginPerformance.class );
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginPerformance.class);
 
     private long loginPacket;
     private long encryptionStart;
@@ -20,9 +20,9 @@ public class LoginPerformance {
     private long chunkEnd;
 
     public void print() {
-        LOGGER.info( "Login performance: {} ms complete; {} ms encryption; {} ms resource pack; {} ms chunks",
-            ( this.chunkEnd - this.loginPacket ), ( this.encryptionEnd - this.encryptionStart ),
-            ( this.resourceEnd - this.resourceStart ), ( this.chunkEnd - this.chunkStart ) );
+        LOGGER.info("Login performance: {} ms complete; {} ms encryption; {} ms resource pack; {} ms chunks",
+            (this.chunkEnd - this.loginPacket), (this.encryptionEnd - this.encryptionStart),
+            (this.resourceEnd - this.resourceStart), (this.chunkEnd - this.chunkStart));
     }
 
     public void setLoginPacket(long loginPacket) {

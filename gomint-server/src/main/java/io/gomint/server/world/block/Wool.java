@@ -12,7 +12,7 @@ import io.gomint.world.block.data.BlockColor;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:wool" )
+@RegisterInfo(sId = "minecraft:wool")
 public class Wool extends Block implements BlockWool {
 
     private static final BlockColorBlockState COLOR = new BlockColorBlockState(() -> new String[]{"color"});
@@ -43,8 +43,8 @@ public class Wool extends Block implements BlockWool {
     }
 
     @Override
-    public BlockWool color(BlockColor color ) {
-        COLOR.state( this, color );
+    public BlockWool color(BlockColor color) {
+        COLOR.state(this, color);
         return this;
     }
 

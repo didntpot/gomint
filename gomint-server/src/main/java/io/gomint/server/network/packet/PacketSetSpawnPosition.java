@@ -15,7 +15,7 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketSetSpawnPosition extends Packet {
+public class PacketSetSpawnPosition extends Packet implements PacketClientbound {
 
     public enum SpawnType {
         PLAYER,

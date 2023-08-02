@@ -34,23 +34,23 @@ public class WorldBorder {
      * @param world    The world for which this border should be used
      * @param compound The compound from which the settings should be read
      */
-    public WorldBorder( World world, NBTTagCompound compound ) {
+    public WorldBorder(World world, NBTTagCompound compound) {
         this.world = world;
-        if ( !compound.containsKey( "BorderCenterX" ) || !compound.containsKey( "BorderCenterZ" ) ) {
+        if (!compound.containsKey("BorderCenterX") || !compound.containsKey("BorderCenterZ")) {
             this.active = false;
             return;
         }
 
         this.active = true;
-        this.centerX = compound.getDouble( "BorderCenterX", 0.0D );
-        this.centerZ = compound.getDouble( "BorderCenterZ", 0.0D );
-        this.size = compound.getDouble( "BorderSize", 60000000.0D );
-        this.safeZone = compound.getDouble( "BorderSafeZone", 5.0D );
-        this.warningBlocks = compound.getDouble( "BorderWarningBlocks", 5.0D );
-        this.warningTime = compound.getDouble( "BorderWarningTime", 15.0D );
-        this.sizeLerpTarget = compound.getDouble( "BorderSizeLerpTarget", 60000000.0D );
-        this.sizeLerpTime = compound.getLong( "BorderSizeLerpTime", 0L );
-        this.damagePerBlock = compound.getDouble( "BorderDamagePerBlock", 0.2D );
+        this.centerX = compound.getDouble("BorderCenterX", 0.0D);
+        this.centerZ = compound.getDouble("BorderCenterZ", 0.0D);
+        this.size = compound.getDouble("BorderSize", 60000000.0D);
+        this.safeZone = compound.getDouble("BorderSafeZone", 5.0D);
+        this.warningBlocks = compound.getDouble("BorderWarningBlocks", 5.0D);
+        this.warningTime = compound.getDouble("BorderWarningTime", 15.0D);
+        this.sizeLerpTarget = compound.getDouble("BorderSizeLerpTarget", 60000000.0D);
+        this.sizeLerpTime = compound.getLong("BorderSizeLerpTime", 0L);
+        this.damagePerBlock = compound.getDouble("BorderDamagePerBlock", 0.2D);
     }
 
     /**

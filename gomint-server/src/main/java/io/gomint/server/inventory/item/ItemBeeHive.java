@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:beehive")
-public class ItemBeeHive extends ItemStack< io.gomint.inventory.item.ItemBeeHive> implements io.gomint.inventory.item.ItemBeeHive {
+@RegisterInfo(sId = "minecraft:beehive")
+public class ItemBeeHive extends ItemStack<io.gomint.inventory.item.ItemBeeHive> implements io.gomint.inventory.item.ItemBeeHive {
 
     @Override
     public ItemType itemType() {

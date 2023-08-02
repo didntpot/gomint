@@ -29,7 +29,7 @@ public class MetadataString extends MetadataValue {
      *
      * @param value The value to initialize the metadata string with
      */
-    public MetadataString( String value ) {
+    public MetadataString(String value) {
         this.value = value;
     }
 
@@ -47,19 +47,19 @@ public class MetadataString extends MetadataValue {
      *
      * @param value The value of this metadata string
      */
-    public void setValue( String value ) {
+    public void setValue(String value) {
         this.value = value;
     }
 
     // ========================== METADATA VALUE ========================== //
     @Override
-    void serialize( PacketBuffer buffer, int index ) {
-        super.serialize( buffer, index );
-        buffer.writeString( this.value );
+    void serialize(PacketBuffer buffer, int index) {
+        super.serialize(buffer, index);
+        buffer.writeString(this.value);
     }
 
     @Override
-    void deserialize( PacketBuffer buffer ) {
+    void deserialize(PacketBuffer buffer) {
         this.value = buffer.readString();
     }
 

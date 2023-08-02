@@ -8,17 +8,19 @@ import java.util.function.Consumer;
  */
 public class FormListener<R> implements io.gomint.gui.FormListener<R> {
 
-    private Consumer<R> responseConsumer = r -> { };
-    private Consumer<Void> closeConsumer = aVoid -> { };
+    private Consumer<R> responseConsumer = r -> {
+    };
+    private Consumer<Void> closeConsumer = aVoid -> {
+    };
 
     @Override
-    public FormListener<R> onResponse( Consumer<R> consumer ) {
+    public FormListener<R> onResponse(Consumer<R> consumer) {
         this.responseConsumer = consumer;
         return this;
     }
 
     @Override
-    public FormListener<R> onClose( Consumer<Void> consumer ) {
+    public FormListener<R> onClose(Consumer<Void> consumer) {
         this.closeConsumer = consumer;
         return this;
     }

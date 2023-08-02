@@ -7,17 +7,17 @@ import io.gomint.server.network.Protocol;
  * @author HerryYT
  * @version 1.0
  */
-public class PacketClientCacheStatus extends Packet {
+public class PacketClientCacheStatus extends Packet implements PacketServerbound {
 
     private boolean enabled;
 
     public PacketClientCacheStatus() {
-        super( Protocol.PACKET_CLIENT_CACHE_STATUS );
+        super(Protocol.PACKET_CLIENT_CACHE_STATUS);
     }
 
     @Override
     public void serialize(PacketBuffer buffer, int protocolID) {
-        buffer.writeBoolean( this.enabled );
+        buffer.writeBoolean(this.enabled);
     }
 
     @Override

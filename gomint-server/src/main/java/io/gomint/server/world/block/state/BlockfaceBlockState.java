@@ -12,7 +12,6 @@ import io.gomint.math.Vector;
 import io.gomint.server.entity.EntityLiving;
 import io.gomint.server.world.block.Block;
 import io.gomint.world.block.data.Facing;
-
 import java.util.function.Supplier;
 
 /**

@@ -12,7 +12,7 @@ import io.gomint.server.entity.EntityType;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.WorldAdapter;
 
-@RegisterInfo( sId = "minecraft:salmon" )
+@RegisterInfo(sId = "minecraft:salmon")
 public class EntitySalmon extends EntityAnimal<io.gomint.entity.animal.EntitySalmon> implements io.gomint.entity.animal.EntitySalmon {
 
     /**
@@ -20,8 +20,8 @@ public class EntitySalmon extends EntityAnimal<io.gomint.entity.animal.EntitySal
      *
      * @param world The world in which this entity is in
      */
-    public EntitySalmon( WorldAdapter world ) {
-        super( EntityType.SALMON, world );
+    public EntitySalmon(WorldAdapter world) {
+        super(EntityType.SALMON, world);
         this.initEntity();
     }
 
@@ -29,19 +29,19 @@ public class EntitySalmon extends EntityAnimal<io.gomint.entity.animal.EntitySal
      * Create new entity salmon for API
      */
     public EntitySalmon() {
-        super( EntityType.SALMON, null );
+        super(EntityType.SALMON, null);
         this.initEntity();
     }
 
     private void initEntity() {
-        this.size( 0.7f, 0.4f );
-        this.attribute( Attribute.HEALTH );
-        this.maxHealth( 3 );
-        this.health( 3 );
+        this.size(0.7f, 0.4f);
+        this.attribute(Attribute.HEALTH);
+        this.maxHealth(3);
+        this.health(3);
     }
 
     @Override
-    public void update( long currentTimeMS, float dT ) {
-        super.update( currentTimeMS, dT );
+    public void update(long currentTimeMS, float dT) {
+        super.update(currentTimeMS, dT);
     }
 }

@@ -11,8 +11,6 @@ import io.gomint.inventory.item.ItemAir;
 import io.gomint.inventory.item.ItemStack;
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.inventory.Inventory;
-import io.gomint.server.network.packet.Packet;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -28,12 +26,24 @@ import java.util.UUID;
  */
 public class ShapedRecipe extends CraftingRecipe {
 
-    private final int id;
+    public static final int ID = RECIPE_ID.getAndIncrement();
 
     private final String name;
     private final String block;
 
+    /**
+     * -- GETTER --
+     * Gets the width of this shaped recipe.
+     *
+     * @return The width of this shaped recipe
+     */
     private final int width;
+    /**
+     * -- GETTER --
+     * Gets the height of this shaped recipe.
+     *
+     * @return The height of this shaped recipe
+     */
     private final int height;
 
     private final ItemStack<?>[] arrangement;
@@ -61,26 +71,14 @@ public class ShapedRecipe extends CraftingRecipe {
         this.height = height;
         this.arrangement = ingredients;
         this.outcome = outcome;
-
-        this.id = this.getNewID();
     }
 
-    /**
-     * Gets the width of this shaped recipe.
-     *
-     * @return The width of this shaped recipe
-     */
     public int getWidth() {
-        return this.width;
+        return width;
     }
 
-    /**
-     * Gets the height of this shaped recipe.
-     *
-     * @return The height of this shaped recipe
-     */
     public int getHeight() {
-        return this.height;
+        return height;
     }
 
     @Override
@@ -104,34 +102,6 @@ public class ShapedRecipe extends CraftingRecipe {
 
     @Override
     public void serialize(PacketBuffer buffer) {
-        // Type of recipe ( 1 == shaped )
-        buffer.writeSignedVarInt(1);
-
-        buffer.writeString(this.name);
-
-        // Size of grid
-        buffer.writeSignedVarInt(this.width);
-        buffer.writeSignedVarInt(this.height);
-
-        // Input items
-        for (int j = 0; j < this.height; ++j) {
-            for (int i = 0; i < this.width; ++i) {
-                Packet.writeRecipeInput(this.arrangement[j * this.width + i], buffer);
-            }
-        }
-
-        // Amount of result
-        buffer.writeUnsignedVarInt(this.outcome.length);
-
-        for (ItemStack<?> itemStack : this.outcome) {
-            Packet.writeItemStack(itemStack, buffer);
-        }
-
-        // Write recipe UUID
-        buffer.writeUUID(this.uuid());
-        buffer.writeString(this.block);
-        buffer.writeSignedVarInt(this.getPriority());
-        buffer.writeUnsignedVarInt(this.id);
     }
 
     @Override
@@ -173,4 +143,8 @@ public class ShapedRecipe extends CraftingRecipe {
         return consumeSlots;
     }
 
+    @Override
+    public int getId() {
+        return ID;
+    }
 }

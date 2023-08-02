@@ -20,11 +20,10 @@ import io.gomint.server.network.PlayerConnection;
 import io.gomint.server.util.Pair;
 import io.gomint.util.random.FastRandom;
 import io.gomint.world.Gamemode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.List;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EnchantingSession implements Session {
 

@@ -15,7 +15,7 @@ import io.gomint.world.block.BlockType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:seagrass" )
+@RegisterInfo(sId = "minecraft:seagrass")
 public class Seagrass extends Block implements BlockSeaGrass {
 
     @Override

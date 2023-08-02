@@ -8,7 +8,6 @@ import io.gomint.server.inventory.item.Items;
 import io.gomint.server.network.PlayerConnection;
 import io.gomint.server.util.Pair;
 import io.gomint.taglib.NBTTagCompound;
-
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Stream;

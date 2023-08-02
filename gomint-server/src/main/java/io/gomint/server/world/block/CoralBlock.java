@@ -25,6 +25,7 @@ public class CoralBlock extends Block implements BlockCoralBlock {
         ;
 
         private final String color;
+
         CoralTypeMagic(String color) {
             this.color = color;
         }

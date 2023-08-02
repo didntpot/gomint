@@ -20,8 +20,8 @@ public class AsyncChunkPopulateTask extends AsyncChunkTask {
      *
      * @param chunk The chunk which should be saved
      */
-    AsyncChunkPopulateTask( ChunkAdapter chunk ) {
-        super( Type.POPULATE );
+    AsyncChunkPopulateTask(ChunkAdapter chunk) {
+        super(Type.POPULATE);
         this.chunk = chunk;
     }
 

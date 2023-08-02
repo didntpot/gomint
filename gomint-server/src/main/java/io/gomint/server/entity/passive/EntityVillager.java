@@ -10,14 +10,13 @@ import io.gomint.server.entity.metadata.MetadataContainer;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.WorldAdapter;
 import io.gomint.taglib.NBTTagCompound;
-
 import java.util.Set;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:villager" )
+@RegisterInfo(sId = "minecraft:villager")
 public class EntityVillager extends EntityAgeable<io.gomint.entity.passive.EntityVillager> implements io.gomint.entity.passive.EntityVillager {
 
     /**
@@ -25,8 +24,8 @@ public class EntityVillager extends EntityAgeable<io.gomint.entity.passive.Entit
      *
      * @param world The world in which this entity is in
      */
-    public EntityVillager( WorldAdapter world ) {
-        super( EntityType.VILLAGER, world );
+    public EntityVillager(WorldAdapter world) {
+        super(EntityType.VILLAGER, world);
         this.initEntity();
     }
 
@@ -34,7 +33,7 @@ public class EntityVillager extends EntityAgeable<io.gomint.entity.passive.Entit
      * Create new entity villager for API
      */
     public EntityVillager() {
-        super( EntityType.VILLAGER, null );
+        super(EntityType.VILLAGER, null);
         this.initEntity();
     }
 
@@ -44,18 +43,18 @@ public class EntityVillager extends EntityAgeable<io.gomint.entity.passive.Entit
         this.maxHealth(20);
         this.health(20);
         this.profession(Profession.FARMER);
-        if(this.baby()) {
+        if (this.baby()) {
             this.size(0.3f, 0.975f);
-        }else{
+        } else {
             this.size(0.6f, 1.95f);
         }
     }
 
     @Override
-    public void initFromNBT( NBTTagCompound compound ) {
-        super.initFromNBT( compound );
+    public void initFromNBT(NBTTagCompound compound) {
+        super.initFromNBT(compound);
 
-        this.metadataContainer.putInt( MetadataContainer.DATA_VARIANT, compound.getInteger( "Variant", 0 ) );
+        this.metadataContainer.putInt(MetadataContainer.DATA_VARIANT, compound.getInteger("Variant", 0));
     }
 
     @Override
@@ -64,20 +63,20 @@ public class EntityVillager extends EntityAgeable<io.gomint.entity.passive.Entit
     }
 
     @Override
-    public void update( long currentTimeMS, float dT ) {
-        super.update( currentTimeMS, dT );
+    public void update(long currentTimeMS, float dT) {
+        super.update(currentTimeMS, dT);
     }
 
     @Override
-    public EntityVillager interact( EntityPlayer player, Vector clickVector ) {
+    public EntityVillager interact(EntityPlayer player, Vector clickVector) {
         // TODO: Adding the ability of open the villager shop inventory for the player
         return this;
     }
 
     @Override
-    public EntityVillager profession(Profession profession ) {
+    public EntityVillager profession(Profession profession) {
         int variant = 0;
-        switch ( profession ) {
+        switch (profession) {
             case BUTCHER:
                 variant = 4;
                 break;
@@ -95,14 +94,14 @@ public class EntityVillager extends EntityAgeable<io.gomint.entity.passive.Entit
                 variant = 0;
         }
 
-        this.metadataContainer.putInt( MetadataContainer.DATA_VARIANT, variant );
+        this.metadataContainer.putInt(MetadataContainer.DATA_VARIANT, variant);
         return this;
     }
 
     @Override
     public Profession profession() {
-        int variant = this.metadataContainer.getInt( MetadataContainer.DATA_VARIANT );
-        switch ( variant ) {
+        int variant = this.metadataContainer.getInt(MetadataContainer.DATA_VARIANT);
+        switch (variant) {
             case 4:
                 return Profession.BUTCHER;
             case 3:

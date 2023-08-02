@@ -11,15 +11,15 @@ public class FormResponse implements io.gomint.gui.FormResponse {
 
     private Map<String, Object> answers = new HashMap<>();
 
-    public void addAnswer( String id, Object data ) {
-        this.answers.put( id, data );
+    public void addAnswer(String id, Object data) {
+        this.answers.put(id, data);
     }
 
     @Override
-    public Boolean toggle(String id ) {
-        Object val = this.answers.get( id );
-        if ( val != null ) {
-            if ( val instanceof Boolean ) {
+    public Boolean toggle(String id) {
+        Object val = this.answers.get(id);
+        if (val != null) {
+            if (val instanceof Boolean) {
                 return (Boolean) val;
             }
         }
@@ -28,10 +28,10 @@ public class FormResponse implements io.gomint.gui.FormResponse {
     }
 
     @Override
-    public String stepSlider(String id ) {
-        Object val = this.answers.get( id );
-        if ( val != null ) {
-            if ( val instanceof String ) {
+    public String stepSlider(String id) {
+        Object val = this.answers.get(id);
+        if (val != null) {
+            if (val instanceof String) {
                 return (String) val;
             }
         }
@@ -40,11 +40,11 @@ public class FormResponse implements io.gomint.gui.FormResponse {
     }
 
     @Override
-    public Float slider(String id ) {
-        Object val = this.answers.get( id );
-        if ( val != null ) {
-            if ( val instanceof Double ) {
-                return ( (Double) val ).floatValue();
+    public Float slider(String id) {
+        Object val = this.answers.get(id);
+        if (val != null) {
+            if (val instanceof Double) {
+                return ((Double) val).floatValue();
             }
         }
 
@@ -52,10 +52,10 @@ public class FormResponse implements io.gomint.gui.FormResponse {
     }
 
     @Override
-    public String input(String id ) {
-        Object val = this.answers.get( id );
-        if ( val != null ) {
-            if ( val instanceof String ) {
+    public String input(String id) {
+        Object val = this.answers.get(id);
+        if (val != null) {
+            if (val instanceof String) {
                 return (String) val;
             }
         }
@@ -64,10 +64,10 @@ public class FormResponse implements io.gomint.gui.FormResponse {
     }
 
     @Override
-    public String dropbox(String id ) {
-        Object val = this.answers.get( id );
-        if ( val != null ) {
-            if ( val instanceof String ) {
+    public String dropbox(String id) {
+        Object val = this.answers.get(id);
+        if (val != null) {
+            if (val instanceof String) {
                 return (String) val;
             }
         }

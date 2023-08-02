@@ -1,5 +1,9 @@
 package io.gomint.server.logging;
 
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.Serializable;
+import javax.annotation.Nullable;
 import org.apache.logging.log4j.core.*;
 import org.apache.logging.log4j.core.appender.AbstractAppender;
 import org.apache.logging.log4j.core.config.plugins.Plugin;
@@ -11,11 +15,6 @@ import org.apache.logging.log4j.core.layout.PatternLayout;
 import org.jline.reader.LineReader;
 import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
-
-import javax.annotation.Nullable;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.io.Serializable;
 
 /**
  * @author geNAZt

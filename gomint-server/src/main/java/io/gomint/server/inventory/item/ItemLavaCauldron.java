@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:lava_cauldron" )
-public class ItemLavaCauldron extends ItemStack< io.gomint.inventory.item.ItemLavaCauldron> implements io.gomint.inventory.item.ItemLavaCauldron {
+@RegisterInfo(sId = "minecraft:lava_cauldron")
+public class ItemLavaCauldron extends ItemStack<io.gomint.inventory.item.ItemLavaCauldron> implements io.gomint.inventory.item.ItemLavaCauldron {
 
     @Override
     public ItemType itemType() {

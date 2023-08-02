@@ -7,12 +7,11 @@
 
 package io.gomint.server.util.performance;
 
+import java.lang.invoke.MethodHandles;
+import java.lang.reflect.InvocationTargetException;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
-
-import java.lang.invoke.MethodHandles;
-import java.lang.reflect.InvocationTargetException;
 
 public class ASMFactoryConstructionFactory {
 
@@ -32,7 +31,8 @@ public class ASMFactoryConstructionFactory {
 
         try {
             return (ConstructionFactory<T>) privateLookup.findClass(dottedFactoryClassName).getDeclaredConstructor().newInstance();
-        } catch (ClassNotFoundException | IllegalAccessException | NoSuchMethodException | InstantiationException | InvocationTargetException e) {
+        } catch (ClassNotFoundException | IllegalAccessException | NoSuchMethodException | InstantiationException |
+                 InvocationTargetException e) {
             // Ignore, we create a new factory now
         }
 
@@ -71,7 +71,8 @@ public class ASMFactoryConstructionFactory {
         try {
             Class<? extends ConstructionFactory<T>> proxyClass = (Class<? extends ConstructionFactory<T>>) privateLookup.defineClass(data);
             return proxyClass.getDeclaredConstructor().newInstance();
-        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | InstantiationException e) {
+        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException |
+                 InstantiationException e) {
             e.printStackTrace();
         }
 

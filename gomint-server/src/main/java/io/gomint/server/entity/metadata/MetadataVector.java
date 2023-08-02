@@ -30,7 +30,7 @@ public class MetadataVector extends MetadataValue {
      *
      * @param value The value to initialize the metadata string with
      */
-    public MetadataVector( Vector value ) {
+    public MetadataVector(Vector value) {
         this.value = value;
     }
 
@@ -48,22 +48,22 @@ public class MetadataVector extends MetadataValue {
      *
      * @param value The value of this metadata string
      */
-    public void setValue( Vector value ) {
+    public void setValue(Vector value) {
         this.value = value;
     }
 
     // ========================== METADATA VALUE ========================== //
     @Override
-    void serialize( PacketBuffer buffer, int index ) {
-        super.serialize( buffer, index );
-        buffer.writeLFloat( this.value.x() );
-        buffer.writeLFloat( this.value.y() );
-        buffer.writeLFloat( this.value.z() );
+    void serialize(PacketBuffer buffer, int index) {
+        super.serialize(buffer, index);
+        buffer.writeLFloat(this.value.x());
+        buffer.writeLFloat(this.value.y());
+        buffer.writeLFloat(this.value.z());
     }
 
     @Override
-    void deserialize( PacketBuffer buffer ) {
-        this.value = new Vector( buffer.readLFloat(), buffer.readLFloat(), buffer.readLFloat() );
+    void deserialize(PacketBuffer buffer) {
+        this.value = new Vector(buffer.readLFloat(), buffer.readLFloat(), buffer.readLFloat());
     }
 
     @Override

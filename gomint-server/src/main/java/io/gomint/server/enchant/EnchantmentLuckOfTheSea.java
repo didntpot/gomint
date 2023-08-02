@@ -16,28 +16,28 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 23 )
+@RegisterInfo(id = 23)
 public class EnchantmentLuckOfTheSea extends Enchantment implements io.gomint.enchant.EnchantmentLuckOfTheSea {
 
     /**
      * Create new enchantment luck of the sea
      */
     public EnchantmentLuckOfTheSea() {
-        super( (short) 3 );
+        super((short) 3);
     }
 
     @Override
-    public int minEnchantAbility( short level ) {
-        return (byte) ( 15 + ( level - 1 ) * 9 );
+    public int minEnchantAbility(short level) {
+        return (byte) (15 + (level - 1) * 9);
     }
 
     @Override
-    public int maxEnchantAbility( short level ) {
-        return (byte) ( minEnchantAbility( level ) + 50 );
+    public int maxEnchantAbility(short level) {
+        return (byte) (minEnchantAbility(level) + 50);
     }
 
     @Override
-    public boolean canBeApplied(ItemStack<?> itemStack ) {
+    public boolean canBeApplied(ItemStack<?> itemStack) {
         return itemStack.itemType() == ItemType.FISHING_ROD;
     }
 

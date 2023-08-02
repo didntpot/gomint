@@ -10,7 +10,7 @@ package io.gomint.server.world.block;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockType;
 
-@RegisterInfo( sId = "minecraft:grindstone" )
+@RegisterInfo(sId = "minecraft:grindstone")
 public class Grindstone extends Block {
 
     @Override

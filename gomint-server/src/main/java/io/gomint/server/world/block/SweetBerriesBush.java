@@ -8,7 +8,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:sweet_berry_bush" )
+@RegisterInfo(sId = "minecraft:sweet_berry_bush")
 public class SweetBerriesBush extends Growable implements BlockSweetBerriesBush {
 
     @Override
@@ -21,7 +21,7 @@ public class SweetBerriesBush extends Growable implements BlockSweetBerriesBush 
         return 0;
     }
 
-          //TODO DAMAGE
+    //TODO DAMAGE
 
     @Override
     public BlockType blockType() {

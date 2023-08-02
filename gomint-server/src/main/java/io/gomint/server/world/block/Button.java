@@ -17,7 +17,6 @@ import io.gomint.server.world.block.state.BlockfaceFromPlayerBlockState;
 import io.gomint.server.world.block.state.BooleanBlockState;
 import io.gomint.world.block.BlockButton;
 import io.gomint.world.block.data.Facing;
-
 import java.util.concurrent.TimeUnit;
 
 /**

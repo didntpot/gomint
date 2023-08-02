@@ -9,14 +9,13 @@ package io.gomint.server.entity.potion.effect;
 
 import io.gomint.event.entity.EntityDamageEvent;
 import io.gomint.server.entity.EntityLiving;
-import io.gomint.server.player.EffectManager;
 import io.gomint.server.registry.RegisterInfo;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 7 )
+@RegisterInfo(id = 7)
 public class Harm extends Effect {
 
     public Harm() {
@@ -29,18 +28,18 @@ public class Harm extends Effect {
     }
 
     @Override
-    public void apply( EntityLiving<?> entity ) {
+    public void apply(EntityLiving<?> entity) {
         // TODO: Effect for undead
-        entity.attack( 6 << this.amplifier, EntityDamageEvent.DamageSource.HARM_EFFECT );
+        entity.attack(6 << this.amplifier, EntityDamageEvent.DamageSource.HARM_EFFECT);
     }
 
     @Override
-    public void update( long currentTimeMillis, float dT ) {
+    public void update(long currentTimeMillis, float dT) {
 
     }
 
     @Override
-    public void remove( EntityLiving<?> entity ) {
+    public void remove(EntityLiving<?> entity) {
 
     }
 

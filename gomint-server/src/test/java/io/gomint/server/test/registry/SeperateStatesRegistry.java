@@ -16,12 +16,7 @@ import io.gomint.world.WorldType;
 import io.gomint.world.block.BlockPrismarineSlab;
 import io.gomint.world.block.data.PrismarineType;
 import io.gomint.world.generator.CreateOptions;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -39,11 +34,11 @@ public class SeperateStatesRegistry extends IntegrationTest {
     @Order(2)
     public void testPrimarineSlabBlock() {
         this.world
-            .blockAt(1,1,1)
+            .blockAt(1, 1, 1)
             .blockType(BlockPrismarineSlab.class)
             .type(PrismarineType.DARK);
 
-        Assertions.assertTrue(BlockPrismarineSlab.class.isAssignableFrom(this.world.blockAt(1,1,1).getClass()));
+        Assertions.assertTrue(BlockPrismarineSlab.class.isAssignableFrom(this.world.blockAt(1, 1, 1).getClass()));
     }
 
     @Test

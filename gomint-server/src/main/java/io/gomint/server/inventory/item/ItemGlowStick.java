@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:glow_stick" )
-public class ItemGlowStick extends ItemStack< io.gomint.inventory.item.ItemGlowStick> implements io.gomint.inventory.item.ItemGlowStick {
+@RegisterInfo(sId = "minecraft:glow_stick")
+public class ItemGlowStick extends ItemStack<io.gomint.inventory.item.ItemGlowStick> implements io.gomint.inventory.item.ItemGlowStick {
 
     @Override
     public ItemType itemType() {

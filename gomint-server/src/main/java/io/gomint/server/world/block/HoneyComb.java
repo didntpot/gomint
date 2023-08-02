@@ -8,7 +8,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:honeycomb_block" )
+@RegisterInfo(sId = "minecraft:honeycomb_block")
 public class HoneyComb extends Block implements BlockHoneyComb {
 
     @Override

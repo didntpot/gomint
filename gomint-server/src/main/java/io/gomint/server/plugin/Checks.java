@@ -93,7 +93,7 @@ public class Checks {
             String id = name.substring(off, next);
             if (!isJavaIdentifier(id))
                 return false;
-            off = next+1;
+            off = next + 1;
         }
         String last = name.substring(off);
         return isJavaIdentifier(last);

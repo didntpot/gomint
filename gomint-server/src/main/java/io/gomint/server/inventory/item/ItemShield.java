@@ -15,8 +15,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:shield" )
-public class ItemShield extends ItemStack< io.gomint.inventory.item.ItemShield> implements io.gomint.inventory.item.ItemShield {
+@RegisterInfo(sId = "minecraft:shield")
+public class ItemShield extends ItemStack<io.gomint.inventory.item.ItemShield> implements io.gomint.inventory.item.ItemShield {
 
     @Override
     public ItemType itemType() {

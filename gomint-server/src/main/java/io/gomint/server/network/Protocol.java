@@ -7,47 +7,7 @@
 
 package io.gomint.server.network;
 
-import io.gomint.server.network.packet.Packet;
-import io.gomint.server.network.packet.PacketAdventureSettings;
-import io.gomint.server.network.packet.PacketAnimate;
-import io.gomint.server.network.packet.PacketBatch;
-import io.gomint.server.network.packet.PacketBlockPickRequest;
-import io.gomint.server.network.packet.PacketBookEdit;
-import io.gomint.server.network.packet.PacketBossBar;
-import io.gomint.server.network.packet.PacketClientCacheBlobStatus;
-import io.gomint.server.network.packet.PacketClientCacheStatus;
-import io.gomint.server.network.packet.PacketCommandRequest;
-import io.gomint.server.network.packet.PacketContainerClose;
-import io.gomint.server.network.packet.PacketCraftingEvent;
-import io.gomint.server.network.packet.PacketDisconnect;
-import io.gomint.server.network.packet.PacketEmoteList;
-import io.gomint.server.network.packet.PacketEncryptionResponse;
-import io.gomint.server.network.packet.PacketEntityEvent;
-import io.gomint.server.network.packet.PacketEntityFall;
-import io.gomint.server.network.packet.PacketEntityMetadata;
-import io.gomint.server.network.packet.PacketHotbar;
-import io.gomint.server.network.packet.PacketInteract;
-import io.gomint.server.network.packet.PacketInventoryTransaction;
-import io.gomint.server.network.packet.PacketItemStackRequest;
-import io.gomint.server.network.packet.PacketLogin;
-import io.gomint.server.network.packet.PacketMobEquipment;
-import io.gomint.server.network.packet.PacketModalResponse;
-import io.gomint.server.network.packet.PacketMovePlayer;
-import io.gomint.server.network.packet.PacketPlayState;
-import io.gomint.server.network.packet.PacketPlayerAction;
-import io.gomint.server.network.packet.PacketRequestChunkRadius;
-import io.gomint.server.network.packet.PacketResourcePackResponse;
-import io.gomint.server.network.packet.PacketResourcePacksInfo;
-import io.gomint.server.network.packet.PacketRespawnPosition;
-import io.gomint.server.network.packet.PacketServerSettingsRequest;
-import io.gomint.server.network.packet.PacketConfirmChunkRadius;
-import io.gomint.server.network.packet.PacketSetLocalPlayerAsInitialized;
-import io.gomint.server.network.packet.PacketSkipable;
-import io.gomint.server.network.packet.PacketText;
-import io.gomint.server.network.packet.PacketTickSync;
-import io.gomint.server.network.packet.PacketTileEntityData;
-import io.gomint.server.network.packet.PacketViolationWarning;
-import io.gomint.server.network.packet.PacketWorldSoundEvent;
+import io.gomint.server.network.packet.*;
 
 /**
  * @author BlackyPaw
@@ -59,8 +19,8 @@ public final class Protocol {
     // MC:PE Protocol ID
     public static final int MINECRAFT_PE_BETA_PROTOCOL_VERSION = -1;
     public static final int MINECRAFT_PE_NEXT_STABLE_PROTOCOL_VERSION = -1;
-    public static final int MINECRAFT_PE_PROTOCOL_VERSION = 422;
-    public static final String MINECRAFT_PE_NETWORK_VERSION = "1.16.200";
+    public static final int MINECRAFT_PE_PROTOCOL_VERSION = 594;
+    public static final String MINECRAFT_PE_NETWORK_VERSION = "1.20.12";
 
     // ========================================= PACKET IDS ========================================= //
     public static final byte BATCH_MAGIC = (byte) 0xfe;
@@ -207,18 +167,58 @@ public final class Protocol {
     public static final int PACKET_NETWORK_SETTINGS = 0x8f;
     public static final int PACKET_PLAYER_AUTH_INPUT = 0x90;
     public static final int PACKET_CREATIVE_CONTENT = 0x91;
-    public static final int PACKET_PLAYER_ENCHANT_OPTIONS =  0x92;
-    public static final int PACKET_ITEM_STACK_REQUEST =  0x93;
-    public static final int PACKET_ITEM_STACK_RESPONSE =  0x94;
-    public static final int PACKET_PLAYER_ARMOR_DAMAGE =  0x95;
-    public static final int PACKET_CODE_BUILDER =  0x96;
-    public static final int PACKET_UPDATE_PLAYER_GAME_TYPE =  0x97;
-    public static final int PACKET_EMOTE_LIST =  0x98;
-    public static final int PACKET_POS_TRACKING_SERVER_BROADCAST =  0x99;
-    public static final int PACKET_POS_TRACKING_CLIENT_REQUEST =  0x9a;
-    public static final int PACKET_DEBUG_INFO =  0x9b;
-    public static final int PACKET_VIOLATION_WARNING =  0x9c;
+    public static final int PACKET_PLAYER_ENCHANT_OPTIONS = 0x92;
+    public static final int PACKET_ITEM_STACK_REQUEST = 0x93;
+    public static final int PACKET_ITEM_STACK_RESPONSE = 0x94;
+    public static final int PACKET_PLAYER_ARMOR_DAMAGE = 0x95;
+    public static final int PACKET_CODE_BUILDER = 0x96;
+    public static final int PACKET_UPDATE_PLAYER_GAME_TYPE = 0x97;
+    public static final int PACKET_EMOTE_LIST = 0x98;
+    public static final int PACKET_POS_TRACKING_SERVER_BROADCAST = 0x99;
+    public static final int PACKET_POS_TRACKING_CLIENT_REQUEST = 0x9a;
+    public static final int PACKET_DEBUG_INFO = 0x9b;
+    public static final int PACKET_VIOLATION_WARNING = 0x9c;
     public static final int PACKET_ITEM_COMPONENT = 0xA2;
+    public static final int PACKET_FILTER_TEXT = 0xA3;
+    public static final int PACKET_CLIENTBOUND_DEBUG_RENDERER = 0xA4;
+    public static final int PACKET_SYNC_ENTITY_PROPERTY = 0xA5;
+    public static final int PACKET_ADD_VOLUME_ENTITY = 0xA6;
+    public static final int PACKET_REMOVE_VOLUME_ENTITY = 0xA7;
+    public static final int PACKET_SIMULATION_TYPE = 0xA8;
+    public static final int PACKET_NPC_DIALOGUE = 0xA9;
+    public static final int PACKET_EDU_URI_RESOURCE = 0xAA;
+    public static final int PACKET_CREATE_PHOTO = 0xAB;
+    public static final int PACKET_UPDATE_SUB_CHUNK_BLOCKS = 0xAC;
+    public static final int PACKET_SUB_CHUNK = 0xAE;
+    public static final int PACKET_SUB_CHUNK_REQUEST = 0xAF;
+    public static final int PACKET_PLAYER_START_ITEM_COOLDOWN = 0xB0;
+    public static final int PACKET_SCRIPT_MESSAGE = 0xB1;
+    public static final int PACKET_CODE_BUILDER_SOURCE = 0xB2;
+    public static final int PACKET_TICKING_AREAS_LOAD_STATUS = 0xB3;
+    public static final int PACKET_DIMENSION_DATA = 0xB4;
+    public static final int PACKET_AGENT_ACTION_EVENT = 0xB5;
+    public static final int PACKET_CHANGE_MOB_PROPERTY = 0xB6;
+    public static final int PACKET_LESSON_PROGRESS = 0xB7;
+    public static final int PACKET_REQUEST_ABILITY = 0xB8;
+    public static final int PACKET_REQUEST_PERMISSIONS = 0xB9;
+    public static final int PACKET_TOAST_REQUEST = 0xBA;
+    public static final int PACKET_UPDATE_ABILITIES = 0xBB;
+    public static final int PACKET_UPDATE_ADVENTURE_SETTINGS = 0xBC;
+    public static final int PACKET_DEATH_INFO = 0xBD;
+    public static final int PACKET_EDITOR_NETWORK = 0xBE;
+    public static final int PACKET_FEATURE_REGISTRY = 0xBF;
+    public static final int PACKET_SERVER_STATS = 0xC0;
+    public static final int PACKET_REQUEST_NETWORK_SETTINGS = 0xC1;
+    public static final int PACKET_GAME_TEST_REQUEST = 0xC2;
+    public static final int PACKET_GAME_TEST_RESULTS = 0xC3;
+    public static final int PACKET_UPDATE_CLIENT_INPUT_LOCKS = 0xC4;
+    public static final int PACKET_CAMERA_PRESETS = 0xC6;
+    public static final int PACKET_UNLOCKED_RECIPES = 0xC7;
+    public static final int PACKET_CAMERA_INSTRUCTION = 0x12C;
+    public static final int PACKET_COMPRESSED_BIOME_DEFINITION_LIST = 0x12D;
+    public static final int PACKET_TRIM_DATA = 0x12E;
+    public static final int PACKET_OPEN_SIGN = 0x12F;
+    public static final int PACKET_AGENT_ANIMATION = 0x130;
     // CHECKSTYLE:ON
 
     // ========================================= PACKET METHODS ========================================= //

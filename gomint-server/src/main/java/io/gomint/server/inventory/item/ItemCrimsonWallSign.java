@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:crimson_wall_sign" )
-public class ItemCrimsonWallSign extends ItemStack< io.gomint.inventory.item.ItemCrimsonWallSign> implements io.gomint.inventory.item.ItemCrimsonWallSign {
+@RegisterInfo(sId = "minecraft:crimson_wall_sign")
+public class ItemCrimsonWallSign extends ItemStack<io.gomint.inventory.item.ItemCrimsonWallSign> implements io.gomint.inventory.item.ItemCrimsonWallSign {
 
     @Override
     public ItemType itemType() {

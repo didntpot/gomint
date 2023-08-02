@@ -13,7 +13,7 @@ import io.gomint.world.block.BlockType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:beacon" )
+@RegisterInfo(sId = "minecraft:beacon")
 public class Beacon extends Block implements BlockBeacon {
 
     @Override
@@ -52,8 +52,8 @@ public class Beacon extends Block implements BlockBeacon {
     }
 
     @Override
-    TileEntity createTileEntity( NBTTagCompound compound ) {
-        super.createTileEntity( compound );
+    TileEntity createTileEntity(NBTTagCompound compound) {
+        super.createTileEntity(compound);
         return this.tileEntities.construct(BeaconTileEntity.class, compound, this, this.items);
     }
 

@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:acacia_wall_sign" )
-public class ItemAcaciaWallSign extends ItemStack< io.gomint.inventory.item.ItemAcaciaWallSign> implements io.gomint.inventory.item.ItemAcaciaWallSign {
+@RegisterInfo(sId = "minecraft:acacia_wall_sign")
+public class ItemAcaciaWallSign extends ItemStack<io.gomint.inventory.item.ItemAcaciaWallSign> implements io.gomint.inventory.item.ItemAcaciaWallSign {
 
     @Override
     public ItemType itemType() {

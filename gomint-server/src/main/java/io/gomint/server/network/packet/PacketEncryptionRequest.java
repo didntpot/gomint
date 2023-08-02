@@ -7,21 +7,21 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketEncryptionRequest extends Packet {
+public class PacketEncryptionRequest extends Packet implements PacketClientbound {
 
     private String jwt;
 
     public PacketEncryptionRequest() {
-        super( Protocol.PACKET_ENCRYPTION_REQUEST );
+        super(Protocol.PACKET_ENCRYPTION_REQUEST);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeString( this.jwt );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeString(this.jwt);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.jwt = buffer.readString();
     }
 

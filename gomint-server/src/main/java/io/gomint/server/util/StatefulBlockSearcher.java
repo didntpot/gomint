@@ -3,7 +3,6 @@ package io.gomint.server.util;
 import io.gomint.math.BlockPosition;
 import io.gomint.world.World;
 import io.gomint.world.block.Block;
-
 import java.util.function.Predicate;
 
 /**
@@ -27,12 +26,12 @@ public class StatefulBlockSearcher {
     /**
      * Construct a new StatefulBlockSearcher
      *
-     * @param world in which we want to search
-     * @param start from where we want to search
-     * @param end until we want to search
+     * @param world     in which we want to search
+     * @param start     from where we want to search
+     * @param end       until we want to search
      * @param predicate to use when testing if the block is correct
      */
-    public StatefulBlockSearcher( World world, BlockPosition start, BlockPosition end, Predicate<Block> predicate ) {
+    public StatefulBlockSearcher(World world, BlockPosition start, BlockPosition end, Predicate<Block> predicate) {
         this.world = world;
         this.start = start;
         this.end = end;
@@ -46,15 +45,15 @@ public class StatefulBlockSearcher {
      */
     public BlockPosition validate() {
         // Check if we have a result
-        if ( this.foundPosition == null ) {
+        if (this.foundPosition == null) {
             // Search again
             this.iterate();
             return this.foundPosition;
         }
 
         // Check if the found block is still valid
-        Block block = this.world.blockAt( this.foundPosition );
-        if ( !this.predicate.test( block ) ) {
+        Block block = this.world.blockAt(this.foundPosition);
+        if (!this.predicate.test(block)) {
             this.foundPosition = null;
 
             // Iterate
@@ -68,12 +67,12 @@ public class StatefulBlockSearcher {
 
     private void iterate() {
         // Now iterate until we hit the end
-        for (int x = this.start.x(); x <= this.end.x(); x++ ) {
-            for (int y = this.start.y(); y <= this.end.y(); y++ ) {
-                for (int z = this.start.z(); z <= this.end.z(); z++ ) {
+        for (int x = this.start.x(); x <= this.end.x(); x++) {
+            for (int y = this.start.y(); y <= this.end.y(); y++) {
+                for (int z = this.start.z(); z <= this.end.z(); z++) {
                     // Get the block instance
-                    Block block = this.world.blockAt( x, y, z );
-                    if ( this.predicate.test( block ) ) {
+                    Block block = this.world.blockAt(x, y, z);
+                    if (this.predicate.test(block)) {
                         this.foundPosition = block.position();
                         return;
                     }

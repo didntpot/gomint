@@ -10,8 +10,8 @@ import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.server.world.block.state.BlockfaceBlockState;
 import io.gomint.taglib.NBTTagCompound;
 import io.gomint.world.block.BlockFurnace;
-import io.gomint.world.block.data.Facing;
 import io.gomint.world.block.BlockType;
+import io.gomint.world.block.data.Facing;
 
 /**
  * @author geNAZt
@@ -55,7 +55,7 @@ public class Furnace extends Block implements BlockFurnace {
 
     @Override
     TileEntity createTileEntity(NBTTagCompound compound) {
-        super.createTileEntity( compound );
+        super.createTileEntity(compound);
         return this.tileEntities.construct(FurnaceTileEntity.class, compound, this, this.items);
     }
 

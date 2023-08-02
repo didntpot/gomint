@@ -9,19 +9,13 @@ package io.gomint.server.network;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.PooledByteBufAllocator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.crypto.KeyAgreement;
-import java.security.InvalidKeyException;
-import java.security.Key;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
+import java.security.*;
 import java.security.interfaces.ECPublicKey;
 import java.util.Base64;
 import java.util.concurrent.ThreadLocalRandom;
+import javax.crypto.KeyAgreement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Handles all encryption needs of the Minecraft Pocket Edition Protocol (ECDH Key Exchange and
@@ -32,7 +26,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class EncryptionHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger( EncryptionHandler.class );
+    private static final Logger LOGGER = LoggerFactory.getLogger(EncryptionHandler.class);
     private static final ThreadLocal<MessageDigest> SHA256_DIGEST = new ThreadLocal<>();
 
     // Holder for the server keypair
@@ -56,7 +50,7 @@ public class EncryptionHandler {
      *
      * @param keyFactory The keyFactory which created the server keypair
      */
-    public EncryptionHandler( EncryptionKeyFactory keyFactory ) {
+    public EncryptionHandler(EncryptionKeyFactory keyFactory) {
         this.keyFactory = keyFactory;
     }
 
@@ -85,7 +79,7 @@ public class EncryptionHandler {
      *
      * @param key The key which should be used to encrypt traffic
      */
-    public void supplyClientKey( ECPublicKey key ) {
+    public void supplyClientKey(ECPublicKey key) {
         this.clientPublicKey = key;
     }
 
@@ -95,31 +89,31 @@ public class EncryptionHandler {
      * @return Whether or not the setup completed successfully
      */
     public boolean beginClientsideEncryption() {
-        if ( this.key != null && this.clientSalt != null ) {
+        if (this.key != null && this.clientSalt != null) {
             // Already initialized:
-            LOGGER.debug( "Already initialized" );
+            LOGGER.debug("Already initialized");
             return true;
         }
 
         // Generate a random salt:
         this.clientSalt = new byte[16];
-        ThreadLocalRandom.current().nextBytes( this.clientSalt );
+        ThreadLocalRandom.current().nextBytes(this.clientSalt);
 
         // Generate shared secret from ECDH keys:
-        byte[] secret = this.generateECDHSecret( this.keyFactory.keyPair().getPrivate(), this.clientPublicKey );
-        if ( secret == null ) {
+        byte[] secret = this.generateECDHSecret(this.keyFactory.keyPair().getPrivate(), this.clientPublicKey);
+        if (secret == null) {
             return false;
         }
 
         // Derive key as salted SHA-256 hash digest:
         try {
-            this.key = this.hashSHA256( this.clientSalt, secret );
+            this.key = this.hashSHA256(this.clientSalt, secret);
         } catch (NoSuchAlgorithmException e) {
             LOGGER.error("no sha-265 found", e);
             return false;
         }
 
-        this.iv = this.takeBytesFromArray( this.key, 0, 16 );
+        this.iv = this.takeBytesFromArray(this.key, 0, 16);
 
         // Initialize BlockCiphers:
         return true;
@@ -131,7 +125,7 @@ public class EncryptionHandler {
      *
      * @param key the key from the server
      */
-    public void serverPublicKey(PublicKey key ) {
+    public void serverPublicKey(PublicKey key) {
         this.serverPublicKey = key;
     }
 
@@ -141,28 +135,28 @@ public class EncryptionHandler {
      * @param salt The salt to prepend in front of the ECDH derived shared secret before hashing it (sent to us from the
      *             proxied server in a 0x03 packet)
      */
-    public boolean beginServersideEncryption( byte[] salt ) {
-        if ( this.serverKey != null && this.serverIv != null ) {
+    public boolean beginServersideEncryption(byte[] salt) {
+        if (this.serverKey != null && this.serverIv != null) {
             // Already initialized:
-            LOGGER.debug( "Already initialized" );
+            LOGGER.debug("Already initialized");
             return true;
         }
 
         // Generate shared secret from ECDH keys:
-        byte[] secret = this.generateECDHSecret( this.keyFactory.keyPair().getPrivate(), this.serverPublicKey );
-        if ( secret == null ) {
+        byte[] secret = this.generateECDHSecret(this.keyFactory.keyPair().getPrivate(), this.serverPublicKey);
+        if (secret == null) {
             return false;
         }
 
         // Derive key as salted SHA-256 hash digest:
         try {
-            this.serverKey = this.hashSHA256( salt, secret );
+            this.serverKey = this.hashSHA256(salt, secret);
         } catch (NoSuchAlgorithmException e) {
             LOGGER.error("no sha-265 found", e);
             return false;
         }
 
-        this.serverIv = this.takeBytesFromArray( this.serverKey, 0, 16 );
+        this.serverIv = this.takeBytesFromArray(this.serverKey, 0, 16);
 
         return true;
     }
@@ -173,7 +167,7 @@ public class EncryptionHandler {
      * @return BASE64 encoded public key
      */
     public String serverPublic() {
-        return Base64.getEncoder().encodeToString( this.keyFactory.keyPair().getPublic().getEncoded() );
+        return Base64.getEncoder().encodeToString(this.keyFactory.keyPair().getPublic().getEncoded());
     }
 
     /**
@@ -199,33 +193,33 @@ public class EncryptionHandler {
 
     // ========================================== Utility Methods
 
-    private byte[] generateECDHSecret( PrivateKey privateKey, PublicKey publicKey ) {
+    private byte[] generateECDHSecret(PrivateKey privateKey, PublicKey publicKey) {
         try {
-            KeyAgreement ka = KeyAgreement.getInstance( "ECDH" );
-            ka.init( privateKey );
-            ka.doPhase( publicKey, true );
+            KeyAgreement ka = KeyAgreement.getInstance("ECDH");
+            ka.init(privateKey);
+            ka.doPhase(publicKey, true);
             return ka.generateSecret();
-        } catch ( NoSuchAlgorithmException | InvalidKeyException e ) {
-            LOGGER.error( "Failed to generate Elliptic-Curve-Diffie-Hellman Shared Secret for clientside encryption", e );
+        } catch (NoSuchAlgorithmException | InvalidKeyException e) {
+            LOGGER.error("Failed to generate Elliptic-Curve-Diffie-Hellman Shared Secret for clientside encryption", e);
             return null;
         }
     }
 
-    private byte[] takeBytesFromArray( byte[] buffer, int offset, int length ) {
+    private byte[] takeBytesFromArray(byte[] buffer, int offset, int length) {
         byte[] result = new byte[length];
-        System.arraycopy( buffer, offset, result, 0, length );
+        System.arraycopy(buffer, offset, result, 0, length);
         return result;
     }
 
-    private byte[] hashSHA256( byte[]... message ) throws NoSuchAlgorithmException {
+    private byte[] hashSHA256(byte[]... message) throws NoSuchAlgorithmException {
         MessageDigest digest = getSHA256();
 
         ByteBuf buf = PooledByteBufAllocator.DEFAULT.directBuffer();
-        for ( byte[] bytes : message ) {
-            buf.writeBytes( bytes );
+        for (byte[] bytes : message) {
+            buf.writeBytes(bytes);
         }
 
-        digest.update( buf.nioBuffer() );
+        digest.update(buf.nioBuffer());
         buf.release();
         return digest.digest();
     }

@@ -14,21 +14,21 @@ import io.gomint.server.network.Protocol;
  * @author BlackyPaw
  * @version 1.0
  */
-public class PacketWorldTime extends Packet {
+public class PacketWorldTime extends Packet implements PacketClientbound {
 
     private int ticks;
 
     public PacketWorldTime() {
-        super( Protocol.PACKET_WORLD_TIME );
+        super(Protocol.PACKET_WORLD_TIME);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeSignedVarInt( this.ticks );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeSignedVarInt(this.ticks);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.ticks = buffer.readSignedVarInt();
     }
 

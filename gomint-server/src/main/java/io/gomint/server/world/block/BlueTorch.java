@@ -8,7 +8,7 @@ import io.gomint.world.block.BlockType;
  * @author Kaooot
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:colored_torch_bp" )
+@RegisterInfo(sId = "minecraft:colored_torch_bp")
 public class BlueTorch extends Torch implements BlockBlueTorch {
 
     @Override

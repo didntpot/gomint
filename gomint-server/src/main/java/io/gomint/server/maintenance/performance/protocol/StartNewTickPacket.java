@@ -13,12 +13,12 @@ public class StartNewTickPacket extends Packet {
     private long startInNanos;
 
     @Override
-    public void serialize( DataOutputStream dataOutputStream ) throws IOException {
-        dataOutputStream.writeLong( this.startInNanos );
+    public void serialize(DataOutputStream dataOutputStream) throws IOException {
+        dataOutputStream.writeLong(this.startInNanos);
     }
 
     @Override
-    public void deserialize( DataInputStream dataInputStream ) throws IOException {
+    public void deserialize(DataInputStream dataInputStream) throws IOException {
         this.startInNanos = dataInputStream.readLong();
     }
 

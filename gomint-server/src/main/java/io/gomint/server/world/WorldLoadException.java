@@ -11,8 +11,8 @@ public class WorldLoadException extends Exception {
      *
      * @param message which should be printed as the reason
      */
-    public WorldLoadException( String message ) {
-        super( message );
+    public WorldLoadException(String message) {
+        super(message);
     }
 
     /**
@@ -21,8 +21,8 @@ public class WorldLoadException extends Exception {
      * @param message which should be printed as the reason
      * @param caused  which has been thrown and swallowed into this exception
      */
-    public WorldLoadException( String message, Exception caused ) {
-        super( message, caused );
+    public WorldLoadException(String message, Exception caused) {
+        super(message, caused);
     }
 
 }

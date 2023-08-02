@@ -15,7 +15,6 @@ import io.gomint.server.entity.metadata.MetadataContainer;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.WorldAdapter;
 import io.gomint.server.world.block.Block;
-
 import java.util.Set;
 
 /**
@@ -61,7 +60,7 @@ public class EntityFallingBlock extends Entity<io.gomint.entity.passive.EntityFa
 
             // Check if block can be replaced
             Block block = this.world.blockAt(this.location().add(-(this.width() / 2), this.height(), -(this.width() / 2)).toBlockPosition());
-            if ( block.canBeReplaced( null ) ) {
+            if (block.canBeReplaced(null)) {
                 block.copyFromBlock(this.block);
             } else {
                 // Generate new item drop

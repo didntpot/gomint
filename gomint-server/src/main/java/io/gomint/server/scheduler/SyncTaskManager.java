@@ -7,8 +7,6 @@
 
 package io.gomint.server.scheduler;
 
-import io.gomint.server.GoMintServer;
-
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.PriorityQueue;
@@ -19,18 +17,18 @@ import java.util.PriorityQueue;
  */
 public class SyncTaskManager {
 
-    private final PriorityQueue<SyncScheduledTaskHolder> taskList = new PriorityQueue<>( Comparator.comparingLong( o -> o.execution ) );
+    private final PriorityQueue<SyncScheduledTaskHolder> taskList = new PriorityQueue<>(Comparator.comparingLong(o -> o.execution));
 
     /**
      * Add a new pre configured Task to this scheduler
      *
      * @param task which should be executed
      */
-    public SyncTaskManager addTask( SyncScheduledTask task ) {
-        if ( task.getNextExecution() == -1 ) return this;
+    public SyncTaskManager addTask(SyncScheduledTask task) {
+        if (task.getNextExecution() == -1) return this;
 
-        synchronized ( this.taskList ) {
-            this.taskList.add( new SyncScheduledTaskHolder( task.getNextExecution(), task ) );
+        synchronized (this.taskList) {
+            this.taskList.add(new SyncScheduledTaskHolder(task.getNextExecution(), task));
         }
         return this;
     }
@@ -40,9 +38,9 @@ public class SyncTaskManager {
      *
      * @param task The task which should be removed
      */
-    SyncTaskManager removeTask( SyncScheduledTask task ) {
-        synchronized ( this.taskList ) {
-            this.taskList.remove( new SyncScheduledTaskHolder( -1, task ) );
+    SyncTaskManager removeTask(SyncScheduledTask task) {
+        synchronized (this.taskList) {
+            this.taskList.remove(new SyncScheduledTaskHolder(-1, task));
         }
         return this;
     }
@@ -52,30 +50,30 @@ public class SyncTaskManager {
      *
      * @param currentMillis The amount of millis when the update started
      */
-    public SyncTaskManager update( long currentMillis ) {
-        synchronized ( this.taskList ) {
+    public SyncTaskManager update(long currentMillis) {
+        synchronized (this.taskList) {
             // Iterate over all Tasks until we find some for later ticks
-            while ( this.taskList.peek() != null && this.taskList.peek().execution < currentMillis ) {
+            while (this.taskList.peek() != null && this.taskList.peek().execution < currentMillis) {
                 SyncScheduledTaskHolder holder = this.taskList.poll();
-                if ( holder == null ) {
+                if (holder == null) {
                     return this;
                 }
 
                 SyncScheduledTask task = holder.task;
-                if ( task == null ) {
+                if (task == null) {
                     return this;
                 }
 
                 // Check for abort value ( -1 )
-                if ( task.getNextExecution() == -1 ) {
+                if (task.getNextExecution() == -1) {
                     continue;
                 }
 
                 task.run();
 
                 // Reschedule if needed
-                if ( task.getNextExecution() > currentMillis ) {
-                    this.taskList.add( new SyncScheduledTaskHolder( task.getNextExecution(), task ) );
+                if (task.getNextExecution() > currentMillis) {
+                    this.taskList.add(new SyncScheduledTaskHolder(task.getNextExecution(), task));
                 }
             }
         }

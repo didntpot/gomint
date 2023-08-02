@@ -32,8 +32,8 @@ public class AIBehaviourComponent implements EntityComponent {
     }
 
     @Override
-    public void update( long currentTimeMS, float dT ) {
-        this.machine.update( currentTimeMS, dT );
+    public void update(long currentTimeMS, float dT) {
+        this.machine.update(currentTimeMS, dT);
     }
 
 }

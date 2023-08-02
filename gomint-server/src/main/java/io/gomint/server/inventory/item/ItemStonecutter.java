@@ -9,7 +9,7 @@ import io.gomint.server.registry.RegisterInfo;
  */
 @RegisterInfo(sId = "minecraft:stonecutter")
 @RegisterInfo(sId = "minecraft:stonecutter_block")
-public class ItemStonecutter extends ItemStack< io.gomint.inventory.item.ItemStonecutter> implements io.gomint.inventory.item.ItemStonecutter {
+public class ItemStonecutter extends ItemStack<io.gomint.inventory.item.ItemStonecutter> implements io.gomint.inventory.item.ItemStonecutter {
 
     @Override
     public ItemType itemType() {

@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:warped_standing_sign" )
-public class ItemWarpedStandingSign extends ItemStack< io.gomint.inventory.item.ItemWarpedStandingSign> implements io.gomint.inventory.item.ItemWarpedStandingSign {
+@RegisterInfo(sId = "minecraft:warped_standing_sign")
+public class ItemWarpedStandingSign extends ItemStack<io.gomint.inventory.item.ItemWarpedStandingSign> implements io.gomint.inventory.item.ItemWarpedStandingSign {
 
     @Override
     public ItemType itemType() {

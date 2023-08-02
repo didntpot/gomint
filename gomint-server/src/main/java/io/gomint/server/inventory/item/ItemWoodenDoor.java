@@ -5,7 +5,6 @@ import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.Block;
 import io.gomint.world.block.BlockWoodenDoor;
 import io.gomint.world.block.data.LogType;
-
 import java.time.Duration;
 
 /**
@@ -20,7 +19,7 @@ import java.time.Duration;
 @RegisterInfo(sId = "minecraft:warped_door")
 @RegisterInfo(sId = "minecraft:crimson_door")
 @RegisterInfo(sId = "minecraft:spruce_door")
-public class ItemWoodenDoor extends ItemStack< io.gomint.inventory.item.ItemWoodenDoor> implements io.gomint.inventory.item.ItemWoodenDoor {
+public class ItemWoodenDoor extends ItemStack<io.gomint.inventory.item.ItemWoodenDoor> implements io.gomint.inventory.item.ItemWoodenDoor {
 
     @Override
     public Duration burnTime() {

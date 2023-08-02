@@ -27,30 +27,30 @@ public class BeaconTileEntity extends TileEntity {
      *
      * @param block which created this tile
      */
-    public BeaconTileEntity( Block block, Items items ) {
-        super( block, items );
+    public BeaconTileEntity(Block block, Items items) {
+        super(block, items);
     }
 
     @Override
-    public void fromCompound( NBTTagCompound compound ) {
-        super.fromCompound( compound );
+    public void fromCompound(NBTTagCompound compound) {
+        super.fromCompound(compound);
 
-        this.primary = compound.getInteger( "primary", 0 );
-        this.secondary = compound.getInteger( "secondary", 0 );
+        this.primary = compound.getInteger("primary", 0);
+        this.secondary = compound.getInteger("secondary", 0);
     }
 
     @Override
-    public void update( long currentMillis, float dT ) {
+    public void update(long currentMillis, float dT) {
 
     }
 
     @Override
-    public void toCompound( NBTTagCompound compound, SerializationReason reason ) {
-        super.toCompound( compound, reason );
+    public void toCompound(NBTTagCompound compound, SerializationReason reason) {
+        super.toCompound(compound, reason);
 
-        compound.addValue( "id", "Beacon" );
-        compound.addValue( "primary", this.primary );
-        compound.addValue( "secondary", this.secondary );
+        compound.addValue("id", "Beacon");
+        compound.addValue("primary", this.primary);
+        compound.addValue("secondary", this.secondary);
     }
 
     public int getPrimary() {

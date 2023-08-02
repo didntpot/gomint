@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:sealantern" )
-public class ItemSeaLantern extends ItemStack< io.gomint.inventory.item.ItemSeaLantern> implements io.gomint.inventory.item.ItemSeaLantern {
+@RegisterInfo(sId = "minecraft:sealantern")
+public class ItemSeaLantern extends ItemStack<io.gomint.inventory.item.ItemSeaLantern> implements io.gomint.inventory.item.ItemSeaLantern {
 
     @Override
     public ItemType itemType() {

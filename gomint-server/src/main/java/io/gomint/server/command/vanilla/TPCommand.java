@@ -1,5 +1,3 @@
-
-
 package io.gomint.server.command.vanilla;
 
 import io.gomint.GoMint;
@@ -15,7 +13,6 @@ import io.gomint.entity.EntityPlayer;
 import io.gomint.math.BlockPosition;
 import io.gomint.math.Location;
 import io.gomint.world.World;
-
 import java.util.Map;
 
 /**

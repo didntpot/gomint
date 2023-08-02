@@ -29,19 +29,14 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import it.unimi.dsi.fastutil.shorts.Short2ObjectMap;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.nio.ByteOrder;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author BlackyPaw
@@ -107,7 +102,7 @@ public class ChunkAdapter implements Chunk {
         if (o == null || getClass() != o.getClass()) return false;
         ChunkAdapter adapter = (ChunkAdapter) o;
         return this.x == adapter.x &&
-                this.z == adapter.z &&
+            this.z == adapter.z &&
             Objects.equals(this.world, adapter.world);
     }
 

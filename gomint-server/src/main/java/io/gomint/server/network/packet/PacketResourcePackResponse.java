@@ -4,6 +4,7 @@ import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.Protocol;
 import io.gomint.server.player.ResourcePackInfo;
 import io.gomint.server.resource.ResourceResponseStatus;
+import java.util.Map;
 
 /**
  * @author geNAZt
@@ -15,23 +16,26 @@ public class PacketResourcePackResponse extends Packet {
     private ResourcePackInfo info;
 
     public PacketResourcePackResponse() {
-        super( Protocol.PACKET_RESOURCEPACK_RESPONSE );
+        super(Protocol.PACKET_RESOURCEPACK_RESPONSE);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeByte( (byte) ( (byte) this.status.ordinal() + 1 ) );
-        buffer.writeLShort( (short) 0 );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeByte((byte) ((byte) this.status.ordinal() + 1));
+        buffer.writeLShort((short) 0);
+        for (Map.Entry<String, String> entry : this.info.getLoadedResourcePacks().entrySet()) {
+            buffer.writeString(entry.getKey());
+        }
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
-        this.status = ResourceResponseStatus.valueOf( buffer.readByte() );
+    public void deserialize(PacketBuffer buffer, int protocolID) {
+        this.status = ResourceResponseStatus.valueOf(buffer.readByte());
         this.info = new ResourcePackInfo();
 
         int count = buffer.readLShort();
-        for ( int i = 0; i < count; i++ ) {
-            this.info.addResourcePack( buffer.readString(), buffer.readString() );
+        for (int i = 0; i < count; i++) {
+            this.info.addResourcePack(buffer.readString(), "");
         }
     }
 

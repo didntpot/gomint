@@ -11,18 +11,13 @@ import io.gomint.command.Command;
 import io.gomint.command.CommandOutput;
 import io.gomint.command.CommandSender;
 import io.gomint.command.ConsoleCommandSender;
-import io.gomint.command.annotation.Description;
-import io.gomint.command.annotation.Name;
-import io.gomint.command.annotation.Overload;
-import io.gomint.command.annotation.Parameter;
-import io.gomint.command.annotation.Permission;
+import io.gomint.command.annotation.*;
 import io.gomint.command.validator.EnumValidator;
 import io.gomint.command.validator.IntegerValidator;
 import io.gomint.entity.EntityPlayer;
 import io.gomint.math.MathUtils;
 import io.gomint.server.util.Values;
 import io.gomint.world.World;
-
 import java.time.Duration;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -51,7 +46,7 @@ public class TimeSetCommand extends Command {
         }
 
         Integer ticksOrNull = (Integer) arguments.get("ticks");
-        if ( ticksOrNull == null ) {
+        if (ticksOrNull == null) {
             String timeEnum = (String) arguments.get("time");
             switch (timeEnum) {
                 case "day":

@@ -9,47 +9,10 @@ package io.gomint.server.network;
 
 import io.gomint.event.network.PingEvent;
 import io.gomint.event.player.PlayerPreLoginEvent;
-import io.gomint.jraknet.Connection;
-import io.gomint.jraknet.EventLoops;
-import io.gomint.jraknet.PacketBuffer;
-import io.gomint.jraknet.ServerSocket;
-import io.gomint.jraknet.SocketEvent;
+import io.gomint.jraknet.*;
 import io.gomint.server.GoMintServer;
 import io.gomint.server.maintenance.ReportUploader;
-import io.gomint.server.network.handler.PacketAdventureSettingsHandler;
-import io.gomint.server.network.handler.PacketAnimateHandler;
-import io.gomint.server.network.handler.PacketBlockPickRequestHandler;
-import io.gomint.server.network.handler.PacketBookEditHandler;
-import io.gomint.server.network.handler.PacketBossBarHandler;
-import io.gomint.server.network.handler.PacketClientCacheBlobStatusHandler;
-import io.gomint.server.network.handler.PacketClientCacheStatusHandler;
-import io.gomint.server.network.handler.PacketCommandRequestHandler;
-import io.gomint.server.network.handler.PacketContainerCloseHandler;
-import io.gomint.server.network.handler.PacketEmoteListHandler;
-import io.gomint.server.network.handler.PacketEncryptionResponseHandler;
-import io.gomint.server.network.handler.PacketEntityEventHandler;
-import io.gomint.server.network.handler.PacketEntityFallHandler;
-import io.gomint.server.network.handler.PacketHandler;
-import io.gomint.server.network.handler.PacketHotbarHandler;
-import io.gomint.server.network.handler.PacketInteractHandler;
-import io.gomint.server.network.handler.PacketInventoryTransactionHandler;
-import io.gomint.server.network.handler.PacketItemStackRequestHandler;
-import io.gomint.server.network.handler.PacketLoginHandler;
-import io.gomint.server.network.handler.PacketMobArmorEquipmentHandler;
-import io.gomint.server.network.handler.PacketMobEquipmentHandler;
-import io.gomint.server.network.handler.PacketModalResponseHandler;
-import io.gomint.server.network.handler.PacketMovePlayerHandler;
-import io.gomint.server.network.handler.PacketPlayerActionHandler;
-import io.gomint.server.network.handler.PacketRequestChunkRadiusHandler;
-import io.gomint.server.network.handler.PacketResourcePackResponseHandler;
-import io.gomint.server.network.handler.PacketRespawnPositionHandler;
-import io.gomint.server.network.handler.PacketServerSettingsRequestHandler;
-import io.gomint.server.network.handler.PacketSetLocalPlayerAsInitializedHandler;
-import io.gomint.server.network.handler.PacketTextHandler;
-import io.gomint.server.network.handler.PacketTickSyncHandler;
-import io.gomint.server.network.handler.PacketTileEntityDataHandler;
-import io.gomint.server.network.handler.PacketViolationWarningHandler;
-import io.gomint.server.network.handler.PacketWorldSoundEventHandler;
+import io.gomint.server.network.handler.*;
 import io.gomint.server.network.packet.Packet;
 import io.netty.util.ResourceLeakDetector;
 import io.netty.util.ThreadDeathWatcher;
@@ -58,19 +21,13 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import it.unimi.dsi.fastutil.longs.LongSet;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.SocketException;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author BlackyPaw
@@ -81,9 +38,9 @@ public class NetworkManager {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NetworkManager.class);
     private final GoMintServer server;
-    
+
     private final PacketHandler<? extends Packet>[] packetHandlers = new PacketHandler[256];
-    
+
     // Connections which were closed and should be removed during next tick:
     private final LongSet closedConnections = new LongOpenHashSet();
     private ServerSocket socket;
@@ -105,7 +62,7 @@ public class NetworkManager {
     /**
      * Init a new NetworkManager for accepting new connections and read incoming data
      *
-     * @param server  server instance which should be used
+     * @param server server instance which should be used
      */
     public NetworkManager(GoMintServer server) {
         this.server = server;
@@ -131,7 +88,7 @@ public class NetworkManager {
         this.packetHandlers[Protocol.PACKET_REQUEST_CHUNK_RADIUS & 0xff] = new PacketRequestChunkRadiusHandler();
         this.packetHandlers[Protocol.PACKET_PLAYER_ACTION & 0xff] = new PacketPlayerActionHandler();
         this.packetHandlers[Protocol.PACKET_MOB_ARMOR_EQUIPMENT & 0xff] = new PacketMobArmorEquipmentHandler();
-        this.packetHandlers[Protocol.PACKET_ADVENTURE_SETTINGS & 0xff] = new PacketAdventureSettingsHandler();
+//        this.packetHandlers[Protocol.PACKET_ADVENTURE_SETTINGS & 0xff] = new PacketAdventureSettingsHandler();
         this.packetHandlers[Protocol.PACKET_RESOURCEPACK_RESPONSE & 0xff] = new PacketResourcePackResponseHandler();
         this.packetHandlers[Protocol.PACKET_LOGIN & 0xff] = new PacketLoginHandler(this.server.encryptionKeyFactory(), this.server.serverConfig(), this.server);
         this.packetHandlers[Protocol.PACKET_MOB_EQUIPMENT & 0xff] = new PacketMobEquipmentHandler();
@@ -161,6 +118,7 @@ public class NetworkManager {
         this.packetHandlers[Protocol.PACKET_VIOLATION_WARNING & 0xff] = new PacketViolationWarningHandler();
         this.packetHandlers[Protocol.PACKET_CLIENT_CACHE_BLOB_STATUS & 0xff] = new PacketClientCacheBlobStatusHandler();
         this.packetHandlers[Protocol.PACKET_ITEM_STACK_REQUEST & 0xff] = new PacketItemStackRequestHandler();
+        this.packetHandlers[Protocol.PACKET_REQUEST_NETWORK_SETTINGS] = new PacketRequestNetworkSettingsHandler();
     }
 
     // ======================================= PUBLIC API ======================================= //
@@ -348,6 +306,7 @@ public class NetworkManager {
     private void handleNewConnection(Connection newConnection) {
         PlayerConnection playerConnection = new PlayerConnection(this, newConnection);
         this.incomingConnections.add(playerConnection);
+        LOGGER.info("Accepted incoming connection: {}", playerConnection.connection().getAddress());
     }
 
     /**

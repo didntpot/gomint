@@ -9,7 +9,6 @@ package io.gomint.server.world.biome.component;
 
 import io.gomint.entity.Entity;
 import io.gomint.world.biome.component.SpawnableEntities;
-
 import java.util.Set;
 
 /**

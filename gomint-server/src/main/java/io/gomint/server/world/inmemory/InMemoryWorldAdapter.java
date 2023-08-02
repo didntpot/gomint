@@ -18,7 +18,6 @@ import io.gomint.server.world.WorldCreateException;
 import io.gomint.world.Chunk;
 import io.gomint.world.generator.ChunkGenerator;
 import io.gomint.world.generator.GeneratorContext;
-
 import java.io.File;
 
 /**
@@ -30,8 +29,8 @@ public final class InMemoryWorldAdapter extends WorldAdapter {
     private final Class<? extends ChunkGenerator> generator;
 
     public InMemoryWorldAdapter(GoMintServer server, String name, Class<? extends ChunkGenerator> generator) throws WorldCreateException {
-        super( server, new File( name ), name );
-        this.chunkCache = new ChunkCache( this );
+        super(server, new File(name), name);
+        this.chunkCache = new ChunkCache(this);
         this.levelName = name;
         this.generator = generator;
 
@@ -39,28 +38,28 @@ public final class InMemoryWorldAdapter extends WorldAdapter {
 
         // Generate a spawnpoint
         BlockPosition spawnPoint = this.chunkGenerator.spawnPoint();
-        this.spawn = new Location( this, spawnPoint.x(), spawnPoint.y(), spawnPoint.z() );
+        this.spawn = new Location(this, spawnPoint.x(), spawnPoint.y(), spawnPoint.z());
 
         // Prepare spawn region
         this.prepareSpawnRegion();
     }
 
     @Override
-    public ChunkAdapter loadChunk( int x, int z, boolean generate ) {
-        ChunkAdapter chunkAdapter = this.chunkCache.getChunk( x, z );
-        if ( chunkAdapter != null ) {
+    public ChunkAdapter loadChunk(int x, int z, boolean generate) {
+        ChunkAdapter chunkAdapter = this.chunkCache.getChunk(x, z);
+        if (chunkAdapter != null) {
             return chunkAdapter;
         }
 
-        if ( generate ) {
-            return this.generate( x, z, false );
+        if (generate) {
+            return this.generate(x, z, false);
         }
 
         return null;
     }
 
     @Override
-    protected void saveChunk( ChunkAdapter chunk ) {
+    protected void saveChunk(ChunkAdapter chunk) {
 
     }
 
@@ -74,14 +73,14 @@ public final class InMemoryWorldAdapter extends WorldAdapter {
         try {
             // Build up generator
             GeneratorContext context = new GeneratorContext();
-            this.constructGenerator( this.generator, context );
-        } catch ( WorldCreateException e ) {
-            this.logger.error( "Could not construct generator", e );
+            this.constructGenerator(this.generator, context);
+        } catch (WorldCreateException e) {
+            this.logger.error("Could not construct generator", e);
         }
     }
 
     @Override
-    public void persistPlayer( EntityPlayer player ) {
+    public void persistPlayer(EntityPlayer player) {
 
     }
 
@@ -91,8 +90,8 @@ public final class InMemoryWorldAdapter extends WorldAdapter {
     }
 
     @Override
-    public Chunk generateEmptyChunk( int x, int z ) {
-        return new InMemoryChunkAdapter( this, x, z );
+    public Chunk generateEmptyChunk(int x, int z) {
+        return new InMemoryChunkAdapter(this, x, z);
     }
 
     /**
@@ -104,8 +103,8 @@ public final class InMemoryWorldAdapter extends WorldAdapter {
      * @return new world
      * @throws WorldCreateException when there already is a world or a error during creating occured
      */
-    public static InMemoryWorldAdapter create( GoMintServer server, String name, Class<? extends ChunkGenerator> generator ) throws WorldCreateException {
-        return new InMemoryWorldAdapter( server, name, generator );
+    public static InMemoryWorldAdapter create(GoMintServer server, String name, Class<? extends ChunkGenerator> generator) throws WorldCreateException {
+        return new InMemoryWorldAdapter(server, name, generator);
     }
 
 }

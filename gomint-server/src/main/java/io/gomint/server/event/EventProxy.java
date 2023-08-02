@@ -17,8 +17,9 @@ public interface EventProxy {
 
     /**
      * Call this method body for the given event
+     *
      * @param event which should be handled by this proxy
      */
-    void call( Event event );
+    void call(Event event);
 
 }

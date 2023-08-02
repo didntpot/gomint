@@ -25,24 +25,15 @@ import io.gomint.server.network.handler.session.EnchantingSession;
 import io.gomint.server.network.handler.session.Session;
 import io.gomint.server.network.packet.PacketItemStackRequest;
 import io.gomint.server.network.packet.PacketItemStackResponse;
-import io.gomint.server.network.packet.types.InventoryAction;
-import io.gomint.server.network.packet.types.InventoryConsumeAction;
-import io.gomint.server.network.packet.types.InventoryCraftAction;
-import io.gomint.server.network.packet.types.InventoryCraftingResultAction;
-import io.gomint.server.network.packet.types.InventoryDestroyCreativeAction;
-import io.gomint.server.network.packet.types.InventoryDropAction;
-import io.gomint.server.network.packet.types.InventoryGetCreativeAction;
-import io.gomint.server.network.packet.types.InventoryTransferAction;
-import io.gomint.server.network.packet.types.ItemStackRequestSlotInfo;
+import io.gomint.server.network.packet.types.stackrequest.*;
 import io.gomint.server.util.Values;
 import io.gomint.world.Gamemode;
 import it.unimi.dsi.fastutil.bytes.Byte2ObjectMap;
 import it.unimi.dsi.fastutil.bytes.Byte2ObjectOpenHashMap;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PacketItemStackRequestHandler implements PacketHandler<PacketItemStackRequest> {
 
@@ -157,7 +148,7 @@ public class PacketItemStackRequestHandler implements PacketHandler<PacketItemSt
                     resp = new PacketItemStackResponse.Response(PacketItemStackResponse.ResponseResult.Error, request.getRequestId(), null);
                 } else {
                     // We need to tell the client the new stack ids (for whatever reason)
-                    for (Transaction<?,?,?> transaction : transactionGroup.getTransactions()) {
+                    for (Transaction<?, ?, ?> transaction : transactionGroup.getTransactions()) {
                         ItemStack<?> target = (ItemStack<?>) transaction.targetItem();
 
                         byte fixedSlot = fixSlotOutput(transaction);
@@ -210,7 +201,7 @@ public class PacketItemStackRequestHandler implements PacketHandler<PacketItemSt
         byte sourceSlot = fixSlotInput(dropAction.getSource());
 
         // Create new item with the correct drop amount
-        InventoryTransaction<?,?,?> inventoryTransactionSource;
+        InventoryTransaction<?, ?, ?> inventoryTransactionSource;
         if (dropAction.getAmount() == source.amount()) {
             // We need to replace the source with air
             inventoryTransactionSource = new InventoryTransaction<>(
@@ -256,7 +247,7 @@ public class PacketItemStackRequestHandler implements PacketHandler<PacketItemSt
         if (transferAction.hasAmount()) {
             if (transferAction.getAmount() <= source.amount()) {
                 int remaining = source.amount() - transferAction.getAmount();
-                InventoryTransaction<?,?,?> inventoryTransactionSource;
+                InventoryTransaction<?, ?, ?> inventoryTransactionSource;
 
                 if (remaining > 0) {
                     // We need to set leftovers back or we are left up with dangling items
@@ -281,7 +272,7 @@ public class PacketItemStackRequestHandler implements PacketHandler<PacketItemSt
                     source.amount(destination.amount() + source.amount());
                 }
 
-                InventoryTransaction<?,?,?> inventoryTransactionDestination = new InventoryTransaction<>(
+                InventoryTransaction<?, ?, ?> inventoryTransactionDestination = new InventoryTransaction<>(
                     connection.entity(), getInventory(connection.entity(), transferAction.getDestination().getWindowId(), session),
                     destinationSlot, destination, source,
                     transferAction.getDestination().getWindowId());
@@ -291,11 +282,11 @@ public class PacketItemStackRequestHandler implements PacketHandler<PacketItemSt
                 return new PacketItemStackResponse.Response(PacketItemStackResponse.ResponseResult.Error, request.getRequestId(), null);
             }
         } else {
-            InventoryTransaction<?,?,?> inventoryTransactionSource = new InventoryTransaction<>(
+            InventoryTransaction<?, ?, ?> inventoryTransactionSource = new InventoryTransaction<>(
                 connection.entity(), getInventory(connection.entity(), transferAction.getSource().getWindowId(), session),
                 sourceSlot, source, destination,
                 transferAction.getSource().getWindowId());
-            InventoryTransaction<?,?,?> inventoryTransactionDestination = new InventoryTransaction<>(
+            InventoryTransaction<?, ?, ?> inventoryTransactionDestination = new InventoryTransaction<>(
                 connection.entity(), getInventory(connection.entity(), transferAction.getDestination().getWindowId(), session),
                 destinationSlot, destination, source,
                 transferAction.getDestination().getWindowId());
@@ -326,7 +317,7 @@ public class PacketItemStackRequestHandler implements PacketHandler<PacketItemSt
         return info.getSlot();
     }
 
-    private byte fixSlotOutput(Transaction<?,?,?> info) {
+    private byte fixSlotOutput(Transaction<?, ?, ?> info) {
         switch (info.getInventoryWindowId()) {
             case WindowMagicNumbers.ENCHANTMENT_TABLE_INPUT:
                 return 14;

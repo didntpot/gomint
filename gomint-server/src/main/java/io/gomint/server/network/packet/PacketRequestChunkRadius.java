@@ -14,22 +14,25 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketRequestChunkRadius extends Packet {
+public class PacketRequestChunkRadius extends Packet implements PacketServerbound {
 
     private int chunkRadius;
+    private byte maxRadius;
 
     public PacketRequestChunkRadius() {
-        super( Protocol.PACKET_REQUEST_CHUNK_RADIUS );
+        super(Protocol.PACKET_REQUEST_CHUNK_RADIUS);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeSignedVarInt( this.chunkRadius );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeSignedVarInt(this.chunkRadius);
+        buffer.writeByte(this.maxRadius);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.chunkRadius = buffer.readSignedVarInt();
+        this.maxRadius = buffer.readByte();
     }
 
     public int getChunkRadius() {
@@ -38,5 +41,13 @@ public class PacketRequestChunkRadius extends Packet {
 
     public void setChunkRadius(int chunkRadius) {
         this.chunkRadius = chunkRadius;
+    }
+
+    public byte getMaxRadius() {
+        return this.maxRadius;
+    }
+
+    public void setMaxRadius(byte maxRadius) {
+        this.maxRadius = maxRadius;
     }
 }

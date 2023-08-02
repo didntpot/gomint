@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:cod" )
-public class ItemCod extends ItemStack< io.gomint.inventory.item.ItemCod> implements io.gomint.inventory.item.ItemCod {
+@RegisterInfo(sId = "minecraft:cod")
+public class ItemCod extends ItemStack<io.gomint.inventory.item.ItemCod> implements io.gomint.inventory.item.ItemCod {
 
     @Override
     public ItemType itemType() {

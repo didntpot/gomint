@@ -10,7 +10,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:composter" )
+@RegisterInfo(sId = "minecraft:composter")
 public class Composter extends Block implements BlockComposter {
 
     @Override

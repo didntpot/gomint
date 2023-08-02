@@ -7,14 +7,13 @@
 
 package io.gomint.server.async;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Very simple and small future class. Supports all features of the JDKs Future&lt;T&gt; class but provides
@@ -27,7 +26,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class Future<T> {
 
-    private static final Logger logger = LoggerFactory.getLogger( Future.class );
+    private static final Logger logger = LoggerFactory.getLogger(Future.class);
 
     private static final byte UNRESOLVED = (byte) 0;
     private static final byte RESOLVED = (byte) 1;
@@ -44,7 +43,7 @@ public class Future<T> {
      * @return The future's result. Only guaranteed to be the actual result if {@link #isSuccess()} is true
      */
     public synchronized T tryGet() {
-        switch ( this.state ) {
+        switch (this.state) {
             case RESOLVED:
                 return (T) this.result;
             default:
@@ -59,9 +58,9 @@ public class Future<T> {
      * @throws InterruptedException Thrown in case the future gets interrupted whilst waiting for the operation to complete
      * @throws ExecutionException   Thrown in case the future operation failed
      */
-    @SuppressWarnings( "unchecked" )
+    @SuppressWarnings("unchecked")
     public synchronized T get() throws InterruptedException, ExecutionException {
-        while ( this.state == UNRESOLVED ) {
+        while (this.state == UNRESOLVED) {
             this.wait();
         }
 
@@ -75,12 +74,12 @@ public class Future<T> {
      * @return The future operation's result
      * @throws ExecutionException Thrown in case the future operation failed
      */
-    @SuppressWarnings( "unchecked" )
+    @SuppressWarnings("unchecked")
     public synchronized T getUninterruptibly() throws ExecutionException {
-        while ( this.state == UNRESOLVED ) {
+        while (this.state == UNRESOLVED) {
             try {
                 this.wait();
-            } catch ( InterruptedException ignored ) {
+            } catch (InterruptedException ignored) {
                 // ._.
             }
         }
@@ -99,13 +98,13 @@ public class Future<T> {
      * @throws ExecutionException   Thrown in case the future operation failed
      * @throws TimeoutException     Thrown in case the specified timeout expires before the future operation completes
      */
-    @SuppressWarnings( "unchecked" )
-    public synchronized T get( long duration, TimeUnit unit ) throws InterruptedException, ExecutionException, TimeoutException {
+    @SuppressWarnings("unchecked")
+    public synchronized T get(long duration, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
         long now = System.currentTimeMillis();
-        long end = now + unit.toMillis( duration );
+        long end = now + unit.toMillis(duration);
 
-        while ( this.state == UNRESOLVED && now < end ) {
-            this.wait( end - now );
+        while (this.state == UNRESOLVED && now < end) {
+            this.wait(end - now);
             now = System.currentTimeMillis();
         }
 
@@ -123,14 +122,14 @@ public class Future<T> {
      * @throws ExecutionException Thrown in case the future operation failed
      * @throws TimeoutException   Thrown in case the specified timeout expires before the future operation completes
      */
-    @SuppressWarnings( "unchecked" )
-    public synchronized T getUninterruptibly( long duration, TimeUnit unit ) throws ExecutionException, TimeoutException {
+    @SuppressWarnings("unchecked")
+    public synchronized T getUninterruptibly(long duration, TimeUnit unit) throws ExecutionException, TimeoutException {
         long now = System.currentTimeMillis();
-        long end = now + unit.toMillis( duration );
-        while ( this.state == UNRESOLVED && now < end ) {
+        long end = now + unit.toMillis(duration);
+        while (this.state == UNRESOLVED && now < end) {
             try {
-                this.wait( end - now );
-            } catch ( InterruptedException ignored ) {
+                this.wait(end - now);
+            } catch (InterruptedException ignored) {
                 // ._.
             }
 
@@ -145,11 +144,11 @@ public class Future<T> {
      *
      * @param listener The listener to add
      */
-    public synchronized void addFutureListener( FutureListener<Future<T>> listener ) {
-        if ( this.state == UNRESOLVED ) {
-            this.futureListeners.add( listener );
+    public synchronized void addFutureListener(FutureListener<Future<T>> listener) {
+        if (this.state == UNRESOLVED) {
+            this.futureListeners.add(listener);
         } else {
-            listener.onFutureResolved( this );
+            listener.onFutureResolved(this);
         }
     }
 
@@ -185,8 +184,8 @@ public class Future<T> {
      *
      * @param result The result of the future operation
      */
-    public synchronized void resolve( T result ) {
-        setWhenUnresolved( result, RESOLVED );
+    public synchronized void resolve(T result) {
+        setWhenUnresolved(result, RESOLVED);
     }
 
     /**
@@ -194,43 +193,43 @@ public class Future<T> {
      *
      * @param cause The cause of the future operation's failure
      */
-    public synchronized void fail( Throwable cause ) {
-        setWhenUnresolved( cause, FAILED );
+    public synchronized void fail(Throwable cause) {
+        setWhenUnresolved(cause, FAILED);
     }
 
     private T getResultOrException() throws ExecutionException {
-        switch ( this.state ) {
+        switch (this.state) {
             case RESOLVED:
                 return (T) this.result;
             case FAILED:
             default:
-                throw new ExecutionException( "Future operation failed to execute", (Throwable) this.result );
+                throw new ExecutionException("Future operation failed to execute", (Throwable) this.result);
         }
     }
 
     private T getResultOrTimeoutException() throws TimeoutException, ExecutionException {
-        switch ( this.state ) {
+        switch (this.state) {
             case UNRESOLVED:
-                throw new TimeoutException( "Future operation did not complete within timeout" );
+                throw new TimeoutException("Future operation did not complete within timeout");
             case RESOLVED:
                 return (T) this.result;
             case FAILED:
             default:
-                throw new ExecutionException( "Future operation failed to execute", (Throwable) this.result );
+                throw new ExecutionException("Future operation failed to execute", (Throwable) this.result);
         }
     }
 
-    private synchronized void setWhenUnresolved( Object result, byte resolved ) {
-        if ( this.state == UNRESOLVED ) {
+    private synchronized void setWhenUnresolved(Object result, byte resolved) {
+        if (this.state == UNRESOLVED) {
             this.state = resolved;
             this.result = result;
             this.notifyAll();
 
-            for ( FutureListener<Future<T>> listener : this.futureListeners ) {
+            for (FutureListener<Future<T>> listener : this.futureListeners) {
                 try {
-                    listener.onFutureResolved( this );
-                } catch ( Throwable rethrown ) {
-                    logger.error( "Failed to invoke future listener", rethrown );
+                    listener.onFutureResolved(this);
+                } catch (Throwable rethrown) {
+                    logger.error("Failed to invoke future listener", rethrown);
                 }
             }
 

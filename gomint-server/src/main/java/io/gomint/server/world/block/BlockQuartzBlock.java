@@ -8,7 +8,6 @@ import io.gomint.server.world.block.state.EnumBlockState;
 import io.gomint.world.block.BlockType;
 import io.gomint.world.block.data.Axis;
 import io.gomint.world.block.data.QuartzType;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -21,10 +20,10 @@ import java.util.List;
 public class BlockQuartzBlock extends Block implements io.gomint.world.block.BlockQuartzBlock {
 
     private enum VariantMagic {
-        SMOOTH("minecraft:quartz_block","smooth"),
-        LINES("minecraft:quartz_block","lines"),
-        DEFAULT("minecraft:quartz_block","default"),
-        CHISELED("minecraft:quartz_block","chiseled"),
+        SMOOTH("minecraft:quartz_block", "smooth"),
+        LINES("minecraft:quartz_block", "lines"),
+        DEFAULT("minecraft:quartz_block", "default"),
+        CHISELED("minecraft:quartz_block", "chiseled"),
         BRICKS("minecraft:quartz_bricks", "bricks");
 
         private final String blockId;

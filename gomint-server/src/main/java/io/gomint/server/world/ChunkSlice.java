@@ -20,12 +20,11 @@ import it.unimi.dsi.fastutil.shorts.Short2IntMap;
 import it.unimi.dsi.fastutil.shorts.Short2IntOpenHashMap;
 import it.unimi.dsi.fastutil.shorts.Short2ObjectMap;
 import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.IntConsumer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author geNAZt
@@ -158,8 +157,8 @@ public class ChunkSlice {
     }
 
     private Air getAirBlockInstance(BlockPosition location) {
-        return  this.chunk.world().server().blocks().get(AIR_RUNTIME_ID,
-                (byte) 15, (byte) 15, null, new Location(this.chunk.world, location.x(), location.y(), location.z()),
+        return this.chunk.world().server().blocks().get(AIR_RUNTIME_ID,
+            (byte) 15, (byte) 15, null, new Location(this.chunk.world, location.x(), location.y(), location.z()),
             location, 0, null, (short) 0);
     }
 

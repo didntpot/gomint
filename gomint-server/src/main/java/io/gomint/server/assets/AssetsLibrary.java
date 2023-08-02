@@ -10,11 +10,7 @@ package io.gomint.server.assets;
 import io.gomint.GoMint;
 import io.gomint.inventory.item.ItemStack;
 import io.gomint.jraknet.PacketBuffer;
-import io.gomint.server.crafting.Recipe;
-import io.gomint.server.crafting.RecipeManager;
-import io.gomint.server.crafting.ShapedRecipe;
-import io.gomint.server.crafting.ShapelessRecipe;
-import io.gomint.server.crafting.SmeltingRecipe;
+import io.gomint.server.crafting.*;
 import io.gomint.server.inventory.CreativeInventory;
 import io.gomint.server.inventory.item.Items;
 import io.gomint.server.util.Allocator;
@@ -24,17 +20,12 @@ import io.gomint.taglib.AllocationLimitReachedException;
 import io.gomint.taglib.NBTTagCompound;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.PooledByteBufAllocator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteOrder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A wrapper class around any suitable file format (currently NBT) that allows
@@ -110,7 +101,7 @@ public class AssetsLibrary {
             String block = compound.getString("name", "minecraft:air");
 
             Integer id = knownBlocks.get(block);
-            if ( id == null ) {
+            if (id == null) {
                 id = blockNumber++;
                 knownBlocks.put(block, id);
             }

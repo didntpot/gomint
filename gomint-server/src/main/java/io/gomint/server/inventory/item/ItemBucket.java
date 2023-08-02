@@ -1,24 +1,18 @@
 package io.gomint.server.inventory.item;
-import io.gomint.inventory.item.ItemType;
 
+import io.gomint.inventory.item.ItemType;
 import io.gomint.math.Vector;
 import io.gomint.server.entity.EntityPlayer;
 import io.gomint.server.registry.RegisterInfo;
-import io.gomint.world.block.Block;
-import io.gomint.world.block.BlockAir;
-import io.gomint.world.block.BlockFlowingLava;
-import io.gomint.world.block.BlockFlowingWater;
-import io.gomint.world.block.BlockLiquid;
-import io.gomint.world.block.BlockStationaryWater;
+import io.gomint.world.block.*;
 import io.gomint.world.block.data.Facing;
-
 import java.time.Duration;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:bucket" )
+@RegisterInfo(sId = "minecraft:bucket")
 public class ItemBucket extends ItemStack<io.gomint.inventory.item.ItemBucket> implements io.gomint.inventory.item.ItemBucket {
 
     @Override
@@ -27,19 +21,19 @@ public class ItemBucket extends ItemStack<io.gomint.inventory.item.ItemBucket> i
     }
 
     @Override
-    public io.gomint.inventory.item.ItemBucket content(Content type ) {
-        switch ( type ) {
+    public io.gomint.inventory.item.ItemBucket content(Content type) {
+        switch (type) {
             case LAVA:
-                this.data( (short) 10 );
+                this.data((short) 10);
                 break;
             case WATER:
-                this.data( (short) 8 );
+                this.data((short) 8);
                 break;
             case MILK:
-                this.data( (short) 1 );
+                this.data((short) 1);
                 break;
             default:
-                this.data( (short) 0 );
+                this.data((short) 0);
         }
 
         return this;
@@ -47,7 +41,7 @@ public class ItemBucket extends ItemStack<io.gomint.inventory.item.ItemBucket> i
 
     @Override
     public Content content() {
-        switch ( this.data() ) {
+        switch (this.data()) {
             case 10:
                 return Content.LAVA;
             case 8:
@@ -70,7 +64,7 @@ public class ItemBucket extends ItemStack<io.gomint.inventory.item.ItemBucket> i
 
     @Override
     public Block block() {
-        switch ( this.data() ) {
+        switch (this.data()) {
             case 10:
                 return this.blocks.get(BlockFlowingLava.class);
             case 8:
@@ -84,19 +78,19 @@ public class ItemBucket extends ItemStack<io.gomint.inventory.item.ItemBucket> i
     @Override
     public io.gomint.inventory.item.ItemBucket afterPlacement() {
         // We transform into an empty bucket
-        this.data( (short) 0 );
-        return this.updateInventories( false );
+        this.data((short) 0);
+        return this.updateInventories(false);
     }
 
     @Override
-    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock ) {
-        if ( clickedBlock != null ) {
-            if ( clickedBlock instanceof BlockLiquid) {
-                if ( ( (BlockLiquid<?>) clickedBlock ).fillHeight() > 0.9f ) {
-                    this.content( clickedBlock instanceof BlockFlowingWater || clickedBlock instanceof BlockStationaryWater ?
-                        Content.WATER : Content.LAVA );
-                    entity.inventory().item( entity.inventory().itemInHandSlot(), this );
-                    clickedBlock.blockType( BlockAir.class );
+    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock) {
+        if (clickedBlock != null) {
+            if (clickedBlock instanceof BlockLiquid) {
+                if (((BlockLiquid<?>) clickedBlock).fillHeight() > 0.9f) {
+                    this.content(clickedBlock instanceof BlockFlowingWater || clickedBlock instanceof BlockStationaryWater ?
+                        Content.WATER : Content.LAVA);
+                    entity.inventory().item(entity.inventory().itemInHandSlot(), this);
+                    clickedBlock.blockType(BlockAir.class);
                     return true;
                 }
             }

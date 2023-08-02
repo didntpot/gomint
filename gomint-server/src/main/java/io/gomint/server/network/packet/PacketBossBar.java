@@ -21,6 +21,7 @@ public class PacketBossBar extends Packet {
     private long playerId;
     private float healthPercent;
     private String title = "";
+    private boolean darkenScreen;
     private int color;
     private int overlay;
 
@@ -28,34 +29,34 @@ public class PacketBossBar extends Packet {
      * Construct a new packet
      */
     public PacketBossBar() {
-        super( Protocol.PACKET_BOSS_BAR );
+        super(Protocol.PACKET_BOSS_BAR);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeSignedVarLong( this.entityId );
-        buffer.writeUnsignedVarInt( this.type.getId() );
-        switch ( this.type ) {
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeSignedVarLong(this.entityId);
+        buffer.writeUnsignedVarInt(this.type.getId());
+        switch (this.type) {
             case SHOW:
-                buffer.writeString( this.title );
-                buffer.writeLFloat( this.healthPercent );
-            case UNKNOWN:
-                buffer.writeShort( (short) 0 );
+                buffer.writeString(this.title);
+                buffer.writeLFloat(this.healthPercent);
+            case PROPERTIES:
+                buffer.writeShort((short) (this.darkenScreen ? 1 : 0));
             case TEXTURE:
-                buffer.writeUnsignedVarInt( this.color );
-                buffer.writeUnsignedVarInt( this.overlay );
+                buffer.writeUnsignedVarInt(this.color);
+                buffer.writeUnsignedVarInt(this.overlay);
                 break;
             case HEALTH_UPDATE:
-                buffer.writeLFloat( this.healthPercent );
+                buffer.writeLFloat(this.healthPercent);
                 break;
             case TITLE:
-                buffer.writeString( this.title );
+                buffer.writeString(this.title);
                 break;
         }
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 
@@ -91,6 +92,14 @@ public class PacketBossBar extends Packet {
         this.healthPercent = healthPercent;
     }
 
+    public boolean isDarkenScreen() {
+        return this.darkenScreen;
+    }
+
+    public void setDarkenScreen(boolean darkenScreen) {
+        this.darkenScreen = darkenScreen;
+    }
+
     public String getTitle() {
         return this.title;
     }
@@ -116,14 +125,15 @@ public class PacketBossBar extends Packet {
     }
 
     public enum Type {
-        SHOW( 0 ),
-        REGISTER_PLAYER( 1 ),
-        HIDE( 2 ),
-        UNREGISTER_PLAYER( 3 ),
-        HEALTH_UPDATE( 4 ),
-        TITLE( 5 ),
-        UNKNOWN( 6 ),
-        TEXTURE( 7 );
+        SHOW(0),
+        REGISTER_PLAYER(1),
+        HIDE(2),
+        UNREGISTER_PLAYER(3),
+        HEALTH_UPDATE(4),
+        TITLE(5),
+        PROPERTIES(6),
+        TEXTURE(7),
+        QUERY(8);
 
         private final int id;
 

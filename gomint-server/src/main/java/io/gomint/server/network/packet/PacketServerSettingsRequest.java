@@ -14,22 +14,22 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketServerSettingsRequest extends Packet {
+public class PacketServerSettingsRequest extends Packet implements PacketServerbound {
 
     /**
      * Construct a new packet
      */
     public PacketServerSettingsRequest() {
-        super( Protocol.PACKET_SERVER_SETTINGS_REQUEST );
+        super(Protocol.PACKET_SERVER_SETTINGS_REQUEST);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
+    public void serialize(PacketBuffer buffer, int protocolID) {
 
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 

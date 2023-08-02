@@ -2,11 +2,10 @@ package io.gomint.server.gui;
 
 import io.gomint.server.gui.element.Button;
 import io.gomint.server.gui.element.ImageButton;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  * @author geNAZt
@@ -17,29 +16,29 @@ public class ButtonList extends Form<String> implements io.gomint.gui.ButtonList
     private final List<Button> buttons = new ArrayList<>();
     private String content = "";
 
-    public ButtonList( String title ) {
-        super( title );
+    public ButtonList(String title) {
+        super(title);
     }
 
     @Override
-    public io.gomint.gui.ButtonList content(String content ) {
+    public io.gomint.gui.ButtonList content(String content) {
         this.content = content;
         this.dirty = true;
         return this;
     }
 
     @Override
-    public io.gomint.gui.ButtonList button(String id, String text ) {
-        Button button = new Button( id, text );
-        this.buttons.add( button );
+    public io.gomint.gui.ButtonList button(String id, String text) {
+        Button button = new Button(id, text);
+        this.buttons.add(button);
         this.dirty = true;
         return this;
     }
 
     @Override
-    public io.gomint.gui.ButtonList imageButton(String id, String text, String imagePath ) {
-        ImageButton imageButton = new ImageButton( id, text, imagePath );
-        this.buttons.add( imageButton );
+    public io.gomint.gui.ButtonList imageButton(String id, String text, String imagePath) {
+        ImageButton imageButton = new ImageButton(id, text, imagePath);
+        this.buttons.add(imageButton);
         this.dirty = true;
         return this;
     }
@@ -52,7 +51,7 @@ public class ButtonList extends Form<String> implements io.gomint.gui.ButtonList
     @Override
     public JSONObject toJSON() {
         // Fast out when cached
-        if ( this.cache != null && !this.dirty ) {
+        if (this.cache != null && !this.dirty) {
             return this.cache;
         }
 
@@ -60,12 +59,12 @@ public class ButtonList extends Form<String> implements io.gomint.gui.ButtonList
         JSONObject jsonObject = super.toJSON();
         JSONArray content = new JSONArray();
 
-        for ( Button button : this.buttons ) {
-            content.add( button.toJSON() );
+        for (Button button : this.buttons) {
+            content.add(button.toJSON());
         }
 
-        jsonObject.put( "content", this.content );
-        jsonObject.put( "buttons", content );
+        jsonObject.put("content", this.content);
+        jsonObject.put("buttons", content);
 
         // Cache and return
         this.cache = jsonObject;
@@ -74,16 +73,16 @@ public class ButtonList extends Form<String> implements io.gomint.gui.ButtonList
     }
 
     @Override
-    public String parseResponse( String json ) {
+    public String parseResponse(String json) {
         // Input is LF terminated
         try {
-            int buttonId = Integer.parseInt( json.trim() );
-            if ( buttonId + 1 > this.buttons.size() ) {
+            int buttonId = Integer.parseInt(json.trim());
+            if (buttonId + 1 > this.buttons.size()) {
                 return null;
             }
 
-            return this.buttons.get( buttonId ).getId();
-        } catch ( NumberFormatException e ) {
+            return this.buttons.get(buttonId).getId();
+        } catch (NumberFormatException e) {
             return null;
         }
     }

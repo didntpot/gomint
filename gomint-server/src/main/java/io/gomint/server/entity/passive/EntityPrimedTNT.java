@@ -21,14 +21,13 @@ import io.gomint.server.util.Values;
 import io.gomint.server.world.Explosion;
 import io.gomint.server.world.LevelEvent;
 import io.gomint.server.world.WorldAdapter;
-
 import java.util.Set;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:tnt" )
+@RegisterInfo(sId = "minecraft:tnt")
 public class EntityPrimedTNT extends Entity<io.gomint.entity.active.EntityPrimedTNT> implements io.gomint.entity.active.EntityPrimedTNT {
 
     private float lastUpdateDT;
@@ -41,38 +40,38 @@ public class EntityPrimedTNT extends Entity<io.gomint.entity.active.EntityPrimed
      * @param position            of the entity
      * @param ticksUntilExplosion how many ticks (client ticks) until this tnt explodes
      */
-    public EntityPrimedTNT( WorldAdapter world, Vector position, int ticksUntilExplosion ) {
-        super( EntityType.PRIMED_TNT, world );
+    public EntityPrimedTNT(WorldAdapter world, Vector position, int ticksUntilExplosion) {
+        super(EntityType.PRIMED_TNT, world);
 
         this.fuse = ticksUntilExplosion;
         this.initEntity();
 
-        this.world.sendLevelEvent( position, LevelEvent.SOUND_IGNITE, 0 );
-        this.position( position );
+        this.world.sendLevelEvent(position, LevelEvent.SOUND_IGNITE, 0);
+        this.position(position);
     }
 
     /**
      * Constructor for the API. Only for external use
      */
     public EntityPrimedTNT() {
-        super( EntityType.PRIMED_TNT, null );
+        super(EntityType.PRIMED_TNT, null);
 
         this.fuse = 80;
         this.initEntity();
     }
 
     private void initEntity() {
-        this.size( 0.98f, 0.98f );
+        this.size(0.98f, 0.98f);
 
-        this.metadataContainer.setDataFlag( MetadataContainer.DATA_INDEX, EntityFlag.IGNITED, true );
-        this.metadataContainer.putInt( MetadataContainer.DATA_FUSE_LENGTH, this.fuse );
+        this.metadataContainer.setDataFlag(MetadataContainer.DATA_INDEX, EntityFlag.IGNITED, true);
+        this.metadataContainer.putInt(MetadataContainer.DATA_FUSE_LENGTH, this.fuse);
 
         this.offsetY = 0.49f;
     }
 
     @Override
-    public EntityPrimedTNT fuse(float fuseInSeconds ) {
-        this.fuse = (int) ( fuseInSeconds * 20f );
+    public EntityPrimedTNT fuse(float fuseInSeconds) {
+        this.fuse = (int) (fuseInSeconds * 20f);
         return this;
     }
 
@@ -82,24 +81,24 @@ public class EntityPrimedTNT extends Entity<io.gomint.entity.active.EntityPrimed
     }
 
     @Override
-    public void update( long currentTimeMS, float dT ) {
-        super.update( currentTimeMS, dT );
+    public void update(long currentTimeMS, float dT) {
+        super.update(currentTimeMS, dT);
 
         this.lastUpdateDT += dT;
-        if ( Values.CLIENT_TICK_RATE - this.lastUpdateDT < MathUtils.EPSILON ) {
+        if (Values.CLIENT_TICK_RATE - this.lastUpdateDT < MathUtils.EPSILON) {
             // Update client
-            if ( this.fuse % 5 == 0 ) {
-                this.metadataContainer.putInt( MetadataContainer.DATA_FUSE_LENGTH, this.fuse );
+            if (this.fuse % 5 == 0) {
+                this.metadataContainer.putInt(MetadataContainer.DATA_FUSE_LENGTH, this.fuse);
             }
 
-            if ( this.onGround ) {
+            if (this.onGround) {
                 Vector motion = this.velocity();
-                this.velocity( motion.multiply( new Vector( 0.7f, -0.5f, 0.7f ) ) );
+                this.velocity(motion.multiply(new Vector(0.7f, -0.5f, 0.7f)));
             }
 
             this.fuse--;
-            if ( this.fuse <= 0 ) {
-                new Explosion( 4, this ).explode( currentTimeMS, dT );
+            if (this.fuse <= 0) {
+                new Explosion(4, this).explode(currentTimeMS, dT);
                 despawn();
             }
 
@@ -113,8 +112,8 @@ public class EntityPrimedTNT extends Entity<io.gomint.entity.active.EntityPrimed
     }
 
     @Override
-    public boolean damage( EntityDamageEvent damageEvent ) {
-        if ( damageEvent.damageSource() == EntityDamageEvent.DamageSource.VOID && super.damage( damageEvent ) ) {
+    public boolean damage(EntityDamageEvent damageEvent) {
+        if (damageEvent.damageSource() == EntityDamageEvent.DamageSource.VOID && super.damage(damageEvent)) {
             this.despawn();
             return true;
         }
@@ -123,10 +122,10 @@ public class EntityPrimedTNT extends Entity<io.gomint.entity.active.EntityPrimed
     }
 
     @Override
-    public EntityPrimedTNT spawn( Location location ) {
-        super.spawn( location );
+    public EntityPrimedTNT spawn(Location location) {
+        super.spawn(location);
 
-        this.world.sendLevelEvent( location, LevelEvent.SOUND_IGNITE, 0 );
+        this.world.sendLevelEvent(location, LevelEvent.SOUND_IGNITE, 0);
         return this;
     }
 

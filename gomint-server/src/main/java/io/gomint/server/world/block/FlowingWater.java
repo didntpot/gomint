@@ -1,16 +1,15 @@
 package io.gomint.server.world.block;
 
-import io.gomint.world.block.BlockType;
-
 import io.gomint.server.entity.EntityLiving;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockFlowingWater;
+import io.gomint.world.block.BlockType;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:flowing_water" )
+@RegisterInfo(sId = "minecraft:flowing_water")
 public class FlowingWater extends Liquid<BlockFlowingWater> implements BlockFlowingWater {
 
     @Override
@@ -34,8 +33,8 @@ public class FlowingWater extends Liquid<BlockFlowingWater> implements BlockFlow
     }
 
     @Override
-    public void onEntityStanding(EntityLiving<?> entityLiving ) {
-        if ( entityLiving.burning() ) {
+    public void onEntityStanding(EntityLiving<?> entityLiving) {
+        if (entityLiving.burning()) {
             entityLiving.extinguish();
         }
     }

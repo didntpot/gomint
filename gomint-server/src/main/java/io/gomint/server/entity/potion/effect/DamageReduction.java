@@ -8,14 +8,13 @@
 package io.gomint.server.entity.potion.effect;
 
 import io.gomint.server.entity.EntityLiving;
-import io.gomint.server.player.EffectManager;
 import io.gomint.server.registry.RegisterInfo;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 11 )
+@RegisterInfo(id = 11)
 public class DamageReduction extends Effect {
 
     @Override
@@ -24,17 +23,17 @@ public class DamageReduction extends Effect {
     }
 
     @Override
-    public void apply( EntityLiving<?> entity ) {
+    public void apply(EntityLiving<?> entity) {
 
     }
 
     @Override
-    public void update( long currentTimeMillis, float dT ) {
+    public void update(long currentTimeMillis, float dT) {
 
     }
 
     @Override
-    public void remove( EntityLiving<?> entity ) {
+    public void remove(EntityLiving<?> entity) {
 
     }
 

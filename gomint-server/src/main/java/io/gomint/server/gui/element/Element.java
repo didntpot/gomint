@@ -31,7 +31,7 @@ public abstract class Element {
      */
     public JSONObject toJSON() {
         JSONObject element = new JSONObject();
-        element.put( "text", this.text );
+        element.put("text", this.text);
         return element;
     }
 
@@ -41,7 +41,7 @@ public abstract class Element {
      * @param answerOption object given from the client
      * @return correct answer object for the listener
      */
-    public Object getAnswer( Object answerOption ) {
+    public Object getAnswer(Object answerOption) {
         return answerOption;
     }
 

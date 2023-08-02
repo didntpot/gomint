@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:bubble_column" )
-public class ItemBubbleColumn extends ItemStack< io.gomint.inventory.item.ItemBubbleColumn> implements io.gomint.inventory.item.ItemBubbleColumn {
+@RegisterInfo(sId = "minecraft:bubble_column")
+public class ItemBubbleColumn extends ItemStack<io.gomint.inventory.item.ItemBubbleColumn> implements io.gomint.inventory.item.ItemBubbleColumn {
 
     @Override
     public ItemType itemType() {

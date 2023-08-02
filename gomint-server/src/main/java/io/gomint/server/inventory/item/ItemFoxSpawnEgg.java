@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:fox_spawn_egg" )
-public class ItemFoxSpawnEgg extends ItemStack< io.gomint.inventory.item.ItemFoxSpawnEgg> implements io.gomint.inventory.item.ItemFoxSpawnEgg {
+@RegisterInfo(sId = "minecraft:fox_spawn_egg")
+public class ItemFoxSpawnEgg extends ItemStack<io.gomint.inventory.item.ItemFoxSpawnEgg> implements io.gomint.inventory.item.ItemFoxSpawnEgg {
 
     @Override
     public ItemType itemType() {

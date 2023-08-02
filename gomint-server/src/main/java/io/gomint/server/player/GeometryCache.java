@@ -7,16 +7,15 @@
 
 package io.gomint.server.player;
 
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.output.StringBuilderWriter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.output.StringBuilderWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author geNAZt
@@ -24,7 +23,7 @@ import java.util.Map;
  */
 public class GeometryCache {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger( GeometryCache.class );
+    private static final Logger LOGGER = LoggerFactory.getLogger(GeometryCache.class);
     private Map<String, String> jsonCache = new HashMap<>();
 
     /**
@@ -32,17 +31,17 @@ public class GeometryCache {
      *
      * @param name of the geometry
      */
-    public String get( String name ) {
-        return this.jsonCache.computeIfAbsent( name, this::loadGeometry );
+    public String get(String name) {
+        return this.jsonCache.computeIfAbsent(name, this::loadGeometry);
     }
 
-    private String loadGeometry( String geometry ) {
-        try ( InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream( geometry + ".json" ) ) {
+    private String loadGeometry(String geometry) {
+        try (InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream(geometry + ".json")) {
             StringBuilderWriter stringBuilderWriter = new StringBuilderWriter();
-            IOUtils.copy( inputStream, stringBuilderWriter, StandardCharsets.UTF_8 );
+            IOUtils.copy(inputStream, stringBuilderWriter, StandardCharsets.UTF_8);
             return stringBuilderWriter.toString();
-        } catch ( IOException e ) {
-            LOGGER.error( "Could not load geometry {}: ", geometry, e );
+        } catch (IOException e) {
+            LOGGER.error("Could not load geometry {}: ", geometry, e);
         }
 
         return null;

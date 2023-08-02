@@ -10,7 +10,7 @@ import io.gomint.world.block.BlockType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:stone_pressure_plate" )
+@RegisterInfo(sId = "minecraft:stone_pressure_plate")
 public class StonePressurePlate extends BasePressurePlate implements BlockStonePressurePlate {
 
     @Override

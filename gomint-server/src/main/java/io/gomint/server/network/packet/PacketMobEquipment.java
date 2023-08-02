@@ -8,7 +8,7 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketMobEquipment extends Packet {
+public class PacketMobEquipment extends Packet implements PacketClientbound, PacketServerbound {
 
     private long entityId;
 
@@ -21,22 +21,22 @@ public class PacketMobEquipment extends Packet {
      * Create new packet
      */
     public PacketMobEquipment() {
-        super( Protocol.PACKET_MOB_EQUIPMENT );
+        super(Protocol.PACKET_MOB_EQUIPMENT);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeUnsignedVarLong( this.entityId );
-        writeItemStack( this.stack, buffer );
-        buffer.writeByte( this.slot );
-        buffer.writeByte( this.selectedSlot );
-        buffer.writeByte( this.windowId );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeUnsignedVarLong(this.entityId);
+        writeItemStack(this.stack, buffer);
+        buffer.writeByte(this.slot);
+        buffer.writeByte(this.selectedSlot);
+        buffer.writeByte(this.windowId);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.entityId = buffer.readUnsignedVarLong();
-        this.stack = readItemStack( buffer );
+        this.stack = readItemStack(buffer);
         this.slot = buffer.readByte();
         this.selectedSlot = buffer.readByte();
         this.windowId = buffer.readByte();

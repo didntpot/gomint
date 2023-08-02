@@ -8,7 +8,7 @@ import io.gomint.server.registry.RegisterInfo;
  * @version 1.0
  */
 @RegisterInfo(sId = "minecraft:composter")
-public class ItemComposter extends ItemStack< io.gomint.inventory.item.ItemComposter> implements io.gomint.inventory.item.ItemComposter {
+public class ItemComposter extends ItemStack<io.gomint.inventory.item.ItemComposter> implements io.gomint.inventory.item.ItemComposter {
 
     @Override
     public ItemType itemType() {

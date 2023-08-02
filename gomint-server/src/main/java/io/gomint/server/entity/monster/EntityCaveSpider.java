@@ -6,10 +6,9 @@ import io.gomint.server.entity.EntityTags;
 import io.gomint.server.entity.EntityType;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.WorldAdapter;
-
 import java.util.Set;
 
-@RegisterInfo( sId = "minecraft:cave_spider" )
+@RegisterInfo(sId = "minecraft:cave_spider")
 public class EntityCaveSpider extends EntityLiving<io.gomint.entity.monster.EntityCaveSpider> implements io.gomint.entity.monster.EntityCaveSpider {
 
     /**
@@ -17,8 +16,8 @@ public class EntityCaveSpider extends EntityLiving<io.gomint.entity.monster.Enti
      *
      * @param world The world in which this entity is in
      */
-    public EntityCaveSpider( WorldAdapter world ) {
-        super( EntityType.CAVE_SPIDER, world );
+    public EntityCaveSpider(WorldAdapter world) {
+        super(EntityType.CAVE_SPIDER, world);
         this.initEntity();
     }
 
@@ -26,20 +25,20 @@ public class EntityCaveSpider extends EntityLiving<io.gomint.entity.monster.Enti
      * Create new entity cave spider for API
      */
     public EntityCaveSpider() {
-        super( EntityType.CAVE_SPIDER, null );
+        super(EntityType.CAVE_SPIDER, null);
         this.initEntity();
     }
 
     private void initEntity() {
-        this.size( 0.7f, 0.5f );
-        this.attribute( Attribute.HEALTH );
-        this.maxHealth( 12 );
-        this.health( 12 );
+        this.size(0.7f, 0.5f);
+        this.attribute(Attribute.HEALTH);
+        this.maxHealth(12);
+        this.health(12);
     }
 
     @Override
-    public void update( long currentTimeMS, float dT ) {
-        super.update( currentTimeMS, dT );
+    public void update(long currentTimeMS, float dT) {
+        super.update(currentTimeMS, dT);
     }
 
     @Override

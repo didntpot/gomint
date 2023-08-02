@@ -18,13 +18,13 @@ public interface TileEntityComponent extends EntityComponent {
      * @param compound The Compound which should be used to save the data into
      * @param reason   why should this tile be serialized?
      */
-    void toCompound(NBTTagCompound compound, SerializationReason reason );
+    void toCompound(NBTTagCompound compound, SerializationReason reason);
 
     /**
      * Load this tile entity from a compound
      *
      * @param compound which holds data for this tile entity
      */
-    void fromCompound( NBTTagCompound compound );
+    void fromCompound(NBTTagCompound compound);
 
 }

@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:oak_sign" )
-public class ItemOakSign extends ItemStack< io.gomint.inventory.item.ItemOakSign> implements io.gomint.inventory.item.ItemOakSign {
+@RegisterInfo(sId = "minecraft:oak_sign")
+public class ItemOakSign extends ItemStack<io.gomint.inventory.item.ItemOakSign> implements io.gomint.inventory.item.ItemOakSign {
 
     @Override
     public ItemType itemType() {

@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:quartz_bricks" )
-public class ItemQuartzBricks extends ItemStack< io.gomint.inventory.item.ItemQuartzBricks> implements io.gomint.inventory.item.ItemQuartzBricks {
+@RegisterInfo(sId = "minecraft:quartz_bricks")
+public class ItemQuartzBricks extends ItemStack<io.gomint.inventory.item.ItemQuartzBricks> implements io.gomint.inventory.item.ItemQuartzBricks {
 
     @Override
     public ItemType itemType() {

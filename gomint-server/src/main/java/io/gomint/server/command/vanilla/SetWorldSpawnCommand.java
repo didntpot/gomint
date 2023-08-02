@@ -10,7 +10,6 @@ import io.gomint.math.BlockPosition;
 import io.gomint.math.Location;
 import io.gomint.server.entity.EntityPlayer;
 import io.gomint.server.world.WorldAdapter;
-
 import java.util.Map;
 
 /**

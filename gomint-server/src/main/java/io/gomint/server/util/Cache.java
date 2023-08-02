@@ -12,8 +12,6 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.ref.WeakReference;
-
 /**
  * Cache used for subchunk / biome data
  */
@@ -35,7 +33,7 @@ public class Cache {
 
     public void remove(long hash) {
         ByteBuf buf = this.cacheContent.remove(hash);
-        if ( buf != null ) {
+        if (buf != null) {
             buf.release();
         }
     }

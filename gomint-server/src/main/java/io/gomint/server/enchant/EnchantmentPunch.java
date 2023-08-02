@@ -16,28 +16,28 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 20 )
+@RegisterInfo(id = 20)
 public class EnchantmentPunch extends Enchantment implements io.gomint.enchant.EnchantmentPunch {
 
     /**
      * Create new enchantment punch
      */
     public EnchantmentPunch() {
-        super( (short) 2 );
+        super((short) 2);
     }
 
     @Override
-    public int minEnchantAbility( short level ) {
-        return (byte) ( 12 + ( level - 1 ) * 20 );
+    public int minEnchantAbility(short level) {
+        return (byte) (12 + (level - 1) * 20);
     }
 
     @Override
-    public int maxEnchantAbility( short level ) {
-        return (byte) ( minEnchantAbility( level ) + 25 );
+    public int maxEnchantAbility(short level) {
+        return (byte) (minEnchantAbility(level) + 25);
     }
 
     @Override
-    public boolean canBeApplied(ItemStack<?> itemStack ) {
+    public boolean canBeApplied(ItemStack<?> itemStack) {
         return itemStack.itemType() == ItemType.BOW;
     }
 

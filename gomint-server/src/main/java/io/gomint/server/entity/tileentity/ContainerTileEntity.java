@@ -17,8 +17,8 @@ public class ContainerTileEntity extends TileEntity {
      *
      * @param block of the tile entity
      */
-    ContainerTileEntity( Block block, Items items ) {
-        super( block, items );
+    ContainerTileEntity(Block block, Items items) {
+        super(block, items);
     }
 
     @Override
@@ -27,18 +27,18 @@ public class ContainerTileEntity extends TileEntity {
     }
 
     @Override
-    public void fromCompound( NBTTagCompound compound ) {
-        super.fromCompound( compound );
+    public void fromCompound(NBTTagCompound compound) {
+        super.fromCompound(compound);
 
-        this.customName = compound.getString( "CustomName", null );
+        this.customName = compound.getString("CustomName", null);
     }
 
     @Override
-    public void toCompound( NBTTagCompound compound, SerializationReason reason ) {
-        super.toCompound( compound, reason );
+    public void toCompound(NBTTagCompound compound, SerializationReason reason) {
+        super.toCompound(compound, reason);
 
-        if ( this.customName != null ) {
-            compound.addValue( "CustomName", this.customName );
+        if (this.customName != null) {
+            compound.addValue("CustomName", this.customName);
         }
     }
 

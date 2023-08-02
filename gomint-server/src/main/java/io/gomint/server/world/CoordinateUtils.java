@@ -19,7 +19,7 @@ public final class CoordinateUtils {
      * No init!
      */
     private CoordinateUtils() {
-        throw new AssertionError( "Cannot instantiate CoordinateUtils!" );
+        throw new AssertionError("Cannot instantiate CoordinateUtils!");
     }
 
     /**
@@ -28,7 +28,7 @@ public final class CoordinateUtils {
      * @param v The value to be converted
      * @return The converted value
      */
-    public static int fromBlockToChunk( int v ) {
+    public static int fromBlockToChunk(int v) {
         return v >> 4;
     }
 
@@ -38,7 +38,7 @@ public final class CoordinateUtils {
      * @param v The coordinate of the chunk section
      * @return The minimum block coordinate contained in the chunk section
      */
-    public static int getChunkMin( int v ) {
+    public static int getChunkMin(int v) {
         return v << 4;
     }
 
@@ -48,8 +48,8 @@ public final class CoordinateUtils {
      * @param v The coordinate of the chunk section
      * @return The maximum block coordinate contained in the chunk section
      */
-    public static int getChunkMax( int v ) {
-        return ( ( v + 1 ) << 4 ) - 1;
+    public static int getChunkMax(int v) {
+        return ((v + 1) << 4) - 1;
     }
 
     /**
@@ -58,7 +58,7 @@ public final class CoordinateUtils {
      * @param v The value to be converted
      * @return The converted value
      */
-    public static int fromChunkToRegion( int v ) {
+    public static int fromChunkToRegion(int v) {
         return v >> 5;
     }
 
@@ -69,8 +69,8 @@ public final class CoordinateUtils {
      * @param z value of key
      * @return long compound of the two int's
      */
-    public static long toLong( int x, int z ) {
-        return ( (long) x << 32 ) + z - Integer.MIN_VALUE;
+    public static long toLong(int x, int z) {
+        return ((long) x << 32) + z - Integer.MIN_VALUE;
     }
 
     /**
@@ -79,8 +79,8 @@ public final class CoordinateUtils {
      * @param position which should be used
      * @return long compound of the three int's
      */
-    public static long toLong( BlockPosition position ) {
-        return ( ( (long) position.x() & 0x3FFFFFF ) << 38 ) | ( ( (long) position.y() & 0xFFF ) << 26 ) | ( (long) position.z() & 0x3FFFFFF );
+    public static long toLong(BlockPosition position) {
+        return (((long) position.x() & 0x3FFFFFF) << 38) | (((long) position.y() & 0xFFF) << 26) | ((long) position.z() & 0x3FFFFFF);
     }
 
     /**
@@ -91,8 +91,8 @@ public final class CoordinateUtils {
      * @param z
      * @return long compound of the three int's
      */
-    public static long toLong( int x, int y, int z ) {
-        return ( ( (long) x & 0x3FFFFFF ) << 38 ) | ( ( (long) y & 0xFFF ) << 26 ) | ( (long) z & 0x3FFFFFF );
+    public static long toLong(int x, int y, int z) {
+        return (((long) x & 0x3FFFFFF) << 38) | (((long) y & 0xFFF) << 26) | ((long) z & 0x3FFFFFF);
     }
 
     /**
@@ -101,12 +101,12 @@ public final class CoordinateUtils {
      * @param hash The encoded long
      * @return the decoded BlockPosition
      */
-    public static BlockPosition fromLong( long hash ) {
-        int x = (int) ( hash >> 38 );
-        int y = (int) ( hash >> 26 ) & 0xFFF;
-        int z = (int) ( hash ) & 0x3FFFFFF;
+    public static BlockPosition fromLong(long hash) {
+        int x = (int) (hash >> 38);
+        int y = (int) (hash >> 26) & 0xFFF;
+        int z = (int) (hash) & 0x3FFFFFF;
 
-        return new BlockPosition( x, y, z );
+        return new BlockPosition(x, y, z);
     }
 
 }

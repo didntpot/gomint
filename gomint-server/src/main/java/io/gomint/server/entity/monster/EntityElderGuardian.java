@@ -8,10 +8,9 @@ import io.gomint.server.entity.EntityType;
 import io.gomint.server.entity.metadata.MetadataContainer;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.WorldAdapter;
-
 import java.util.Set;
 
-@RegisterInfo( sId = "minecraft:elder_guardian" )
+@RegisterInfo(sId = "minecraft:elder_guardian")
 public class EntityElderGuardian extends EntityLiving<io.gomint.entity.monster.EntityElderGuardian> implements io.gomint.entity.monster.EntityElderGuardian {
 
     /**
@@ -19,8 +18,8 @@ public class EntityElderGuardian extends EntityLiving<io.gomint.entity.monster.E
      *
      * @param world The world in which this entity is in
      */
-    public EntityElderGuardian( WorldAdapter world ) {
-        super( EntityType.ELDER_GUARDIAN, world );
+    public EntityElderGuardian(WorldAdapter world) {
+        super(EntityType.ELDER_GUARDIAN, world);
         this.initEntity();
     }
 
@@ -28,25 +27,25 @@ public class EntityElderGuardian extends EntityLiving<io.gomint.entity.monster.E
      * Create new entity elder guardian for API
      */
     public EntityElderGuardian() {
-        super( EntityType.ELDER_GUARDIAN, null );
+        super(EntityType.ELDER_GUARDIAN, null);
         this.initEntity();
     }
 
     private void initEntity() {
-        this.size( 1.9975f, 1.9975f );
-        this.attribute( Attribute.HEALTH );
-        this.maxHealth( 80 );
-        this.health( 80 );
+        this.size(1.9975f, 1.9975f);
+        this.attribute(Attribute.HEALTH);
+        this.maxHealth(80);
+        this.health(80);
     }
 
     @Override
-    public void update( long currentTimeMS, float dT ) {
-        super.update( currentTimeMS, dT );
+    public void update(long currentTimeMS, float dT) {
+        super.update(currentTimeMS, dT);
     }
 
     @Override
-    public EntityElderGuardian target(Entity<?> entity ) {
-        this.metadataContainer.putLong( MetadataContainer.DATA_TARGET_EID, entity.id() );
+    public EntityElderGuardian target(Entity<?> entity) {
+        this.metadataContainer.putLong(MetadataContainer.DATA_TARGET_EID, entity.id());
         return this;
     }
 

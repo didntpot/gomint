@@ -1,15 +1,14 @@
 package io.gomint.server.world.block;
 
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockSunflower;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:double_plant" )
+@RegisterInfo(sId = "minecraft:double_plant")
 public class Sunflower extends Block implements BlockSunflower {
 
     @Override
@@ -21,7 +20,7 @@ public class Sunflower extends Block implements BlockSunflower {
     public boolean transparent() {
         return true;
     }
-    
+
     @Override
     public long breakTime() {
         return 0;

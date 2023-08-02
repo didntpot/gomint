@@ -7,7 +7,7 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketAnimate extends Packet {
+public class PacketAnimate extends Packet implements PacketClientbound, PacketServerbound {
 
     private PlayerAnimation playerAnimation;
 
@@ -16,23 +16,23 @@ public class PacketAnimate extends Packet {
     private float boatRowingTime;
 
     public PacketAnimate() {
-        super( Protocol.PACKET_ANIMATE );
+        super(Protocol.PACKET_ANIMATE);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeSignedVarInt( this.actionId );
-        buffer.writeUnsignedVarLong( this.entityId );
-        if ( (this.actionId & 0x80) != 0 ) {
-            buffer.writeLFloat( this.boatRowingTime );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeSignedVarInt(this.actionId);
+        buffer.writeUnsignedVarLong(this.entityId);
+        if ((this.actionId & 0x80) != 0) {
+            buffer.writeLFloat(this.boatRowingTime);
         }
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.actionId = buffer.readSignedVarInt();
         this.playerAnimation = PlayerAnimation.getById(this.actionId);
-        if ( (this.actionId & 0x80) != 0 ) {
+        if ((this.actionId & 0x80) != 0) {
             this.boatRowingTime = buffer.readLFloat();
         }
 
@@ -45,21 +45,21 @@ public class PacketAnimate extends Packet {
 
     public enum PlayerAnimation {
 
-        SWING( 1 ),
-        BED_WAKEUP( 3 ),
-        CRITICAL_HIT( 4 ),
-        MAGICAL_CRITICAL_HIT( 5 ),
-        ROW_RIGHT( 128 ),
-        ROW_LEFT( 129 );
+        SWING(1),
+        BED_WAKEUP(3),
+        CRITICAL_HIT(4),
+        MAGICAL_CRITICAL_HIT(5),
+        ROW_RIGHT(128),
+        ROW_LEFT(129);
 
         private int id;
 
-        PlayerAnimation( int id ) {
+        PlayerAnimation(int id) {
             this.id = id;
         }
 
-        public static PlayerAnimation getById( int id ) {
-            switch ( id ) {
+        public static PlayerAnimation getById(int id) {
+            switch (id) {
                 case 1:
                     return SWING;
                 case 3:

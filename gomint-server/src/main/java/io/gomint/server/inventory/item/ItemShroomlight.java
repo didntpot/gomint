@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:shroomlight" )
-public class ItemShroomlight extends ItemStack< io.gomint.inventory.item.ItemShroomlight> implements io.gomint.inventory.item.ItemShroomlight {
+@RegisterInfo(sId = "minecraft:shroomlight")
+public class ItemShroomlight extends ItemStack<io.gomint.inventory.item.ItemShroomlight> implements io.gomint.inventory.item.ItemShroomlight {
 
     @Override
     public ItemType itemType() {

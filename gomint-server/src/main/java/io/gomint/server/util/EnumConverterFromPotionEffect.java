@@ -14,9 +14,9 @@ package io.gomint.server.util;
 public class EnumConverterFromPotionEffect implements EnumConverter {
 
     @Override
-    public Enum convert( Enum value ) {
+    public Enum convert(Enum value) {
         int id = value.ordinal();
-        switch ( id ) {
+        switch (id) {
             case 0:
                 return io.gomint.entity.potion.PotionEffect.SPEED;
             case 1:

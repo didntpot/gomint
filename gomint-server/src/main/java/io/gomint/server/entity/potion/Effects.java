@@ -8,7 +8,6 @@
 package io.gomint.server.entity.potion;
 
 import io.gomint.server.entity.potion.effect.Effect;
-import io.gomint.server.entity.tileentity.TileEntity;
 import io.gomint.server.player.EffectManager;
 import io.gomint.server.registry.Generator;
 import io.gomint.server.registry.Registry;
@@ -23,25 +22,25 @@ import org.slf4j.LoggerFactory;
  */
 public class Effects {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger( Effects.class );
+    private static final Logger LOGGER = LoggerFactory.getLogger(Effects.class);
     private final Registry<Effect> generators;
 
-    public Effects( ClassPath classPath ) {
-        this.generators = new Registry<>( (clazz, id) -> {
+    public Effects(ClassPath classPath) {
+        this.generators = new Registry<>((clazz, id) -> {
             LambdaConstructionFactory<Effect> factory = new LambdaConstructionFactory<>(clazz);
             return in -> {
                 return factory.newInstance();
             };
-        } );
+        });
 
-        this.generators.register(classPath, "io.gomint.server.entity.potion.effect" );
+        this.generators.register(classPath, "io.gomint.server.entity.potion.effect");
     }
 
-    public Effect generate( int id, int amplifier, long lengthInMS, EffectManager manager ) {
-        Generator<Effect> instance = this.generators.getGenerator( id );
-        if ( instance != null ) {
+    public Effect generate(int id, int amplifier, long lengthInMS, EffectManager manager) {
+        Generator<Effect> instance = this.generators.getGenerator(id);
+        if (instance != null) {
             Effect effect = instance.generate();
-            effect.setData( manager, amplifier, lengthInMS );
+            effect.setData(manager, amplifier, lengthInMS);
             return effect;
         }
 

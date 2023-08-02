@@ -34,8 +34,8 @@ public class InventoryComponent extends AbstractTileEntityComponent {
     @Override
     public void interact(Entity<?> entity, Facing face, Vector facePos, ItemStack<?> item) {
         // Open the chest inventory for the entity
-        if ( entity instanceof EntityPlayer) {
-            ( (EntityPlayer) entity ).openInventory( this.inventory );
+        if (entity instanceof EntityPlayer) {
+            ((EntityPlayer) entity).openInventory(this.inventory);
         }
     }
 

@@ -8,7 +8,7 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketWorldEvent extends Packet {
+public class PacketWorldEvent extends Packet implements PacketClientbound {
 
     private int eventId;
     private Vector position;
@@ -18,18 +18,18 @@ public class PacketWorldEvent extends Packet {
      * Construct a new packet
      */
     public PacketWorldEvent() {
-        super( Protocol.PACKET_WORLD_EVENT );
+        super(Protocol.PACKET_WORLD_EVENT);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeSignedVarInt( this.eventId );
-        writeVector( this.position, buffer );
-        buffer.writeSignedVarInt( this.data );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeSignedVarInt(this.eventId);
+        writeVector(this.position, buffer);
+        buffer.writeSignedVarInt(this.data);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 

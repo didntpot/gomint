@@ -9,12 +9,12 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketClientCacheMissResponse extends Packet {
+public class PacketClientCacheMissResponse extends Packet implements PacketClientbound {
 
     private Long2ObjectMap<ByteBuf> data;
 
     public PacketClientCacheMissResponse() {
-        super( Protocol.PACKET_CLIENT_CACHE_MISS_RESPONSE );
+        super(Protocol.PACKET_CLIENT_CACHE_MISS_RESPONSE);
     }
 
     @Override

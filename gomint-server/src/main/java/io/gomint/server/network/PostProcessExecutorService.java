@@ -8,7 +8,6 @@
 package io.gomint.server.network;
 
 import com.google.common.util.concurrent.ListeningScheduledExecutorService;
-
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
@@ -26,11 +25,11 @@ public class PostProcessExecutorService implements Runnable {
     private ListeningScheduledExecutorService executorService;
     private List<PostProcessExecutor> executors = new CopyOnWriteArrayList<>();
 
-    public PostProcessExecutorService( ListeningScheduledExecutorService executorService ) {
+    public PostProcessExecutorService(ListeningScheduledExecutorService executorService) {
         this.executorService = executorService;
-        this.executorService.scheduleAtFixedRate( this, 0, 10, TimeUnit.MILLISECONDS );
+        this.executorService.scheduleAtFixedRate(this, 0, 10, TimeUnit.MILLISECONDS);
 
-        this.executors.add( new PostProcessExecutor( this.executorService ) );
+        this.executors.add(new PostProcessExecutor(this.executorService));
     }
 
     public PostProcessExecutor getExecutor() {
@@ -38,19 +37,19 @@ public class PostProcessExecutorService implements Runnable {
         PostProcessExecutor selectedExecutor = null;
 
         // Select anything under the given threshold
-        for ( PostProcessExecutor executor : this.executors ) {
-            if ( executor.load() < 85 ) {
-                if ( executor.connectionsInUse().get() > amountOfConnections ) {
+        for (PostProcessExecutor executor : this.executors) {
+            if (executor.load() < 85) {
+                if (executor.connectionsInUse().get() > amountOfConnections) {
                     selectedExecutor = executor;
                     amountOfConnections = executor.connectionsInUse().get();
                 }
             }
         }
 
-        if ( selectedExecutor == null ) {
-            PostProcessExecutor executor = new PostProcessExecutor( this.executorService );
+        if (selectedExecutor == null) {
+            PostProcessExecutor executor = new PostProcessExecutor(this.executorService);
             executor.connectionsInUse().incrementAndGet();
-            this.executors.add( executor );
+            this.executors.add(executor);
             return executor;
         } else {
             selectedExecutor.connectionsInUse().incrementAndGet();
@@ -58,20 +57,20 @@ public class PostProcessExecutorService implements Runnable {
         }
     }
 
-    public void releaseExecutor( PostProcessExecutor executor ) {
+    public void releaseExecutor(PostProcessExecutor executor) {
         executor.connectionsInUse().decrementAndGet();
     }
 
     @Override
     public void run() {
         int canKill = this.executors.size() - 1;
-        if ( canKill == 0 ) {
+        if (canKill == 0) {
             return;
         }
 
         // Check if we can get rid of some old unused post process workers
-        for ( PostProcessExecutor executor : this.executors ) {
-            if ( executor.connectionsInUse().get() == 0 && canKill-- > 0 ) {
+        for (PostProcessExecutor executor : this.executors) {
+            if (executor.connectionsInUse().get() == 0 && canKill-- > 0) {
                 executor.stop();
             }
         }

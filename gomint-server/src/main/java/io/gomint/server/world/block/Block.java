@@ -35,13 +35,12 @@ import io.gomint.world.ParticleData;
 import io.gomint.world.block.BlockAir;
 import io.gomint.world.block.data.Direction;
 import io.gomint.world.block.data.Facing;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author geNAZt
@@ -538,10 +537,10 @@ public abstract class Block implements io.gomint.world.block.Block {
     /**
      * Hook called before this block should be placed
      *
-     * @param entity   which wants to place this block
-     * @param item     which has been used to generate this block
-     * @param face     against which this block has been placed
-     * @param location of the placement
+     * @param entity      which wants to place this block
+     * @param item        which has been used to generate this block
+     * @param face        against which this block has been placed
+     * @param location    of the placement
      * @param clickVector click position
      * @return true when placement can happen, false otherwise
      */

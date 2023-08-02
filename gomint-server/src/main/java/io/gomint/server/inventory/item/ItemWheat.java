@@ -7,8 +7,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:wheat" )
-public class ItemWheat extends ItemStack< io.gomint.inventory.item.ItemWheat> implements io.gomint.inventory.item.ItemWheat {
+@RegisterInfo(sId = "minecraft:wheat")
+public class ItemWheat extends ItemStack<io.gomint.inventory.item.ItemWheat> implements io.gomint.inventory.item.ItemWheat {
 
     @Override
     public ItemType itemType() {

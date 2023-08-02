@@ -1,21 +1,19 @@
 package io.gomint.server.world.block;
 
 import io.gomint.inventory.item.ItemStack;
-import io.gomint.server.entity.tileentity.CommandBlockTileEntity;
 import io.gomint.server.entity.tileentity.DispenserTileEntity;
 import io.gomint.server.entity.tileentity.TileEntity;
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.taglib.NBTTagCompound;
 import io.gomint.world.block.BlockDispenser;
 import io.gomint.world.block.BlockType;
 
-import io.gomint.server.registry.RegisterInfo;
-
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:dispenser" )
+@RegisterInfo(sId = "minecraft:dispenser")
 public class Dispenser extends Block implements BlockDispenser {
 
     @Override
@@ -49,8 +47,8 @@ public class Dispenser extends Block implements BlockDispenser {
     }
 
     @Override
-    TileEntity createTileEntity( NBTTagCompound compound ) {
-        super.createTileEntity( compound );
+    TileEntity createTileEntity(NBTTagCompound compound) {
+        super.createTileEntity(compound);
         return this.tileEntities.construct(DispenserTileEntity.class, compound, this, this.items);
     }
 

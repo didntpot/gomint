@@ -6,7 +6,6 @@ import io.gomint.server.world.block.state.EnumBlockState;
 import io.gomint.world.block.BlockStainedGlassPane;
 import io.gomint.world.block.BlockType;
 import io.gomint.world.block.data.BlockColor;
-
 import java.util.ArrayList;
 import java.util.List;
 

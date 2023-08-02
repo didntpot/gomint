@@ -7,17 +7,17 @@ import io.gomint.server.network.Protocol;
  * @author HerryYT
  * @version 1.0
  */
-public class PacketRiderJump extends Packet {
+public class PacketRiderJump extends Packet implements PacketServerbound {
 
     private int strength;
 
     public PacketRiderJump() {
-        super( Protocol.PACKET_RIDER_JUMP );
+        super(Protocol.PACKET_RIDER_JUMP);
     }
 
     @Override
     public void serialize(PacketBuffer buffer, int protocolID) {
-        buffer.writeSignedVarInt( this.strength );
+        buffer.writeSignedVarInt(this.strength);
     }
 
     @Override

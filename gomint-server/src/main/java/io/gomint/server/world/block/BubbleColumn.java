@@ -14,7 +14,7 @@ import io.gomint.world.block.BlockType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:bubble_column" )
+@RegisterInfo(sId = "minecraft:bubble_column")
 public class BubbleColumn extends Block {
 
     @Override

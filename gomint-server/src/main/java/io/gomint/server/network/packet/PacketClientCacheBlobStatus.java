@@ -7,13 +7,13 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketClientCacheBlobStatus extends Packet {
+public class PacketClientCacheBlobStatus extends Packet implements PacketServerbound {
 
     private long[] hit;
     private long[] miss;
 
     public PacketClientCacheBlobStatus() {
-        super( Protocol.PACKET_CLIENT_CACHE_BLOB_STATUS );
+        super(Protocol.PACKET_CLIENT_CACHE_BLOB_STATUS);
     }
 
     @Override

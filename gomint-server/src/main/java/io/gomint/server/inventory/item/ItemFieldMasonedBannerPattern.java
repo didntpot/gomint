@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:field_masoned_banner_pattern" )
-public class ItemFieldMasonedBannerPattern extends ItemStack< io.gomint.inventory.item.ItemFieldMasonedBannerPattern> implements io.gomint.inventory.item.ItemFieldMasonedBannerPattern {
+@RegisterInfo(sId = "minecraft:field_masoned_banner_pattern")
+public class ItemFieldMasonedBannerPattern extends ItemStack<io.gomint.inventory.item.ItemFieldMasonedBannerPattern> implements io.gomint.inventory.item.ItemFieldMasonedBannerPattern {
 
     @Override
     public ItemType itemType() {

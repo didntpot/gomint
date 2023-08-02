@@ -20,19 +20,19 @@ public class StringUtil {
      * @param b to check against
      * @return true when string a starts with b, false when not
      */
-    public static boolean startsWith( String a, String b ) {
+    public static boolean startsWith(String a, String b) {
         // Get length of both strings
         int al = a.length();
         int bl = b.length();
 
         // Check if a is even long enough to contain b
-        if ( al < bl ) {
+        if (al < bl) {
             return false;
         }
 
         // We try a sneak peak first
-        while ( --bl >= 0 ) {
-            if ( a.charAt( bl ) != b.charAt( bl ) ) {
+        while (--bl >= 0) {
+            if (a.charAt(bl) != b.charAt(bl)) {
                 return false;
             }
         }
@@ -46,55 +46,56 @@ public class StringUtil {
      * @param input string which should be converted to its byte representation
      * @return byte array of string contents
      */
-    public static byte[] getUTF8Bytes( String input ) {
+    public static byte[] getUTF8Bytes(String input) {
         byte[] output = new byte[input.length() * 3];
         int byteCount = 0;
 
         // Fast forward all ascii chars
         int fastForward = 0;
-        for ( int i = Math.min( input.length(), output.length );
-              fastForward < i && input.charAt( fastForward ) < 128;
-              output[byteCount++] = (byte) input.charAt( fastForward++ ) ) { }
+        for (int i = Math.min(input.length(), output.length);
+             fastForward < i && input.charAt(fastForward) < 128;
+             output[byteCount++] = (byte) input.charAt(fastForward++)) {
+        }
 
-        for ( int i = fastForward; i < input.length(); i++ ) {
-            char c = input.charAt( i );
+        for (int i = fastForward; i < input.length(); i++) {
+            char c = input.charAt(i);
 
-            if ( c < 128 ) {
+            if (c < 128) {
                 output[byteCount++] = (byte) c;
-            } else if ( c < 2048 ) {
-                output[byteCount++] = (byte) ( 192 | c >> 6 );
-                output[byteCount++] = (byte) ( 128 | c & 63 );
-            } else if ( Character.isHighSurrogate( c ) ) {
-                if ( i + 1 >= input.length() ) {
+            } else if (c < 2048) {
+                output[byteCount++] = (byte) (192 | c >> 6);
+                output[byteCount++] = (byte) (128 | c & 63);
+            } else if (Character.isHighSurrogate(c)) {
+                if (i + 1 >= input.length()) {
                     output[byteCount++] = (char) 63;
                 } else {
-                    char low = input.charAt( i + 1 );
-                    if ( Character.isLowSurrogate( low ) ) {
-                        int intChar = Character.toCodePoint( c, low );
+                    char low = input.charAt(i + 1);
+                    if (Character.isLowSurrogate(low)) {
+                        int intChar = Character.toCodePoint(c, low);
 
-                        output[byteCount++] = (byte) ( 240 | intChar >> 18 );
-                        output[byteCount++] = (byte) ( 128 | intChar >> 12 & 63 );
-                        output[byteCount++] = (byte) ( 128 | intChar >> 6 & 63 );
-                        output[byteCount++] = (byte) ( 128 | intChar & 63 );
+                        output[byteCount++] = (byte) (240 | intChar >> 18);
+                        output[byteCount++] = (byte) (128 | intChar >> 12 & 63);
+                        output[byteCount++] = (byte) (128 | intChar >> 6 & 63);
+                        output[byteCount++] = (byte) (128 | intChar & 63);
                         ++i;
                     } else {
                         output[byteCount++] = (char) 63;
                     }
                 }
-            } else if ( Character.isLowSurrogate( c ) ) {
+            } else if (Character.isLowSurrogate(c)) {
                 output[byteCount++] = (char) 63;
             } else {
-                output[byteCount++] = (byte) ( 224 | c >> 12 );
-                output[byteCount++] = (byte) ( 128 | c >> 6 & 63 );
-                output[byteCount++] = (byte) ( 128 | c & 63 );
+                output[byteCount++] = (byte) (224 | c >> 12);
+                output[byteCount++] = (byte) (128 | c >> 6 & 63);
+                output[byteCount++] = (byte) (128 | c & 63);
             }
         }
 
-        if ( byteCount == output.length ) {
+        if (byteCount == output.length) {
             return output;
         } else {
             byte[] copy = new byte[byteCount];
-            System.arraycopy( output, 0, copy, 0, byteCount );
+            System.arraycopy(output, 0, copy, 0, byteCount);
             return copy;
         }
     }

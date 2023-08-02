@@ -11,11 +11,10 @@ import io.gomint.server.entity.EntityPlayer;
 import io.gomint.server.entity.passive.EntityPrimedTNT;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.state.BooleanBlockState;
-import io.gomint.world.block.data.Facing;
 import io.gomint.world.block.BlockTNT;
 import io.gomint.world.block.BlockType;
+import io.gomint.world.block.data.Facing;
 import io.gomint.world.block.data.TNTType;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -23,7 +22,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:tnt" )
+@RegisterInfo(sId = "minecraft:tnt")
 public class TNT extends Block implements BlockTNT {
 
     private static final BooleanBlockState UNDER_WATER = new BooleanBlockState(() -> new String[]{"allow_underwater_bit"});
@@ -46,12 +45,12 @@ public class TNT extends Block implements BlockTNT {
     }
 
     @Override
-    public boolean interact(Entity<?> entity, Facing face, Vector facePos, ItemStack<?> item ) {
-        if ( entity instanceof EntityPlayer && item instanceof ItemFlintAndSteel ) {
+    public boolean interact(Entity<?> entity, Facing face, Vector facePos, ItemStack<?> item) {
+        if (entity instanceof EntityPlayer && item instanceof ItemFlintAndSteel) {
             io.gomint.server.inventory.item.ItemStack<?> itemStack = (io.gomint.server.inventory.item.ItemStack<?>) item;
             itemStack.afterPlacement();
 
-            prime( 4 );
+            prime(4);
             return true;
         }
 
@@ -59,15 +58,15 @@ public class TNT extends Block implements BlockTNT {
     }
 
     @Override
-    public void prime( float secondsUntilExplosion ) {
-        int primeTicks = (int) ( secondsUntilExplosion * 20f );
+    public void prime(float secondsUntilExplosion) {
+        int primeTicks = (int) (secondsUntilExplosion * 20f);
 
         // Set this to air
-        this.blockType( Air.class );
+        this.blockType(Air.class);
 
         // Spawn tnt entity
-        EntityPrimedTNT entityTNT = new EntityPrimedTNT( this.world, this.location.add( 0.5f, 0.5f, 0.5f ), primeTicks );
-        this.world.spawnEntityAt( entityTNT, entityTNT.positionX(), entityTNT.positionY(), entityTNT.positionZ() );
+        EntityPrimedTNT entityTNT = new EntityPrimedTNT(this.world, this.location.add(0.5f, 0.5f, 0.5f), primeTicks);
+        this.world.spawnEntityAt(entityTNT, entityTNT.positionX(), entityTNT.positionY(), entityTNT.positionZ());
     }
 
     @Override

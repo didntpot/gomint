@@ -20,25 +20,25 @@ import io.gomint.world.block.data.Facing;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:white_glazed_terracotta", def = true )
-@RegisterInfo( sId = "minecraft:orange_glazed_terracotta" )
-@RegisterInfo( sId = "minecraft:magenta_glazed_terracotta" )
-@RegisterInfo( sId = "minecraft:light_blue_glazed_terracotta" )
-@RegisterInfo( sId = "minecraft:yellow_glazed_terracotta" )
-@RegisterInfo( sId = "minecraft:lime_glazed_terracotta" )
-@RegisterInfo( sId = "minecraft:pink_glazed_terracotta" )
-@RegisterInfo( sId = "minecraft:gray_glazed_terracotta" )
-@RegisterInfo( sId = "minecraft:silver_glazed_terracotta" )
-@RegisterInfo( sId = "minecraft:cyan_glazed_terracotta" )
-@RegisterInfo( sId = "minecraft:purple_glazed_terracotta" )
-@RegisterInfo( sId = "minecraft:blue_glazed_terracotta" )
-@RegisterInfo( sId = "minecraft:brown_glazed_terracotta" )
-@RegisterInfo( sId = "minecraft:green_glazed_terracotta" )
-@RegisterInfo( sId = "minecraft:red_glazed_terracotta" )
-@RegisterInfo( sId = "minecraft:black_glazed_terracotta" )
+@RegisterInfo(sId = "minecraft:white_glazed_terracotta", def = true)
+@RegisterInfo(sId = "minecraft:orange_glazed_terracotta")
+@RegisterInfo(sId = "minecraft:magenta_glazed_terracotta")
+@RegisterInfo(sId = "minecraft:light_blue_glazed_terracotta")
+@RegisterInfo(sId = "minecraft:yellow_glazed_terracotta")
+@RegisterInfo(sId = "minecraft:lime_glazed_terracotta")
+@RegisterInfo(sId = "minecraft:pink_glazed_terracotta")
+@RegisterInfo(sId = "minecraft:gray_glazed_terracotta")
+@RegisterInfo(sId = "minecraft:silver_glazed_terracotta")
+@RegisterInfo(sId = "minecraft:cyan_glazed_terracotta")
+@RegisterInfo(sId = "minecraft:purple_glazed_terracotta")
+@RegisterInfo(sId = "minecraft:blue_glazed_terracotta")
+@RegisterInfo(sId = "minecraft:brown_glazed_terracotta")
+@RegisterInfo(sId = "minecraft:green_glazed_terracotta")
+@RegisterInfo(sId = "minecraft:red_glazed_terracotta")
+@RegisterInfo(sId = "minecraft:black_glazed_terracotta")
 public class GlazedTerracotta extends Block implements BlockGlazedTerracotta {
 
-    private static final BlockfaceBlockState FACING = new BlockfaceBlockState( () -> new String[]{"facing_direction"} );
+    private static final BlockfaceBlockState FACING = new BlockfaceBlockState(() -> new String[]{"facing_direction"});
 
     @Override
     public long breakTime() {
@@ -66,55 +66,55 @@ public class GlazedTerracotta extends Block implements BlockGlazedTerracotta {
     }
 
     @Override
-    public BlockGlazedTerracotta color(BlockColor color ) {
-        switch ( color ) {
+    public BlockGlazedTerracotta color(BlockColor color) {
+        switch (color) {
             case WHITE:
-                this.blockId( "minecraft:white_glazed_terracotta" );
+                this.blockId("minecraft:white_glazed_terracotta");
                 break;
             case ORANGE:
-                this.blockId( "minecraft:orange_glazed_terracotta" );
+                this.blockId("minecraft:orange_glazed_terracotta");
                 break;
             case MAGENTA:
-                this.blockId( "minecraft:magenta_glazed_terracotta" );
+                this.blockId("minecraft:magenta_glazed_terracotta");
                 break;
             case LIGHT_BLUE:
-                this.blockId( "minecraft:light_blue_glazed_terracotta" );
+                this.blockId("minecraft:light_blue_glazed_terracotta");
                 break;
             case YELLOW:
-                this.blockId( "minecraft:yellow_glazed_terracotta" );
+                this.blockId("minecraft:yellow_glazed_terracotta");
                 break;
             case LIME:
-                this.blockId( "minecraft:lime_glazed_terracotta" );
+                this.blockId("minecraft:lime_glazed_terracotta");
                 break;
             case PINK:
-                this.blockId( "minecraft:pink_glazed_terracotta" );
+                this.blockId("minecraft:pink_glazed_terracotta");
                 break;
             case GRAY:
-                this.blockId( "minecraft:gray_glazed_terracotta" );
+                this.blockId("minecraft:gray_glazed_terracotta");
                 break;
             case LIGHT_GRAY:
-                this.blockId( "minecraft:silver_glazed_terracotta" );
+                this.blockId("minecraft:silver_glazed_terracotta");
                 break;
             case CYAN:
-                this.blockId( "minecraft:cyan_glazed_terracotta" );
+                this.blockId("minecraft:cyan_glazed_terracotta");
                 break;
             case PURPLE:
-                this.blockId( "minecraft:purple_glazed_terracotta" );
+                this.blockId("minecraft:purple_glazed_terracotta");
                 break;
             case BLUE:
-                this.blockId( "minecraft:blue_glazed_terracotta" );
+                this.blockId("minecraft:blue_glazed_terracotta");
                 break;
             case BROWN:
-                this.blockId( "minecraft:brown_glazed_terracotta" );
+                this.blockId("minecraft:brown_glazed_terracotta");
                 break;
             case GREEN:
-                this.blockId( "minecraft:green_glazed_terracotta" );
+                this.blockId("minecraft:green_glazed_terracotta");
                 break;
             case RED:
-                this.blockId( "minecraft:red_glazed_terracotta" );
+                this.blockId("minecraft:red_glazed_terracotta");
                 break;
             case BLACK:
-                this.blockId( "minecraft:black_glazed_terracotta" );
+                this.blockId("minecraft:black_glazed_terracotta");
                 break;
         }
 
@@ -123,7 +123,7 @@ public class GlazedTerracotta extends Block implements BlockGlazedTerracotta {
 
     @Override
     public BlockColor color() {
-        switch ( this.blockId() ) {
+        switch (this.blockId()) {
             case "minecraft:white_glazed_terracotta":
                 return BlockColor.WHITE;
             case "minecraft:orange_glazed_terracotta":
@@ -162,8 +162,8 @@ public class GlazedTerracotta extends Block implements BlockGlazedTerracotta {
     }
 
     @Override
-    public BlockGlazedTerracotta facing(Facing facing ) {
-        FACING.state(this,  facing );
+    public BlockGlazedTerracotta facing(Facing facing) {
+        FACING.state(this, facing);
         return this;
     }
 

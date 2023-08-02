@@ -11,7 +11,6 @@ import io.gomint.math.BlockPosition;
 import io.gomint.math.Location;
 import io.gomint.math.Vector;
 import io.gomint.server.entity.pathfinding.PathfindingEngine;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -33,28 +32,28 @@ public abstract class AIMovementAndLookingState extends AILookingState {
     }
 
     @Override
-    public void update( long currentTimeMS, float dT ) {
-        if ( this.path != null && this.currentPathNode < this.path.size() ) {
+    public void update(long currentTimeMS, float dT) {
+        if (this.path != null && this.currentPathNode < this.path.size()) {
             Vector position = this.pathfinding.transform().position();
             BlockPosition blockPosition = position.toBlockPosition();
 
-            BlockPosition node = this.path.get( this.currentPathNode );
+            BlockPosition node = this.path.get(this.currentPathNode);
 
-            Vector direction = node.toVector().add( .5f, 0, .5f ).subtract( position ).normalize().multiply( this.movementSpeed * dT );
-            this.pathfinding.transform().motion( direction.x(), direction.y(), direction.z() );
+            Vector direction = node.toVector().add(.5f, 0, .5f).subtract(position).normalize().multiply(this.movementSpeed * dT);
+            this.pathfinding.transform().motion(direction.x(), direction.y(), direction.z());
             this.look(direction);
 
-            if ( blockPosition.equals( node ) ) {
+            if (blockPosition.equals(node)) {
                 this.lastPointReachedTime = currentTimeMS;
                 this.currentPathNode++;
-            } else if ( currentTimeMS - this.lastPointReachedTime > TimeUnit.SECONDS.toMillis( 5 ) ) {
+            } else if (currentTimeMS - this.lastPointReachedTime > TimeUnit.SECONDS.toMillis(5)) {
                 // Generating new goal due to entity being stuck in movement loop
-                this.pathfinding.goal( this.generateGoal() );
+                this.pathfinding.goal(this.generateGoal());
                 this.path = this.pathfinding.path();
                 this.currentPathNode = 0;
             }
         } else {
-            this.pathfinding.goal( this.generateGoal() );
+            this.pathfinding.goal(this.generateGoal());
             this.path = this.pathfinding.path();
             this.currentPathNode = 0;
             this.lastPointReachedTime = currentTimeMS;

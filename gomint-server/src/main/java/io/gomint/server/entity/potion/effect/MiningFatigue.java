@@ -8,14 +8,13 @@
 package io.gomint.server.entity.potion.effect;
 
 import io.gomint.server.entity.EntityLiving;
-import io.gomint.server.player.EffectManager;
 import io.gomint.server.registry.RegisterInfo;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 4 )
+@RegisterInfo(id = 4)
 public class MiningFatigue extends Effect {
 
     @Override
@@ -24,17 +23,17 @@ public class MiningFatigue extends Effect {
     }
 
     @Override
-    public void apply( EntityLiving<?> player ) {
+    public void apply(EntityLiving<?> player) {
 
     }
 
     @Override
-    public void update( long currentTimeMillis, float dT ) {
+    public void update(long currentTimeMillis, float dT) {
 
     }
 
     @Override
-    public void remove( EntityLiving<?> player ) {
+    public void remove(EntityLiving<?> player) {
 
     }
 

@@ -60,7 +60,7 @@ public class AdventureSettings {
      *
      * @param entityPlayer The player for which this settings are
      */
-    public AdventureSettings( EntityPlayer entityPlayer ) {
+    public AdventureSettings(EntityPlayer entityPlayer) {
         this.player = entityPlayer;
     }
 
@@ -70,25 +70,25 @@ public class AdventureSettings {
      * @param flags  from the packet
      * @param flags2 from the packet
      */
-    public AdventureSettings( int flags, int flags2 ) {
+    public AdventureSettings(int flags, int flags2) {
         // Flag 1
-        this.worldImmutable = ( flags & WORLD_IMMUTABLE ) != 0;
-        this.noPvP = ( flags & NO_PVP ) != 0;
-        this.autoJump = ( flags & AUTO_JUMP ) != 0;
-        this.canFly = ( flags & CAN_FLY ) != 0;
-        this.noClip = ( flags & NO_CLIP ) != 0;
-        this.worldBuilder = ( flags & WORLD_BUILDER ) != 0;
-        this.flying = ( flags & FLYING ) != 0;
-        this.muted = ( flags & MUTED ) != 0;
+        this.worldImmutable = (flags & WORLD_IMMUTABLE) != 0;
+        this.noPvP = (flags & NO_PVP) != 0;
+        this.autoJump = (flags & AUTO_JUMP) != 0;
+        this.canFly = (flags & CAN_FLY) != 0;
+        this.noClip = (flags & NO_CLIP) != 0;
+        this.worldBuilder = (flags & WORLD_BUILDER) != 0;
+        this.flying = (flags & FLYING) != 0;
+        this.muted = (flags & MUTED) != 0;
 
         // Flag 2
-        this.buildAndMine = ( flags2 & BUILD_AND_MINE ) != 0;
-        this.useDoorsAndSwitches = ( flags2 & USE_DOORS_AND_SWITCHES ) != 0;
-        this.openContainers = ( flags2 & OPEN_CONTAINERS ) != 0;
-        this.attackPlayers = ( flags2 & ATTACK_PLAYERS ) != 0;
-        this.attackMobs = ( flags2 & ATTACK_MOBS ) != 0;
-        this.operator = ( flags2 & OPERATOR ) != 0;
-        this.teleport = ( flags2 & TELEPORT ) != 0;
+        this.buildAndMine = (flags2 & BUILD_AND_MINE) != 0;
+        this.useDoorsAndSwitches = (flags2 & USE_DOORS_AND_SWITCHES) != 0;
+        this.openContainers = (flags2 & OPEN_CONTAINERS) != 0;
+        this.attackPlayers = (flags2 & ATTACK_PLAYERS) != 0;
+        this.attackMobs = (flags2 & ATTACK_MOBS) != 0;
+        this.operator = (flags2 & OPERATOR) != 0;
+        this.teleport = (flags2 & TELEPORT) != 0;
     }
 
     /**
@@ -99,74 +99,74 @@ public class AdventureSettings {
 
         // Flags 1
         int flags = 0;
-        if ( this.worldImmutable ) {
+        if (this.worldImmutable) {
             flags |= WORLD_IMMUTABLE;              // Immutable World (Remove hit markers client-side).
         }
 
-        if ( this.noPvP ) {
+        if (this.noPvP) {
             flags |= NO_PVP;              // No PvP (Remove hit markers client-side).
         }
 
-        if ( this.autoJump ) {
+        if (this.autoJump) {
             flags |= AUTO_JUMP;
         }
 
-        if ( this.canFly ) {
+        if (this.canFly) {
             flags |= CAN_FLY;
         }
 
-        if ( this.noClip ) {
+        if (this.noClip) {
             flags |= NO_CLIP;              // No clip
         }
 
-        if ( this.worldBuilder ) {          // TODO: Find out what world builder is
+        if (this.worldBuilder) {          // TODO: Find out what world builder is
             flags |= WORLD_BUILDER;
         }
 
-        if ( this.flying ) {
+        if (this.flying) {
             flags |= FLYING;             // Set flying
         }
 
-        if ( this.muted ) {
+        if (this.muted) {
             flags |= MUTED;
         }
 
         // Flags 2
         int flags2 = 0;
-        if ( this.buildAndMine ) {
+        if (this.buildAndMine) {
             flags2 |= BUILD_AND_MINE;
         }
 
-        if ( this.useDoorsAndSwitches ) {
+        if (this.useDoorsAndSwitches) {
             flags2 |= USE_DOORS_AND_SWITCHES;
         }
 
-        if ( this.openContainers ) {
+        if (this.openContainers) {
             flags2 |= OPEN_CONTAINERS;
         }
 
-        if ( this.attackPlayers ) {
+        if (this.attackPlayers) {
             flags2 |= ATTACK_PLAYERS;
         }
 
-        if ( this.attackMobs ) {
+        if (this.attackMobs) {
             flags2 |= ATTACK_MOBS;
         }
 
-        if ( this.operator ) {
+        if (this.operator) {
             flags2 |= OPERATOR;
         }
 
-        if ( this.teleport ) {
+        if (this.teleport) {
             flags2 |= TELEPORT;
         }
 
-        adventureSettingsPacket.setFlags( flags );
-        adventureSettingsPacket.setFlags2( flags2 );
-        adventureSettingsPacket.setCommandPermission( this.commandPermission.getId() );
-        adventureSettingsPacket.setPlayerPermission( this.playerPermission.id() );
-        adventureSettingsPacket.setEntityId( this.player.id() );
-        this.player.connection().addToSendQueue( adventureSettingsPacket );
+        adventureSettingsPacket.setFlags(flags);
+        adventureSettingsPacket.setFlags2(flags2);
+        adventureSettingsPacket.setCommandPermission(this.commandPermission.getId());
+        adventureSettingsPacket.setPlayerPermission(this.playerPermission.id());
+        adventureSettingsPacket.setEntityId(this.player.id());
+        this.player.connection().addToSendQueue(adventureSettingsPacket);
     }
 
     public CommandPermission getCommandPermission() {

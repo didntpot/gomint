@@ -16,7 +16,7 @@ import java.lang.annotation.Target;
  * @author geNAZt
  * @version 1.0
  */
-@Target( ElementType.TYPE )
-@Retention( RetentionPolicy.RUNTIME )
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface CanBeDamaged {
 }

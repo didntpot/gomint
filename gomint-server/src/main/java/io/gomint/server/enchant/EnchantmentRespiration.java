@@ -16,28 +16,28 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 6 )
+@RegisterInfo(id = 6)
 public class EnchantmentRespiration extends Enchantment implements io.gomint.enchant.EnchantmentRespiration {
 
     /**
      * Create new enchantment respiration
      */
     public EnchantmentRespiration() {
-        super( (short) 3 );
+        super((short) 3);
     }
 
     @Override
-    public int minEnchantAbility( short level ) {
-        return (byte) ( level * 10 );
+    public int minEnchantAbility(short level) {
+        return (byte) (level * 10);
     }
 
     @Override
-    public int maxEnchantAbility( short level ) {
-        return (byte) ( minEnchantAbility( level ) + 30 );
+    public int maxEnchantAbility(short level) {
+        return (byte) (minEnchantAbility(level) + 30);
     }
 
     @Override
-    public boolean canBeApplied(ItemStack<?> itemStack ) {
+    public boolean canBeApplied(ItemStack<?> itemStack) {
         return itemStack.itemType() == ItemType.CHAIN_HELMET ||
             itemStack.itemType() == ItemType.DIAMOND_HELMET ||
             itemStack.itemType() == ItemType.GOLDEN_HELMET ||

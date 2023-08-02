@@ -9,12 +9,13 @@ package io.gomint.server.network.packet;
 
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.Protocol;
+import io.gomint.server.world.generator.vanilla.client.Client;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-public class PacketEntityEvent extends Packet {
+public class PacketEntityEvent extends Packet implements PacketClientbound, PacketServerbound {
 
     private long entityId;
     private byte eventId;
@@ -24,18 +25,18 @@ public class PacketEntityEvent extends Packet {
      * Create new packet entity event
      */
     public PacketEntityEvent() {
-        super( Protocol.PACKET_ENTITY_EVENT );
+        super(Protocol.PACKET_ENTITY_EVENT);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeUnsignedVarLong( this.entityId );
-        buffer.writeByte( this.eventId );
-        buffer.writeSignedVarInt( this.eventData );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeUnsignedVarLong(this.entityId);
+        buffer.writeByte(this.eventId);
+        buffer.writeSignedVarInt(this.eventData);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.entityId = buffer.readUnsignedVarLong();
         this.eventId = buffer.readByte();
         this.eventData = buffer.readSignedVarInt();

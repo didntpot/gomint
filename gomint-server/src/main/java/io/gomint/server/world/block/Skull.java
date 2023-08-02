@@ -16,7 +16,6 @@ import io.gomint.world.block.BlockType;
 import io.gomint.world.block.data.Direction;
 import io.gomint.world.block.data.Facing;
 import io.gomint.world.block.data.SkullType;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -125,7 +124,7 @@ public class Skull extends Block implements BlockSkull {
     @Override
     public Direction direction() {
         Facing facing = DIRECTION.state(this);
-        if ( facing == Facing.UP ) {
+        if (facing == Facing.UP) {
             return null;
         }
 

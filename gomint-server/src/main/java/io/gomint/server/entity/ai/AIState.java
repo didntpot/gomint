@@ -16,7 +16,7 @@ public abstract class AIState {
      *
      * @param machine The state machine the AIState being constructed belongs to
      */
-    protected AIState( AIStateMachine machine ) {
+    protected AIState(AIStateMachine machine) {
         this.machine = machine;
     }
 
@@ -26,7 +26,7 @@ public abstract class AIState {
      * @return Whether or not the state is currently active
      */
     public boolean isActive() {
-        return ( this.machine.getActiveState() == this );
+        return (this.machine.getActiveState() == this);
     }
 
     public void switchState(AIState state) {
@@ -38,7 +38,7 @@ public abstract class AIState {
      *
      * @param event The event which has been created
      */
-    public void onEvent( AIEvent event ) {
+    public void onEvent(AIEvent event) {
 
     }
 
@@ -49,7 +49,7 @@ public abstract class AIState {
      * @param currentTimeMS The current system time in milliseconds
      * @param dT            The time that has passed since the last update tick in seconds
      */
-    protected void update( long currentTimeMS, float dT ) {
+    protected void update(long currentTimeMS, float dT) {
 
     }
 

@@ -17,7 +17,7 @@ import io.gomint.world.block.BlockType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:magma" )
+@RegisterInfo(sId = "minecraft:magma")
 public class Magma extends Block implements BlockMagma {
 
     @Override

@@ -12,7 +12,6 @@ import io.gomint.math.Vector;
 import io.gomint.server.entity.EntityLiving;
 import io.gomint.server.world.block.Block;
 import io.gomint.world.block.data.Facing;
-
 import java.util.function.Function;
 
 /**
@@ -39,10 +38,11 @@ public abstract class BlockState<T, S> {
 
     /**
      * Detect from a player
+     *
      * @param newBlock
-     * @param entity        from which we generate data
-     * @param placedItem    which has been used to get this block
-     * @param face          which the client has clicked on
+     * @param entity      from which we generate data
+     * @param placedItem  which has been used to get this block
+     * @param face        which the client has clicked on
      * @param clickVector
      */
     public abstract void detectFromPlacement(Block newBlock, EntityLiving<?> entity, ItemStack<?> placedItem, Facing face, Vector clickVector);
@@ -68,6 +68,6 @@ public abstract class BlockState<T, S> {
         return null;
     }
 
-    public abstract T state(Block block );
+    public abstract T state(Block block);
 
 }

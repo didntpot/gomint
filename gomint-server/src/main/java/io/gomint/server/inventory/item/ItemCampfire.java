@@ -15,7 +15,7 @@ import io.gomint.server.registry.RegisterInfo;
  * @version 1.0
  */
 @RegisterInfo(sId = "minecraft:campfire")
-public class ItemCampfire extends ItemStack< io.gomint.inventory.item.ItemCampfire> implements io.gomint.inventory.item.ItemCampfire {
+public class ItemCampfire extends ItemStack<io.gomint.inventory.item.ItemCampfire> implements io.gomint.inventory.item.ItemCampfire {
 
     @Override
     public byte maximumAmount() {

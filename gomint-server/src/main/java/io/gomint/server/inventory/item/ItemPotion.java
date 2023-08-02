@@ -4,7 +4,6 @@ import io.gomint.inventory.item.ItemType;
 import io.gomint.server.entity.EntityPlayer;
 import io.gomint.server.inventory.item.category.ItemConsumable;
 import io.gomint.server.registry.RegisterInfo;
-import io.gomint.taglib.NBTTagCompound;
 
 /**
  * @author geNAZt

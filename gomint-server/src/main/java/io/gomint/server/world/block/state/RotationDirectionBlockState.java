@@ -8,7 +8,6 @@
 package io.gomint.server.world.block.state;
 
 import io.gomint.world.block.data.RotationDirection;
-
 import java.util.function.Supplier;
 
 /**

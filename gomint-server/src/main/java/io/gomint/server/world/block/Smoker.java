@@ -39,7 +39,7 @@ public class Smoker extends Block implements BlockSmoker {
 
     @Override
     TileEntity createTileEntity(NBTTagCompound compound) {
-        super.createTileEntity( compound );
+        super.createTileEntity(compound);
         return this.tileEntities.construct(SmokerTileEntity.class, compound, this, this.items);
     }
 

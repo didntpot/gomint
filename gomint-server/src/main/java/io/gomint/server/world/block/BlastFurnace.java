@@ -10,18 +10,18 @@ import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.server.world.block.state.BlockfaceBlockState;
 import io.gomint.taglib.NBTTagCompound;
 import io.gomint.world.block.BlockBlastFurnace;
-import io.gomint.world.block.data.Facing;
 import io.gomint.world.block.BlockType;
+import io.gomint.world.block.data.Facing;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:lit_blast_furnace" )
-@RegisterInfo( sId = "minecraft:blast_furnace", def = true )
+@RegisterInfo(sId = "minecraft:lit_blast_furnace")
+@RegisterInfo(sId = "minecraft:blast_furnace", def = true)
 public class BlastFurnace extends Block implements BlockBlastFurnace {
 
-    private static final BlockfaceBlockState FACING = new BlockfaceBlockState( () -> new String[]{"facing_direction"} );
+    private static final BlockfaceBlockState FACING = new BlockfaceBlockState(() -> new String[]{"facing_direction"});
 
     @Override
     public long breakTime() {
@@ -54,8 +54,8 @@ public class BlastFurnace extends Block implements BlockBlastFurnace {
     }
 
     @Override
-    TileEntity createTileEntity( NBTTagCompound compound ) {
-        super.createTileEntity( compound );
+    TileEntity createTileEntity(NBTTagCompound compound) {
+        super.createTileEntity(compound);
         return this.tileEntities.construct(FurnaceTileEntity.class, compound, this, this.items);
     }
 
@@ -65,19 +65,19 @@ public class BlastFurnace extends Block implements BlockBlastFurnace {
     }
 
     @Override
-    public boolean interact(Entity<?> entity, Facing face, Vector facePos, ItemStack<?> item ) {
+    public boolean interact(Entity<?> entity, Facing face, Vector facePos, ItemStack<?> item) {
         FurnaceTileEntity tileEntity = this.tileEntity();
-        tileEntity.interact( entity, face, facePos, item );
+        tileEntity.interact(entity, face, facePos, item);
 
         return true;
     }
 
     @Override
-    public boolean onBreak( boolean creative ) {
-        if ( !creative ) {
+    public boolean onBreak(boolean creative) {
+        if (!creative) {
             FurnaceTileEntity tileEntity = this.tileEntity();
-            for ( ItemStack<?> itemStack : tileEntity.getInventory().contents() ) {
-                this.world.dropItem( this.location, itemStack );
+            for (ItemStack<?> itemStack : tileEntity.getInventory().contents()) {
+                this.world.dropItem(this.location, itemStack);
             }
 
             tileEntity.getInventory().clear();
@@ -86,20 +86,20 @@ public class BlastFurnace extends Block implements BlockBlastFurnace {
             tileEntity.getInventory().clearViewers();
         }
 
-        return super.onBreak( creative );
+        return super.onBreak(creative);
     }
 
     @Override
     public boolean burning() {
-        return this.blockId().equals( "minecraft:lit_furnace" );
+        return this.blockId().equals("minecraft:lit_furnace");
     }
 
     @Override
-    public BlockBlastFurnace burning(boolean burning ) {
-        if ( burning ) {
-            this.blockId( "minecraft:lit_furnace" );
+    public BlockBlastFurnace burning(boolean burning) {
+        if (burning) {
+            this.blockId("minecraft:lit_furnace");
         } else {
-            this.blockId( "minecraft:furnace" );
+            this.blockId("minecraft:furnace");
         }
 
         return this;

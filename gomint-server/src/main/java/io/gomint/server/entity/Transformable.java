@@ -66,7 +66,7 @@ public interface Transformable {
      *
      * @param position The position to set
      */
-    Transformable position(Vector position );
+    Transformable position(Vector position);
 
     /**
      * Gets the yaw angle of the object's body.
@@ -80,7 +80,7 @@ public interface Transformable {
      *
      * @param yaw The yaw angle to set
      */
-    Transformable yaw(float yaw );
+    Transformable yaw(float yaw);
 
     /**
      * Gets the yaw angle of the object's head.
@@ -94,7 +94,7 @@ public interface Transformable {
      *
      * @param headYaw The yaw angle to set
      */
-    Transformable headYaw(float headYaw );
+    Transformable headYaw(float headYaw);
 
     /**
      * Gets the pitch angle of the object's head.
@@ -108,7 +108,7 @@ public interface Transformable {
      *
      * @param pitch The pitch angle to set.
      */
-    Transformable pitch(float pitch );
+    Transformable pitch(float pitch);
 
     /**
      * Gets the direction the object's body is facing as a normalized vector.
@@ -133,7 +133,7 @@ public interface Transformable {
      * @param y the y offset for the motion
      * @param z the z offset for the motion
      */
-    Transformable manipulateMotion( float x, float y, float z );
+    Transformable manipulateMotion(float x, float y, float z);
 
     /**
      * Sets the object's motion given the respective coordinates on the 3 axes.
@@ -142,7 +142,7 @@ public interface Transformable {
      * @param motionY The y coordinate of the motion
      * @param motionZ The z coordinate of the motion
      */
-    Transformable motion(float motionX, float motionY, float motionZ );
+    Transformable motion(float motionX, float motionY, float motionZ);
 
     /**
      * Sets the object's position given the respective coordinates on the 3 axes.
@@ -151,7 +151,7 @@ public interface Transformable {
      * @param positionY The y coordinate of the position
      * @param positionZ The z coordinate of the position
      */
-    Transformable position(float positionX, float positionY, float positionZ );
+    Transformable position(float positionX, float positionY, float positionZ);
 
     /**
      * Moves the object by the given offset vector. Produces the same result as
@@ -165,7 +165,7 @@ public interface Transformable {
      * @param offsetY The y component of the offset
      * @param offsetZ The z component of the offset
      */
-    Transformable move( float offsetX, float offsetY, float offsetZ );
+    Transformable move(float offsetX, float offsetY, float offsetZ);
 
     /**
      * Moves the object by the given offset vector. Produces the same result as
@@ -177,28 +177,28 @@ public interface Transformable {
      *
      * @param offset The offset vector to apply to the object
      */
-    Transformable move( Vector offset );
+    Transformable move(Vector offset);
 
     /**
      * Rotates the object's body around the yaw axis (vertical axis).
      *
      * @param yaw The yaw value by which to rotate the object
      */
-    Transformable rotateYaw( float yaw );
+    Transformable rotateYaw(float yaw);
 
     /**
      * Rotates the object's head around the yaw axis (vertical axis).
      *
      * @param headYaw The yaw value by which to rotate the object's head
      */
-    Transformable rotateHeadYaw( float headYaw );
+    Transformable rotateHeadYaw(float headYaw);
 
     /**
      * Rotates the object's head around the pitch axis (transverse axis).
      *
      * @param pitch The pitch value by which to rotate the object's head
      */
-    Transformable rotatePitch( float pitch );
+    Transformable rotatePitch(float pitch);
 
     /**
      * Converts the transformable into a location instance. The world the location
@@ -209,7 +209,7 @@ public interface Transformable {
      * @param world The world to construct the location with
      * @return The created location resembling this transformable
      */
-    Location toLocation( WorldAdapter world );
+    Location toLocation(WorldAdapter world);
 
     /**
      * Checks whether or not there have been any changes to the object

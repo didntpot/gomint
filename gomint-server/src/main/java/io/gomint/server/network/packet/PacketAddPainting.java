@@ -7,7 +7,7 @@ import io.gomint.server.network.Protocol;
  * @author HerryYT
  * @version 1.0
  */
-public class PacketAddPainting extends Packet {
+public class PacketAddPainting extends Packet implements PacketClientbound {
 
     private long entityId;
     private float x;
@@ -17,25 +17,25 @@ public class PacketAddPainting extends Packet {
     private String title;
 
     public PacketAddPainting() {
-        super( Protocol.PACKET_ADD_PAINTING );
+        super(Protocol.PACKET_ADD_PAINTING);
     }
 
     @Override
     public void serialize(PacketBuffer buffer, int protocolID) {
         // Write runtime & entity id
-        buffer.writeSignedVarLong( this.entityId );
-        buffer.writeUnsignedVarLong( this.entityId );
+        buffer.writeSignedVarLong(this.entityId);
+        buffer.writeUnsignedVarLong(this.entityId);
 
         // Write painting position
-        buffer.writeLFloat( this.x );
-        buffer.writeLFloat( this.y );
-        buffer.writeLFloat( this.z );
+        buffer.writeLFloat(this.x);
+        buffer.writeLFloat(this.y);
+        buffer.writeLFloat(this.z);
 
         // Write painting direction
-        buffer.writeSignedVarInt( this.direction );
+        buffer.writeSignedVarInt(this.direction);
 
         // Write painting title
-        buffer.writeString( this.title );
+        buffer.writeString(this.title);
     }
 
     @Override

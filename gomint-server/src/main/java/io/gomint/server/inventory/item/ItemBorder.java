@@ -7,8 +7,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo(sId = "minecraft:border_block" )
-public class ItemBorder extends ItemStack< io.gomint.inventory.item.ItemBorder> implements io.gomint.inventory.item.ItemBorder {
+@RegisterInfo(sId = "minecraft:border_block")
+public class ItemBorder extends ItemStack<io.gomint.inventory.item.ItemBorder> implements io.gomint.inventory.item.ItemBorder {
 
     @Override
     public ItemType itemType() {

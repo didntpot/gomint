@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:polished_blackstone_stairs" )
-public class ItemPolishedBlackstoneStairs extends ItemStack< io.gomint.inventory.item.ItemPolishedBlackstoneStairs> implements io.gomint.inventory.item.ItemPolishedBlackstoneStairs {
+@RegisterInfo(sId = "minecraft:polished_blackstone_stairs")
+public class ItemPolishedBlackstoneStairs extends ItemStack<io.gomint.inventory.item.ItemPolishedBlackstoneStairs> implements io.gomint.inventory.item.ItemPolishedBlackstoneStairs {
 
     @Override
     public ItemType itemType() {

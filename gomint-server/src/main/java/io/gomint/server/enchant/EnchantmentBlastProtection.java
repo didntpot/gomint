@@ -15,28 +15,28 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 3 )
+@RegisterInfo(id = 3)
 public class EnchantmentBlastProtection extends Enchantment implements io.gomint.enchant.EnchantmentBlastProtection {
 
     /**
      * Create new enchantment blast protection
      */
     public EnchantmentBlastProtection() {
-        super( (short) 4 );
+        super((short) 4);
     }
 
     @Override
-    public int minEnchantAbility( short level ) {
-        return (byte) ( 5 + ( level - 1 ) * 8 );
+    public int minEnchantAbility(short level) {
+        return (byte) (5 + (level - 1) * 8);
     }
 
     @Override
-    public int maxEnchantAbility( short level ) {
-        return (byte) ( minEnchantAbility( level ) + 12 );
+    public int maxEnchantAbility(short level) {
+        return (byte) (minEnchantAbility(level) + 12);
     }
 
     @Override
-    public boolean canBeApplied(ItemStack<?> itemStack ) {
+    public boolean canBeApplied(ItemStack<?> itemStack) {
         return EnchantmentHelper.canBeAppliedArmor(itemStack);
     }
 

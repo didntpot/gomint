@@ -1,13 +1,11 @@
 package io.gomint.server.world.block;
 
 import io.gomint.inventory.item.ItemStack;
+import io.gomint.math.AxisAlignedBB;
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.world.block.BlockLightWeightedPressurePlate;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.math.AxisAlignedBB;
-import io.gomint.server.registry.RegisterInfo;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -15,7 +13,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:light_weighted_pressure_plate" )
+@RegisterInfo(sId = "minecraft:light_weighted_pressure_plate")
 public class LightWeightedPressurePlate extends Block implements BlockLightWeightedPressurePlate {
 
     @Override
@@ -40,14 +38,14 @@ public class LightWeightedPressurePlate extends Block implements BlockLightWeigh
 
     @Override
     public List<AxisAlignedBB> boundingBoxes() {
-        return Collections.singletonList( new AxisAlignedBB(
+        return Collections.singletonList(new AxisAlignedBB(
             this.location.x(),
             this.location.y(),
             this.location.z(),
             this.location.x() + 1,
             this.location.y() + 0.1f,
             this.location.z() + 1
-        ) );
+        ));
     }
 
     @Override

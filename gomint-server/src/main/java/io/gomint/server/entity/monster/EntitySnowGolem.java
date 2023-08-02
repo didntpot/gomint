@@ -14,7 +14,6 @@ import io.gomint.server.entity.EntityTags;
 import io.gomint.server.entity.EntityType;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.WorldAdapter;
-
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -22,15 +21,15 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author joserobjr
  * @since 2021-01-12
  */
-@RegisterInfo( sId = "minecraft:snow_golem" )
+@RegisterInfo(sId = "minecraft:snow_golem")
 public class EntitySnowGolem extends EntityLiving<io.gomint.entity.monster.EntitySnowGolem> implements io.gomint.entity.monster.EntitySnowGolem {
     /**
      * Constructs a new EntitySnowGolem
      *
      * @param world The world in which this entity is in
      */
-    public EntitySnowGolem(WorldAdapter world ) {
-        super( EntityType.SNOW_GOLEM, world );
+    public EntitySnowGolem(WorldAdapter world) {
+        super(EntityType.SNOW_GOLEM, world);
         this.initEntity();
     }
 
@@ -38,7 +37,7 @@ public class EntitySnowGolem extends EntityLiving<io.gomint.entity.monster.Entit
      * Create new entity snow golem for API
      */
     public EntitySnowGolem() {
-        super( EntityType.SNOW_GOLEM, null );
+        super(EntityType.SNOW_GOLEM, null);
         this.initEntity();
     }
 
@@ -56,7 +55,7 @@ public class EntitySnowGolem extends EntityLiving<io.gomint.entity.monster.Entit
         if (dead()) {
             return;
         }
-        
+
         // Item drops
         int amount = ThreadLocalRandom.current().nextInt(16);
         if (amount > 0) {
@@ -65,8 +64,8 @@ public class EntitySnowGolem extends EntityLiving<io.gomint.entity.monster.Entit
     }
 
     @Override
-    public void update( long currentTimeMS, float dT ) {
-        super.update( currentTimeMS, dT );
+    public void update(long currentTimeMS, float dT) {
+        super.update(currentTimeMS, dT);
     }
 
     @Override

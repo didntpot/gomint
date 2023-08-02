@@ -1,15 +1,14 @@
 package io.gomint.server.world.block;
 
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockBrownMushroom;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:brown_mushroom" )
+@RegisterInfo(sId = "minecraft:brown_mushroom")
 public class BrownMushroom extends Block implements BlockBrownMushroom {
 
     @Override

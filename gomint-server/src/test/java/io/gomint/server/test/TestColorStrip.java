@@ -5,10 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-package io.gomint.server.test;import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+package io.gomint.server.test;
 
 import java.util.regex.Pattern;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author geNAZt
@@ -17,15 +18,15 @@ import java.util.regex.Pattern;
 public class TestColorStrip {
 
     public static final char COLOR_CHAR = '\u00A7';
-    public static final Pattern STRIP_COLOR_PATTERN = Pattern.compile( "(?i)" + String.valueOf( COLOR_CHAR ) + "[0-9A-FK-OR]" );
+    public static final Pattern STRIP_COLOR_PATTERN = Pattern.compile("(?i)" + String.valueOf(COLOR_CHAR) + "[0-9A-FK-OR]");
 
     @Test
     public void colorStrip() {
-        Assertions.assertEquals( regexFilter(), iterationFilter() );
+        Assertions.assertEquals(regexFilter(), iterationFilter());
     }
 
     public String regexFilter() {
-        return STRIP_COLOR_PATTERN.matcher( "jkldsa§c§c§§" ).replaceAll( "" );
+        return STRIP_COLOR_PATTERN.matcher("jkldsa§c§c§§").replaceAll("");
     }
 
     public String iterationFilter() {
@@ -33,18 +34,18 @@ public class TestColorStrip {
         int index = 0;
         char[] output = new char[input.length()];
 
-        for ( int i = 0; i < input.length(); i++ ) {
-            char c = input.charAt( i );
-            if ( c == COLOR_CHAR ) {
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (c == COLOR_CHAR) {
                 // Check next char
-                if ( input.length() > i + 1 ) {
-                    char nc = input.charAt( i + 1 );
-                    if ( ( nc >= '0' && nc <= '9' ) ||
-                        ( nc >= 'A' && nc <= 'F' ) ||
-                        ( nc >= 'a' && nc <= 'f' ) ||
-                        ( nc >= 'K' && nc <= 'O' ) ||
-                        ( nc >= 'k' && nc <= 'o' ) ||
-                        nc == 'R' || nc == 'r' ) {
+                if (input.length() > i + 1) {
+                    char nc = input.charAt(i + 1);
+                    if ((nc >= '0' && nc <= '9') ||
+                        (nc >= 'A' && nc <= 'F') ||
+                        (nc >= 'a' && nc <= 'f') ||
+                        (nc >= 'K' && nc <= 'O') ||
+                        (nc >= 'k' && nc <= 'o') ||
+                        nc == 'R' || nc == 'r') {
                         i++;
                     } else {
                         output[index++] = c;
@@ -57,7 +58,7 @@ public class TestColorStrip {
             }
         }
 
-        return new String( output, 0, index );
+        return new String(output, 0, index);
     }
 
 }

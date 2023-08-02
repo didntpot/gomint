@@ -12,12 +12,10 @@ import io.gomint.GoMint;
 import io.gomint.event.world.SignChangeTextEvent;
 import io.gomint.server.entity.EntityPlayer;
 import io.gomint.server.inventory.item.Items;
-import io.gomint.server.plugin.EventCaller;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.Block;
 import io.gomint.server.world.block.Sign;
 import io.gomint.taglib.NBTTagCompound;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;

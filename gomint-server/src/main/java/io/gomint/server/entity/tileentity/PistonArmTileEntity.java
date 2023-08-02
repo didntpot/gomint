@@ -11,7 +11,6 @@ import io.gomint.server.inventory.item.Items;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.Block;
 import io.gomint.taglib.NBTTagCompound;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,53 +42,53 @@ public class PistonArmTileEntity extends TileEntity {
      * @param block which created this tile
      */
     public PistonArmTileEntity(Block block, Items items) {
-        super( block, items );
+        super(block, items);
     }
 
     @Override
-    public void fromCompound( NBTTagCompound compound ) {
-        super.fromCompound( compound );
+    public void fromCompound(NBTTagCompound compound) {
+        super.fromCompound(compound);
 
-        this.state = compound.getByte( "State", (byte) 0 );
-        this.newState = compound.getByte( "NewState", (byte) 0 );
+        this.state = compound.getByte("State", (byte) 0);
+        this.newState = compound.getByte("NewState", (byte) 0);
 
-        this.progess = compound.getFloat( "Progress", 0f );
-        this.lastProgress = compound.getFloat( "LastProgress", 0f );
+        this.progess = compound.getFloat("Progress", 0f);
+        this.lastProgress = compound.getFloat("LastProgress", 0f);
 
-        this.attachedBlocks = compound.getList( "AttachedBlocks", false );
-        this.breakBlocks = compound.getList( "BreakBlocks", false );
+        this.attachedBlocks = compound.getList("AttachedBlocks", false);
+        this.breakBlocks = compound.getList("BreakBlocks", false);
 
-        this.sticky = compound.getByte( "Sticky", (byte) 0 );
+        this.sticky = compound.getByte("Sticky", (byte) 0);
     }
 
     @Override
-    public void update( long currentMillis, float dT ) {
+    public void update(long currentMillis, float dT) {
     }
 
     @Override
-    public void toCompound( NBTTagCompound compound, SerializationReason reason ) {
-        super.toCompound( compound, reason );
+    public void toCompound(NBTTagCompound compound, SerializationReason reason) {
+        super.toCompound(compound, reason);
 
-        compound.addValue( "id", "PistonArm" );
+        compound.addValue("id", "PistonArm");
 
         // States
-        compound.addValue( "State", this.state );
-        compound.addValue( "NewState", this.newState );
+        compound.addValue("State", this.state);
+        compound.addValue("NewState", this.newState);
 
         // Progress
-        compound.addValue( "Progress", this.progess );
-        compound.addValue( "LastProgress", this.lastProgress );
+        compound.addValue("Progress", this.progess);
+        compound.addValue("LastProgress", this.lastProgress);
 
         // Sticky
-        compound.addValue( "Sticky", this.sticky );
+        compound.addValue("Sticky", this.sticky);
 
         // Blocks
-        if ( this.breakBlocks != null ) {
-            compound.addValue( "BreakBlocks", this.breakBlocks );
+        if (this.breakBlocks != null) {
+            compound.addValue("BreakBlocks", this.breakBlocks);
         }
 
-        if ( this.attachedBlocks != null ) {
-            compound.addValue( "AttachedBlocks", this.attachedBlocks );
+        if (this.attachedBlocks != null) {
+            compound.addValue("AttachedBlocks", this.attachedBlocks);
         }
     }
 
@@ -102,8 +101,8 @@ public class PistonArmTileEntity extends TileEntity {
         return this.state > 0;
     }
 
-    public void setExtended( boolean state ) {
-        this.state = (byte) ( state ? 2 : 0 );
+    public void setExtended(boolean state) {
+        this.state = (byte) (state ? 2 : 0);
         this.newState = this.state;
         this.progess = state ? 1.0f : 0.0f;
         this.lastProgress = this.progess;

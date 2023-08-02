@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:zombie_villager_spawn_egg" )
-public class ItemZombieVillagerSpawnEgg extends ItemStack< io.gomint.inventory.item.ItemZombieVillagerSpawnEgg> implements io.gomint.inventory.item.ItemZombieVillagerSpawnEgg {
+@RegisterInfo(sId = "minecraft:zombie_villager_spawn_egg")
+public class ItemZombieVillagerSpawnEgg extends ItemStack<io.gomint.inventory.item.ItemZombieVillagerSpawnEgg> implements io.gomint.inventory.item.ItemZombieVillagerSpawnEgg {
 
     @Override
     public ItemType itemType() {

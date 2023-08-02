@@ -29,7 +29,7 @@ public class MetadataFloat extends MetadataValue {
      *
      * @param value The value to initialize the metadata float with
      */
-    public MetadataFloat( float value ) {
+    public MetadataFloat(float value) {
         this.value = value;
     }
 
@@ -47,19 +47,19 @@ public class MetadataFloat extends MetadataValue {
      *
      * @param value The value of this metadata float
      */
-    public void setValue( float value ) {
+    public void setValue(float value) {
         this.value = value;
     }
 
     // ========================== METADATA VALUE ========================== //
     @Override
-    void serialize( PacketBuffer buffer, int index ) {
-        super.serialize( buffer, index );
-        buffer.writeLFloat( this.value );
+    void serialize(PacketBuffer buffer, int index) {
+        super.serialize(buffer, index);
+        buffer.writeLFloat(this.value);
     }
 
     @Override
-    void deserialize( PacketBuffer buffer ) {
+    void deserialize(PacketBuffer buffer) {
         this.value = buffer.readLFloat();
     }
 

@@ -7,7 +7,6 @@ import io.gomint.server.world.WorldAdapter;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.world.block.BlockCoalOre;
 import io.gomint.world.block.BlockType;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -16,7 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:coal_ore" )
+@RegisterInfo(sId = "minecraft:coal_ore")
 public class CoalOre extends Block implements BlockCoalOre {
 
     @Override
@@ -45,11 +44,11 @@ public class CoalOre extends Block implements BlockCoalOre {
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
-        if( isCorrectTool( itemInHand ) ) {
-            ((WorldAdapter) this.location.world()).createExpOrb( this.location, ThreadLocalRandom.current().nextInt( 3 ) );
-            return new ArrayList<>(){{
-                add( ItemCoal.create( 1 ) );
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
+        if (isCorrectTool(itemInHand)) {
+            ((WorldAdapter) this.location.world()).createExpOrb(this.location, ThreadLocalRandom.current().nextInt(3));
+            return new ArrayList<>() {{
+                add(ItemCoal.create(1));
             }};
         }
 

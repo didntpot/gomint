@@ -18,9 +18,9 @@ import io.gomint.world.block.data.RotationDirection;
  * @author Kaooot
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:coral_fan", def = true )
+@RegisterInfo(sId = "minecraft:coral_fan", def = true)
 @RegisterInfo(sId = "minecraft:coral_fan_dead")
-public class ItemCoralFan extends ItemStack< io.gomint.inventory.item.ItemCoralFan> implements io.gomint.inventory.item.ItemCoralFan {
+public class ItemCoralFan extends ItemStack<io.gomint.inventory.item.ItemCoralFan> implements io.gomint.inventory.item.ItemCoralFan {
 
     @Override
     public ItemType itemType() {

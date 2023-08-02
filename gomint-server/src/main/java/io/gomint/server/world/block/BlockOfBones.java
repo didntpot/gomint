@@ -7,11 +7,11 @@
 
 package io.gomint.server.world.block;
 
-import io.gomint.inventory.item.*;
+import io.gomint.inventory.item.ItemBlockOfBones;
+import io.gomint.inventory.item.ItemStack;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.world.block.BlockType;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +19,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:bone_block" )
+@RegisterInfo(sId = "minecraft:bone_block")
 public class BlockOfBones extends Block implements io.gomint.world.block.BlockOfBones {
 
     @Override
@@ -48,8 +48,8 @@ public class BlockOfBones extends Block implements io.gomint.world.block.BlockOf
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
-        if ( isCorrectTool( itemInHand ) ) {
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
+        if (isCorrectTool(itemInHand)) {
             return new ArrayList<>() {{
                 add(ItemBlockOfBones.create(1));
             }};

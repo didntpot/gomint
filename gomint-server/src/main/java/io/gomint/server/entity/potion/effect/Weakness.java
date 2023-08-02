@@ -17,7 +17,7 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 18 )
+@RegisterInfo(id = 18)
 public class Weakness extends Effect {
 
     @Override
@@ -26,20 +26,20 @@ public class Weakness extends Effect {
     }
 
     @Override
-    public void apply( EntityLiving<?> entity ) {
-        entity.attributeInstance( Attribute.ATTACK_DAMAGE )
-            .setModifier( AttributeModifier.WEAKNESS_EFFECT, AttributeModifierType.MULTIPLY, -( 0.5f * ( this.amplifier + 1 ) ) );
+    public void apply(EntityLiving<?> entity) {
+        entity.attributeInstance(Attribute.ATTACK_DAMAGE)
+            .setModifier(AttributeModifier.WEAKNESS_EFFECT, AttributeModifierType.MULTIPLY, -(0.5f * (this.amplifier + 1)));
     }
 
     @Override
-    public void update( long currentTimeMillis, float dT ) {
+    public void update(long currentTimeMillis, float dT) {
 
     }
 
     @Override
-    public void remove( EntityLiving<?> entity ) {
-        entity.attributeInstance( Attribute.ATTACK_DAMAGE )
-            .removeModifier( AttributeModifier.WEAKNESS_EFFECT );
+    public void remove(EntityLiving<?> entity) {
+        entity.attributeInstance(Attribute.ATTACK_DAMAGE)
+            .removeModifier(AttributeModifier.WEAKNESS_EFFECT);
     }
 
 }

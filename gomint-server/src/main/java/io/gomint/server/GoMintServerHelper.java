@@ -1,12 +1,11 @@
 package io.gomint.server;
 
 import com.google.common.io.CharStreams;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 class GoMintServerHelper {
-    static void offerMinecraftLoopbackExempt()  {
+    static void offerMinecraftLoopbackExempt() {
         System.err.println(" ");
         System.err.println(" ");
         System.err.println("A loopback exempt must be added for Minecraft in order to join this server.");
@@ -35,6 +34,6 @@ class GoMintServerHelper {
         process.waitFor();
 
         return !processStdOutput.contains("microsoft.minecraftuwp_8wekyb3d8bbwe") &&
-            !processErrOutput.contains("microsoft.minecraftuwp_8wekyb3d8bbwe") ;
+            !processErrOutput.contains("microsoft.minecraftuwp_8wekyb3d8bbwe");
     }
 }

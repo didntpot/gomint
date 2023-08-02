@@ -7,7 +7,8 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketAdventureSettings extends Packet {
+@Deprecated(since = "MCBE v1.19.30", forRemoval = true)
+public class PacketAdventureSettings extends Packet implements PacketClientbound, PacketServerbound {
 
     private int flags;
     private int commandPermission;
@@ -17,21 +18,21 @@ public class PacketAdventureSettings extends Packet {
     private long entityId;
 
     public PacketAdventureSettings() {
-        super( Protocol.PACKET_ADVENTURE_SETTINGS );
+        super(Protocol.PACKET_ADVENTURE_SETTINGS);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeUnsignedVarInt( this.flags );
-        buffer.writeUnsignedVarInt( this.commandPermission );
-        buffer.writeUnsignedVarInt( this.flags2 );
-        buffer.writeUnsignedVarInt( this.playerPermission );
-        buffer.writeUnsignedVarInt( this.customFlags );
-        buffer.writeLLong( this.entityId );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeUnsignedVarInt(this.flags);
+        buffer.writeUnsignedVarInt(this.commandPermission);
+        buffer.writeUnsignedVarInt(this.flags2);
+        buffer.writeUnsignedVarInt(this.playerPermission);
+        buffer.writeUnsignedVarInt(this.customFlags);
+        buffer.writeLLong(this.entityId);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.flags = buffer.readUnsignedVarInt();
         this.commandPermission = buffer.readUnsignedVarInt();
         this.flags2 = buffer.readUnsignedVarInt();

@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:dolphin_spawn_egg" )
-public class ItemDolphinSpawnEgg extends ItemStack< io.gomint.inventory.item.ItemDolphinSpawnEgg> implements io.gomint.inventory.item.ItemDolphinSpawnEgg {
+@RegisterInfo(sId = "minecraft:dolphin_spawn_egg")
+public class ItemDolphinSpawnEgg extends ItemStack<io.gomint.inventory.item.ItemDolphinSpawnEgg> implements io.gomint.inventory.item.ItemDolphinSpawnEgg {
 
     @Override
     public ItemType itemType() {

@@ -9,8 +9,10 @@ package io.gomint.server.crafting;
 
 import io.gomint.inventory.item.ItemStack;
 import io.gomint.server.network.packet.PacketCraftingRecipes;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Helper class used to manage all available crafting recipes.
@@ -44,10 +46,14 @@ public class RecipeManager {
      * @return The packet containing all crafting recipes
      */
     public PacketCraftingRecipes getCraftingRecipesBatch() {
-        if ( this.dirty ) {
+        if (this.dirty) {
             PacketCraftingRecipes recipes = new PacketCraftingRecipes();
-            recipes.setRecipes( this.recipes );
-            recipes.cache();
+
+            for (Recipe recipe : this.recipes) {
+                if (recipe instanceof ShapelessRecipe) {
+                } else if (recipe instanceof ShapedRecipe) {
+                }
+            }
 
             this.batchPacket = recipes;
             this.dirty = false;
@@ -62,24 +68,24 @@ public class RecipeManager {
      *
      * @param recipe The recipe to register
      */
-    public void registerRecipe( Recipe recipe ) {
-        this.recipes.add( recipe );
+    public void registerRecipe(Recipe recipe) {
+        this.recipes.add(recipe);
 
         // Check if this is a smelting recipe
-        if ( recipe instanceof SmeltingRecipe ) {
+        if (recipe instanceof SmeltingRecipe) {
             SmeltingRecipe smeltingRecipe = (SmeltingRecipe) recipe;
-            this.smeltingRecipes.put( smeltingRecipe.ingredients()[0], smeltingRecipe );
+            this.smeltingRecipes.put(smeltingRecipe.ingredients()[0], smeltingRecipe);
         }
 
         this.dirty = true;
     }
 
-    public SmeltingRecipe getSmeltingRecipe( ItemStack<?> input ) {
-        return this.smeltingRecipes.get( input );
+    public SmeltingRecipe getSmeltingRecipe(ItemStack<?> input) {
+        return this.smeltingRecipes.get(input);
     }
 
-    public Recipe getRecipe( int recipeId ) {
-        return this.recipes.get( recipeId );
+    public Recipe getRecipe(int recipeId) {
+        return this.recipes.get(recipeId);
     }
 
 }

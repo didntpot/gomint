@@ -1,10 +1,7 @@
 package io.gomint.server.inventory.item;
 
 import io.gomint.inventory.item.ItemType;
-
 import io.gomint.server.registry.RegisterInfo;
-import io.gomint.taglib.NBTTagCompound;
-
 import java.time.Duration;
 
 /**
@@ -12,7 +9,7 @@ import java.time.Duration;
  * @version 1.0
  */
 @RegisterInfo(sId = "minecraft:crafting_table")
-public class ItemCraftingTable extends ItemStack< io.gomint.inventory.item.ItemCraftingTable> implements io.gomint.inventory.item.ItemCraftingTable {
+public class ItemCraftingTable extends ItemStack<io.gomint.inventory.item.ItemCraftingTable> implements io.gomint.inventory.item.ItemCraftingTable {
 
     @Override
     public Duration burnTime() {

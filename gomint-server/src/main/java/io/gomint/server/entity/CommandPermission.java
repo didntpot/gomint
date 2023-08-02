@@ -5,11 +5,11 @@ package io.gomint.server.entity;
  */
 public enum CommandPermission {
 
-    NORMAL( 0 ),
-    OPERATOR( 1 ),
-    HOST( 2 ),
-    AUTOMATION( 3 ),
-    ADMIN( 4 );
+    NORMAL(0),
+    OPERATOR(1),
+    HOST(2),
+    AUTOMATION(3),
+    ADMIN(4);
 
     private final int id;
 

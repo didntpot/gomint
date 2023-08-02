@@ -7,7 +7,6 @@ import io.gomint.inventory.item.ItemStack;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockBlockOfEmerald;
 import io.gomint.world.block.BlockType;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:emerald_block" )
+@RegisterInfo(sId = "minecraft:emerald_block")
 public class BlockOfEmerald extends Block implements BlockBlockOfEmerald {
 
     @Override
@@ -48,10 +47,10 @@ public class BlockOfEmerald extends Block implements BlockBlockOfEmerald {
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
-        if ( isCorrectTool( itemInHand ) ) {
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
+        if (isCorrectTool(itemInHand)) {
             return new ArrayList<>() {{
-                add( ItemBlockOfEmerald.create( 1 ) );
+                add(ItemBlockOfEmerald.create(1));
             }};
         }
 

@@ -18,19 +18,19 @@ public class DaylightDetectorTileEntity extends TileEntity {
      * @param block which created this tile
      */
     public DaylightDetectorTileEntity(Block block, Items items) {
-        super( block, items );
+        super(block, items);
     }
 
     @Override
-    public void update( long currentMillis, float dT ) {
+    public void update(long currentMillis, float dT) {
 
     }
 
     @Override
-    public void toCompound( NBTTagCompound compound, SerializationReason reason ) {
-        super.toCompound( compound, reason );
+    public void toCompound(NBTTagCompound compound, SerializationReason reason) {
+        super.toCompound(compound, reason);
 
-        compound.addValue( "id", "DaylightDetector" );
+        compound.addValue("id", "DaylightDetector");
     }
 
 }

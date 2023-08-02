@@ -15,29 +15,29 @@ import io.netty.buffer.ByteBuf;
  * @author BlackyPaw
  * @version 1.0
  */
-public class PacketBatch extends Packet {
+public class PacketBatch extends Packet implements PacketClientbound, PacketServerbound {
 
     private boolean compressed;
 
     private ByteBuf payload;
 
     public PacketBatch() {
-        super( Protocol.BATCH_MAGIC );
+        super(Protocol.BATCH_MAGIC);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeBytes( this.payload );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeBytes(this.payload);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.payload = buffer.getBuffer();
     }
 
     @Override
-    public void serializeHeader( PacketBuffer buffer ) {
-        buffer.writeByte( Protocol.BATCH_MAGIC );
+    public void serializeHeader(PacketBuffer buffer) {
+        buffer.writeByte(Protocol.BATCH_MAGIC);
     }
 
     public boolean isCompressed() {

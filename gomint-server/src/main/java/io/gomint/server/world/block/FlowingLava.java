@@ -6,14 +6,13 @@ import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockFlowingLava;
 import io.gomint.world.block.BlockType;
 import io.gomint.world.block.data.Facing;
-
 import java.util.concurrent.TimeUnit;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:flowing_lava" )
+@RegisterInfo(sId = "minecraft:flowing_lava")
 public class FlowingLava extends Liquid<BlockFlowingLava> implements BlockFlowingLava {
 
     @Override
@@ -42,11 +41,11 @@ public class FlowingLava extends Liquid<BlockFlowingLava> implements BlockFlowin
     }
 
     @Override
-    public void onEntityStanding(EntityLiving<?> entityLiving ) {
-        EntityDamageEvent damageEvent = new EntityDamageEvent( entityLiving, EntityDamageEvent.DamageSource.LAVA, 4.0f );
-        entityLiving.damage( damageEvent );
-        entityLiving.burning( 15, TimeUnit.SECONDS );
-        entityLiving.multiplyFallDistance( 0.5f );
+    public void onEntityStanding(EntityLiving<?> entityLiving) {
+        EntityDamageEvent damageEvent = new EntityDamageEvent(entityLiving, EntityDamageEvent.DamageSource.LAVA, 4.0f);
+        entityLiving.damage(damageEvent);
+        entityLiving.burning(15, TimeUnit.SECONDS);
+        entityLiving.multiplyFallDistance(0.5f);
     }
 
     @Override
@@ -68,34 +67,34 @@ public class FlowingLava extends Liquid<BlockFlowingLava> implements BlockFlowin
     protected void checkForHarden() {
         // Find the block side on which we collided, can be anything except downwards
         Block colliding = null;
-        for ( Facing blockFace : Facing.values() ) {
-            if ( blockFace == Facing.DOWN ) {
+        for (Facing blockFace : Facing.values()) {
+            if (blockFace == Facing.DOWN) {
                 continue;
             }
 
-            Block otherBlock = this.side( blockFace );
-            if ( otherBlock.blockType() == BlockType.FLOWING_WATER || otherBlock.blockType() == BlockType.STATIONARY_WATER ) {
+            Block otherBlock = this.side(blockFace);
+            if (otherBlock.blockType() == BlockType.FLOWING_WATER || otherBlock.blockType() == BlockType.STATIONARY_WATER) {
                 colliding = otherBlock;
                 break;
             }
         }
 
         // Did we find a block we can collide with?
-        if ( colliding != null ) {
-            if ( this.fillHeight() > 4 || colliding.blockType() == BlockType.STATIONARY_WATER ) {
-                this.liquidCollide( colliding, Obsidian.class );
-            } else if ( this.fillHeight() <= 4 ) {
-                this.liquidCollide( colliding, Cobblestone.class );
+        if (colliding != null) {
+            if (this.fillHeight() > 4 || colliding.blockType() == BlockType.STATIONARY_WATER) {
+                this.liquidCollide(colliding, Obsidian.class);
+            } else if (this.fillHeight() <= 4) {
+                this.liquidCollide(colliding, Cobblestone.class);
             }
         }
     }
 
     @Override
-    protected void flowIntoBlock( Block block, int newFlowDecay ) {
-        if ( block.blockType() == BlockType.FLOWING_WATER ) {
-            ( (Liquid<?>) block ).liquidCollide( this, Stone.class );
+    protected void flowIntoBlock(Block block, int newFlowDecay) {
+        if (block.blockType() == BlockType.FLOWING_WATER) {
+            ((Liquid<?>) block).liquidCollide(this, Stone.class);
         } else {
-            super.flowIntoBlock( block, newFlowDecay );
+            super.flowIntoBlock(block, newFlowDecay);
         }
     }
 

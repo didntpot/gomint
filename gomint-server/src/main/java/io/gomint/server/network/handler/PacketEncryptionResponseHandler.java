@@ -21,11 +21,11 @@ import org.slf4j.LoggerFactory;
  */
 public class PacketEncryptionResponseHandler implements PacketHandler<PacketEncryptionResponse> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger( PacketEncryptionResponseHandler.class );
+    private static final Logger LOGGER = LoggerFactory.getLogger(PacketEncryptionResponseHandler.class);
 
     @Override
-    public void handle( PacketEncryptionResponse packet, long currentTimeMillis, PlayerConnection connection ) {
-        connection.entity().loginPerformance().setEncryptionEnd( currentTimeMillis );
+    public void handle(PacketEncryptionResponse packet, long currentTimeMillis, PlayerConnection connection) {
+        connection.entity().loginPerformance().setEncryptionEnd(currentTimeMillis);
 
         LOGGER.info("We got encryption response: {}", connection.entity());
 
@@ -33,11 +33,11 @@ public class PacketEncryptionResponseHandler implements PacketHandler<PacketEncr
         networkSettings.setCompressionThreshold((short) 1);
         connection.addToSendQueue(networkSettings);
 
-        connection.state( PlayerConnectionState.LOGIN );
-        connection.sendPlayState( PacketPlayState.PlayState.LOGIN_SUCCESS );
+        connection.state(PlayerConnectionState.LOGIN);
+        connection.sendPlayState(PacketPlayState.PlayState.LOGIN_SUCCESS);
 
         // Track performance
-        connection.entity().loginPerformance().setResourceStart( currentTimeMillis );
+        connection.entity().loginPerformance().setResourceStart(currentTimeMillis);
 
         connection.initWorldAndResourceSend();
     }

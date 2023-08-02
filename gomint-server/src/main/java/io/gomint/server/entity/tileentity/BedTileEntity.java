@@ -21,18 +21,18 @@ public class BedTileEntity extends TileEntity {
      * @param block which created this tile
      */
     public BedTileEntity(Block block, Items items) {
-        super( block, items );
+        super(block, items);
     }
 
     @Override
-    public void fromCompound( NBTTagCompound compound ) {
-        super.fromCompound( compound );
+    public void fromCompound(NBTTagCompound compound) {
+        super.fromCompound(compound);
 
-        this.color = compound.getByte( "color", (byte) 0 );
+        this.color = compound.getByte("color", (byte) 0);
     }
 
     public BlockColor getColor() {
-        switch ( this.color ) {
+        switch (this.color) {
             case 0:
                 return BlockColor.WHITE;
             case 1:
@@ -68,9 +68,9 @@ public class BedTileEntity extends TileEntity {
         }
     }
 
-    public void setColor( BlockColor color ) {
+    public void setColor(BlockColor color) {
         byte colorId = 0;
-        switch ( color ) {
+        switch (color) {
             case WHITE:
                 colorId = 0;
                 break;
@@ -125,15 +125,15 @@ public class BedTileEntity extends TileEntity {
     }
 
     @Override
-    public void toCompound( NBTTagCompound compound, SerializationReason reason ) {
-        super.toCompound( compound, reason );
+    public void toCompound(NBTTagCompound compound, SerializationReason reason) {
+        super.toCompound(compound, reason);
 
-        compound.addValue( "id", "Bed" );
-        compound.addValue( "color", this.color );
+        compound.addValue("id", "Bed");
+        compound.addValue("color", this.color);
     }
 
     @Override
-    public void update( long currentMillis, float dT ) {
+    public void update(long currentMillis, float dT) {
 
     }
 

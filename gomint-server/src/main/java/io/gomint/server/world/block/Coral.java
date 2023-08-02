@@ -18,7 +18,7 @@ import io.gomint.world.block.data.CoralType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:coral" )
+@RegisterInfo(sId = "minecraft:coral")
 public class Coral extends Block implements BlockCoral {
 
     private enum CoralTypeMagic {
@@ -30,6 +30,7 @@ public class Coral extends Block implements BlockCoral {
         ;
 
         private final String color;
+
         CoralTypeMagic(String color) {
             this.color = color;
         }

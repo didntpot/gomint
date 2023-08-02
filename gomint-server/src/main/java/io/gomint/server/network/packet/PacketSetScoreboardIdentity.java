@@ -2,14 +2,16 @@ package io.gomint.server.network.packet;
 
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.Protocol;
-
 import java.util.List;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-public class PacketSetScoreboardIdentity extends Packet {
+public class PacketSetScoreboardIdentity extends Packet implements PacketClientbound {
+
+    public static final int TYPE_REGISTER_ENTITY = 0;
+    public static final int TYPE_CLEAR_IDENTITY = 1;
 
     private byte type;
     private List<ScoreboardIdentity> entries;
@@ -18,24 +20,24 @@ public class PacketSetScoreboardIdentity extends Packet {
      * Construct a new packet
      */
     protected PacketSetScoreboardIdentity() {
-        super( Protocol.PACKET_SET_SCOREBOARD_IDENTITY );
+        super(Protocol.PACKET_SET_SCOREBOARD_IDENTITY);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeByte( this.type );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeByte(this.type);
 
-        for ( ScoreboardIdentity entry : this.entries ) {
-            buffer.writeUnsignedVarLong( entry.scoreId );
+        for (ScoreboardIdentity entry : this.entries) {
+            buffer.writeUnsignedVarLong(entry.scoreId);
 
-            if ( this.type == 0 ) {
-                buffer.writeUnsignedVarLong( entry.entityId );
+            if (this.type == 0) {
+                buffer.writeUnsignedVarLong(entry.entityId);
             }
         }
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 

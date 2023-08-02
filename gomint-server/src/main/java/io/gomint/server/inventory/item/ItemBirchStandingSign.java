@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:birch_standing_sign" )
-public class ItemBirchStandingSign extends ItemStack< io.gomint.inventory.item.ItemBirchStandingSign> implements io.gomint.inventory.item.ItemBirchStandingSign {
+@RegisterInfo(sId = "minecraft:birch_standing_sign")
+public class ItemBirchStandingSign extends ItemStack<io.gomint.inventory.item.ItemBirchStandingSign> implements io.gomint.inventory.item.ItemBirchStandingSign {
 
     @Override
     public ItemType itemType() {

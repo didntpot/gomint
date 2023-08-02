@@ -1,16 +1,15 @@
 package io.gomint.server.world.block;
 
-import io.gomint.world.block.BlockType;
-
 import io.gomint.inventory.item.ItemStack;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockAir;
+import io.gomint.world.block.BlockType;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:air" )
+@RegisterInfo(sId = "minecraft:air")
 public class Air extends Block implements BlockAir {
 
     @Override
@@ -34,12 +33,12 @@ public class Air extends Block implements BlockAir {
     }
 
     @Override
-    public boolean onBreak( boolean creative ) {
+    public boolean onBreak(boolean creative) {
         return false;
     }
 
     @Override
-    public boolean canBeReplaced(ItemStack<?> item ) {
+    public boolean canBeReplaced(ItemStack<?> item) {
         return this.location.y() > -1 && this.location.y() < 256;
     }
 

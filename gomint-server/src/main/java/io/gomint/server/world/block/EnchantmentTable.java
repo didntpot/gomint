@@ -9,8 +9,8 @@ import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.taglib.NBTTagCompound;
 import io.gomint.world.block.BlockEnchantmentTable;
-import io.gomint.world.block.data.Facing;
 import io.gomint.world.block.BlockType;
+import io.gomint.world.block.data.Facing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,10 +18,10 @@ import org.slf4j.LoggerFactory;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:enchanting_table" )
+@RegisterInfo(sId = "minecraft:enchanting_table")
 public class EnchantmentTable extends Block implements BlockEnchantmentTable {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger( EnchantmentTable.class );
+    private static final Logger LOGGER = LoggerFactory.getLogger(EnchantmentTable.class);
 
     @Override
     public String blockId() {
@@ -59,15 +59,15 @@ public class EnchantmentTable extends Block implements BlockEnchantmentTable {
     }
 
     @Override
-    TileEntity createTileEntity( NBTTagCompound compound ) {
-        super.createTileEntity( compound );
+    TileEntity createTileEntity(NBTTagCompound compound) {
+        super.createTileEntity(compound);
         return this.tileEntities.construct(EnchantTableTileEntity.class, compound, this, this.items);
     }
 
     @Override
-    public boolean interact(Entity<?> entity, Facing face, Vector facePos, ItemStack<?> item ) {
+    public boolean interact(Entity<?> entity, Facing face, Vector facePos, ItemStack<?> item) {
         EnchantTableTileEntity tileEntity = this.tileEntity();
-        tileEntity.interact( entity, face, facePos, item );
+        tileEntity.interact(entity, face, facePos, item);
         return true;
     }
 

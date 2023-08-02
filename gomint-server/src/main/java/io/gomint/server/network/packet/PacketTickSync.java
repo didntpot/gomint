@@ -7,19 +7,19 @@ import io.gomint.server.network.Protocol;
  * @author HerryYT
  * @version 1.0
  */
-public class PacketTickSync extends Packet {
+public class PacketTickSync extends Packet implements PacketClientbound, PacketServerbound {
 
     private long clientTiming;
     private long serverTiming;
 
     public PacketTickSync() {
-        super(Protocol.PACKET_TICK_SYNC );
+        super(Protocol.PACKET_TICK_SYNC);
     }
 
     @Override
     public void serialize(PacketBuffer buffer, int protocolID) {
-        buffer.writeLLong( this.clientTiming );
-        buffer.writeLLong( this.serverTiming );
+        buffer.writeLLong(this.clientTiming);
+        buffer.writeLLong(this.serverTiming);
     }
 
     @Override

@@ -28,7 +28,7 @@ public abstract class Form<R> implements io.gomint.gui.Form<R> {
     public abstract String getFormType();
 
     @Override
-    public Form<R> icon(String icon ) {
+    public Form<R> icon(String icon) {
         this.icon = icon;
         this.dirty = true;
         return this;
@@ -52,16 +52,16 @@ public abstract class Form<R> implements io.gomint.gui.Form<R> {
     public JSONObject toJSON() {
         // Basic data
         JSONObject obj = new JSONObject();
-        obj.put( "type", this.getFormType() );
-        obj.put( "title", this.title() );
-        obj.put( "content", new JSONArray() );
+        obj.put("type", this.getFormType());
+        obj.put("title", this.title());
+        obj.put("content", new JSONArray());
 
         // Check if we have a icon
-        if ( this.icon != null ) {
+        if (this.icon != null) {
             JSONObject jsonIcon = new JSONObject();
-            jsonIcon.put( "type", this.icon.startsWith( "http" ) || this.icon.startsWith( "https" ) ? "url" : "path" );
-            jsonIcon.put( "data", this.icon );
-            obj.put( "icon", jsonIcon );
+            jsonIcon.put("type", this.icon.startsWith("http") || this.icon.startsWith("https") ? "url" : "path");
+            jsonIcon.put("data", this.icon);
+            obj.put("icon", jsonIcon);
         }
 
         return obj;
@@ -73,7 +73,7 @@ public abstract class Form<R> implements io.gomint.gui.Form<R> {
      * @param json data from the client
      * @return correct formatted object for the listener
      */
-    public abstract R parseResponse( String json );
+    public abstract R parseResponse(String json);
 
     public Form<R> dirty() {
         this.dirty = true;

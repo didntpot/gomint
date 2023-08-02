@@ -11,7 +11,7 @@ import io.gomint.world.block.data.Facing;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:leather_helmet" )
+@RegisterInfo(sId = "minecraft:leather_helmet")
 public class ItemLeatherHelmet extends ItemLeatherArmor<io.gomint.inventory.item.ItemLeatherHelmet> implements io.gomint.inventory.item.ItemLeatherHelmet {
 
     @Override
@@ -20,12 +20,12 @@ public class ItemLeatherHelmet extends ItemLeatherArmor<io.gomint.inventory.item
     }
 
     @Override
-    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock ) {
-        if ( clickedBlock == null ) {
-            if ( isBetter( (ItemStack<?>) entity.armorInventory().helmet() ) ) {
+    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock) {
+        if (clickedBlock == null) {
+            if (isBetter((ItemStack<?>) entity.armorInventory().helmet())) {
                 ItemStack<?> old = (ItemStack<?>) entity.armorInventory().helmet();
-                entity.armorInventory().helmet( this );
-                entity.inventory().item( entity.inventory().itemInHandSlot(), old );
+                entity.armorInventory().helmet(this);
+                entity.inventory().item(entity.inventory().itemInHandSlot(), old);
             }
         }
 

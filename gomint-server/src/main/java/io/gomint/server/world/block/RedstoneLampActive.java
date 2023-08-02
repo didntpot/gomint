@@ -1,15 +1,14 @@
 package io.gomint.server.world.block;
 
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockRedstoneLampActive;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:lit_redstone_lamp" )
+@RegisterInfo(sId = "minecraft:lit_redstone_lamp")
 public class RedstoneLampActive extends Block implements BlockRedstoneLampActive {
 
     @Override

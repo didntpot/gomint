@@ -10,8 +10,8 @@ import io.gomint.world.block.data.SkullType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:skull" )
-public class ItemSkull extends ItemStack< io.gomint.inventory.item.ItemSkull> implements io.gomint.inventory.item.ItemSkull {
+@RegisterInfo(sId = "minecraft:skull")
+public class ItemSkull extends ItemStack<io.gomint.inventory.item.ItemSkull> implements io.gomint.inventory.item.ItemSkull {
 
     @Override
     public ItemType itemType() {

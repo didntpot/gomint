@@ -9,12 +9,11 @@ package io.gomint.server.network.packet;
 
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.Protocol;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class PacketEmoteList extends Packet {
+public class PacketEmoteList extends Packet implements PacketClientbound, PacketServerbound {
 
     private long runtimeId;
     private List<UUID> emoteIds;

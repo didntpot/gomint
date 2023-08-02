@@ -8,7 +8,6 @@
 package io.gomint.server.crafting;
 
 import io.gomint.inventory.item.ItemStack;
-
 import java.util.*;
 
 /**
@@ -22,19 +21,19 @@ public abstract class CraftingRecipe extends Recipe {
 
     private final ItemStack<?>[] outcome;
 
-    CraftingRecipe( ItemStack<?>[] outcome, UUID uuid, int priority ) {
-        super( uuid, priority );
+    CraftingRecipe(ItemStack<?>[] outcome, UUID uuid, int priority) {
+        super(uuid, priority);
         this.outcome = outcome;
     }
 
     @Override
     public Collection<ItemStack<?>> createResult() {
-        if ( this.outcome.length == 1 ) {
-            return Collections.singletonList( ( (io.gomint.server.inventory.item.ItemStack<?>) this.outcome[0] ).clone() );
+        if (this.outcome.length == 1) {
+            return Collections.singletonList(((io.gomint.server.inventory.item.ItemStack<?>) this.outcome[0]).clone());
         } else {
             List<ItemStack<?>> list = new ArrayList<>();
-            for ( ItemStack<?> stack : this.outcome ) {
-                list.add( ( (io.gomint.server.inventory.item.ItemStack<?>) stack ).clone() );
+            for (ItemStack<?> stack : this.outcome) {
+                list.add(((io.gomint.server.inventory.item.ItemStack<?>) stack).clone());
             }
 
             return list;
@@ -45,10 +44,10 @@ public abstract class CraftingRecipe extends Recipe {
      * Check if the two given items are equal enough to be used as crafting input
      *
      * @param recipeItem of the recipe
-     * @param invItem of the inventory
+     * @param invItem    of the inventory
      * @return
      */
-    protected boolean canBeUsedForCrafting( ItemStack<?> recipeItem, ItemStack<?> invItem ) {
+    protected boolean canBeUsedForCrafting(ItemStack<?> recipeItem, ItemStack<?> invItem) {
         io.gomint.server.inventory.item.ItemStack<?> rI = (io.gomint.server.inventory.item.ItemStack<?>) recipeItem;
         io.gomint.server.inventory.item.ItemStack<?> iI = (io.gomint.server.inventory.item.ItemStack<?>) invItem;
 
@@ -56,7 +55,7 @@ public abstract class CraftingRecipe extends Recipe {
         String inputMaterial = iI.material();
 
         return recipeMaterial.equals(inputMaterial) &&
-            ( rI.data() == -1 || rI.data() == iI.data() );
+            (rI.data() == -1 || rI.data() == iI.data());
     }
 
     public ItemStack<?>[] getOutcome() {

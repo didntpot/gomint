@@ -19,14 +19,14 @@ public class EndPortalTileEntity extends ContainerTileEntity implements Inventor
      * @param block of the tile entity
      */
     public EndPortalTileEntity(Block block, Items items) {
-        super( block, items );
+        super(block, items);
     }
 
     @Override
-    public void toCompound( NBTTagCompound compound, SerializationReason reason ) {
-        super.toCompound( compound, reason );
+    public void toCompound(NBTTagCompound compound, SerializationReason reason) {
+        super.toCompound(compound, reason);
 
-        compound.addValue( "id", "EndPortal" );
+        compound.addValue("id", "EndPortal");
     }
 
 }

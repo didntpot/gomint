@@ -9,7 +9,7 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketAddItemEntity extends Packet {
+public class PacketAddItemEntity extends Packet implements PacketClientbound {
 
     private long entityId;
     private ItemStack<?> itemStack;
@@ -23,36 +23,36 @@ public class PacketAddItemEntity extends Packet {
     private boolean fromFishing;
 
     public PacketAddItemEntity() {
-        super( Protocol.PACKET_ADD_ITEM_ENTITY );
+        super(Protocol.PACKET_ADD_ITEM_ENTITY);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
+    public void serialize(PacketBuffer buffer, int protocolID) {
         // PE has a system of runtime entity ids
-        buffer.writeSignedVarLong( this.entityId );
-        buffer.writeUnsignedVarLong( this.entityId );
+        buffer.writeSignedVarLong(this.entityId);
+        buffer.writeUnsignedVarLong(this.entityId);
 
         // Write the item for the drop
-        writeItemStack( this.itemStack, buffer );
+        writeItemStack(this.itemStack, buffer);
 
         // Write position
-        buffer.writeLFloat( this.x );
-        buffer.writeLFloat( this.y );
-        buffer.writeLFloat( this.z );
+        buffer.writeLFloat(this.x);
+        buffer.writeLFloat(this.y);
+        buffer.writeLFloat(this.z);
 
         // Write motion
-        buffer.writeLFloat( this.motionX );
-        buffer.writeLFloat( this.motionY );
-        buffer.writeLFloat( this.motionZ );
+        buffer.writeLFloat(this.motionX);
+        buffer.writeLFloat(this.motionY);
+        buffer.writeLFloat(this.motionZ);
 
-        this.metadata.serialize( buffer );
+        this.metadata.serialize(buffer);
 
         // Write fromFishing
-        buffer.writeBoolean( this.fromFishing );
+        buffer.writeBoolean(this.fromFishing);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 

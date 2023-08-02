@@ -13,7 +13,6 @@ import io.gomint.server.entity.EntityLiving;
 import io.gomint.server.util.Bearing;
 import io.gomint.server.world.block.Block;
 import io.gomint.world.block.data.Facing;
-
 import java.util.function.Supplier;
 
 /**

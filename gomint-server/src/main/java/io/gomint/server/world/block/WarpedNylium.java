@@ -10,7 +10,7 @@ import io.gomint.world.block.BlockWarpedNylium;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:warped_nylium" )
+@RegisterInfo(sId = "minecraft:warped_nylium")
 public class WarpedNylium extends Block implements BlockWarpedNylium {
 
     @Override

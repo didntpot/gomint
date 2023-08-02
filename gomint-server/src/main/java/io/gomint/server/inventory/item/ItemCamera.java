@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:camera" )
-public class ItemCamera extends ItemStack< io.gomint.inventory.item.ItemCamera> implements io.gomint.inventory.item.ItemCamera {
+@RegisterInfo(sId = "minecraft:camera")
+public class ItemCamera extends ItemStack<io.gomint.inventory.item.ItemCamera> implements io.gomint.inventory.item.ItemCamera {
 
     @Override
     public ItemType itemType() {

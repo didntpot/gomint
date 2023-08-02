@@ -8,15 +8,12 @@
 package io.gomint.server;
 
 import io.gomint.server.maintenance.ReportUploader;
-import io.gomint.world.Biome;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.config.Configurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
 
 /**
  * This Bootstrap downloads all Libraries given inside of the "libs.dep" File in the Root
@@ -43,7 +40,7 @@ public class Bootstrap {
         } catch (Exception cause) {
             LOGGER.error("GoMint crashed: ", cause);
             reportExceptionToSentry(cause);
-        } 
+        }
     }
 
     private static void reportExceptionToSentry(Exception cause) {
@@ -61,7 +58,7 @@ public class Bootstrap {
         if (eventDebuggingWanted()) {
             enableEventDebugging();
         }
-        
+
         if (networkDebuggingWanted(commandLineOptions)) {
             enableNetworkDebugging();
         }
@@ -83,7 +80,7 @@ public class Bootstrap {
     }
 
     private static void enableEventDebugging() {
-       Configurator.setLevel("io.gomint.server.event.EventHandlerList", Level.DEBUG); 
+        Configurator.setLevel("io.gomint.server.event.EventHandlerList", Level.DEBUG);
     }
 
     private static boolean networkDebuggingWanted(OptionSet options) {

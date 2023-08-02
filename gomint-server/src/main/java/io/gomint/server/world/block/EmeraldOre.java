@@ -7,7 +7,6 @@ import io.gomint.server.world.WorldAdapter;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.world.block.BlockEmeraldOre;
 import io.gomint.world.block.BlockType;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -16,7 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:emerald_ore" )
+@RegisterInfo(sId = "minecraft:emerald_ore")
 public class EmeraldOre extends Block implements BlockEmeraldOre {
 
     @Override
@@ -45,11 +44,11 @@ public class EmeraldOre extends Block implements BlockEmeraldOre {
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
         List<ItemStack<?>> drops = new ArrayList<>();
-        if ( isCorrectTool( itemInHand ) ) {
-            ( (WorldAdapter) this.location.world() ).createExpOrb( this.location, ThreadLocalRandom.current().nextInt( 3 ) );
-            drops.add( ItemEmerald.create( 1 ) );
+        if (isCorrectTool(itemInHand)) {
+            ((WorldAdapter) this.location.world()).createExpOrb(this.location, ThreadLocalRandom.current().nextInt(3));
+            drops.add(ItemEmerald.create(1));
         }
         return drops;
     }

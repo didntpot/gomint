@@ -7,7 +7,7 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketHotbar extends Packet {
+public class PacketHotbar extends Packet implements PacketClientbound, PacketServerbound {
 
     private int selectedHotbarSlot;
     private byte windowId;
@@ -17,18 +17,18 @@ public class PacketHotbar extends Packet {
      * Construct a new packet
      */
     public PacketHotbar() {
-        super( Protocol.PACKET_HOTBAR );
+        super(Protocol.PACKET_HOTBAR);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
+    public void serialize(PacketBuffer buffer, int protocolID) {
         buffer.writeUnsignedVarInt(this.selectedHotbarSlot);
         buffer.writeByte(this.windowId);
         buffer.writeBoolean(this.selectHotbarSlot);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.selectedHotbarSlot = buffer.readUnsignedVarInt();
         this.windowId = buffer.readByte();
         this.selectHotbarSlot = buffer.readBoolean();

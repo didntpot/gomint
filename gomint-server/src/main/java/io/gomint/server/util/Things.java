@@ -15,8 +15,8 @@ import io.gomint.world.block.data.Facing;
  */
 public class Things {
 
-    public static Facing convertFromDataToBlockFace(short data ) {
-        switch ( data ) {
+    public static Facing convertFromDataToBlockFace(short data) {
+        switch (data) {
             case 0:
                 return Facing.DOWN;
             case 1:
@@ -34,4 +34,22 @@ public class Things {
         }
     }
 
+    public static Integer convertBlockFaceToData(Facing face) {
+        switch (face) {
+            case DOWN:
+                return 0;
+            case UP:
+                return 1;
+            case NORTH:
+                return 2;
+            case SOUTH:
+                return 3;
+            case WEST:
+                return 4;
+            case EAST:
+                return 5;
+            default:
+                return null;
+        }
+    }
 }

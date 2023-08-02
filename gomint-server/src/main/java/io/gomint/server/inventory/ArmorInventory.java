@@ -22,31 +22,31 @@ public class ArmorInventory extends Inventory<io.gomint.inventory.ArmorInventory
      * @param owner of this inventory
      * @param items factory
      */
-    public ArmorInventory(Items items, InventoryHolder owner ) {
-        super( items, owner, 4 );
+    public ArmorInventory(Items items, InventoryHolder owner) {
+        super(items, owner, 4);
     }
 
     @Override
-    public io.gomint.inventory.ArmorInventory helmet(ItemStack<?> itemStack ) {
-        this.item( 0, itemStack );
+    public io.gomint.inventory.ArmorInventory helmet(ItemStack<?> itemStack) {
+        this.item(0, itemStack);
         return this;
     }
 
     @Override
-    public io.gomint.inventory.ArmorInventory chestplate(ItemStack<?> itemStack ) {
-        this.item( 1, itemStack );
+    public io.gomint.inventory.ArmorInventory chestplate(ItemStack<?> itemStack) {
+        this.item(1, itemStack);
         return this;
     }
 
     @Override
-    public io.gomint.inventory.ArmorInventory leggings(ItemStack<?> itemStack ) {
-        this.item( 2, itemStack );
+    public io.gomint.inventory.ArmorInventory leggings(ItemStack<?> itemStack) {
+        this.item(2, itemStack);
         return this;
     }
 
     @Override
-    public io.gomint.inventory.ArmorInventory boots(ItemStack<?> itemStack ) {
-        this.item( 3, itemStack );
+    public io.gomint.inventory.ArmorInventory boots(ItemStack<?> itemStack) {
+        this.item(3, itemStack);
         return this;
     }
 
@@ -71,27 +71,27 @@ public class ArmorInventory extends Inventory<io.gomint.inventory.ArmorInventory
     }
 
     @Override
-    public void sendContents( PlayerConnection playerConnection ) {
-        if ( playerConnection.entity().equals( this.owner ) ) {
+    public void sendContents(PlayerConnection playerConnection) {
+        if (playerConnection.entity().equals(this.owner)) {
             PacketInventoryContent inventory = new PacketInventoryContent();
-            inventory.setWindowId( WindowMagicNumbers.ARMOR_DEPRECATED );
-            inventory.setItems( contents() );
-            playerConnection.addToSendQueue( inventory );
+            inventory.setWindowId(WindowMagicNumbers.ARMOR_DEPRECATED);
+            inventory.setItems(contents());
+            playerConnection.addToSendQueue(inventory);
         } else {
-            this.sendMobArmor( playerConnection );
+            this.sendMobArmor(playerConnection);
         }
     }
 
     @Override
-    public void sendContents( int slot, PlayerConnection playerConnection ) {
-        if ( playerConnection.entity().equals( this.owner ) ) {
+    public void sendContents(int slot, PlayerConnection playerConnection) {
+        if (playerConnection.entity().equals(this.owner)) {
             PacketInventorySetSlot setSlot = new PacketInventorySetSlot();
-            setSlot.setSlot( slot );
-            setSlot.setWindowId( WindowMagicNumbers.ARMOR_DEPRECATED );
-            setSlot.setItemStack( this.contents[slot] );
-            playerConnection.addToSendQueue( setSlot );
+            setSlot.setSlot(slot);
+            setSlot.setWindowId(WindowMagicNumbers.ARMOR_DEPRECATED);
+            setSlot.setItemStack(this.contents[slot]);
+            playerConnection.addToSendQueue(setSlot);
         } else {
-            this.sendMobArmor( playerConnection );
+            this.sendMobArmor(playerConnection);
         }
     }
 
@@ -100,34 +100,34 @@ public class ArmorInventory extends Inventory<io.gomint.inventory.ArmorInventory
         return InventoryType.ARMOR;
     }
 
-    private void sendMobArmor( PlayerConnection playerConnection ) {
+    private void sendMobArmor(PlayerConnection playerConnection) {
         PacketMobArmorEquipment mobArmorEquipment = new PacketMobArmorEquipment();
-        mobArmorEquipment.setBoots( this.contents[3] );
-        mobArmorEquipment.setLeggings( this.contents[2] );
-        mobArmorEquipment.setChestplate( this.contents[1] );
-        mobArmorEquipment.setHelmet( this.contents[0] );
-        mobArmorEquipment.setEntityId( ( (Entity<?>) this.owner ).id() );
-        playerConnection.addToSendQueue( mobArmorEquipment );
+        mobArmorEquipment.setBoots(this.contents[3]);
+        mobArmorEquipment.setLeggings(this.contents[2]);
+        mobArmorEquipment.setChestplate(this.contents[1]);
+        mobArmorEquipment.setHelmet(this.contents[0]);
+        mobArmorEquipment.setEntityId(((Entity<?>) this.owner).id());
+        playerConnection.addToSendQueue(mobArmorEquipment);
     }
 
     public float getTotalArmorValue() {
         float armorValue = 0;
 
-        for ( ItemStack<?> itemStack : this.contents ) {
-            if ( itemStack instanceof ItemArmor ) {
-                armorValue += ( (ItemArmor<?>) itemStack ).getReductionValue();
+        for (ItemStack<?> itemStack : this.contents) {
+            if (itemStack instanceof ItemArmor) {
+                armorValue += ((ItemArmor<?>) itemStack).getReductionValue();
             }
         }
 
         return armorValue;
     }
 
-    public void damageEvenly( float damage ) {
+    public void damageEvenly(float damage) {
         // Only damage for 1/4th of the total damage dealt
         damage = damage / 4.0F;
 
         // At least damage them for one damage
-        if ( damage < 1.0F ) {
+        if (damage < 1.0F) {
             damage = 1.0F;
         }
 

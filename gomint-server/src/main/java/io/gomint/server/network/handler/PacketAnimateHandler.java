@@ -14,23 +14,23 @@ import io.gomint.server.network.packet.PacketAnimate;
 public class PacketAnimateHandler implements PacketHandler<PacketAnimate> {
 
     @Override
-    public void handle( PacketAnimate packet, long currentTimeMillis, PlayerConnection connection ) {
+    public void handle(PacketAnimate packet, long currentTimeMillis, PlayerConnection connection) {
         PlayerAnimationEvent playerAnimationEvent = null;
 
 
-        switch ( packet.getPlayerAnimation() ) {
+        switch (packet.getPlayerAnimation()) {
             case SWING:
-                playerAnimationEvent = new PlayerAnimationEvent( connection.entity(), PlayerAnimationEvent.Animation.SWING );
+                playerAnimationEvent = new PlayerAnimationEvent(connection.entity(), PlayerAnimationEvent.Animation.SWING);
                 break;
             default:
                 return;
         }
 
-        connection.server().pluginManager().callEvent( playerAnimationEvent );
-        if ( !playerAnimationEvent.cancelled() ) {
-            for ( Entity<?> entity : connection.entity().getAttachedEntities() ) {
-                if ( entity instanceof EntityPlayer ) {
-                    ( (EntityPlayer) entity ).connection().addToSendQueue( packet );
+        connection.server().pluginManager().callEvent(playerAnimationEvent);
+        if (!playerAnimationEvent.cancelled()) {
+            for (Entity<?> entity : connection.entity().getAttachedEntities()) {
+                if (entity instanceof EntityPlayer) {
+                    ((EntityPlayer) entity).connection().addToSendQueue(packet);
                 }
             }
         }

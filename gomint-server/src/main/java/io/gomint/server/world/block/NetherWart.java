@@ -4,17 +4,16 @@ import io.gomint.inventory.item.ItemStack;
 import io.gomint.math.Location;
 import io.gomint.math.Vector;
 import io.gomint.server.entity.EntityLiving;
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockNetherWart;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.data.Facing;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:nether_wart" )
+@RegisterInfo(sId = "minecraft:nether_wart")
 public class NetherWart extends Block implements BlockNetherWart {
 
     @Override

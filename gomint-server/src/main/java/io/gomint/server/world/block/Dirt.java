@@ -1,19 +1,18 @@
 package io.gomint.server.world.block;
 
+import io.gomint.inventory.item.ItemStack;
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.server.world.block.state.EnumBlockState;
-import io.gomint.world.block.BlockType;
-
-import io.gomint.inventory.item.*;
-import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockDirt;
+import io.gomint.world.block.BlockType;
 import io.gomint.world.block.data.DirtType;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:dirt" )
+@RegisterInfo(sId = "minecraft:dirt")
 public class Dirt extends Block implements BlockDirt {
 
     enum TypeMagic {
@@ -21,6 +20,7 @@ public class Dirt extends Block implements BlockDirt {
         COARSE("coarse");
 
         private final String magic;
+
         TypeMagic(String magic) {
             this.magic = magic;
         }

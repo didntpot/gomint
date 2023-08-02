@@ -21,6 +21,6 @@ public interface FutureListener<T extends Future> {
      *
      * @param future The future which has been resolved
      */
-    void onFutureResolved( T future );
+    void onFutureResolved(T future);
 
 }

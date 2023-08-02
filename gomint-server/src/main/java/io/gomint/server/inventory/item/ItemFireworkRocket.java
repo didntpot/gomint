@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:firework_rocket" )
-public class ItemFireworkRocket extends ItemStack< io.gomint.inventory.item.ItemFireworkRocket> implements io.gomint.inventory.item.ItemFireworkRocket {
+@RegisterInfo(sId = "minecraft:firework_rocket")
+public class ItemFireworkRocket extends ItemStack<io.gomint.inventory.item.ItemFireworkRocket> implements io.gomint.inventory.item.ItemFireworkRocket {
 
     @Override
     public ItemType itemType() {

@@ -24,7 +24,7 @@ import io.gomint.world.block.data.StoneType;
 @RegisterInfo(sId = "minecraft:blackstone_double_slab")
 @RegisterInfo(sId = "minecraft:polished_blackstone_double_slab")
 @RegisterInfo(sId = "minecraft:polished_blackstone_brick_double_slab")
-public class ItemDoubleStoneSlab extends ItemStack< io.gomint.inventory.item.ItemDoubleStoneSlab> implements io.gomint.inventory.item.ItemDoubleStoneSlab {
+public class ItemDoubleStoneSlab extends ItemStack<io.gomint.inventory.item.ItemDoubleStoneSlab> implements io.gomint.inventory.item.ItemDoubleStoneSlab {
 
     private static final String STONE_SLAB_ID = "minecraft:real_double_stone_slab";
     private static final String STONE_SLAB2_ID = "minecraft:real_double_stone_slab2";

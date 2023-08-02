@@ -1,12 +1,11 @@
 package io.gomint.server.world.block;
 
 import io.gomint.inventory.item.ItemStack;
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.server.world.block.state.BooleanBlockState;
 import io.gomint.server.world.block.state.EnumBlockState;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockWoodenDoubleSlab;
 import io.gomint.world.block.data.LogType;
 
@@ -14,9 +13,9 @@ import io.gomint.world.block.data.LogType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:double_wooden_slab", def = true )
-@RegisterInfo( sId = "minecraft:crimson_double_slab" )
-@RegisterInfo( sId = "minecraft:warped_double_slab")
+@RegisterInfo(sId = "minecraft:double_wooden_slab", def = true)
+@RegisterInfo(sId = "minecraft:crimson_double_slab")
+@RegisterInfo(sId = "minecraft:warped_double_slab")
 public class WoodenDoubleSlab extends Block implements BlockWoodenDoubleSlab {
 
     // This blockstate is not exposed since its BS ( crimson and warped double slabs have it for whatever reasons )
@@ -26,11 +25,11 @@ public class WoodenDoubleSlab extends Block implements BlockWoodenDoubleSlab {
 
     private enum LogTypeMagic {
         OAK(WOODEN_ID, "oak"),
-        SPRUCE(WOODEN_ID,"spruce"),
-        BIRCH(WOODEN_ID,"birch"),
-        JUNGLE(WOODEN_ID,"jungle"),
-        ACACIA(WOODEN_ID,"acacia"),
-        DARK_OAK(WOODEN_ID,"dark_oak"),
+        SPRUCE(WOODEN_ID, "spruce"),
+        BIRCH(WOODEN_ID, "birch"),
+        JUNGLE(WOODEN_ID, "jungle"),
+        ACACIA(WOODEN_ID, "acacia"),
+        DARK_OAK(WOODEN_ID, "dark_oak"),
         CRIMSON("minecraft:crimson_double_slab", ""),
         WARPED("minecraft:warped_double_slab", "");
 

@@ -14,7 +14,14 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketSetObjective extends Packet {
+public class PacketSetObjective extends Packet implements PacketClientbound {
+
+    public static final String DISPLAY_SLOT_LIST = "list";
+    public static final String DISPLAY_SLOT_SIDEBAR = "sidebar";
+    public static final String DISPLAY_SLOT_BELOW_NAME = "belowname";
+
+    public static final int SORT_ORDER_ASCENDING = 0;
+    public static final int SORT_ORDER_DESCENDING = 1;
 
     private String displaySlot;
     private String objectiveName;
@@ -26,20 +33,20 @@ public class PacketSetObjective extends Packet {
      * Create new packet
      */
     public PacketSetObjective() {
-        super( Protocol.PACKET_SET_OBJECTIVE );
+        super(Protocol.PACKET_SET_OBJECTIVE);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeString( this.displaySlot );
-        buffer.writeString( this.objectiveName );
-        buffer.writeString( this.displayName );
-        buffer.writeString( this.criteriaName );
-        buffer.writeSignedVarInt( this.sortOrder );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeString(this.displaySlot);
+        buffer.writeString(this.objectiveName);
+        buffer.writeString(this.displayName);
+        buffer.writeString(this.criteriaName);
+        buffer.writeSignedVarInt(this.sortOrder);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 

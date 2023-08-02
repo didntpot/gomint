@@ -14,17 +14,17 @@ package io.gomint.server.entity;
 public enum AttributeModifier {
 
     // Damage
-    ITEM_ATTACK_DAMAGE( "item_damage" ),
-    STRENGTH_EFFECT( "strength" ),
-    WEAKNESS_EFFECT( "weakness" ),
+    ITEM_ATTACK_DAMAGE("item_damage"),
+    STRENGTH_EFFECT("strength"),
+    WEAKNESS_EFFECT("weakness"),
 
     // Movement
-    SPEED_EFFECT( "speed" ),
-    SLOWNESS_EFFECT( "slowness" ),
-    SPRINT( "sprint" ),
+    SPEED_EFFECT("speed"),
+    SLOWNESS_EFFECT("slowness"),
+    SPRINT("sprint"),
 
     // Vanilla
-    RANDOM_SPAWN_BONUS( "RandomSpawnBonus" );
+    RANDOM_SPAWN_BONUS("RandomSpawnBonus");
 
     private final String name;
 

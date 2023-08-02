@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:warped_pressure_plate" )
-public class ItemWarpedPressurePlate extends ItemStack< io.gomint.inventory.item.ItemWarpedPressurePlate> implements io.gomint.inventory.item.ItemWarpedPressurePlate {
+@RegisterInfo(sId = "minecraft:warped_pressure_plate")
+public class ItemWarpedPressurePlate extends ItemStack<io.gomint.inventory.item.ItemWarpedPressurePlate> implements io.gomint.inventory.item.ItemWarpedPressurePlate {
 
     @Override
     public ItemType itemType() {

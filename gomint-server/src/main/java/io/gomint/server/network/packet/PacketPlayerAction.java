@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketPlayerAction extends Packet {
+public class PacketPlayerAction extends Packet implements PacketClientbound, PacketServerbound {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PacketPlayerAction.class);
 
@@ -25,20 +25,20 @@ public class PacketPlayerAction extends Packet {
     // There is more data but who knows what that could be
 
     public PacketPlayerAction() {
-        super( Protocol.PACKET_PLAYER_ACTION );
+        super(Protocol.PACKET_PLAYER_ACTION);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
+    public void serialize(PacketBuffer buffer, int protocolID) {
 
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.entityId = buffer.readUnsignedVarLong();
-        this.action = PlayerAction.valueOf( buffer.readSignedVarInt() );
-        this.position = readBlockPosition( buffer );
-        this.face = readBlockFace( buffer );
+        this.action = PlayerAction.valueOf(buffer.readSignedVarInt());
+        this.position = readBlockPosition(buffer);
+        this.face = readBlockFace(buffer);
     }
 
     public long getEntityId() {
@@ -122,8 +122,8 @@ public class PacketPlayerAction extends Packet {
 
         INTERACT_BLOCK;
 
-        public static PlayerAction valueOf( int actionId ) {
-            switch ( actionId ) {
+        public static PlayerAction valueOf(int actionId) {
+            switch (actionId) {
                 case 0:
                     return START_BREAK;
                 case 1:
@@ -178,7 +178,7 @@ public class PacketPlayerAction extends Packet {
                     return INTERACT_BLOCK;
             }
 
-            LOGGER.warn( "Unknown action id: {}", actionId );
+            LOGGER.warn("Unknown action id: {}", actionId);
             return null;
         }
     }

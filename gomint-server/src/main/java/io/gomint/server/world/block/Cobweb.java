@@ -1,13 +1,12 @@
 package io.gomint.server.world.block;
 
+import io.gomint.inventory.item.ItemStack;
+import io.gomint.inventory.item.ItemString;
 import io.gomint.server.entity.Entity;
-import io.gomint.server.world.block.helper.ToolPresets;
-import io.gomint.world.block.BlockType;
-
-import io.gomint.inventory.item.*;
 import io.gomint.server.registry.RegisterInfo;
+import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.world.block.BlockCobweb;
-
+import io.gomint.world.block.BlockType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:web" )
+@RegisterInfo(sId = "minecraft:web")
 public class Cobweb extends Block implements BlockCobweb {
 
     @Override
@@ -44,10 +43,10 @@ public class Cobweb extends Block implements BlockCobweb {
     }
 
     @Override
-    public List<ItemStack<?>> drops(ItemStack<?> itemInHand ) {
-        if ( isCorrectTool( itemInHand ) ) {
+    public List<ItemStack<?>> drops(ItemStack<?> itemInHand) {
+        if (isCorrectTool(itemInHand)) {
             return new ArrayList<>() {{
-                add( ItemString.create( 1 ) );
+                add(ItemString.create(1));
             }};
         }
 
@@ -70,7 +69,7 @@ public class Cobweb extends Block implements BlockCobweb {
     }
 
     @Override
-    public void stepOn(Entity<?> entity ) {
+    public void stepOn(Entity<?> entity) {
         // Reset fall distance
         entity.resetFallDistance();
     }

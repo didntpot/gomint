@@ -10,8 +10,8 @@ import java.io.IOException;
  */
 public abstract class Packet {
 
-    public abstract void serialize( DataOutputStream dataOutputStream ) throws IOException;
+    public abstract void serialize(DataOutputStream dataOutputStream) throws IOException;
 
-    public abstract void deserialize( DataInputStream dataInputStream ) throws IOException;
+    public abstract void deserialize(DataInputStream dataInputStream) throws IOException;
 
 }

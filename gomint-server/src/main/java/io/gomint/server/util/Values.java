@@ -5,13 +5,13 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author geNAZt
  * @version 1.0
- *
+ * <p>
  * Random static values used all over the place for minecraft magic values
  */
 public class Values {
 
     public static final float CLIENT_TICK_MS = 50f;
-    public static final float CLIENT_TICK_RATE = TimeUnit.MILLISECONDS.toNanos( 50 ) / (float) TimeUnit.SECONDS.toNanos( 1 );
+    public static final float CLIENT_TICK_RATE = TimeUnit.MILLISECONDS.toNanos(50) / (float) TimeUnit.SECONDS.toNanos(1);
 
     // Day night cycle
     public static final float FULL_DAY_CYCLE = 24000f;

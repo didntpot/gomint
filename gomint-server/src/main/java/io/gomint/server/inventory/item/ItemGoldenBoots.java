@@ -11,7 +11,7 @@ import io.gomint.world.block.data.Facing;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:golden_boots" )
+@RegisterInfo(sId = "minecraft:golden_boots")
 public class ItemGoldenBoots extends ItemGoldenArmor<io.gomint.inventory.item.ItemGoldenBoots> implements io.gomint.inventory.item.ItemGoldenBoots {
 
     @Override
@@ -20,12 +20,12 @@ public class ItemGoldenBoots extends ItemGoldenArmor<io.gomint.inventory.item.It
     }
 
     @Override
-    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock ) {
-        if ( clickedBlock == null ) {
-            if ( isBetter( (ItemStack<?>) entity.armorInventory().boots() ) ) {
+    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock) {
+        if (clickedBlock == null) {
+            if (isBetter((ItemStack<?>) entity.armorInventory().boots())) {
                 ItemStack<?> old = (ItemStack<?>) entity.armorInventory().boots();
-                entity.armorInventory().boots( this );
-                entity.inventory().item( entity.inventory().itemInHandSlot(), old );
+                entity.armorInventory().boots(this);
+                entity.inventory().item(entity.inventory().itemInHandSlot(), old);
             }
         }
 

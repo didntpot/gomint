@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
  */
 public class TransformComponent implements EntityComponent, Transformable {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger( TransformComponent.class );
+    private static final Logger LOGGER = LoggerFactory.getLogger(TransformComponent.class);
 
     private float posX;
     private float posY;
@@ -40,7 +40,7 @@ public class TransformComponent implements EntityComponent, Transformable {
     }
 
     @Override
-    public void update( long currentTimeMS, float dT ) {
+    public void update(long currentTimeMS, float dT) {
         // Nothing
     }
 
@@ -88,11 +88,11 @@ public class TransformComponent implements EntityComponent, Transformable {
 
     @Override
     public Vector position() {
-        return new Vector( this.posX, this.posY, this.posZ );
+        return new Vector(this.posX, this.posY, this.posZ);
     }
 
     @Override
-    public Transformable position(Vector position ) {
+    public Transformable position(Vector position) {
         this.posX = position.x();
         this.posY = position.y();
         this.posZ = position.z();
@@ -106,7 +106,7 @@ public class TransformComponent implements EntityComponent, Transformable {
     }
 
     @Override
-    public Transformable yaw(float yaw ) {
+    public Transformable yaw(float yaw) {
         this.yaw = yaw;
         this.dirty = true;
         return this;
@@ -118,7 +118,7 @@ public class TransformComponent implements EntityComponent, Transformable {
     }
 
     @Override
-    public Transformable headYaw(float headYaw ) {
+    public Transformable headYaw(float headYaw) {
         this.headYaw = headYaw;
         this.dirty = true;
         return this;
@@ -130,7 +130,7 @@ public class TransformComponent implements EntityComponent, Transformable {
     }
 
     @Override
-    public Transformable pitch(float pitch ) {
+    public Transformable pitch(float pitch) {
         this.pitch = pitch;
         this.dirty = true;
         return this;
@@ -138,32 +138,32 @@ public class TransformComponent implements EntityComponent, Transformable {
 
     @Override
     public Vector direction() {
-        double rY = Math.toRadians( this.yaw );
-        double rP = Math.toRadians( this.pitch );
+        double rY = Math.toRadians(this.yaw);
+        double rP = Math.toRadians(this.pitch);
 
-        float y = (float) -Math.sin( rP );
-        double cosP = Math.cos( rP );
+        float y = (float) -Math.sin(rP);
+        double cosP = Math.cos(rP);
 
-        float x = (float) ( -cosP * Math.sin( rY ) );
-        float z = (float) ( cosP * Math.cos( rY ) );
+        float x = (float) (-cosP * Math.sin(rY));
+        float z = (float) (cosP * Math.cos(rY));
 
-        return new Vector( x, y, z );
+        return new Vector(x, y, z);
     }
 
     @Override
     public Vector headDirection() {
-        double rY = Math.toRadians( this.headYaw );
-        double rP = Math.toRadians( this.pitch );
-        double sinY = Math.sin( rY );
-        double cosY = Math.cos( rY );
-        double sinP = Math.sin( rP );
-        double cosP = Math.cos( rP );
+        double rY = Math.toRadians(this.headYaw);
+        double rP = Math.toRadians(this.pitch);
+        double sinY = Math.sin(rY);
+        double cosY = Math.cos(rY);
+        double sinP = Math.sin(rP);
+        double cosP = Math.cos(rP);
 
-        return new Vector( (float) ( cosY * cosP ), (float) sinP, (float) ( sinY * cosP ) );
+        return new Vector((float) (cosY * cosP), (float) sinP, (float) (sinY * cosP));
     }
 
     @Override
-    public Transformable motion(float motionX, float motionY, float motionZ ) {
+    public Transformable motion(float motionX, float motionY, float motionZ) {
         this.motionX = motionX;
         this.motionY = motionY;
         this.motionZ = motionZ;
@@ -171,7 +171,7 @@ public class TransformComponent implements EntityComponent, Transformable {
     }
 
     @Override
-    public Transformable manipulateMotion( float x, float y, float z ) {
+    public Transformable manipulateMotion(float x, float y, float z) {
         this.motionX += x;
         this.motionY += y;
         this.motionZ += z;
@@ -179,7 +179,7 @@ public class TransformComponent implements EntityComponent, Transformable {
     }
 
     @Override
-    public Transformable position(float positionX, float positionY, float positionZ ) {
+    public Transformable position(float positionX, float positionY, float positionZ) {
         this.posX = positionX;
         this.posY = positionY;
         this.posZ = positionZ;
@@ -188,7 +188,7 @@ public class TransformComponent implements EntityComponent, Transformable {
     }
 
     @Override
-    public Transformable move( float offsetX, float offsetY, float offsetZ ) {
+    public Transformable move(float offsetX, float offsetY, float offsetZ) {
         this.posX += offsetX;
         this.posY += offsetY;
         this.posZ += offsetZ;
@@ -197,12 +197,12 @@ public class TransformComponent implements EntityComponent, Transformable {
     }
 
     @Override
-    public Transformable move( Vector offset ) {
-        return move( offset.x(), offset.y(), offset.z() );
+    public Transformable move(Vector offset) {
+        return move(offset.x(), offset.y(), offset.z());
     }
 
     @Override
-    public Transformable rotateYaw( float yaw ) {
+    public Transformable rotateYaw(float yaw) {
         // Add yaw rotation and normalize immediately:
         this.yaw += yaw;
         this.normalizeYaw();
@@ -211,7 +211,7 @@ public class TransformComponent implements EntityComponent, Transformable {
     }
 
     @Override
-    public Transformable rotateHeadYaw( float headYaw ) {
+    public Transformable rotateHeadYaw(float headYaw) {
         // Add head yaw rotation and normalize immediately:
         this.headYaw += headYaw;
         this.normalizeHeadYaw();
@@ -220,7 +220,7 @@ public class TransformComponent implements EntityComponent, Transformable {
     }
 
     @Override
-    public Transformable rotatePitch( float pitch ) {
+    public Transformable rotatePitch(float pitch) {
         // Add pitch rotation and normalize immediately:
         this.pitch += pitch;
         this.normalizePitch();
@@ -229,8 +229,8 @@ public class TransformComponent implements EntityComponent, Transformable {
     }
 
     @Override
-    public Location toLocation( WorldAdapter world ) {
-        return new Location( world, this.posX, this.posY, this.posZ, this.headYaw, this.yaw, this.pitch );
+    public Location toLocation(WorldAdapter world) {
+        return new Location(world, this.posX, this.posY, this.posZ, this.headYaw, this.yaw, this.pitch);
     }
 
     @Override
@@ -242,7 +242,7 @@ public class TransformComponent implements EntityComponent, Transformable {
 
     @Override
     public Vector motion() {
-        return new Vector( this.motionX, this.motionY, this.motionZ );
+        return new Vector(this.motionX, this.motionY, this.motionZ);
     }
 
     @Override
@@ -260,10 +260,10 @@ public class TransformComponent implements EntityComponent, Transformable {
      * Normalizes the yaw angle of the object's body.
      */
     private void normalizeYaw() {
-        while ( this.yaw < -180.0F ) {
+        while (this.yaw < -180.0F) {
             this.yaw += 360.0F;
         }
-        while ( this.yaw > +180.0F ) {
+        while (this.yaw > +180.0F) {
             this.yaw -= 360.0F;
         }
     }
@@ -272,10 +272,10 @@ public class TransformComponent implements EntityComponent, Transformable {
      * Normalizes the yaw angle of the object's head.
      */
     private void normalizeHeadYaw() {
-        while ( this.headYaw < -180.0F ) {
+        while (this.headYaw < -180.0F) {
             this.headYaw += 360.0F;
         }
-        while ( this.headYaw > +180.0F ) {
+        while (this.headYaw > +180.0F) {
             this.headYaw -= 360.0F;
         }
     }
@@ -284,10 +284,10 @@ public class TransformComponent implements EntityComponent, Transformable {
      * Normalizes the pitch angle of the object's head.
      */
     private void normalizePitch() {
-        if ( this.pitch >= 90.0F ) {
+        if (this.pitch >= 90.0F) {
             this.pitch = +89.9F;
         }
-        if ( this.pitch <= -90.0F ) {
+        if (this.pitch <= -90.0F) {
             this.pitch = -89.9F;
         }
     }

@@ -15,7 +15,7 @@ import io.gomint.world.block.BlockType;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:repeating_command_block" )
+@RegisterInfo(sId = "minecraft:repeating_command_block")
 public class RepeatingCommandBlock extends Block implements BlockRepeatingCommandBlock {
 
     @Override

@@ -18,7 +18,7 @@ public class PacketClientCacheBlobStatusHandler implements PacketHandler<PacketC
 
     @Override
     public void handle(PacketClientCacheBlobStatus packet, long currentTimeMillis, PlayerConnection connection) {
-        double ratio = ( packet.getHit().length / (double)(packet.getHit().length + packet.getMiss().length) ) * 100;
+        double ratio = (packet.getHit().length / (double) (packet.getHit().length + packet.getMiss().length)) * 100;
 
         LOGGER.debug("Got {} hits, {} misses => {}% hit rate", packet.getHit().length, packet.getMiss().length, ratio);
 
@@ -28,7 +28,7 @@ public class PacketClientCacheBlobStatusHandler implements PacketHandler<PacketC
 
         for (long miss : packet.getMiss()) {
             ByteBuf buf = connection.cache().get(miss);
-            if ( buf != null ) {
+            if (buf != null) {
                 response.getData().put(miss, buf);
             }
         }

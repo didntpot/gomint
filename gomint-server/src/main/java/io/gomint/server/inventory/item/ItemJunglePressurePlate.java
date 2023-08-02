@@ -9,7 +9,6 @@ package io.gomint.server.inventory.item;
 
 import io.gomint.inventory.item.ItemType;
 import io.gomint.server.registry.RegisterInfo;
-
 import java.time.Duration;
 
 /**

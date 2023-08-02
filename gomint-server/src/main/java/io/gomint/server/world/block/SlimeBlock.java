@@ -2,16 +2,15 @@ package io.gomint.server.world.block;
 
 import io.gomint.server.entity.Entity;
 import io.gomint.server.entity.EntityPlayer;
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockSlimeBlock;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:slime" )
+@RegisterInfo(sId = "minecraft:slime")
 public class SlimeBlock extends Block implements BlockSlimeBlock {
 
     @Override
@@ -40,8 +39,8 @@ public class SlimeBlock extends Block implements BlockSlimeBlock {
     }
 
     @Override
-    public void stepOn(Entity<?> entity ) {
-        if( !((EntityPlayer) entity).sneaking() ) {
+    public void stepOn(Entity<?> entity) {
+        if (!((EntityPlayer) entity).sneaking()) {
             entity.resetFallDistance();
         }
     }

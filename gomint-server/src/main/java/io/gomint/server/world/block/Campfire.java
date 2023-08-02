@@ -10,7 +10,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:campfire" )
+@RegisterInfo(sId = "minecraft:campfire")
 public class Campfire extends Block implements BlockCampfire {
 
     @Override

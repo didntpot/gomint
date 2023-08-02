@@ -22,7 +22,6 @@ import io.gomint.server.world.block.state.BlockfaceFromPlayerBlockState;
 import io.gomint.taglib.NBTTagCompound;
 import io.gomint.world.block.data.Direction;
 import io.gomint.world.block.data.Facing;
-
 import java.util.List;
 import java.util.Objects;
 

@@ -18,7 +18,6 @@ import io.gomint.server.entity.Attribute;
 import io.gomint.server.entity.EntityType;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.WorldAdapter;
-
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -92,5 +91,5 @@ public class EntityPanda extends EntityAgeableAnimal<io.gomint.entity.animal.Ent
     public void update(long currentTimeMS, float dT) {
         super.update(currentTimeMS, dT);
     }
-    
+
 }

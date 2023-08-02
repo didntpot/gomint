@@ -21,6 +21,6 @@ public interface Delegate<T> {
      *
      * @param arg The argument for the invocation
      */
-    void invoke( T arg );
+    void invoke(T arg);
 
 }

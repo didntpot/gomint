@@ -8,7 +8,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:twisting_vines" )
+@RegisterInfo(sId = "minecraft:twisting_vines")
 public class TwistingVines extends Block implements BlockTwistingVines {
 
     @Override

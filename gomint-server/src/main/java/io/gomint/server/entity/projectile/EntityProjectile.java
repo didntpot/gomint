@@ -15,14 +15,9 @@ import io.gomint.math.AxisAlignedBB;
 import io.gomint.math.Location;
 import io.gomint.math.MathUtils;
 import io.gomint.math.Vector;
-import io.gomint.server.entity.Entity;
-import io.gomint.server.entity.EntityLiving;
-import io.gomint.server.entity.EntityPlayer;
-import io.gomint.server.entity.EntityTags;
-import io.gomint.server.entity.EntityType;
+import io.gomint.server.entity.*;
 import io.gomint.server.util.Values;
 import io.gomint.server.world.WorldAdapter;
-
 import java.util.Collection;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;

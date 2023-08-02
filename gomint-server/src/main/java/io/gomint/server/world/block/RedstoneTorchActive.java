@@ -1,15 +1,14 @@
 package io.gomint.server.world.block;
 
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockRedstoneTorchActive;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:redstone_torch" )
+@RegisterInfo(sId = "minecraft:redstone_torch")
 public class RedstoneTorchActive extends Block implements BlockRedstoneTorchActive {
 
     @Override

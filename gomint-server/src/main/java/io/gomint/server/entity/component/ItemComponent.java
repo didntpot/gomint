@@ -25,7 +25,7 @@ import io.gomint.world.block.data.Facing;
 public class ItemComponent extends AbstractTileEntityComponent {
 
     private final String key;
-    private ItemStack<?> holdingItem = ItemAir.create( 0 );
+    private ItemStack<?> holdingItem = ItemAir.create(0);
 
     public ItemComponent(TileEntity entity, Items items, String key) {
         super(entity, items);

@@ -8,7 +8,6 @@ import io.gomint.command.annotation.Description;
 import io.gomint.command.annotation.Name;
 import io.gomint.command.annotation.Permission;
 import io.gomint.entity.EntityPlayer;
-
 import java.util.Collection;
 import java.util.Map;
 import java.util.StringJoiner;

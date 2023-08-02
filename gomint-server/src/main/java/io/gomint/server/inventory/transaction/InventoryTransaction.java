@@ -58,14 +58,14 @@ public class InventoryTransaction<I, S, T> implements Transaction<I, S, T> {
 
     @Override
     public void commit() {
-        this.inventory.removeViewerWithoutAction( this.owner );
-        this.inventory.item( this.slot, this.targetItem );
-        this.inventory.addViewerWithoutAction( this.owner );
+        this.inventory.removeViewerWithoutAction(this.owner);
+        this.inventory.item(this.slot, this.targetItem);
+        this.inventory.addViewerWithoutAction(this.owner);
     }
 
     @Override
     public void revert() {
-        this.inventory.sendContents( this.owner.connection() );
+        this.inventory.sendContents(this.owner.connection());
     }
 
     @Override

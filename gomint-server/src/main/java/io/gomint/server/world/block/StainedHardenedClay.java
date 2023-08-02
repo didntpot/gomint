@@ -11,10 +11,10 @@ import io.gomint.world.block.data.BlockColor;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:stained_hardened_clay" )
+@RegisterInfo(sId = "minecraft:stained_hardened_clay")
 public class StainedHardenedClay extends Block implements BlockStainedHardenedClay {
 
-    private static final EnumBlockState<BlockColor, String> COLOR = new EnumBlockState<>( v -> new String[]{"color"}, BlockColor.values(), e -> e.name().toLowerCase(), v -> BlockColor.valueOf(v.toUpperCase()) );
+    private static final EnumBlockState<BlockColor, String> COLOR = new EnumBlockState<>(v -> new String[]{"color"}, BlockColor.values(), e -> e.name().toLowerCase(), v -> BlockColor.valueOf(v.toUpperCase()));
 
     @Override
     public String blockId() {
@@ -53,8 +53,8 @@ public class StainedHardenedClay extends Block implements BlockStainedHardenedCl
     }
 
     @Override
-    public BlockStainedHardenedClay color(BlockColor color ) {
-        COLOR.state(this, color );
+    public BlockStainedHardenedClay color(BlockColor color) {
+        COLOR.state(this, color);
         return this;
     }
 

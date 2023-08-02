@@ -8,7 +8,7 @@ import io.gomint.server.registry.RegisterInfo;
  * @version 1.0
  */
 @RegisterInfo(sId = "minecraft:deny")
-public class ItemDenyBlock extends ItemStack< io.gomint.inventory.item.ItemDenyBlock> implements io.gomint.inventory.item.ItemDenyBlock {
+public class ItemDenyBlock extends ItemStack<io.gomint.inventory.item.ItemDenyBlock> implements io.gomint.inventory.item.ItemDenyBlock {
 
     @Override
     public ItemType itemType() {

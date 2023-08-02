@@ -11,7 +11,7 @@ import io.gomint.world.block.data.Facing;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:diamond_leggings" )
+@RegisterInfo(sId = "minecraft:diamond_leggings")
 public class ItemDiamondLeggings extends ItemDiamondArmor<io.gomint.inventory.item.ItemDiamondLeggings> implements io.gomint.inventory.item.ItemDiamondLeggings {
 
     @Override
@@ -20,12 +20,12 @@ public class ItemDiamondLeggings extends ItemDiamondArmor<io.gomint.inventory.it
     }
 
     @Override
-    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock ) {
-        if ( clickedBlock == null ) {
-            if ( isBetter( (ItemStack<?>) entity.armorInventory().leggings() ) ) {
+    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock) {
+        if (clickedBlock == null) {
+            if (isBetter((ItemStack<?>) entity.armorInventory().leggings())) {
                 ItemStack<?> old = (ItemStack<?>) entity.armorInventory().leggings();
-                entity.armorInventory().leggings( this );
-                entity.inventory().item( entity.inventory().itemInHandSlot(), old );
+                entity.armorInventory().leggings(this);
+                entity.inventory().item(entity.inventory().itemInHandSlot(), old);
             }
         }
 

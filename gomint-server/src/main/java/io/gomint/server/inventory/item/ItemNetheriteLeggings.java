@@ -11,7 +11,7 @@ import io.gomint.world.block.data.Facing;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:netherite_leggings" )
+@RegisterInfo(sId = "minecraft:netherite_leggings")
 public class ItemNetheriteLeggings extends ItemNetheriteArmor<io.gomint.inventory.item.ItemNetheriteLeggings> implements io.gomint.inventory.item.ItemNetheriteLeggings {
 
     @Override
@@ -20,12 +20,12 @@ public class ItemNetheriteLeggings extends ItemNetheriteArmor<io.gomint.inventor
     }
 
     @Override
-    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock ) {
-        if ( clickedBlock == null ) {
-            if ( isBetter( (ItemStack<?>) entity.armorInventory().leggings() ) ) {
+    public boolean interact(EntityPlayer entity, Facing face, Vector clickPosition, Block clickedBlock) {
+        if (clickedBlock == null) {
+            if (isBetter((ItemStack<?>) entity.armorInventory().leggings())) {
                 ItemStack<?> old = (ItemStack<?>) entity.armorInventory().leggings();
-                entity.armorInventory().leggings( this );
-                entity.inventory().item( entity.inventory().itemInHandSlot(), old );
+                entity.armorInventory().leggings(this);
+                entity.inventory().item(entity.inventory().itemInHandSlot(), old);
             }
         }
 

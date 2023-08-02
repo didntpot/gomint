@@ -17,14 +17,13 @@ import io.gomint.server.util.Values;
 import io.gomint.server.world.LevelEvent;
 import io.gomint.server.world.WorldAdapter;
 import io.gomint.world.Particle;
-
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:xp_bottle" )
+@RegisterInfo(sId = "minecraft:xp_bottle")
 public class EntityExpBottle extends EntityThrowable<io.gomint.entity.projectile.EntityExpBottle> implements io.gomint.entity.projectile.EntityExpBottle {
 
     private float lastUpdateDT;
@@ -35,8 +34,8 @@ public class EntityExpBottle extends EntityThrowable<io.gomint.entity.projectile
      * @param shooter of this entity
      * @param world   The world in which this entity is in
      */
-    public EntityExpBottle( EntityLiving<?>shooter, WorldAdapter world ) {
-        super( shooter, EntityType.EXP_BOTTLE_PROJECTILE, world );
+    public EntityExpBottle(EntityLiving<?> shooter, WorldAdapter world) {
+        super(shooter, EntityType.EXP_BOTTLE_PROJECTILE, world);
 
         // Get position from the shooter
         Location position = this.positionFromShooter();
@@ -52,7 +51,7 @@ public class EntityExpBottle extends EntityThrowable<io.gomint.entity.projectile
      * Create entity for API
      */
     public EntityExpBottle() {
-        super( null, EntityType.EXP_BOTTLE_PROJECTILE, null );
+        super(null, EntityType.EXP_BOTTLE_PROJECTILE, null);
     }
 
     @Override
@@ -65,23 +64,23 @@ public class EntityExpBottle extends EntityThrowable<io.gomint.entity.projectile
     }
 
     @Override
-    public void update( long currentTimeMS, float dT ) {
-        super.update( currentTimeMS, dT );
+    public void update(long currentTimeMS, float dT) {
+        super.update(currentTimeMS, dT);
 
-        if ( this.hitEntity != null ) {
+        if (this.hitEntity != null) {
             this.breakBottle();
             this.despawn();
         }
 
         this.lastUpdateDT += dT;
-        if ( Values.CLIENT_TICK_RATE - this.lastUpdateDT < MathUtils.EPSILON ) {
-            if ( this.isCollided ) {
+        if (Values.CLIENT_TICK_RATE - this.lastUpdateDT < MathUtils.EPSILON) {
+            if (this.isCollided) {
                 this.breakBottle();
                 this.despawn();
             }
 
             // Despawn after 1200 ticks ( 1 minute )
-            if ( this.age >= 1200 ) {
+            if (this.age >= 1200) {
                 this.despawn();
             }
 
@@ -91,23 +90,23 @@ public class EntityExpBottle extends EntityThrowable<io.gomint.entity.projectile
 
     private void breakBottle() {
         Location location = this.location();
-        this.world.sendParticle( location, Particle.MOB_SPELL );
-        this.world.sendLevelEvent( location, LevelEvent.PARTICLE_SPLASH, 0x00385dc6 );
+        this.world.sendParticle(location, Particle.MOB_SPELL);
+        this.world.sendLevelEvent(location, LevelEvent.PARTICLE_SPLASH, 0x00385dc6);
 
-        int amountOfOrbs = 3 + ThreadLocalRandom.current().nextInt( 8 );
+        int amountOfOrbs = 3 + ThreadLocalRandom.current().nextInt(8);
         int add = 1;
-        for ( int i = 0; i < amountOfOrbs; i += add ) {
-            this.world.createExpOrb( location, add );
-            add = 1 + ThreadLocalRandom.current().nextInt( 2 );
+        for (int i = 0; i < amountOfOrbs; i += add) {
+            this.world.createExpOrb(location, add);
+            add = 1 + ThreadLocalRandom.current().nextInt(2);
         }
     }
 
     @Override
-    public boolean damage( EntityDamageEvent damageEvent ) {
-        return ( damageEvent.damageSource() == EntityDamageEvent.DamageSource.VOID ||
+    public boolean damage(EntityDamageEvent damageEvent) {
+        return (damageEvent.damageSource() == EntityDamageEvent.DamageSource.VOID ||
             damageEvent.damageSource() == EntityDamageEvent.DamageSource.ON_FIRE ||
-            damageEvent.damageSource() == EntityDamageEvent.DamageSource.ENTITY_EXPLODE )
-            && super.damage( damageEvent );
+            damageEvent.damageSource() == EntityDamageEvent.DamageSource.ENTITY_EXPLODE)
+            && super.damage(damageEvent);
     }
 
 }

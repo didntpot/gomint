@@ -1,17 +1,16 @@
 package io.gomint.server.world.block;
 
-import io.gomint.server.world.block.helper.ToolPresets;
-import io.gomint.world.block.BlockType;
-
-import io.gomint.inventory.item.*;
+import io.gomint.inventory.item.ItemStack;
 import io.gomint.server.registry.RegisterInfo;
+import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.world.block.BlockChorusFlower;
+import io.gomint.world.block.BlockType;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:chorus_flower" )
+@RegisterInfo(sId = "minecraft:chorus_flower")
 public class ChorusFlower extends Block implements BlockChorusFlower {
 
     @Override

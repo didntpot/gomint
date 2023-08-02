@@ -12,14 +12,14 @@ import io.gomint.server.entity.AttributeInstance;
 import io.gomint.server.entity.EntityType;
 import io.gomint.server.entity.metadata.MetadataContainer;
 import io.gomint.server.network.Protocol;
-
+import io.gomint.server.network.packet.types.entity.PropertySyncData;
 import java.util.Collection;
 
 /**
  * @author BlackyPaw
  * @version 1.0
  */
-public class PacketSpawnEntity extends Packet {
+public class PacketSpawnEntity extends Packet implements PacketClientbound {
 
     private long entityId;
     private EntityType entityType;
@@ -31,49 +31,53 @@ public class PacketSpawnEntity extends Packet {
     private float velocityZ;
     private float pitch;
     private float headYaw;
+    private float bodyYaw; // wtf mojang
     private float yaw;
     private Collection<AttributeInstance> attributes;
     private MetadataContainer metadata;
+    private PropertySyncData syncedProperties;
 
     public PacketSpawnEntity() {
-        super( Protocol.PACKET_SPAWN_ENTITY );
+        super(Protocol.PACKET_SPAWN_ENTITY);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeSignedVarLong( this.entityId );
-        buffer.writeUnsignedVarLong( this.entityId );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeSignedVarLong(this.entityId);
+        buffer.writeUnsignedVarLong(this.entityId);
 
-        buffer.writeString( this.entityType.getPersistantId() );
+        buffer.writeString(this.entityType.getPersistantId());
 
-        buffer.writeLFloat( this.x );
-        buffer.writeLFloat( this.y );
-        buffer.writeLFloat( this.z );
-        buffer.writeLFloat( this.velocityX );
-        buffer.writeLFloat( this.velocityY );
-        buffer.writeLFloat( this.velocityZ );
-        buffer.writeLFloat( this.pitch );
-        buffer.writeLFloat( this.yaw );
-        buffer.writeLFloat( this.headYaw );
+        buffer.writeLFloat(this.x);
+        buffer.writeLFloat(this.y);
+        buffer.writeLFloat(this.z);
+        buffer.writeLFloat(this.velocityX);
+        buffer.writeLFloat(this.velocityY);
+        buffer.writeLFloat(this.velocityZ);
+        buffer.writeLFloat(this.pitch);
+        buffer.writeLFloat(this.yaw);
+        buffer.writeLFloat(this.headYaw);
+        buffer.writeLFloat(this.bodyYaw);
 
-        if ( this.attributes == null ) {
-            buffer.writeUnsignedVarInt( 0 );
+        if (this.attributes == null) {
+            buffer.writeUnsignedVarInt(0);
         } else {
-            buffer.writeUnsignedVarInt( this.attributes.size() );
-            for ( AttributeInstance entry : this.attributes ) {
-                buffer.writeString( entry.getKey() );
-                buffer.writeLFloat( entry.getMinValue() );
-                buffer.writeLFloat( entry.getValue() );
-                buffer.writeLFloat( entry.getMaxValue() );
+            buffer.writeUnsignedVarInt(this.attributes.size());
+            for (AttributeInstance entry : this.attributes) {
+                buffer.writeString(entry.getKey());
+                buffer.writeLFloat(entry.getMinValue());
+                buffer.writeLFloat(entry.getValue());
+                buffer.writeLFloat(entry.getMaxValue());
             }
         }
 
-        this.metadata.serialize( buffer );
-        buffer.writeUnsignedVarInt( 0 );             // Entity links; TODO: implement this
+        this.metadata.serialize(buffer);
+        this.syncedProperties.write(buffer);
+        buffer.writeUnsignedVarInt(0);             // Entity links; TODO: implement this
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 

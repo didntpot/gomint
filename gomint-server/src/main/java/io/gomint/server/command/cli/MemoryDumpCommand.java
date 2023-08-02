@@ -13,7 +13,6 @@ import io.gomint.command.CommandSender;
 import io.gomint.command.annotation.Description;
 import io.gomint.command.annotation.Name;
 import io.gomint.command.annotation.Permission;
-
 import java.lang.management.BufferPoolMXBean;
 import java.lang.management.ManagementFactory;
 import java.util.Map;
@@ -22,9 +21,9 @@ import java.util.Map;
  * @author geNAZt
  * @version 1.0
  */
-@Name( "memorydump" )
-@Description( "Dump offheap memory stats" )
-@Permission( "gomint.cli.command.memorydump")
+@Name("memorydump")
+@Description("Dump offheap memory stats")
+@Permission("gomint.cli.command.memorydump")
 public class MemoryDumpCommand extends Command {
 
     @Override

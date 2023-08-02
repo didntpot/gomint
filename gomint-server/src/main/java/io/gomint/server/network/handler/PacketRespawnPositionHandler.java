@@ -13,11 +13,11 @@ public class PacketRespawnPositionHandler implements PacketHandler<PacketRespawn
     @Override
     public void handle(PacketRespawnPosition packet, long currentTimeMillis, PlayerConnection connection) {
         // Client ready
-        if ( packet.getState() == RespawnState.CLIENT_READY_TO_SPAWN ) {
+        if (packet.getState() == RespawnState.CLIENT_READY_TO_SPAWN) {
             PacketRespawnPosition packetRespawnPosition = new PacketRespawnPosition();
             packetRespawnPosition.setPosition(connection.entity().spawnLocation().add(0, connection.entity().eyeHeight(), 0));
             packetRespawnPosition.setEntityId(connection.entity().id());
-            packetRespawnPosition.setState( RespawnState.READY_TO_SPAWN );
+            packetRespawnPosition.setState(RespawnState.READY_TO_SPAWN);
             connection.addToSendQueue(packetRespawnPosition);
         }
     }

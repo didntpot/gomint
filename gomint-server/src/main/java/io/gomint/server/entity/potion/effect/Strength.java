@@ -17,7 +17,7 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( id = 5 )
+@RegisterInfo(id = 5)
 public class Strength extends Effect {
 
     @Override
@@ -26,20 +26,20 @@ public class Strength extends Effect {
     }
 
     @Override
-    public void apply( EntityLiving<?> player ) {
-        player.attributeInstance( Attribute.ATTACK_DAMAGE )
-            .setModifier( AttributeModifier.STRENGTH_EFFECT, AttributeModifierType.ADDITION, 1.3f * ( this.amplifier + 1 ) );
+    public void apply(EntityLiving<?> player) {
+        player.attributeInstance(Attribute.ATTACK_DAMAGE)
+            .setModifier(AttributeModifier.STRENGTH_EFFECT, AttributeModifierType.ADDITION, 1.3f * (this.amplifier + 1));
     }
 
     @Override
-    public void update( long currentTimeMillis, float dT ) {
+    public void update(long currentTimeMillis, float dT) {
 
     }
 
     @Override
-    public void remove( EntityLiving<?> player ) {
-        player.attributeInstance( Attribute.ATTACK_DAMAGE )
-            .removeModifier( AttributeModifier.STRENGTH_EFFECT );
+    public void remove(EntityLiving<?> player) {
+        player.attributeInstance(Attribute.ATTACK_DAMAGE)
+            .removeModifier(AttributeModifier.STRENGTH_EFFECT);
     }
 
 }

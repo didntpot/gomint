@@ -15,28 +15,28 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketBlockEvent extends Packet {
+public class PacketBlockEvent extends Packet implements PacketClientbound {
 
     private BlockPosition position;
-    private int data1;
-    private int data2;
+    private int eventType;
+    private int eventData;
 
     /**
      * Construct a new packet
      */
     public PacketBlockEvent() {
-        super( Protocol.PACKET_BLOCK_EVENT );
+        super(Protocol.PACKET_BLOCK_EVENT);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        writeBlockPosition( this.position, buffer );
-        buffer.writeSignedVarInt( this.data1 );
-        buffer.writeSignedVarInt( this.data2 );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        writeBlockPosition(this.position, buffer);
+        buffer.writeSignedVarInt(this.eventType);
+        buffer.writeSignedVarInt(this.eventData);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 
@@ -48,19 +48,19 @@ public class PacketBlockEvent extends Packet {
         this.position = position;
     }
 
-    public int getData1() {
-        return this.data1;
+    public int getEventType() {
+        return this.eventType;
     }
 
-    public void setData1(int data1) {
-        this.data1 = data1;
+    public void setEventType(int eventType) {
+        this.eventType = eventType;
     }
 
-    public int getData2() {
-        return this.data2;
+    public int getEventData() {
+        return this.eventData;
     }
 
-    public void setData2(int data2) {
-        this.data2 = data2;
+    public void setEventData(int eventData) {
+        this.eventData = eventData;
     }
 }

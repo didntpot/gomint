@@ -1,18 +1,13 @@
 package io.gomint.server.world.block;
 
 import io.gomint.enchant.EnchantmentFortune;
-import io.gomint.inventory.item.ItemApple;
-import io.gomint.inventory.item.ItemLeaves;
-import io.gomint.inventory.item.ItemSapling;
-import io.gomint.inventory.item.ItemShears;
-import io.gomint.inventory.item.ItemStack;
+import io.gomint.inventory.item.*;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.state.BooleanBlockState;
 import io.gomint.server.world.block.state.EnumBlockState;
 import io.gomint.world.block.BlockLeaves;
 import io.gomint.world.block.BlockType;
 import io.gomint.world.block.data.LogType;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -72,8 +67,8 @@ public class Leaves extends Block implements BlockLeaves {
         return null;
     });
 
-    private static final BooleanBlockState UPDATE_FOR_DECAY = new BooleanBlockState( () -> new String[]{"update_bit"});
-    private static final BooleanBlockState PERSISTENT = new BooleanBlockState( () -> new String[]{"persistent_bit"});
+    private static final BooleanBlockState UPDATE_FOR_DECAY = new BooleanBlockState(() -> new String[]{"update_bit"});
+    private static final BooleanBlockState PERSISTENT = new BooleanBlockState(() -> new String[]{"persistent_bit"});
 
     @Override
     public long breakTime() {

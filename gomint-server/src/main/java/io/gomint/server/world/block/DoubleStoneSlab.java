@@ -1,23 +1,22 @@
 package io.gomint.server.world.block;
 
 import io.gomint.inventory.item.ItemStack;
+import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.helper.ToolPresets;
 import io.gomint.server.world.block.state.BooleanBlockState;
 import io.gomint.server.world.block.state.EnumBlockState;
 import io.gomint.world.block.BlockDoubleStoneSlab;
 import io.gomint.world.block.BlockType;
-
-import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.data.StoneType;
 
 /**
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:double_stone_slab", def = true )
-@RegisterInfo( sId = "minecraft:double_stone_slab2" )
-@RegisterInfo( sId = "minecraft:double_stone_slab3" )
-@RegisterInfo( sId = "minecraft:double_stone_slab4" )
+@RegisterInfo(sId = "minecraft:double_stone_slab", def = true)
+@RegisterInfo(sId = "minecraft:double_stone_slab2")
+@RegisterInfo(sId = "minecraft:double_stone_slab3")
+@RegisterInfo(sId = "minecraft:double_stone_slab4")
 @RegisterInfo(sId = "minecraft:blackstone_double_slab")
 @RegisterInfo(sId = "minecraft:polished_blackstone_double_slab")
 @RegisterInfo(sId = "minecraft:polished_blackstone_brick_double_slab")
@@ -91,7 +90,7 @@ public class DoubleStoneSlab extends Block implements BlockDoubleStoneSlab {
         }
     }
 
-    private static final BooleanBlockState TOP = new BooleanBlockState( () -> new String[]{"top_slot_bit"} );
+    private static final BooleanBlockState TOP = new BooleanBlockState(() -> new String[]{"top_slot_bit"});
 
     private static final EnumBlockState<StoneTypeMagic, String> VARIANT = new EnumBlockState<>(v -> {
         if (v == null) {

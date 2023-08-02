@@ -13,11 +13,10 @@ import io.gomint.server.network.Protocol;
 import io.gomint.server.network.packet.PacketTileEntityData;
 import io.gomint.taglib.AllocationLimitReachedException;
 import io.gomint.taglib.NBTTagCompound;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author geNAZt
@@ -29,50 +28,50 @@ public class CheckPacketTileEntityTest {
     public void checkNBTAllocLimitFailure() throws Exception {
         Assertions.assertThrows(AllocationLimitReachedException.class, () -> {
             // Fill new compound with too much data for the packet
-            NBTTagCompound testCompound = new NBTTagCompound( "" );
+            NBTTagCompound testCompound = new NBTTagCompound("");
             List<String> stuff = new ArrayList<>();
 
-            for ( int i = 0; i < 512 * 1024; i++ ) {
+            for (int i = 0; i < 512 * 1024; i++) {
                 stuff.add(String.valueOf(i));
             }
 
-            testCompound.addValue( "TEST", stuff );
+            testCompound.addValue("TEST", stuff);
 
             // Create the packet
             PacketTileEntityData packetTileEntityData = new PacketTileEntityData();
-            packetTileEntityData.setPosition( new BlockPosition( 0, 1, 0 ) );
-            packetTileEntityData.setCompound( testCompound );
+            packetTileEntityData.setPosition(new BlockPosition(0, 1, 0));
+            packetTileEntityData.setCompound(testCompound);
 
             // Serialize the packet
-            PacketBuffer buffer = new PacketBuffer( 16 );
-            packetTileEntityData.serialize( buffer, Protocol.MINECRAFT_PE_PROTOCOL_VERSION );
+            PacketBuffer buffer = new PacketBuffer(16);
+            packetTileEntityData.serialize(buffer, Protocol.MINECRAFT_PE_PROTOCOL_VERSION);
 
             // Deserialize the packet, this should raise a exception
             packetTileEntityData = new PacketTileEntityData();
-            packetTileEntityData.deserialize( buffer, Protocol.MINECRAFT_PE_PROTOCOL_VERSION );
+            packetTileEntityData.deserialize(buffer, Protocol.MINECRAFT_PE_PROTOCOL_VERSION);
         });
     }
 
     @Test
     public void checkNBTAllocLimitSuccess() throws Exception {
         // Fill new compound with too much data for the packet
-        NBTTagCompound testCompound = new NBTTagCompound( "" );
-        for ( int i = 0; i < 4; i++ ) {
-            testCompound.addValue( String.valueOf( i ), new ArrayList<>() );
+        NBTTagCompound testCompound = new NBTTagCompound("");
+        for (int i = 0; i < 4; i++) {
+            testCompound.addValue(String.valueOf(i), new ArrayList<>());
         }
 
         // Create the packet
         PacketTileEntityData packetTileEntityData = new PacketTileEntityData();
-        packetTileEntityData.setPosition( new BlockPosition( 0, 1, 0 ) );
-        packetTileEntityData.setCompound( testCompound );
+        packetTileEntityData.setPosition(new BlockPosition(0, 1, 0));
+        packetTileEntityData.setCompound(testCompound);
 
         // Serialize the packet
-        PacketBuffer buffer = new PacketBuffer( 16 );
-        packetTileEntityData.serialize( buffer, Protocol.MINECRAFT_PE_PROTOCOL_VERSION );
+        PacketBuffer buffer = new PacketBuffer(16);
+        packetTileEntityData.serialize(buffer, Protocol.MINECRAFT_PE_PROTOCOL_VERSION);
 
         // Deserialize the packet, this should raise a exception
         packetTileEntityData = new PacketTileEntityData();
-        packetTileEntityData.deserialize( buffer, Protocol.MINECRAFT_PE_PROTOCOL_VERSION );
+        packetTileEntityData.deserialize(buffer, Protocol.MINECRAFT_PE_PROTOCOL_VERSION);
     }
 
 }

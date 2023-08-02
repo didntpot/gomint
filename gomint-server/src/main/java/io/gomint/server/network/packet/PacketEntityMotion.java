@@ -15,25 +15,25 @@ import io.gomint.server.network.Protocol;
  * @author BlackyPaw
  * @version 1.0
  */
-public class PacketEntityMotion extends Packet {
+public class PacketEntityMotion extends Packet implements PacketClientbound, PacketServerbound {
 
     private long entityId;
     private Vector velocity;
 
     public PacketEntityMotion() {
-        super( Protocol.PACKET_ENTITY_MOTION );
+        super(Protocol.PACKET_ENTITY_MOTION);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeUnsignedVarLong( this.entityId );
-        buffer.writeLFloat( this.velocity.x() );
-        buffer.writeLFloat( this.velocity.y() );
-        buffer.writeLFloat( this.velocity.z() );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeUnsignedVarLong(this.entityId);
+        buffer.writeLFloat(this.velocity.x());
+        buffer.writeLFloat(this.velocity.y());
+        buffer.writeLFloat(this.velocity.z());
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 

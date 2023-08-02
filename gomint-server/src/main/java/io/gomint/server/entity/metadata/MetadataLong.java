@@ -29,7 +29,7 @@ public class MetadataLong extends MetadataValue {
      *
      * @param value The value to initialize the metadata int with
      */
-    public MetadataLong( long value ) {
+    public MetadataLong(long value) {
         this.value = value;
     }
 
@@ -47,19 +47,19 @@ public class MetadataLong extends MetadataValue {
      *
      * @param value The value of this metadata int
      */
-    public void setValue( long value ) {
+    public void setValue(long value) {
         this.value = value;
     }
 
     // ========================== METADATA VALUE ========================== //
     @Override
-    void serialize( PacketBuffer buffer, int index ) {
-        super.serialize( buffer, index );
-        buffer.writeSignedVarLong( this.value );
+    void serialize(PacketBuffer buffer, int index) {
+        super.serialize(buffer, index);
+        buffer.writeSignedVarLong(this.value);
     }
 
     @Override
-    void deserialize( PacketBuffer buffer ) {
+    void deserialize(PacketBuffer buffer) {
         this.value = buffer.readSignedVarLong().longValue();
     }
 

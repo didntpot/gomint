@@ -24,53 +24,31 @@ import io.gomint.player.DeviceInfo;
 import io.gomint.server.GoMintServer;
 import io.gomint.server.entity.EntityPlayer;
 import io.gomint.server.maintenance.ReportUploader;
-import io.gomint.server.network.handler.*;
-import io.gomint.server.network.packet.Packet;
-import io.gomint.server.network.packet.PacketBatch;
-import io.gomint.server.network.packet.PacketConfirmChunkRadius;
-import io.gomint.server.network.packet.PacketDisconnect;
-import io.gomint.server.network.packet.PacketEncryptionResponse;
-import io.gomint.server.network.packet.PacketInventoryTransaction;
-import io.gomint.server.network.packet.PacketLogin;
-import io.gomint.server.network.packet.PacketMovePlayer;
+import io.gomint.server.network.handler.PacketHandler;
+import io.gomint.server.network.packet.*;
 import io.gomint.server.network.packet.PacketMovePlayer.MovePlayerMode;
-import io.gomint.server.network.packet.PacketNetworkChunkPublisherUpdate;
-import io.gomint.server.network.packet.PacketPlayState;
-import io.gomint.server.network.packet.PacketPlayerlist;
-import io.gomint.server.network.packet.PacketResourcePackResponse;
-import io.gomint.server.network.packet.PacketResourcePacksInfo;
-import io.gomint.server.network.packet.PacketSetCommandsEnabled;
-import io.gomint.server.network.packet.PacketSetDifficulty;
-import io.gomint.server.network.packet.PacketSetSpawnPosition;
-import io.gomint.server.network.packet.PacketSkipable;
-import io.gomint.server.network.packet.PacketStartGame;
-import io.gomint.server.network.packet.PacketWorldTime;
+import io.gomint.server.network.packet.types.*;
+import io.gomint.server.network.packet.types.gamerule.BooleanGameRule;
+import io.gomint.server.network.packet.types.gamerule.GameRule;
 import io.gomint.server.util.Cache;
 import io.gomint.server.util.EnumConnectors;
 import io.gomint.server.util.Pair;
-import io.gomint.server.util.StringUtil;
 import io.gomint.server.util.Values;
 import io.gomint.server.world.ChunkAdapter;
 import io.gomint.server.world.CoordinateUtils;
 import io.gomint.server.world.WorldAdapter;
-import io.gomint.world.Biome;
+import io.gomint.taglib.NBTTagCompound;
 import io.netty.buffer.ByteBuf;
 import it.unimi.dsi.fastutil.longs.LongIterator;
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import it.unimi.dsi.fastutil.longs.LongSet;
-
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
-
-import static io.gomint.server.network.Protocol.BATCH_MAGIC;
-import static io.gomint.server.network.Protocol.PACKET_ENCRYPTION_RESPONSE;
-import static io.gomint.server.network.Protocol.PACKET_LOGIN;
-import static io.gomint.server.network.Protocol.PACKET_RESOURCEPACK_RESPONSE;
+import static io.gomint.server.network.Protocol.*;
 
 /**
  * @author BlackyPaw
@@ -126,7 +104,7 @@ public class PlayerConnection implements ConnectionWithState {
     PlayerConnection(NetworkManager networkManager, Connection connection) {
         this.networkManager = networkManager;
         this.connection = connection;
-        this.state = PlayerConnectionState.HANDSHAKE;
+        this.state = PlayerConnectionState.NETWORK_SETTINGS;
         this.server = networkManager.server();
         this.playerChunks = new LongOpenHashSet();
         this.loadingChunks = new LongOpenHashSet();
@@ -255,6 +233,10 @@ public class PlayerConnection implements ConnectionWithState {
      * @param packet The packet which should be queued
      */
     public void addToSendQueue(Packet packet) {
+        if (!(packet instanceof PacketClientbound)) {
+            throw new IllegalArgumentException("Cannot queue non-clientbound packets");
+        }
+        LOGGER.info("Sending packet " + packet.getClass().getSimpleName());
         if (!GoMint.instance().mainThread()) {
             LOGGER.warn("Add packet async to send queue - canceling sending", new Exception());
             return;
@@ -423,6 +405,10 @@ public class PlayerConnection implements ConnectionWithState {
 
     @Override
     public void send(Packet packet) {
+        LOGGER.info("Sending packet " + packet.getClass().getSimpleName());
+        if (!(packet instanceof PacketClientbound)) {
+            throw new IllegalArgumentException("Packet " + packet.getClass().getSimpleName() + " is not clientbound!");
+        }
         this.send(packet, null);
     }
 
@@ -495,7 +481,7 @@ public class PlayerConnection implements ConnectionWithState {
     private int handleBufferData(long currentTimeMillis, PacketBuffer buffer, int skippablePosition) {
         // Grab the packet ID from the packet's data
         int rawId = buffer.readUnsignedVarInt();
-        int packetId = rawId & 0x3FF;
+        int packetId = (rawId & 0x3FF) & 0xFF;
 
         // There is some data behind the packet id when non batched packets (2 bytes)
         if (packetId == BATCH_MAGIC) {
@@ -503,13 +489,30 @@ public class PlayerConnection implements ConnectionWithState {
             return packetId;
         }
 
-        LOGGER.debug("Got MCPE packet {}", Integer.toHexString(packetId & 0xFF));
+        LOGGER.info("Got MCPE packet {}", Integer.toHexString(packetId & 0xFF));
+
+        if (this.state == PlayerConnectionState.NETWORK_SETTINGS) {
+            if (packetId == PACKET_REQUEST_NETWORK_SETTINGS) {
+                try {
+                    LOGGER.info("Got network settings request");
+                    PacketRequestNetworkSettings packet = new PacketRequestNetworkSettings();
+                    packet.deserialize(buffer, this.protocolID);
+                    this.handlePacket(currentTimeMillis, packet);
+                } catch (Exception e) {
+                    LOGGER.error("Could not deserialize / handle packet", e);
+                    ReportUploader.create().tag("network.deserialize").exception(e).upload();
+                }
+            } else {
+                LOGGER.error("Received odd packet while handling RequestNetworkSettings");
+            }
+        }
 
         // If we are still in handshake we only accept certain packets:
         if (this.state == PlayerConnectionState.HANDSHAKE) {
             if (packetId == PACKET_LOGIN) {
                 // CHECKSTYLE:OFF
                 try {
+                    LOGGER.info("Got login packet");
                     PacketLogin packet = new PacketLogin();
                     packet.deserialize(buffer, this.protocolID);
                     this.handlePacket(currentTimeMillis, packet);
@@ -519,7 +522,7 @@ public class PlayerConnection implements ConnectionWithState {
                 }
                 // CHECKSTYLE:ON
             } else {
-                LOGGER.error("Received odd packet");
+                LOGGER.error("Received odd packet while in handshake (0x{})", Integer.toHexString(packetId & 0xFF));
             }
 
             // Don't allow for any other packets if we are in HANDSHAKE state:
@@ -538,7 +541,7 @@ public class PlayerConnection implements ConnectionWithState {
                 }
                 // CHECKSTYLE:ON
             } else {
-                LOGGER.error("Received odd packet");
+                LOGGER.error("Received odd packet while in encryption init");
             }
 
             // Don't allow for any other packets if we are in RESOURCE_PACK state:
@@ -559,7 +562,7 @@ public class PlayerConnection implements ConnectionWithState {
                 }
                 // CHECKSTYLE:ON
             } else {
-                LOGGER.error("Received odd packet");
+                LOGGER.error("Received odd packet while in resource pack");
             }
 
             // Don't allow for any other packets if we are in RESOURCE_PACK state:
@@ -567,7 +570,7 @@ public class PlayerConnection implements ConnectionWithState {
         }
 
 
-        Packet packet = Protocol.createPacket(packetId);
+        Packet packet = PacketPool.getPacket(packetId);
         if (packet == null) {
             this.networkManager.notifyUnknownPacket(packetId, buffer);
 
@@ -591,7 +594,7 @@ public class PlayerConnection implements ConnectionWithState {
             ReportUploader.create().tag("network.deserialize").exception(e).upload();
         }
         // CHECKSTYLE:ON
-        
+
         return packetId;
     }
 
@@ -602,7 +605,7 @@ public class PlayerConnection implements ConnectionWithState {
      * @return decompressed and decrypted data
      */
     private ByteBuf handleBatchPacket(ByteBuf buffer) {
-        return this.inputProcessor.process(buffer);
+        return this.state == PlayerConnectionState.NETWORK_SETTINGS ? buffer : this.inputProcessor.process(buffer);
     }
 
     /**
@@ -694,10 +697,10 @@ public class PlayerConnection implements ConnectionWithState {
                 } else {
                     // We already know this chunk but maybe forceResend is enabled
                     worldAdapter.sendChunk(chunk.getFirst(), chunk.getSecond(), (chunkHash, loadedChunk) -> {
-                            if (this.entity != null) { // It can happen that the server loads longer and the client has disconnected
-                                this.entity.entityVisibilityManager().updateAddedChunk(loadedChunk);
-                            }
-                        });
+                        if (this.entity != null) { // It can happen that the server loads longer and the client has disconnected
+                            this.entity.entityVisibilityManager().updateAddedChunk(loadedChunk);
+                        }
+                    });
                 }
             } else {
                 this.loadingChunks.add(hash);
@@ -766,17 +769,17 @@ public class PlayerConnection implements ConnectionWithState {
     private void requestChunk(Integer x, Integer z) {
         LOGGER.debug("Requesting chunk {} {} for {}", x, z, this.entity);
         this.entity.world().sendChunk(x, z, (chunkHash, loadedChunk) -> {
-                LOGGER.debug("Loaded chunk: {} -> {}", this.entity, loadedChunk);
-                if (this.entity != null) { // It can happen that the server loads longer and the client has disconnected
-                    loadedChunk.retainForConnection();
-                    if (!this.entity.chunkSendQueue().offer(loadedChunk)) {
-                        LOGGER.warn("Could not add chunk to send queue");
-                        loadedChunk.releaseForConnection();
-                    }
-
-                    LOGGER.debug("Current queue length: {}", this.entity.chunkSendQueue().size());
+            LOGGER.debug("Loaded chunk: {} -> {}", this.entity, loadedChunk);
+            if (this.entity != null) { // It can happen that the server loads longer and the client has disconnected
+                loadedChunk.retainForConnection();
+                if (!this.entity.chunkSendQueue().offer(loadedChunk)) {
+                    LOGGER.warn("Could not add chunk to send queue");
+                    loadedChunk.releaseForConnection();
                 }
-            });
+
+                LOGGER.debug("Current queue length: {}", this.entity.chunkSendQueue().size());
+            }
+        });
     }
 
     /**
@@ -884,39 +887,53 @@ public class PlayerConnection implements ConnectionWithState {
         WorldAdapter world = this.entity.world();
 
         PacketStartGame packet = new PacketStartGame();
+
+        LevelSettings levelSettings = new LevelSettings();
+        levelSettings.setSeed(-1);
+        levelSettings.setSpawnSettings(new SpawnSettings());
+        levelSettings.setWorldGameMode(0);
+        levelSettings.setDifficulty(world.difficulty().getDifficultyDegree());
+        Location spawn = world.spawnLocation();
+        levelSettings.setSpawnPosition(new BlockPosition((int) spawn.x(), (int) spawn.y(), (int) spawn.z()));
+        levelSettings.setHasAchievementsDisabled(true);
+        levelSettings.setTime(world.timeAsTicks());
+        levelSettings.setEduEditionOffer(0);
+        levelSettings.setRainLevel(0f);
+        levelSettings.setLightningLevel(0f);
+        levelSettings.setCommandsEnabled(true);
+        Map<String, GameRule> gameRules = new HashMap<>();
+        gameRules.put("naturalregeneration", new BooleanGameRule(false, false));
+        levelSettings.setGameRules(gameRules);
+        levelSettings.setExperiments(new Experiments(Collections.emptyMap(), false));
+
         packet.setEntityId(entityId);
         packet.setRuntimeEntityId(entityId);
         packet.setGamemode(EnumConnectors.GAMEMODE_CONNECTOR.convert(this.entity.gamemode()).magicNumber());
+        Location location = this.entity.location();
+        packet.setLocation(location);
+        packet.setPitch(location.pitch());
+        packet.setYaw(location.yaw());
+        packet.setPlayerActorProperties(new NBTTagCompound(""));
+        packet.setLevelSettings(levelSettings);
+        packet.setLevelId("");
+        packet.setWorldName(server.motd());
+        packet.setWorldTemplateId("");
+        packet.setTrial(false);
+        packet.setPlayerMovementSettings(new PlayerMovementSettings(1, 0, false)); // PlayerAuthInputPacket
+        packet.setCurrentTick(0);
+        packet.setEnchantmentSeed(0);
+        packet.setCorrelationId("");
+        packet.setEnableNewInventorySystem(true);
+        packet.setServerSoftwareVersion(String.format("%s %s", "GoMint", this.server.version()));
+        packet.setWorldTemplateId("00000000-0000-0000-0000-000000000000");
+        packet.setEnableClientSideChunkGeneration(false);
+        packet.setBlockNetworkIdsAreHashes(false);
+        packet.setNetworkPermissions(new NetworkPermissions(true));
+        packet.setBlockPalette(new PacketBuffer(0));
+//        packet.setBlockPalette(server.blocks().packetCache()); // Blocks are now client-side
+        packet.setBlockPaletteChecksum(0);
+        packet.setItemPalette(server.items().getPacketCache());
 
-        Location spawn = this.entity.spawnLocation() != null ? this.entity.spawnLocation() : world.spawnLocation();
-
-        packet.setLocation(this.entity.location());
-        packet.setSpawn(spawn);
-
-        packet.setWorldGamemode(0);
-        packet.setDayCycleStopTime(world.timeAsTicks());
-
-        Biome biome = world.getBiome(spawn.toBlockPosition());
-        packet.setBiomeType(PacketStartGame.BIOME_TYPE_DEFAULT);
-        packet.setBiomeName(biome.biomeName());
-        packet.setDimension(0);
-
-        packet.setSeed(12345);
-        packet.setGenerator(1);
-        packet.setDifficulty(this.entity.world().difficulty().getDifficultyDegree());
-        packet.setLevelId(Base64.getEncoder().encodeToString(StringUtil.getUTF8Bytes(world.name())));
-        packet.setWorldName(world.name());
-        packet.setTemplateId("");
-        packet.setGamerules(world.gamerules());
-        packet.setTexturePacksRequired(false);
-        packet.setCommandsEnabled(true);
-        packet.setEnchantmentSeed(ThreadLocalRandom.current().nextInt());
-        packet.setCorrelationId(this.server.serverUniqueID().toString());
-
-        packet.setBlockPalette(this.server.blocks().packetCache());
-        packet.setItemPalette(this.server.items().getPacketCache());
-
-        // Set the new location
         this.addToSendQueue(packet);
     }
 
@@ -1023,20 +1040,20 @@ public class PlayerConnection implements ConnectionWithState {
         this.entity.setSpawnPlayers(true);
 
         // Send player list for all online players
-        List<PacketPlayerlist.Entry> listEntry = null;
+        List<PacketPlayerList.Entry> listEntry = null;
         for (io.gomint.entity.EntityPlayer player : this.server().onlinePlayers()) {
             if (!this.entity.isHidden(player) && !this.entity.equals(player)) {
                 if (listEntry == null) {
                     listEntry = new ArrayList<>();
                 }
 
-                listEntry.add(new PacketPlayerlist.Entry((EntityPlayer) player));
+                listEntry.add(new PacketPlayerList.Entry((EntityPlayer) player));
             }
         }
 
         if (listEntry != null) {
             // Send player list
-            PacketPlayerlist packetPlayerlist = new PacketPlayerlist();
+            PacketPlayerList packetPlayerlist = new PacketPlayerList();
             packetPlayerlist.setMode((byte) 0);
             packetPlayerlist.setEntries(listEntry);
             this.send(packetPlayerlist);

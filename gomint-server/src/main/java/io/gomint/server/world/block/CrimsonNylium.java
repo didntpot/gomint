@@ -10,7 +10,7 @@ import io.gomint.world.block.BlockType;
  * @author KingAli
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:crimson_nylium" )
+@RegisterInfo(sId = "minecraft:crimson_nylium")
 public class CrimsonNylium extends Block implements BlockCrimsonNylium {
 
     @Override

@@ -14,21 +14,21 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketConfirmChunkRadius extends Packet {
+public class PacketConfirmChunkRadius extends Packet implements PacketClientbound {
 
     private int chunkRadius;
 
     public PacketConfirmChunkRadius() {
-        super( Protocol.PACKET_CONFIRM_CHUNK_RADIUS );
+        super(Protocol.PACKET_CONFIRM_CHUNK_RADIUS);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeSignedVarInt( this.chunkRadius );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeSignedVarInt(this.chunkRadius);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.chunkRadius = buffer.readSignedVarInt();
     }
 

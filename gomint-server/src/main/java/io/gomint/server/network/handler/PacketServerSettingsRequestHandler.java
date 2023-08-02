@@ -17,7 +17,7 @@ import io.gomint.server.network.packet.PacketServerSettingsRequest;
 public class PacketServerSettingsRequestHandler implements PacketHandler<PacketServerSettingsRequest> {
 
     @Override
-    public void handle( PacketServerSettingsRequest packet, long currentTimeMillis, PlayerConnection connection ) {
+    public void handle(PacketServerSettingsRequest packet, long currentTimeMillis, PlayerConnection connection) {
         connection.entity().sendServerSettings();
     }
 

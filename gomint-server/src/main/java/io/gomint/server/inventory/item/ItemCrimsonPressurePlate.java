@@ -14,8 +14,8 @@ import io.gomint.server.registry.RegisterInfo;
  * @author geNAZt
  * @version 1.0
  */
-@RegisterInfo( sId = "minecraft:crimson_pressure_plate" )
-public class ItemCrimsonPressurePlate extends ItemStack< io.gomint.inventory.item.ItemCrimsonPressurePlate> implements io.gomint.inventory.item.ItemCrimsonPressurePlate {
+@RegisterInfo(sId = "minecraft:crimson_pressure_plate")
+public class ItemCrimsonPressurePlate extends ItemStack<io.gomint.inventory.item.ItemCrimsonPressurePlate> implements io.gomint.inventory.item.ItemCrimsonPressurePlate {
 
     @Override
     public ItemType itemType() {

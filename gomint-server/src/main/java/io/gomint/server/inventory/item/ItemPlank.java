@@ -5,7 +5,6 @@ import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.Block;
 import io.gomint.world.block.BlockPlank;
 import io.gomint.world.block.data.LogType;
-
 import java.time.Duration;
 
 /**
@@ -15,7 +14,7 @@ import java.time.Duration;
 @RegisterInfo(sId = ItemPlank.PLANK_ID1)
 @RegisterInfo(sId = ItemPlank.CRIMSON_ID)
 @RegisterInfo(sId = ItemPlank.WARPED_ID)
-public class ItemPlank extends ItemStack< io.gomint.inventory.item.ItemPlank> implements io.gomint.inventory.item.ItemPlank {
+public class ItemPlank extends ItemStack<io.gomint.inventory.item.ItemPlank> implements io.gomint.inventory.item.ItemPlank {
 
     /**
      * Item id for normal planks

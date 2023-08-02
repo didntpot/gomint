@@ -14,7 +14,7 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketRemoveObjective extends Packet {
+public class PacketRemoveObjective extends Packet implements PacketClientbound {
 
     private String objectiveName;
 
@@ -22,16 +22,16 @@ public class PacketRemoveObjective extends Packet {
      * Create new packet
      */
     public PacketRemoveObjective() {
-        super( Protocol.PACKET_REMOVE_OBJECTIVE );
+        super(Protocol.PACKET_REMOVE_OBJECTIVE);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeString( this.objectiveName );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeString(this.objectiveName);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
 
     }
 

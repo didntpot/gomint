@@ -8,7 +8,7 @@ import io.gomint.server.registry.RegisterInfo;
  * @version 1.0
  */
 @RegisterInfo(sId = "minecraft:iron_door")
-public class ItemIronDoor extends ItemStack< io.gomint.inventory.item.ItemIronDoor> implements io.gomint.inventory.item.ItemIronDoor {
+public class ItemIronDoor extends ItemStack<io.gomint.inventory.item.ItemIronDoor> implements io.gomint.inventory.item.ItemIronDoor {
 
     @Override
     public ItemType itemType() {

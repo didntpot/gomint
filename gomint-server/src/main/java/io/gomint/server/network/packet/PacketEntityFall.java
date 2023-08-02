@@ -14,6 +14,7 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
+@Deprecated
 public class PacketEntityFall extends Packet {
 
     private long entityId;
@@ -24,16 +25,16 @@ public class PacketEntityFall extends Packet {
      * Construct a new packet
      */
     public PacketEntityFall() {
-        super( Protocol.PACKET_ENTITY_FALL );
+        super(Protocol.PACKET_ENTITY_FALL);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
+    public void serialize(PacketBuffer buffer, int protocolID) {
 
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.entityId = buffer.readUnsignedVarLong();
         this.fallDistance = buffer.readLFloat();
         this.inVoid = buffer.readBoolean();

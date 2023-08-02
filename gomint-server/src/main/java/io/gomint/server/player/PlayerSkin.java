@@ -8,11 +8,6 @@
 package io.gomint.server.player;
 
 import io.gomint.server.util.Picture;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
-import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,6 +16,10 @@ import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  * @author BlackyPaw
@@ -67,11 +66,11 @@ public class PlayerSkin implements io.gomint.player.PlayerSkin {
         private final String productId;
 
         public PersonaPiece(JSONObject o) {
-            this.pieceId = (String) o.get( "PieceId" );
-            this.pieceType = (String) o.get( "PieceType" );
-            this.packId = (String) o.get( "PackId" );
-            this.defaultValue = (boolean) o.get( "IsDefault" );
-            this.productId = (String) o.get( "ProductId" );
+            this.pieceId = (String) o.get("PieceId");
+            this.pieceType = (String) o.get("PieceType");
+            this.packId = (String) o.get("PackId");
+            this.defaultValue = (boolean) o.get("IsDefault");
+            this.productId = (String) o.get("ProductId");
         }
 
         public String getPieceId() {

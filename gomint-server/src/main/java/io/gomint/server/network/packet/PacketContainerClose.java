@@ -16,17 +16,17 @@ public class PacketContainerClose extends Packet {
      * Construct new container close packet
      */
     public PacketContainerClose() {
-        super( Protocol.PACKET_CONTAINER_CLOSE );
+        super(Protocol.PACKET_CONTAINER_CLOSE);
     }
 
     @Override
-    public void serialize( PacketBuffer buffer, int protocolID ) {
-        buffer.writeByte( this.windowId );
-        buffer.writeBoolean( this.serverSided );
+    public void serialize(PacketBuffer buffer, int protocolID) {
+        buffer.writeByte(this.windowId);
+        buffer.writeBoolean(this.serverSided);
     }
 
     @Override
-    public void deserialize( PacketBuffer buffer, int protocolID ) {
+    public void deserialize(PacketBuffer buffer, int protocolID) {
         this.windowId = buffer.readByte();
         this.serverSided = buffer.readBoolean();
     }

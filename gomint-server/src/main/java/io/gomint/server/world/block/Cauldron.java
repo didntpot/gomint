@@ -25,7 +25,8 @@ import io.gomint.world.block.data.LiquidType;
 public class Cauldron extends Block implements BlockCauldron {
 
     private static final String[] FILL_LEVEL_KEY = new String[]{"fill_level"};
-    private static final ProgressBlockState FILL_LEVEL = new ProgressBlockState(() -> FILL_LEVEL_KEY, 6, aVoid -> {});
+    private static final ProgressBlockState FILL_LEVEL = new ProgressBlockState(() -> FILL_LEVEL_KEY, 6, aVoid -> {
+    });
     private static final String[] LIQUID_KEY = new String[]{"cauldron_liquid"};
     private static final EnumBlockState<LiquidTypeMagic, String> LIQUID = new EnumBlockState<>(v -> LIQUID_KEY, LiquidTypeMagic.values(), v -> v.liquid, s -> {
         for (LiquidTypeMagic value : LiquidTypeMagic.values()) {
@@ -43,6 +44,7 @@ public class Cauldron extends Block implements BlockCauldron {
 
         private final String blockId;
         private final String liquid;
+
         LiquidTypeMagic(String blockId, String liquid) {
             this.blockId = blockId;
             this.liquid = liquid;

@@ -22,6 +22,7 @@ public class PrismarineSlab extends Slab<BlockPrismarineSlab> implements BlockPr
         BRICK("prismarine_brick");
 
         private final String type;
+
         PrismarineMagicType(String type) {
             this.type = type;
         }

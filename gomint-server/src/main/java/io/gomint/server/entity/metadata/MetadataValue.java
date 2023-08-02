@@ -21,9 +21,9 @@ public abstract class MetadataValue {
      * @param buffer The buffer to serialize into
      * @param index  The index of this metadata value
      */
-    void serialize( PacketBuffer buffer, int index ) {
-        buffer.writeUnsignedVarInt( index );
-        buffer.writeUnsignedVarInt( this.getTypeId() );
+    void serialize(PacketBuffer buffer, int index) {
+        buffer.writeUnsignedVarInt(index);
+        buffer.writeUnsignedVarInt(this.getTypeId());
     }
 
     /**
@@ -31,7 +31,7 @@ public abstract class MetadataValue {
      *
      * @param buffer The buffer to deserialize from
      */
-    void deserialize( PacketBuffer buffer ) {
+    void deserialize(PacketBuffer buffer) {
 
     }
 

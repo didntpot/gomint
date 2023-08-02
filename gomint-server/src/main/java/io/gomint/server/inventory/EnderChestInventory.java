@@ -55,8 +55,8 @@ public class EnderChestInventory extends ContainerInventory<io.gomint.inventory.
 
             PacketBlockEvent blockEvent = new PacketBlockEvent();
             blockEvent.setPosition(position);
-            blockEvent.setData1(1);
-            blockEvent.setData2(2);
+            blockEvent.setEventType(1);
+            blockEvent.setEventData(2);
 
             world.sendToVisible(position, blockEvent, entity -> true);
             world.playSound(position.toVector().add(0.5f, 0.5f, 0.5f), Sound.ENDERCHEST_OPEN, (byte) 1);
@@ -72,8 +72,8 @@ public class EnderChestInventory extends ContainerInventory<io.gomint.inventory.
 
             PacketBlockEvent blockEvent = new PacketBlockEvent();
             blockEvent.setPosition(position);
-            blockEvent.setData1(1);
-            blockEvent.setData2(0);
+            blockEvent.setEventType(1);
+            blockEvent.setEventData(0);
 
             world.sendToVisible(position, blockEvent, entity -> true);
             world.playSound(position.toVector().add(0.5f, 0.5f, 0.5f), Sound.ENDERCHEST_CLOSED, (byte) 1);
