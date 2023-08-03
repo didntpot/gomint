@@ -246,6 +246,10 @@ public class PacketLoginHandler implements PacketHandler<PacketLogin> {
                     return;
                 }
 
+                // FIXME: Current Minecraft uses GCM to enable encryption between server and client
+                // the current implementation still uses CFB8, so we won't enable this until we get proper implementation
+                // See: https://github.com/gomint/crypto/issues/2
+
 //                if (this.keyFactory.keyPair() == null) {
                     // No encryption
                     connection.sendPlayState(PacketPlayState.PlayState.LOGIN_SUCCESS);
