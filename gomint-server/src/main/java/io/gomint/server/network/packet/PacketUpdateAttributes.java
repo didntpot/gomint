@@ -24,19 +24,30 @@ public class PacketUpdateAttributes extends Packet implements PacketClientbound 
     public void serialize(PacketBuffer buffer, int protocolID) {
         buffer.writeUnsignedVarLong(this.entityId);
 
-        if (this.entries == null) {
-            buffer.writeUnsignedVarInt(0);
-        } else {
-            buffer.writeUnsignedVarInt(this.entries.size());
-            for (AttributeInstance entry : this.entries) {
-                buffer.writeLFloat(entry.getMinValue());
-                buffer.writeLFloat(entry.getMaxValue());
-                buffer.writeLFloat(entry.getValue());
-                buffer.writeLFloat(entry.getDefaultValue());
-                buffer.writeString(entry.getKey());
-            }
-        }
+//        if (this.entries == null) {
+//            buffer.writeUnsignedVarInt(0);
+//        } else {
+//            buffer.writeUnsignedVarInt(this.entries.size());
+//            for (AttributeInstance entry : this.entries) {
+//                buffer.writeLFloat(entry.getMinValue());
+//                buffer.writeLFloat(entry.getMaxValue());
+//                buffer.writeLFloat(entry.getValue());
+//                buffer.writeLFloat(entry.getDefaultValue());
+//                buffer.writeString(entry.getKey());
+//            }
+//        }
+        buffer.writeUnsignedVarInt(this.entries.size());
+        for (AttributeInstance instance : this.entries) {
+            buffer.writeLFloat(instance.getMinValue());
+            buffer.writeLFloat(instance.getMaxValue());
+            buffer.writeLFloat(instance.getValue());
+            buffer.writeLFloat(instance.getDefaultValue());
+            buffer.writeString(instance.getKey());
 
+            // TODO: Attribute modifiers
+
+            buffer.writeUnsignedVarInt(0);
+        }
         buffer.writeUnsignedVarLong(this.tick);
     }
 

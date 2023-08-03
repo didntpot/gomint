@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import javax.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -124,8 +125,21 @@ public abstract class Packet {
     public static void writeItemStackWithID(ItemStack<?> itemStack, PacketBuffer buffer) {
         io.gomint.server.inventory.item.ItemStack<?> serverItemStack = (io.gomint.server.inventory.item.ItemStack<?>) itemStack;
 
-        buffer.writeSignedVarInt(serverItemStack.stackId());
-        writeItemStack(itemStack, buffer);
+        if (serverItemStack.stackId() == 0) {
+            buffer.writeSignedVarInt(0);
+            return;
+        }
+
+        writeItemStack(itemStack, buffer, serverItemStack.stackId());
+    }
+
+    /**
+     * Write a item stack without stack id to the packet buffer
+     * @param itemStack which should be written
+     * @param buffer which should be used to write to
+     */
+    public static void writeItemStack(ItemStack<?> itemStack, PacketBuffer buffer) {
+        writeItemStack(itemStack, buffer, null);
     }
 
     /**
@@ -133,8 +147,9 @@ public abstract class Packet {
      *
      * @param itemStack which should be written
      * @param buffer    which should be used to write to
+     * @param stackId   the item stack id if this should be written
      */
-    public static void writeItemStack(ItemStack<?> itemStack, PacketBuffer buffer) {
+    public static void writeItemStack(ItemStack<?> itemStack, PacketBuffer buffer, @Nullable Integer stackId) {
         if (itemStack instanceof ItemAir) {
             buffer.writeSignedVarInt(0);
             return;
@@ -143,7 +158,16 @@ public abstract class Packet {
         io.gomint.server.inventory.item.ItemStack<?> serverItemStack = (io.gomint.server.inventory.item.ItemStack<?>) itemStack;
 
         buffer.writeSignedVarInt(serverItemStack.runtimeID());
-        buffer.writeSignedVarInt(((serverItemStack.data() & 0x7fff) << 8) + (itemStack.amount() & 0xff));
+//        buffer.writeSignedVarInt(((serverItemStack.data() & 0x7fff) << 8) + (itemStack.amount() & 0xff));
+        buffer.writeLShort(serverItemStack.amount());
+        buffer.writeUnsignedVarInt(serverItemStack.data());
+
+        if (stackId != null) {
+            buffer.writeBoolean(stackId != 0);
+            if (stackId != 0) {
+                buffer.writeSignedVarInt(stackId);
+            }
+        }
 
         NBTTagCompound compound = serverItemStack.nbtData();
         if (compound == null) {
@@ -164,8 +188,10 @@ public abstract class Packet {
         }
 
         // canPlace and canBreak
-        buffer.writeSignedVarInt(0);
-        buffer.writeSignedVarInt(0);
+        buffer.writeLInt(0); // canPlace
+        buffer.writeLInt(0); // canBreak
+
+        // TODO: Shield blocking tick
 
         ((io.gomint.server.inventory.item.ItemStack<?>) itemStack).writeAdditionalData(buffer);
     }
@@ -330,11 +356,6 @@ public abstract class Packet {
      * @param buffer     which should be written to
      */
     void writeItemStacksWithIDs(ItemStack<?>[] itemStacks, PacketBuffer buffer) {
-        if (itemStacks == null || itemStacks.length == 0) {
-            buffer.writeUnsignedVarInt(0);
-            return;
-        }
-
         buffer.writeUnsignedVarInt(itemStacks.length);
 
         for (ItemStack<?> itemStack : itemStacks) {

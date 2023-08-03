@@ -25,11 +25,15 @@ public class PacketCreativeContent extends Packet implements PacketClientbound {
 
     @Override
     public void serialize(PacketBuffer buffer, int protocolID) {
-        buffer.writeUnsignedVarInt(this.items.length);
-        for (ItemStack<?> item : this.items) {
-            buffer.writeUnsignedVarInt(((io.gomint.server.inventory.item.ItemStack<?>) item).stackId());
-            writeItemStack(item, buffer);
-        }
+        buffer.writeUnsignedVarInt(0);
+//        buffer.writeUnsignedVarInt(this.items.length);
+//        for (ItemStack<?> item : this.items) {
+////            buffer.writeUnsignedVarInt(((io.gomint.server.inventory.item.ItemStack<?>) item).stackId());
+////            writeItemStack(item, buffer);
+//            io.gomint.server.inventory.item.ItemStack<?> serverItem = (io.gomint.server.inventory.item.ItemStack<?>) item;
+//            buffer.writeUnsignedVarInt(serverItem.stackId());
+//            writeItemStack(serverItem, buffer);
+//        }
     }
 
     @Override

@@ -3,13 +3,12 @@ package io.gomint.server.network.packet;
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.math.Location;
 import io.gomint.server.network.Protocol;
-import io.gomint.server.network.packet.types.LevelSettings;
-import io.gomint.server.network.packet.types.NetworkPermissions;
-import io.gomint.server.network.packet.types.PlayerMovementSettings;
+import io.gomint.server.network.packet.types.*;
 import io.gomint.taglib.NBTTagCompound;
 import io.gomint.taglib.NBTWriter;
 import java.io.IOException;
 import java.nio.ByteOrder;
+import java.util.UUID;
 
 /**
  * @author geNAZt
@@ -46,16 +45,16 @@ public class PacketStartGame extends Packet implements PacketClientbound {
     private String correlationId;
     private boolean enableNewInventorySystem = true; // TODO: use new inventory system
     private String serverSoftwareVersion;
-    private String worldTemplateId;
+    private UUID worldTemplateId;
     private boolean enableClientSideChunkGeneration;
     private boolean blockNetworkIdsAreHashes; // fnv32 hashed block ids
     private NetworkPermissions networkPermissions;
 
     // Lookup tables
-    private PacketBuffer blockPalette;
+    private BlockPaletteEntry[] blockPalettes;
     private int blockPaletteChecksum;
 
-    private PacketBuffer itemPalette;
+    private ItemPaletteEntry[] itemPalettes;
 
 
     /**
@@ -85,11 +84,9 @@ public class PacketStartGame extends Packet implements PacketClientbound {
         buffer.writeLLong(this.currentTick);
         buffer.writeSignedVarInt(this.enchantmentSeed);
 
-        buffer.writeUnsignedVarInt(this.blockPalette.getRemaining());
-        buffer.writeBytes(this.blockPalette.getBuffer());
+        this.writeBlockPalettes(buffer);
 
-        buffer.writeUnsignedVarInt(this.itemPalette.getRemaining());
-        buffer.writeBytes(this.itemPalette.getBuffer());
+        this.writeItemPalettes(buffer);
 
         buffer.writeString(this.correlationId);
         buffer.writeBoolean(this.enableNewInventorySystem);
@@ -102,10 +99,33 @@ public class PacketStartGame extends Packet implements PacketClientbound {
             throw new IllegalArgumentException("Unable to write NBT", e);
         }
         buffer.writeLLong(this.blockPaletteChecksum);
-        buffer.writeString(this.worldTemplateId);
+        buffer.writeUUID(this.worldTemplateId); // UUID
         buffer.writeBoolean(this.enableClientSideChunkGeneration);
         buffer.writeBoolean(this.blockNetworkIdsAreHashes);
         this.networkPermissions.encode(buffer);
+    }
+
+    private void writeBlockPalettes(PacketBuffer buffer) {
+        buffer.writeUnsignedVarInt(this.blockPalettes.length);
+        NBTWriter writer = new NBTWriter(buffer.getBuffer(), ByteOrder.LITTLE_ENDIAN);
+        writer.setUseVarint(true);
+        for (BlockPaletteEntry entry : this.blockPalettes) {
+            buffer.writeString(entry.getName());
+            try {
+                writer.write(entry.getStates());
+            } catch (IOException e) {
+                throw new IllegalArgumentException("Unable to write NBT", e);
+            }
+        }
+    }
+
+    private void writeItemPalettes(PacketBuffer buffer) {
+        buffer.writeUnsignedVarInt(this.itemPalettes.length);
+        for (ItemPaletteEntry entry : this.itemPalettes) {
+            buffer.writeString(entry.getStringId());
+            buffer.writeLShort(entry.getNumericId());
+            buffer.writeBoolean(entry.isComponentBased());
+        }
     }
 
     @Override
@@ -186,7 +206,7 @@ public class PacketStartGame extends Packet implements PacketClientbound {
         return this.serverSoftwareVersion;
     }
 
-    public String getWorldTemplateId() {
+    public UUID getWorldTemplateId() {
         return this.worldTemplateId;
     }
 
@@ -202,16 +222,16 @@ public class PacketStartGame extends Packet implements PacketClientbound {
         return this.networkPermissions;
     }
 
-    public PacketBuffer getBlockPalette() {
-        return this.blockPalette;
+    public BlockPaletteEntry[] getBlockPalettes() {
+        return this.blockPalettes;
     }
 
     public int getBlockPaletteChecksum() {
         return this.blockPaletteChecksum;
     }
 
-    public PacketBuffer getItemPalette() {
-        return this.itemPalette;
+    public ItemPaletteEntry[] getItemPalettes() {
+        return this.itemPalettes;
     }
 
     public void setEntityId(long entityId) {
@@ -286,7 +306,7 @@ public class PacketStartGame extends Packet implements PacketClientbound {
         this.serverSoftwareVersion = serverSoftwareVersion;
     }
 
-    public void setWorldTemplateId(String worldTemplateId) {
+    public void setWorldTemplateId(UUID worldTemplateId) {
         this.worldTemplateId = worldTemplateId;
     }
 
@@ -302,15 +322,15 @@ public class PacketStartGame extends Packet implements PacketClientbound {
         this.networkPermissions = networkPermissions;
     }
 
-    public void setBlockPalette(PacketBuffer blockPalette) {
-        this.blockPalette = blockPalette;
+    public void setBlockPalettes(BlockPaletteEntry[] entries) {
+        this.blockPalettes = entries;
     }
 
     public void setBlockPaletteChecksum(int blockPaletteChecksum) {
         this.blockPaletteChecksum = blockPaletteChecksum;
     }
 
-    public void setItemPalette(PacketBuffer itemPalette) {
-        this.itemPalette = itemPalette;
+    public void setItemPalettes(ItemPaletteEntry[] entries) {
+        this.itemPalettes = entries;
     }
 }

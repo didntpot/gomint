@@ -925,14 +925,16 @@ public class PlayerConnection implements ConnectionWithState {
         packet.setCorrelationId("");
         packet.setEnableNewInventorySystem(true);
         packet.setServerSoftwareVersion(String.format("%s %s", "GoMint", this.server.version()));
-        packet.setWorldTemplateId("00000000-0000-0000-0000-000000000000");
+        packet.setWorldTemplateId(UUID.fromString("00000000-0000-0000-0000-000000000000"));
         packet.setEnableClientSideChunkGeneration(false);
         packet.setBlockNetworkIdsAreHashes(false);
         packet.setNetworkPermissions(new NetworkPermissions(true));
-        packet.setBlockPalette(new PacketBuffer(0));
+        packet.setBlockPalettes(new BlockPaletteEntry[]{});
+//        packet.setBlockPalette(new PacketBuffer(0));
 //        packet.setBlockPalette(server.blocks().packetCache()); // Blocks are now client-side
         packet.setBlockPaletteChecksum(0);
-        packet.setItemPalette(server.items().getPacketCache());
+//        packet.setItemPalette(server.items().getPacketCache());;
+        packet.setItemPalettes(new ItemPaletteEntry[]{});
 
         this.addToSendQueue(packet);
     }
