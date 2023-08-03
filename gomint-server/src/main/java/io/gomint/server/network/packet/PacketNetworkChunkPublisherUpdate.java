@@ -33,9 +33,13 @@ public class PacketNetworkChunkPublisherUpdate extends Packet implements PacketC
         writeSignedBlockPosition(this.blockPosition, buffer);
         buffer.writeUnsignedVarInt(this.radius);
 
-        buffer.writeLInt(this.savedChunks.length);
-        for (ChunkPosition savedChunk : this.savedChunks) {
-            savedChunk.write(buffer);
+        if (this.savedChunks != null) {
+            buffer.writeLInt(this.savedChunks.length);
+            for (ChunkPosition savedChunk : this.savedChunks) {
+                savedChunk.write(buffer);
+            }
+        } else {
+            buffer.writeLInt(0);
         }
     }
 

@@ -90,34 +90,40 @@ public class PacketAvailableCommands extends Packet implements PacketClientbound
         Map<String, Integer> softEnumIndexes = new HashMap<>();
         Map<String, ChainedSubCommandData> allChainedSubCommandData = new HashMap<>();
         Map<String, Integer> chainedSubCommandDataIndexes = new HashMap<>();
-        for (CommandEnum commandEnum : hardcodedEnums) {
-            this.addEnumFn(commandEnum, enums, softEnums, enumIndexes, softEnumIndexes, enumValueIndexes);
-        }
-        for (CommandEnum commandEnum : this.softEnums) {
-            this.addEnumFn(commandEnum, enums, softEnums, enumIndexes, softEnumIndexes, enumValueIndexes);
-        }
-        for (CommandData commandData : this.commandData) {
-            if (commandData.aliases() != null) {
-                this.addEnumFn(commandData.aliases(), enums, softEnums, enumIndexes, softEnumIndexes, enumValueIndexes);
+        if (this.hardcodedEnums != null) {
+            for (CommandEnum commandEnum : hardcodedEnums) {
+                this.addEnumFn(commandEnum, enums, softEnums, enumIndexes, softEnumIndexes, enumValueIndexes);
             }
-            for (CommandOverload overload : commandData.overloads()) {
-                for (CommandData.Parameter parameter : overload.parameters()) {
-                    if (parameter.commandEnum() != null) {
-                        this.addEnumFn(parameter.commandEnum(), enums, softEnums, enumIndexes, softEnumIndexes, enumValueIndexes);
-                    }
+        }
+        if (this.softEnums != null) {
+            for (CommandEnum commandEnum : this.softEnums) {
+                this.addEnumFn(commandEnum, enums, softEnums, enumIndexes, softEnumIndexes, enumValueIndexes);
+            }
+        }
+        if (this.commandData != null) {
+            for (CommandData commandData : this.commandData) {
+                if (commandData.aliases() != null) {
+                    this.addEnumFn(commandData.aliases(), enums, softEnums, enumIndexes, softEnumIndexes, enumValueIndexes);
+                }
+                for (CommandOverload overload : commandData.overloads()) {
+                    for (CommandData.Parameter parameter : overload.parameters()) {
+                        if (parameter.commandEnum() != null) {
+                            this.addEnumFn(parameter.commandEnum(), enums, softEnums, enumIndexes, softEnumIndexes, enumValueIndexes);
+                        }
 
-                    if (parameter.postfix() != null) {
-                        postfixIndexes.put(parameter.postfix(), postfixIndexes.getOrDefault(parameter.postfix(), postfixIndexes.size()));
+                        if (parameter.postfix() != null) {
+                            postfixIndexes.put(parameter.postfix(), postfixIndexes.getOrDefault(parameter.postfix(), postfixIndexes.size()));
+                        }
                     }
                 }
-            }
-            for (ChainedSubCommandData chainedSubCommandData : commandData.chainedSubCommandData()) {
-                if (!allChainedSubCommandData.containsKey(chainedSubCommandData.name())) {
-                    allChainedSubCommandData.put(chainedSubCommandData.name(), chainedSubCommandData);
-                    chainedSubCommandDataIndexes.put(chainedSubCommandData.name(), chainedSubCommandDataIndexes.size());
+                for (ChainedSubCommandData chainedSubCommandData : commandData.chainedSubCommandData()) {
+                    if (!allChainedSubCommandData.containsKey(chainedSubCommandData.name())) {
+                        allChainedSubCommandData.put(chainedSubCommandData.name(), chainedSubCommandData);
+                        chainedSubCommandDataIndexes.put(chainedSubCommandData.name(), chainedSubCommandDataIndexes.size());
 
-                    for (ChainedSubCommandData.ChainedSubCommandValue value : chainedSubCommandData.values()) {
-                        chainedSubCommandDataIndexes.put(value.name(), chainedSubCommandDataIndexes.size());
+                        for (ChainedSubCommandData.ChainedSubCommandValue value : chainedSubCommandData.values()) {
+                            chainedSubCommandDataIndexes.put(value.name(), chainedSubCommandDataIndexes.size());
+                        }
                     }
                 }
             }
@@ -153,9 +159,13 @@ public class PacketAvailableCommands extends Packet implements PacketClientbound
             }
         }
 
-        buffer.writeUnsignedVarInt(this.commandData.size());
-        for (CommandData data : this.commandData) {
-            this.putCommandData(data, enumIndexes, softEnumIndexes, postfixIndexes, chainedSubCommandDataIndexes, buffer);
+        if (this.commandData != null) {
+            buffer.writeUnsignedVarInt(this.commandData.size());
+            for (CommandData data : this.commandData) {
+                this.putCommandData(data, enumIndexes, softEnumIndexes, postfixIndexes, chainedSubCommandDataIndexes, buffer);
+            }
+        } else {
+            buffer.writeUnsignedVarInt(0);
         }
 
         buffer.writeUnsignedVarInt(softEnums.size());
@@ -163,9 +173,13 @@ public class PacketAvailableCommands extends Packet implements PacketClientbound
             this.putSoftEnum(commandEnum, buffer);
         }
 
-        buffer.writeUnsignedVarInt(this.enumConstraints.size());
-        for (CommandEnumConstraint constraint : this.enumConstraints) {
-            this.putEnumConstraint(constraint, enumIndexes, enumValueIndexes, buffer);
+        if (this.enumConstraints != null) {
+            buffer.writeUnsignedVarInt(this.enumConstraints.size());
+            for (CommandEnumConstraint constraint : this.enumConstraints) {
+                this.putEnumConstraint(constraint, enumIndexes, enumValueIndexes, buffer);
+            }
+        } else {
+            buffer.writeUnsignedVarInt(0);
         }
     }
 
@@ -201,10 +215,10 @@ public class PacketAvailableCommands extends Packet implements PacketClientbound
     }
 
     protected void putEnumConstraint(
-        CommandEnumConstraint constraint,
-        Map<String, Integer> enumIndexes,
-        Map<String, Integer> enumValueIndexes,
-        PacketBuffer buffer
+            CommandEnumConstraint constraint,
+            Map<String, Integer> enumIndexes,
+            Map<String, Integer> enumValueIndexes,
+            PacketBuffer buffer
     ) {
         buffer.writeLInt(enumValueIndexes.get(constraint.affectedValue()));
         buffer.writeLInt(enumIndexes.get(constraint.commandEnum().enumName()));
@@ -215,12 +229,12 @@ public class PacketAvailableCommands extends Packet implements PacketClientbound
     }
 
     protected void putCommandData(
-        CommandData data,
-        Map<String, Integer> enumIndexes,
-        Map<String, Integer> softEnumIndexes,
-        Map<String, Integer> postfixIndexes,
-        Map<String, Integer> chainedSubCommandDataIndexes,
-        PacketBuffer buffer
+            CommandData data,
+            Map<String, Integer> enumIndexes,
+            Map<String, Integer> softEnumIndexes,
+            Map<String, Integer> postfixIndexes,
+            Map<String, Integer> chainedSubCommandDataIndexes,
+            PacketBuffer buffer
     ) {
         buffer.writeString(data.name());
         buffer.writeString(data.description());
@@ -264,12 +278,12 @@ public class PacketAvailableCommands extends Packet implements PacketClientbound
     }
 
     private void addEnumFn(
-        CommandEnum commandEnum,
-        Map<String, CommandEnum> enums,
-        Map<String, CommandEnum> softEnums,
-        Map<String, Integer> enumIndexes,
-        Map<String, Integer> softEnumIndexes,
-        Map<String, Integer> enumValueIndexes
+            CommandEnum commandEnum,
+            Map<String, CommandEnum> enums,
+            Map<String, CommandEnum> softEnums,
+            Map<String, Integer> enumIndexes,
+            Map<String, Integer> softEnumIndexes,
+            Map<String, Integer> enumValueIndexes
     ) {
         String enumName = commandEnum.enumName();
         if (commandEnum.isSoft()) {

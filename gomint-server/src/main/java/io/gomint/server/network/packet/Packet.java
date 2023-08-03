@@ -15,6 +15,7 @@ import io.gomint.math.BlockPosition;
 import io.gomint.math.Vector;
 import io.gomint.server.GoMintServer;
 import io.gomint.server.entity.EntityLink;
+import io.gomint.server.network.Protocol;
 import io.gomint.server.network.packet.types.gamerule.*;
 import io.gomint.server.network.packet.types.recipe.*;
 import io.gomint.server.network.packet.util.PacketDecodeException;
@@ -452,6 +453,7 @@ public abstract class Packet {
 
     void writeSerializedSkin(PlayerSkin skin, PacketBuffer buffer) {
         buffer.writeString(skin.id());
+        buffer.writeString(""); // PlayFab Id
         buffer.writeString(skin.resourcePatch());
         writeSkinImageData(buffer, skin.imageWidth(), skin.imageHeight(), skin.data());
 
@@ -470,10 +472,8 @@ public abstract class Packet {
 
         writeSkinImageData(buffer, skin.capeImageWidth(), skin.capeImageHeight(), skin.capeData());
         buffer.writeString(skin.geometry());
+        buffer.writeString(Protocol.MINECRAFT_PE_NETWORK_VERSION); // geometry data engine version
         buffer.writeString(skin.animationData());
-        buffer.writeBoolean(skin.premium());
-        buffer.writeBoolean(skin.persona());
-        buffer.writeBoolean(skin.personaCapeOnClassic());
         buffer.writeString(skin.capeId());
         buffer.writeString(skin.fullId());
         buffer.writeString(skin.armSize());
@@ -511,6 +511,11 @@ public abstract class Packet {
         } else {
             buffer.writeLInt(0);
         }
+        buffer.writeBoolean(skin.premium());
+        buffer.writeBoolean(skin.persona());
+        buffer.writeBoolean(skin.personaCapeOnClassic());
+        buffer.writeBoolean(true); // isPrimaryUser
+        buffer.writeBoolean(true); // isOverride
     }
 
     private void writeSkinImageData(PacketBuffer buffer, int imageWidth, int imageHeight, byte[] data) {

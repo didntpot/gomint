@@ -86,7 +86,7 @@ public class CommandPreprocessor {
             String lname = command.getName().toLowerCase();
             Set<String> aliases = command.getAlias();
             CommandEnum aliasObj = null;
-            if (!aliases.isEmpty()) {
+            if (aliases != null && !aliases.isEmpty()) {
                 if (!aliases.contains(lname)) {
                     aliases.add(lname);
                 }

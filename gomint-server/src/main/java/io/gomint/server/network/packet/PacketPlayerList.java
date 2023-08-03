@@ -57,10 +57,10 @@ public class PacketPlayerList extends Packet implements PacketClientbound {
         }
 
         if (this.mode == 0) {
-            //for (int i = 0; i < this.entries.size(); i++) {
+            for (int i = 0; i < this.entries.size(); i++) {
             // Is skin trusted
-            buffer.writeBoolean(true);
-            //}
+                buffer.writeBoolean(true);
+            }
         }
     }
 

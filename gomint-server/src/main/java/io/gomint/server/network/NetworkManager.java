@@ -119,6 +119,7 @@ public class NetworkManager {
         this.packetHandlers[Protocol.PACKET_CLIENT_CACHE_BLOB_STATUS & 0xff] = new PacketClientCacheBlobStatusHandler();
         this.packetHandlers[Protocol.PACKET_ITEM_STACK_REQUEST & 0xff] = new PacketItemStackRequestHandler();
         this.packetHandlers[Protocol.PACKET_REQUEST_NETWORK_SETTINGS] = new PacketRequestNetworkSettingsHandler();
+        this.packetHandlers[Protocol.PACKET_SET_LOCAL_PLAYER_INITIALIZED & 0xff] = new PacketSetLocalPlayerAsInitializedHandler();
     }
 
     // ======================================= PUBLIC API ======================================= //
