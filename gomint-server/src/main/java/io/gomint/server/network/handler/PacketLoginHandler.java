@@ -63,23 +63,7 @@ public class PacketLoginHandler implements PacketHandler<PacketLogin> {
         connection.inputProcessor().preallocSize(500 * 1024);
 
         // Check versions
-        LOGGER.debug("Trying to login with protocol version: " + packet.getProtocol());
-        if (packet.getProtocol() != Protocol.MINECRAFT_PE_PROTOCOL_VERSION
-            && packet.getProtocol() != Protocol.MINECRAFT_PE_BETA_PROTOCOL_VERSION
-            && packet.getProtocol() != Protocol.MINECRAFT_PE_NEXT_STABLE_PROTOCOL_VERSION) {
-            String message;
-            if (packet.getProtocol() < Protocol.MINECRAFT_PE_PROTOCOL_VERSION) {
-                message = "disconnectionScreen.outdatedClient";
-                connection.sendPlayState(PacketPlayState.PlayState.LOGIN_FAILED_CLIENT);
-            } else {
-                message = "disconnectionScreen.outdatedServer";
-                connection.sendPlayState(PacketPlayState.PlayState.LOGIN_FAILED_SERVER);
-                LOGGER.info("Player did try to login with protocol version {}", packet.getProtocol());
-            }
-
-            connection.disconnect(message);
-            return;
-        }
+        LOGGER.info("Trying to login with protocol version: " + packet.getProtocol());
 
         // Set the protocol id into the connection
         connection.protocolID(packet.getProtocol());
@@ -153,7 +137,7 @@ public class PacketLoginHandler implements PacketHandler<PacketLogin> {
 
                 // Check for names
                 String name = chainValidator.getUsername();
-                if (name.length() >= 1 && name.length() <= 16) {
+                if (!name.isEmpty() && name.length() <= 16) {
                     if (!NAME_PATTERN.matcher(name).matches()) {
                         connection.disconnect("disconnectionScreen.invalidName");
                         return;
@@ -262,44 +246,44 @@ public class PacketLoginHandler implements PacketHandler<PacketLogin> {
                     return;
                 }
 
-                if (this.keyFactory.keyPair() == null) {
+//                if (this.keyFactory.keyPair() == null) {
                     // No encryption
                     connection.sendPlayState(PacketPlayState.PlayState.LOGIN_SUCCESS);
                     connection.state(PlayerConnectionState.RESOURCE_PACK);
                     connection.initWorldAndResourceSend();
-                } else {
-                    // Generating EDCH secrets can take up huge amount of time
-                    connection.server().executorService().execute(() -> {
-                        connection.server().watchdog().add(2, TimeUnit.SECONDS);
-
-                        // Enable encryption
-                        EncryptionHandler encryptionHandler = new EncryptionHandler(this.keyFactory);
-                        encryptionHandler.supplyClientKey(chainValidator.getClientPublicKey());
-                        if (encryptionHandler.beginClientsideEncryption()) {
-                            // Get the needed data for the encryption start
-                            connection.state(PlayerConnectionState.ENCRPYTION_INIT);
-
-                            byte[] key = encryptionHandler.key();
-                            byte[] iv = encryptionHandler.iv();
-
-                            // We need every packet to be encrypted from now on
-                            connection.inputProcessor().enableCrypto(key, iv);
-
-                            // Forge a JWT
-                            String encryptionRequestJWT = FORGER.forge(encryptionHandler.serverPublic(), encryptionHandler.serverPrivate(), encryptionHandler.clientSalt());
-
-                            // Tell the client to enable encryption after sending that packet we also enable it
-                            PacketEncryptionRequest packetEncryptionRequest = new PacketEncryptionRequest();
-                            packetEncryptionRequest.setJwt(encryptionRequestJWT);
-                            connection.send(packetEncryptionRequest, aVoid -> {
-                                connection.outputProcessor().enableCrypto(key, iv);
-                            });
-                        }
-
-                        connection.server().watchdog().done();
-                    });
-
-                }
+//                } else {
+//                    // Generating EDCH secrets can take up huge amount of time
+//                    connection.server().executorService().execute(() -> {
+//                        connection.server().watchdog().add(2, TimeUnit.SECONDS);
+//
+//                        // Enable encryption
+//                        EncryptionHandler encryptionHandler = new EncryptionHandler(this.keyFactory);
+//                        encryptionHandler.supplyClientKey(chainValidator.getClientPublicKey());
+//                        if (encryptionHandler.beginClientsideEncryption()) {
+//                            // Get the needed data for the encryption start
+//                            connection.state(PlayerConnectionState.ENCRPYTION_INIT);
+//
+//                            byte[] key = encryptionHandler.key();
+//                            byte[] iv = encryptionHandler.iv();
+//
+//                            // We need every packet to be encrypted from now on
+//                            connection.inputProcessor().enableCrypto(key, iv);
+//
+//                            // Forge a JWT
+//                            String encryptionRequestJWT = FORGER.forge(encryptionHandler.serverPublic(), encryptionHandler.serverPrivate(), encryptionHandler.clientSalt());
+//
+//                            // Tell the client to enable encryption after sending that packet we also enable it
+//                            PacketEncryptionRequest packetEncryptionRequest = new PacketEncryptionRequest();
+//                            packetEncryptionRequest.setJwt(encryptionRequestJWT);
+//                            connection.send(packetEncryptionRequest, aVoid -> {
+//                                connection.outputProcessor().enableCrypto(key, iv);
+//                            });
+//                        }
+//
+//                        connection.server().watchdog().done();
+//                    });
+//
+//                }
             }, 1, -1, TimeUnit.MILLISECONDS));
         });
     }

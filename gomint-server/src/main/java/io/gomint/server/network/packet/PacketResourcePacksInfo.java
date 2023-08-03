@@ -9,7 +9,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketResourcePacksInfo extends Packet {
+public class PacketResourcePacksInfo extends Packet implements PacketClientbound {
 
     private boolean mustAccept;
     private boolean hasScripts;

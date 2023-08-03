@@ -15,7 +15,7 @@ import java.nio.ByteOrder;
 
 public class PacketItemComponent extends Packet implements PacketClientbound {
 
-    private ItemComponentPacketEntry[] entries;
+    private ItemComponentPacketEntry[] entries = new ItemComponentPacketEntry[0];
 
     public PacketItemComponent() {
         super(Protocol.PACKET_ITEM_COMPONENT);

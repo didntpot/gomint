@@ -917,7 +917,7 @@ public class PlayerConnection implements ConnectionWithState {
         packet.setLevelSettings(levelSettings);
         packet.setLevelId("");
         packet.setWorldName(server.motd());
-        packet.setWorldTemplateId("");
+        packet.setTemplateId("");
         packet.setTrial(false);
         packet.setPlayerMovementSettings(new PlayerMovementSettings(1, 0, false)); // PlayerAuthInputPacket
         packet.setCurrentTick(0);

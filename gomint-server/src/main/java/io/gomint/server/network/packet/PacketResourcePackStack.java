@@ -9,7 +9,7 @@ import java.util.List;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketResourcePackStack extends Packet {
+public class PacketResourcePackStack extends Packet implements PacketClientbound {
 
     private boolean mustAccept;
     private List<ResourcePack> behaviourPackEntries;

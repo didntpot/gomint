@@ -69,7 +69,7 @@ public class PostProcessExecutor implements Runnable {
     }
 
     public void addWork(ConnectionWithState connection, Packet[] packets, Consumer<Void> callback) {
-        this.workers.offer(new PostProcessWorker(connection, packets, callback));
+        this.workers.offer(new PostProcessWorker(connection, packets, callback, connection.state()));
 
         synchronized (this.waiter) {
             this.waiter.notifyAll();

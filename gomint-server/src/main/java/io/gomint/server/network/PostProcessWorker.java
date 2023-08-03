@@ -21,11 +21,13 @@ public class PostProcessWorker implements Runnable {
     private final ConnectionWithState connection;
     private final Packet[] packets;
     private final Consumer<Void> callback;
+    private PlayerConnectionState state;
 
-    public PostProcessWorker(ConnectionWithState connection, Packet[] packets, Consumer<Void> callback) {
+    public PostProcessWorker(ConnectionWithState connection, Packet[] packets, Consumer<Void> callback, PlayerConnectionState state) {
         this.connection = connection;
         this.packets = packets;
         this.callback = callback;
+        this.state = state;
     }
 
     @Override
@@ -37,7 +39,7 @@ public class PostProcessWorker implements Runnable {
         }
 
         PacketBatch batch = new PacketBatch();
-        batch.setPayload(this.connection.outputProcessor().process(inBuf));
+        batch.setPayload(this.state == PlayerConnectionState.NETWORK_SETTINGS ? inBuf : this.connection.outputProcessor().process(inBuf));
         this.connection.send(batch);
 
         if (this.callback != null) {

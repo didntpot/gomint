@@ -17,6 +17,7 @@ import io.gomint.server.entity.component.TransformComponent;
 import io.gomint.server.entity.metadata.MetadataContainer;
 import io.gomint.server.network.PlayerConnection;
 import io.gomint.server.network.packet.*;
+import io.gomint.server.network.packet.types.entity.PropertySyncData;
 import io.gomint.server.util.Values;
 import io.gomint.server.world.CoordinateUtils;
 import io.gomint.server.world.WorldAdapter;
@@ -1116,6 +1117,7 @@ public abstract class Entity<E extends io.gomint.entity.Entity<E>> implements io
         PacketEntityMetadata metadataPacket = new PacketEntityMetadata();
         metadataPacket.setEntityId(this.id());
         metadataPacket.setMetadata(this.metadataContainer);
+        metadataPacket.setSyncedProperties(new PropertySyncData(Collections.emptyMap(), Collections.emptyMap()));
         metadataPacket.setTick(this.world.server().currentTickTime() / (int) Values.CLIENT_TICK_MS);
         player.connection().addToSendQueue(metadataPacket);
     }

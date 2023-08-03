@@ -24,6 +24,7 @@ import io.gomint.server.inventory.ArmorInventory;
 import io.gomint.server.inventory.PlayerInventory;
 import io.gomint.server.network.PlayerConnection;
 import io.gomint.server.network.packet.*;
+import io.gomint.server.network.packet.types.entity.PropertySyncData;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.util.Values;
 import io.gomint.server.world.WorldAdapter;
@@ -593,6 +594,7 @@ public class EntityHuman<E extends Entity<E>> extends EntityCreature<E> implemen
         // TODO: Remove this, its a client bug in 1.2.13
         PacketEntityMetadata metadata = new PacketEntityMetadata();
         metadata.setEntityId(this.id());
+        metadata.setSyncedProperties(new PropertySyncData(Collections.emptyMap(), Collections.emptyMap()));
         metadata.setMetadata(this.metadataContainer);
         metadata.setTick(this.world.server().currentTickTime() / (int) Values.CLIENT_TICK_MS);
         connection.addToSendQueue(metadata);

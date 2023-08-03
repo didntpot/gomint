@@ -7,7 +7,7 @@ import io.gomint.server.network.Protocol;
 /**
  * @author geNAZt
  */
-public class PacketInventoryContent extends Packet {
+public class PacketInventoryContent extends Packet implements PacketClientbound {
 
     private int windowId;
     private ItemStack<?>[] items;
