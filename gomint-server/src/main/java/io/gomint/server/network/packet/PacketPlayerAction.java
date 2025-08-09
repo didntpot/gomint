@@ -19,10 +19,9 @@ public class PacketPlayerAction extends Packet implements PacketClientbound, Pac
 
     private PlayerAction action;
     private BlockPosition position;
+    private BlockPosition returnPosition;
 
     private Facing face;
-
-    // There is more data but who knows what that could be
 
     public PacketPlayerAction() {
         super(Protocol.PACKET_PLAYER_ACTION);
@@ -38,6 +37,7 @@ public class PacketPlayerAction extends Packet implements PacketClientbound, Pac
         this.entityId = buffer.readUnsignedVarLong();
         this.action = PlayerAction.valueOf(buffer.readSignedVarInt());
         this.position = readBlockPosition(buffer);
+        this.returnPosition = readBlockPosition(buffer);
         this.face = readBlockFace(buffer);
     }
 
@@ -120,7 +120,20 @@ public class PacketPlayerAction extends Packet implements PacketClientbound, Pac
         START_SPIN_ATTACK,
         STOP_SPIN_ATTACK,
 
-        INTERACT_BLOCK;
+        INTERACT_BLOCK,
+
+        PREDICT_DESTROY_BLOCK,
+        CONTINUE_DESTROY_BLOCK,
+
+        START_ITEM_USE_ON,
+        STOP_ITEM_USE_ON,
+
+        HANDLED_TELEPORT,
+
+        MISSED_SWING,
+
+        START_CRAWLING,
+        STOP_CRAWLING;
 
         public static PlayerAction valueOf(int actionId) {
             switch (actionId) {
@@ -176,6 +189,22 @@ public class PacketPlayerAction extends Packet implements PacketClientbound, Pac
                     return STOP_SPIN_ATTACK;
                 case 25:
                     return INTERACT_BLOCK;
+                case 26:
+                    return PREDICT_DESTROY_BLOCK;
+                case 27:
+                    return CONTINUE_DESTROY_BLOCK;
+                case 28:
+                    return START_ITEM_USE_ON;
+                case 29:
+                    return STOP_ITEM_USE_ON;
+                case 30:
+                    return HANDLED_TELEPORT;
+                case 31:
+                    return MISSED_SWING;
+                case 32:
+                    return START_CRAWLING;
+                case 33:
+                    return STOP_CRAWLING;
             }
 
             LOGGER.warn("Unknown action id: {}", actionId);

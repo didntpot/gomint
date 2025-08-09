@@ -8,7 +8,7 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketContainerOpen extends Packet {
+public class PacketContainerOpen extends Packet implements PacketClientbound {
 
     private byte windowId;
     private byte type;

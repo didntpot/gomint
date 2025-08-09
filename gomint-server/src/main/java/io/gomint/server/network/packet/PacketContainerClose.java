@@ -7,7 +7,7 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 1.0
  */
-public class PacketContainerClose extends Packet {
+public class PacketContainerClose extends Packet implements PacketClientbound {
 
     private byte windowId;
     private boolean serverSided;

@@ -13,28 +13,27 @@ package io.gomint.server.util;
  */
 public class StringShortPair {
 
-    private final String blockId;
-    private final short data;
+    private final String stringId;
+    private final short numericId;
 
-    public StringShortPair(String blockId, short data) {
-        this.blockId = blockId;
-        this.data = data;
+    public StringShortPair(String stringId, short numericId) {
+        this.stringId = stringId;
+        this.numericId = numericId;
     }
 
-    public String getBlockId() {
-        return this.blockId;
+    public String getStringId() {
+        return this.stringId;
     }
 
-    public short getData() {
-        return this.data;
+    public short getNumericId() {
+        return this.numericId;
     }
 
     @Override
     public String toString() {
         return "StringShortPair{" +
-            "blockId='" + this.blockId + '\'' +
-            ", data=" + this.data +
+            "stringId='" + this.stringId + '\'' +
+            ", numericId=" + this.numericId +
             '}';
     }
-
 }

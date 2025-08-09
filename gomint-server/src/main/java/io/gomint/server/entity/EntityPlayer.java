@@ -212,8 +212,8 @@ public class EntityPlayer extends EntityHuman<io.gomint.entity.EntityPlayer> imp
         }
 
         if (this.connection.state() == PlayerConnectionState.LOGIN) {
-            this.connection.addToSendQueue(new PacketBiomeDefinitionList());
-            this.connection.sendPlayState(PacketPlayState.PlayState.SPAWN);
+            // this.connection.addToSendQueue(new PacketBiomeDefinitionList());
+            // this.connection.sendPlayState(PacketPlayState.PlayState.SPAWN);
             this.loginPerformance().setChunkStart(this.world.server().currentTickTime());
         }
 
@@ -689,11 +689,13 @@ public class EntityPlayer extends EntityHuman<io.gomint.entity.EntityPlayer> imp
         }
 
         // Send world init data
+        this.connection.sendStartGame(this.id());
+        this.connection.addToSendQueue(new PacketBiomeDefinitionList());
+        this.connection.sendPlayState(PacketPlayState.PlayState.SPAWN);
+
         this.connection.sendWorldTime(this.world.timeAsTicks());
-        this.connection.sendWorldInitialization(this.id());
-        this.connection.addToSendQueue(new PacketItemComponent());
+        // this.connection.addToSendQueue(new PacketItemComponent());
         this.connection.sendSpawnPosition();
-        // this.connection.sendWorldTime(this.world.getTimeAsTicks());
         this.connection.addToSendQueue(new PacketAvailableEntityIdentifiers());
 
         this.connection.sendDifficulty();

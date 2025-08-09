@@ -21,19 +21,25 @@ public class CommandOrigin {
     public static final int ORIGIN_GAME_ARGUMENT = 10;
     public static final int ORIGIN_ENTITY_SERVER = 11; //???
 
-    private byte type; // 0x00 player, 0x03 server
+    private int type;
     private UUID uuid;
-    private byte requestId;
+    private String requestId;
     private long playerEntityUniqueId;
 
-    public CommandOrigin(byte requestId, UUID uuid, byte playerEntityUniqueId, byte type) {
-        this.requestId = requestId;
-        this.uuid = uuid;
-        this.playerEntityUniqueId = playerEntityUniqueId;
+    public CommandOrigin(int type, UUID uuid, String requestId) {
         this.type = type;
+        this.uuid = uuid;
+        this.requestId = requestId;
     }
 
-    public byte requestId() {
+    public CommandOrigin(int type, UUID uuid, String requestId, long playerEntityUniqueId) {
+        this.type = type;
+        this.uuid = uuid;
+        this.requestId = requestId;
+        this.playerEntityUniqueId = playerEntityUniqueId;
+    }
+
+    public String requestId() {
         return this.requestId;
     }
 
@@ -45,11 +51,11 @@ public class CommandOrigin {
         return this.playerEntityUniqueId;
     }
 
-    public byte type() {
+    public int type() {
         return this.type;
     }
 
-    public CommandOrigin requestId(byte requestId) {
+    public CommandOrigin requestId(String requestId) {
         this.requestId = requestId;
         return this;
     }

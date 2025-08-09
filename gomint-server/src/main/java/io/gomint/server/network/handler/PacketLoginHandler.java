@@ -17,6 +17,7 @@ import io.gomint.server.network.*;
 import io.gomint.server.network.packet.PacketEncryptionRequest;
 import io.gomint.server.network.packet.PacketLogin;
 import io.gomint.server.network.packet.PacketPlayState;
+import io.gomint.server.network.packet.PacketResourcePacksInfo;
 import io.gomint.server.player.PlayerSkin;
 import io.gomint.server.scheduler.SyncScheduledTask;
 import io.gomint.server.world.WorldAdapter;
@@ -251,10 +252,17 @@ public class PacketLoginHandler implements PacketHandler<PacketLogin> {
                 // See: https://github.com/gomint/crypto/issues/2
 
 //                if (this.keyFactory.keyPair() == null) {
-                    // No encryption
-                    connection.sendPlayState(PacketPlayState.PlayState.LOGIN_SUCCESS);
-                    connection.state(PlayerConnectionState.RESOURCE_PACK);
-                    connection.initWorldAndResourceSend();
+                // No encryption
+
+                PacketPlayState playState = new PacketPlayState();
+                playState.setState(PacketPlayState.PlayState.LOGIN_SUCCESS);
+                connection.addToSendQueue(playState);
+
+                connection.state(PlayerConnectionState.RESOURCE_PACK);
+
+                PacketResourcePacksInfo resourcePacksInfo = new PacketResourcePacksInfo();
+                connection.addToSendQueue(resourcePacksInfo);
+
 //                } else {
 //                    // Generating EDCH secrets can take up huge amount of time
 //                    connection.server().executorService().execute(() -> {

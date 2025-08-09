@@ -54,9 +54,12 @@ module gomint.server {
     exports io.gomint.server.entity.tileentity to gomint.test;
     exports io.gomint.server.world.block to gomint.test;
 
-
     // Open config to gomint api reader
     opens io.gomint.server.config to gomint.api;
+    // Open network packet to google gson
+    opens io.gomint.server.network.packet to com.google.gson;
+    // Open network type to google gson
+    opens io.gomint.server.network.type to com.google.gson;
 
     exports io.gomint.server.entity to gomint.test;
     exports io.gomint.server.permission to gomint.test;

@@ -2,6 +2,7 @@ package io.gomint.server.network;
 
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.maintenance.ReportUploader;
+import io.gomint.server.network.compression.Compression;
 import io.gomint.server.network.packet.Packet;
 import io.gomint.server.network.packet.PacketBatch;
 import io.netty.buffer.ByteBuf;
@@ -39,7 +40,9 @@ public class PostProcessWorker implements Runnable {
         }
 
         PacketBatch batch = new PacketBatch();
-        batch.setPayload(this.state == PlayerConnectionState.NETWORK_SETTINGS ? inBuf : this.connection.outputProcessor().process(inBuf));
+        // TODO:
+        //  batch.setPayload(this.state == PlayerConnectionState.NETWORK_SETTINGS ? inBuf : this.connection.outputProcessor().process(inBuf));
+        batch.setPayload(this.state == PlayerConnectionState.NETWORK_SETTINGS ? inBuf : Compression.compress(inBuf));
         this.connection.send(batch);
 
         if (this.callback != null) {

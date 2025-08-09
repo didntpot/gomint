@@ -37,9 +37,10 @@ public class PacketWorldChunk extends Packet implements PacketClientbound {
     public void serialize(PacketBuffer buffer, int protocolID) {
         buffer.writeSignedVarInt(this.x);
         buffer.writeSignedVarInt(this.z);
-        buffer.writeUnsignedVarInt(this.subChunkCount);
-        buffer.writeBoolean(this.cached);
 
+        buffer.writeUnsignedVarInt(this.subChunkCount);
+
+        buffer.writeBoolean(this.cached);
         if (this.cached) {
             buffer.writeUnsignedVarInt(this.hashes.length);
             for (long hash : this.hashes) {

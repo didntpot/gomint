@@ -22,13 +22,12 @@ public class PacketRequestNetworkSettingsHandler implements PacketHandler<Packet
             return;
         }
         PacketNetworkSettings response = new PacketNetworkSettings();
-        response.setCompressionAlgorithm(PacketNetworkSettings.COMPRESS_EVERYTHING);
         response.setCompressionAlgorithm(CompressionAlgorithm.ZLIB);
+        response.setCompressionThreshold(PacketNetworkSettings.COMPRESS_EVERYTHING);
         response.setEnableClientThrottling(false);
         response.setClientThrottleThreshold((byte) 0);
         response.setClientThrottleScalar(0f);
         connection.send(response);
         connection.state(PlayerConnectionState.HANDSHAKE);
-        LOGGER.info("Sending network settings");
     }
 }

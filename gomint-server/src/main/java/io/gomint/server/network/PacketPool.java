@@ -136,7 +136,7 @@ public class PacketPool {
 //        registerPacket(Protocol.PACKET_VIDEO_STREAM_CONNECT, PacketVideoStreamConnect.class);
 //        registerPacket(Protocol.PACKET_ADD_ENTITY, PacketAddEntity.class);
 //        registerPacket(Protocol.PACKET_REMOVE_ENTITY, PacketRemoveEntity.class);
-        registerPacket(Protocol.PACKET_CLIENT_CACHE_STATUS, PacketClientCacheStatus.class);
+//        registerPacket(Protocol.PACKET_CLIENT_CACHE_STATUS, PacketClientCacheStatus.class);
 //        registerPacket(Protocol.PACKET_ON_SCREEN_TEXTURE_ANIMATION, PacketOnScreenTextureAnimation.class);
 //        registerPacket(Protocol.PACKET_MAP_CREATE_LOCKED_COPY, PacketMapCreateLockedCopy.class);
 //        registerPacket(Protocol.PACKET_STRUCTURE_TEMPLATE_DATA_REQUEST, PacketStructureTemplateDataRequest.class);

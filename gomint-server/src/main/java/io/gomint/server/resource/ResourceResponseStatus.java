@@ -6,6 +6,7 @@ package io.gomint.server.resource;
  */
 public enum ResourceResponseStatus {
 
+    NONE,
     REFUSED,
     SEND_PACKS,
     HAVE_ALL_PACKS,

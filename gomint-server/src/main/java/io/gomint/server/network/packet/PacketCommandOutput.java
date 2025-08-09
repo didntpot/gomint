@@ -75,4 +75,8 @@ public class PacketCommandOutput extends Packet implements PacketClientbound {
     public void setOutputs(List<OutputMessage> outputs) {
         this.outputs = outputs;
     }
+
+    public void setOutputType(byte outputType) {
+        this.outputType = outputType;
+    }
 }

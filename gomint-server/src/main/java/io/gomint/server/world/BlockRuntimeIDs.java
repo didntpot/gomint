@@ -8,6 +8,8 @@
 package io.gomint.server.world;
 
 import io.gomint.jraknet.PacketBuffer;
+import io.gomint.server.network.packet.types.BlockPaletteEntry;
+import io.gomint.server.network.packet.types.ItemPaletteEntry;
 import io.gomint.server.registry.SwitchBlockStateMapper;
 import io.gomint.server.util.BlockIdentifier;
 import io.gomint.server.util.collection.ReadOnlyMap;
@@ -43,14 +45,11 @@ public class BlockRuntimeIDs {
     public static void init(List<BlockIdentifier> blockPalette, Blocks blocks) throws IOException {
         BLOCK_ID_TO_NUMERIC.defaultReturnValue(-1);
 
-        List<Object> compounds = new ArrayList<>();
-
-        PacketBuffer data = new PacketBuffer(blockPalette.size() * 128);
-        NBTWriter writer = new NBTWriter(data.getBuffer(), ByteOrder.LITTLE_ENDIAN);
-        writer.setUseVarint(true);
-
+        BlockPaletteEntry[] entries = new BlockPaletteEntry[blockPalette.size()];
         RUNTIME_TO_BLOCK = new BlockIdentifier[blockPalette.size()];
-        for (BlockIdentifier identifier : blockPalette) {
+
+        for (int i = 0; i < blockPalette.size(); i++) {
+            BlockIdentifier identifier = blockPalette.get(i);
             int runtime = identifier.runtimeId();
 
             RUNTIME_TO_BLOCK[runtime] = identifier;
@@ -62,11 +61,11 @@ public class BlockRuntimeIDs {
             block.addValue("name", identifier.blockId());
             block.addValue("states", identifier.nbt());
             compound.addValue("block", block);
-            compounds.add(compound);
+
+            entries[i] = new BlockPaletteEntry(identifier.blockId(), compound);
         }
 
-        writer.write(compounds);
-        blocks.setPacketCache(data);
+        blocks.setBlockEntries(entries);
     }
 
     public static BlockIdentifier toBlockIdentifier(int runtimeId) {
@@ -114,5 +113,4 @@ public class BlockRuntimeIDs {
 
         return toBlockIdentifier(runeTimeId);
     }
-
 }

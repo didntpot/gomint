@@ -24,6 +24,7 @@ import io.gomint.player.DeviceInfo;
 import io.gomint.server.GoMintServer;
 import io.gomint.server.entity.EntityPlayer;
 import io.gomint.server.maintenance.ReportUploader;
+import io.gomint.server.network.compression.Compression;
 import io.gomint.server.network.handler.PacketHandler;
 import io.gomint.server.network.packet.*;
 import io.gomint.server.network.packet.PacketMovePlayer.MovePlayerMode;
@@ -39,12 +40,16 @@ import io.gomint.server.world.CoordinateUtils;
 import io.gomint.server.world.WorldAdapter;
 import io.gomint.taglib.NBTTagCompound;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import it.unimi.dsi.fastutil.longs.LongIterator;
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import it.unimi.dsi.fastutil.longs.LongSet;
+import java.io.ByteArrayOutputStream;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
+import java.util.zip.DataFormatException;
+import java.util.zip.Inflater;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -426,7 +431,8 @@ public class PlayerConnection implements ConnectionWithState {
     private void sendWorldChunk(ChunkAdapter chunkAdapter) {
         this.playerChunks.add(chunkAdapter.longHashCode());
         this.loadingChunks.remove(chunkAdapter.longHashCode());
-        this.addToSendQueue(chunkAdapter.createPackagedData(this.cache, this.cachingSupported));
+        // TODO:
+        // this.addToSendQueue(chunkAdapter.createPackagedData(this.cache, this.cachingSupported));
         this.entity.entityVisibilityManager().updateAddedChunk(chunkAdapter);
         this.checkForSpawning();
     }
@@ -471,9 +477,9 @@ public class PlayerConnection implements ConnectionWithState {
             int consumedByPacket = buffer.getReadPosition() - currentIndex;
             if (consumedByPacket != packetLength) {
                 int remaining = packetLength - consumedByPacket;
-                LOGGER.error("Malformed batch packet payload: Could not read enclosed packet data correctly: 0x{} remaining {} bytes", Integer.toHexString(packetID), remaining);
+                LOGGER.error("Received malformed payload: Could not read correctly: id={}[0x{}], remaining {} bytes",
+                    packetID, Integer.toHexString(packetID & 0xFF), remaining);
                 ReportUploader.create().tag("network.packet_remaining").property("packet_id", "0x" + Integer.toHexString(packetID)).property("packet_remaining", String.valueOf(remaining)).upload();
-                return;
             }
         }
     }
@@ -489,92 +495,89 @@ public class PlayerConnection implements ConnectionWithState {
             return packetId;
         }
 
-        LOGGER.info("Got MCPE packet {}", Integer.toHexString(packetId & 0xFF));
+        LOGGER.info("Received packet id={}[0x{}]", packetId,
+            Integer.toHexString(packetId & 0xFF));
 
-        if (this.state == PlayerConnectionState.NETWORK_SETTINGS) {
-            if (packetId == PACKET_REQUEST_NETWORK_SETTINGS) {
-                try {
-                    LOGGER.info("Got network settings request");
-                    PacketRequestNetworkSettings packet = new PacketRequestNetworkSettings();
-                    packet.deserialize(buffer, this.protocolID);
-                    this.handlePacket(currentTimeMillis, packet);
-                } catch (Exception e) {
-                    LOGGER.error("Could not deserialize / handle packet", e);
-                    ReportUploader.create().tag("network.deserialize").exception(e).upload();
+        switch (this.state) {
+            case NETWORK_SETTINGS:
+                if (packetId == PACKET_REQUEST_NETWORK_SETTINGS) {
+                    try {
+                        LOGGER.info("Received RequestNetworkSettings");
+                        PacketRequestNetworkSettings packet = new PacketRequestNetworkSettings();
+                        packet.deserialize(buffer, this.protocolID);
+                        this.handlePacket(currentTimeMillis, packet);
+                    } catch (Exception e) {
+                        LOGGER.error("Could not deserialize / handle packet", e);
+                        ReportUploader.create().tag("network.deserialize").exception(e).upload();
+                    }
+                } else {
+                    LOGGER.error("Received unwanted packet while in NETWORK_SETTINGS (id={}[0x{}])",
+                        packetId, Integer.toHexString(packetId & 0xFF));
                 }
-            } else {
-                LOGGER.error("Received odd packet while handling RequestNetworkSettings");
-            }
-        }
-
-        // If we are still in handshake we only accept certain packets:
-        if (this.state == PlayerConnectionState.HANDSHAKE) {
-            if (packetId == PACKET_LOGIN) {
-                // CHECKSTYLE:OFF
-                try {
-                    LOGGER.info("Got login packet");
-                    PacketLogin packet = new PacketLogin();
-                    packet.deserialize(buffer, this.protocolID);
-                    this.handlePacket(currentTimeMillis, packet);
-                } catch (Exception e) {
-                    LOGGER.error("Could not deserialize / handle packet", e);
-                    ReportUploader.create().tag("network.deserialize").exception(e).upload();
+                // Don't allow for any other packets if we are in NETWORK_SETTINGS state:
+                return packetId;
+            case HANDSHAKE:
+                if (packetId == PACKET_LOGIN) {// CHECKSTYLE:OFF
+                    try {
+                        LOGGER.info("Received Login");
+                        PacketLogin packet = new PacketLogin();
+                        packet.deserialize(buffer, this.protocolID);
+                        this.handlePacket(currentTimeMillis, packet);
+                    } catch (Exception e) {
+                        LOGGER.error("Could not deserialize / handle packet", e);
+                        ReportUploader.create().tag("network.deserialize").exception(e).upload();
+                    }
+                    // CHECKSTYLE:ON
+                } else {
+                    LOGGER.error("Received unwanted packet while in HANDSHAKE (id={}[0x{}])",
+                        packetId, Integer.toHexString(packetId & 0xFF));
                 }
-                // CHECKSTYLE:ON
-            } else {
-                LOGGER.error("Received odd packet while in handshake (0x{})", Integer.toHexString(packetId & 0xFF));
-            }
-
-            // Don't allow for any other packets if we are in HANDSHAKE state:
-            return packetId;
-        }
-
-        // When we are in encryption init state
-        if (this.state == PlayerConnectionState.ENCRPYTION_INIT) {
-            if (packetId == PACKET_ENCRYPTION_RESPONSE) {
-                // CHECKSTYLE:OFF
-                try {
-                    this.handlePacket(currentTimeMillis, new PacketEncryptionResponse());
-                } catch (Exception e) {
-                    LOGGER.error("Could not deserialize / handle packet", e);
-                    ReportUploader.create().tag("network.deserialize").exception(e).upload();
+                // Don't allow for any other packets if we are in HANDSHAKE state:
+                return packetId;
+            case ENCRYPTION_INIT:
+                if (packetId == PACKET_ENCRYPTION_RESPONSE) {// CHECKSTYLE:OFF
+                    try {
+                        this.handlePacket(currentTimeMillis, new PacketEncryptionResponse());
+                    } catch (Exception e) {
+                        LOGGER.error("Could not deserialize / handle packet", e);
+                        ReportUploader.create().tag("network.deserialize").exception(e).upload();
+                    }
+                    // CHECKSTYLE:ON
+                } else {
+                    LOGGER.error("Received unwanted packet while in ENCRYPTION_INIT (id={}[0x{}])",
+                        packetId, Integer.toHexString(packetId & 0xFF));
                 }
-                // CHECKSTYLE:ON
-            } else {
-                LOGGER.error("Received odd packet while in encryption init");
-            }
-
-            // Don't allow for any other packets if we are in RESOURCE_PACK state:
-            return packetId;
-        }
-
-        // When we are in resource pack state
-        if (this.state == PlayerConnectionState.RESOURCE_PACK) {
-            if (packetId == PACKET_RESOURCEPACK_RESPONSE) {
-                // CHECKSTYLE:OFF
-                try {
-                    PacketResourcePackResponse packet = new PacketResourcePackResponse();
-                    packet.deserialize(buffer, this.protocolID);
-                    this.handlePacket(currentTimeMillis, packet);
-                } catch (Exception e) {
-                    LOGGER.error("Could not deserialize / handle packet", e);
-                    ReportUploader.create().tag("network.deserialize").exception(e).upload();
+                // Don't allow for any other packets if we are in RESOURCE_PACK state:
+                return packetId;
+            case RESOURCE_PACK:
+                switch (packetId) {
+                    case PACKET_RESOURCEPACK_RESPONSE:
+                        // CHECKSTYLE:OFF
+                        try {
+                            PacketResourcePackResponse packet = new PacketResourcePackResponse();
+                            packet.deserialize(buffer, this.protocolID);
+                            this.handlePacket(currentTimeMillis, packet);
+                        } catch (Exception e) {
+                            LOGGER.error("Could not deserialize / handle packet", e);
+                            ReportUploader.create().tag("network.deserialize").exception(e).upload();
+                        }
+                        // CHECKSTYLE:ON
+                        break;
+                    case PACKET_CLIENT_CACHE_STATUS:
+                        buffer.setReadPosition(skippablePosition);
+                        return packetId;
+                    default:
+                        LOGGER.error("Received unwanted packet while in RESOURCE_PACK (id={}[0x{}])",
+                            packetId, Integer.toHexString(packetId & 0xFF));
+                        break;
                 }
-                // CHECKSTYLE:ON
-            } else {
-                LOGGER.error("Received odd packet while in resource pack");
-            }
-
-            // Don't allow for any other packets if we are in RESOURCE_PACK state:
-            return packetId;
+                // Don't allow for any other packets if we are in RESOURCE_PACK state:
+                return packetId;
         }
-
 
         Packet packet = PacketPool.getPacket(packetId);
         if (packet == null) {
             this.networkManager.notifyUnknownPacket(packetId, buffer);
-
-            // Got to skip
             buffer.setReadPosition(skippablePosition);
             return packetId;
         }
@@ -605,7 +608,14 @@ public class PlayerConnection implements ConnectionWithState {
      * @return decompressed and decrypted data
      */
     private ByteBuf handleBatchPacket(ByteBuf buffer) {
-        return this.state == PlayerConnectionState.NETWORK_SETTINGS ? buffer : this.inputProcessor.process(buffer);
+        if (this.state == PlayerConnectionState.NETWORK_SETTINGS) {
+            return buffer;
+        }
+        try {
+            return Compression.decompress(buffer);
+        } catch (DataFormatException e) {
+            throw new RuntimeException("Failed to decompress batch packet", e);
+        }
     }
 
     /**
@@ -883,28 +893,10 @@ public class PlayerConnection implements ConnectionWithState {
      * Sends a world initialization packet of the world the entity associated with this
      * connection is currently in to this player.
      */
-    public void sendWorldInitialization(long entityId) {
+    public void sendStartGame(long entityId) {
         WorldAdapter world = this.entity.world();
 
         PacketStartGame packet = new PacketStartGame();
-
-        LevelSettings levelSettings = new LevelSettings();
-        levelSettings.setSeed(-1);
-        levelSettings.setSpawnSettings(new SpawnSettings());
-        levelSettings.setWorldGameMode(0);
-        levelSettings.setDifficulty(world.difficulty().getDifficultyDegree());
-        Location spawn = world.spawnLocation();
-        levelSettings.setSpawnPosition(new BlockPosition((int) spawn.x(), (int) spawn.y(), (int) spawn.z()));
-        levelSettings.setHasAchievementsDisabled(true);
-        levelSettings.setTime(world.timeAsTicks());
-        levelSettings.setEduEditionOffer(0);
-        levelSettings.setRainLevel(0f);
-        levelSettings.setLightningLevel(0f);
-        levelSettings.setCommandsEnabled(true);
-        Map<String, GameRule> gameRules = new HashMap<>();
-        gameRules.put("naturalregeneration", new BooleanGameRule(false, false));
-        levelSettings.setGameRules(gameRules);
-        levelSettings.setExperiments(new Experiments(Collections.emptyMap(), false));
 
         packet.setEntityId(entityId);
         packet.setRuntimeEntityId(entityId);
@@ -913,13 +905,44 @@ public class PlayerConnection implements ConnectionWithState {
         packet.setLocation(location);
         packet.setPitch(location.pitch());
         packet.setYaw(location.yaw());
-        packet.setPlayerActorProperties(new NBTTagCompound(""));
+
+        LevelSettings levelSettings = new LevelSettings();
+        levelSettings.setSeed(-1);
+        levelSettings.setSpawnSettings(new SpawnSettings());
+        levelSettings.setGenerator(1);
+        levelSettings.setWorldGameMode(0);
+        levelSettings.setDifficulty(world.difficulty().getDifficultyDegree());
+        Location spawn = world.spawnLocation();
+        levelSettings.setSpawnPosition(new BlockPosition((int) spawn.x(), (int) spawn.y(), (int) spawn.z()));
+        levelSettings.setHasAchievementsDisabled(true);
+        levelSettings.setEditorMode(false);
+        levelSettings.setCreatedInEditorMode(false);
+        levelSettings.setExportedFromEditorMode(false);
+        levelSettings.setTime(world.timeAsTicks());
+        levelSettings.setEduEditionOffer(0);
+        levelSettings.setHasEduFeaturesEnabled(true);
+        levelSettings.setEduProductUUID("");
+        levelSettings.setRainLevel(0f);
+        levelSettings.setLightningLevel(0f);
+        levelSettings.setHasConfirmedPlatformLockedContent(false);
+        levelSettings.setMultiplayerGame(true);
+        levelSettings.setHasLANBroadcast(true);
+        levelSettings.setXboxLiveBroadcastMode(0);
+        levelSettings.setCommandsEnabled(true);
+        Map<String, GameRule> gameRules = new HashMap<>();
+        gameRules.put("naturalregeneration", new BooleanGameRule(false, false));
+        levelSettings.setGameRules(gameRules);
+        levelSettings.setExperiments(new Experiments(Collections.emptyMap(), false));
         packet.setLevelSettings(levelSettings);
+
+        packet.setPlayerActorProperties(new NBTTagCompound(""));
         packet.setLevelId("");
         packet.setWorldName(server.motd());
         packet.setTemplateId("");
         packet.setTrial(false);
-        packet.setPlayerMovementSettings(new PlayerMovementSettings(1, 0, false)); // PlayerAuthInputPacket
+        packet.setPlayerMovementSettings(
+            new PlayerMovementSettings(1, 0, false)
+        );
         packet.setCurrentTick(0);
         packet.setEnchantmentSeed(0);
         packet.setCorrelationId("");
@@ -929,12 +952,10 @@ public class PlayerConnection implements ConnectionWithState {
         packet.setEnableClientSideChunkGeneration(false);
         packet.setBlockNetworkIdsAreHashes(false);
         packet.setNetworkPermissions(new NetworkPermissions(true));
-        packet.setBlockPalettes(new BlockPaletteEntry[]{});
-//        packet.setBlockPalette(new PacketBuffer(0));
-//        packet.setBlockPalette(server.blocks().packetCache()); // Blocks are now client-side
         packet.setBlockPaletteChecksum(0);
-//        packet.setItemPalette(server.items().getPacketCache());;
-        packet.setItemPalettes(new ItemPaletteEntry[]{});
+
+        packet.setBlockPalettes(server.blocks().getBlockEntries());
+        packet.setItemPalettes(server.items().getItemEntries());
 
         this.addToSendQueue(packet);
     }

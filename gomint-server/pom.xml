@@ -23,13 +23,6 @@
     <name>GoMint Server</name>
     <description>Standard server implementation of GoMint</description>
 
-    <repositories>
-        <repository>
-            <id>minjae-repo-snapshots</id>
-            <url>https://repo.minjae.dev/snapshots</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>com.google.code.gson</groupId>

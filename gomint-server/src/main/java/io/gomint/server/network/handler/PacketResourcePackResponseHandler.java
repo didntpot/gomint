@@ -3,8 +3,7 @@ package io.gomint.server.network.handler;
 import io.gomint.event.player.PlayerPreJoinEvent;
 import io.gomint.server.network.PlayerConnection;
 import io.gomint.server.network.PlayerConnectionState;
-import io.gomint.server.network.packet.PacketResourcePackResponse;
-import io.gomint.server.network.packet.PacketResourcePackStack;
+import io.gomint.server.network.packet.*;
 import io.gomint.server.resource.PackIdVersion;
 import io.gomint.server.resource.ResourcePack;
 import java.util.ArrayList;
@@ -27,24 +26,21 @@ public class PacketResourcePackResponseHandler implements PacketHandler<PacketRe
             case HAVE_ALL_PACKS:
                 LOGGER.info("Login state: HAVE_ALL_PACKS reached: {}", connection.entity());
 
-                PacketResourcePackStack packetResourcePackStack = new PacketResourcePackStack();
-
-                packetResourcePackStack.setResourcePackEntries(new ArrayList<>() {{
+                PacketResourcePackStack resourcePackStack = new PacketResourcePackStack();
+                resourcePackStack.setResourcePackEntries(new ArrayList<>() {{
                     add(new ResourcePack(
                         new PackIdVersion(UUID.fromString("0fba4063-dba1-4281-9b89-ff9390653530"), "1.0.0"),
                         0
                     ));
                 }});
 
-                connection.send(packetResourcePackStack);
+                connection.send(resourcePackStack);
                 break;
-
             case COMPLETED:
                 LOGGER.info("Login state: COMPLETED reached: {}", connection.entity());
 
                 // Proceed with login
                 this.switchToLogin(connection, currentTimeMillis);
-
                 break;
         }
     }
@@ -62,5 +58,4 @@ public class PacketResourcePackResponseHandler implements PacketHandler<PacketRe
             connection.entity().prepareEntity();
         }
     }
-
 }

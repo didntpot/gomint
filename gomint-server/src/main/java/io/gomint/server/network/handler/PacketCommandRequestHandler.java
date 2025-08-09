@@ -22,22 +22,22 @@ public class PacketCommandRequestHandler implements PacketHandler<PacketCommandR
             return;
         }
 
-        CommandOutput commandOutput = connection.entity().dispatchCommand(packet.getInputCommand());
-        if (commandOutput != null) {
-
-            PacketCommandOutput packetCommandOutput = new PacketCommandOutput();
-            packetCommandOutput.setSuccessCount(commandOutput.success() ? 1 : 0);
-            packetCommandOutput.setOrigin(packet.getCommandOrigin().type((byte) 3));
+        CommandOutput output = connection.entity().dispatchCommand(packet.getInputCommand());
+        if (output != null) {
+            PacketCommandOutput commandOutput = new PacketCommandOutput();
+            commandOutput.setOutputType((byte) 3);
+            commandOutput.setSuccessCount(output.success() ? 1 : 0);
+            commandOutput.setOrigin(packet.getCommandOrigin().type((byte) 3));
 
             // Remap outputs
             List<OutputMessage> outputMessages = new ArrayList<>();
-            for (CommandOutputMessage commandOutputMessage : commandOutput.messages()) {
-                outputMessages.add(new OutputMessage(commandOutputMessage.format(), commandOutputMessage.success(), commandOutputMessage.parameters()));
+            for (CommandOutputMessage outputMessage : output.messages()) {
+                outputMessages.add(new OutputMessage(outputMessage.format(), outputMessage.success(), outputMessage.parameters()));
             }
 
-            packetCommandOutput.setOutputs(outputMessages);
-            connection.addToSendQueue(packetCommandOutput);
+            commandOutput.setOutputs(outputMessages);
+
+            connection.addToSendQueue(commandOutput);
         }
     }
-
 }

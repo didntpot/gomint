@@ -2,6 +2,7 @@ package io.gomint.server.inventory.item;
 
 import io.gomint.inventory.item.ItemStack;
 import io.gomint.jraknet.PacketBuffer;
+import io.gomint.server.network.packet.types.ItemPaletteEntry;
 import io.gomint.server.registry.Generator;
 import io.gomint.server.registry.StringRegistry;
 import io.gomint.server.util.ClassPath;
@@ -34,8 +35,8 @@ public class Items {
     private final Object2IntMap<String> blockIdToItemId = new Object2IntOpenHashMap<>();
     private final Int2ObjectMap<String> itemIdToBlockId = new Int2ObjectOpenHashMap<>();
 
-    private PacketBuffer packetCache;
     private Blocks blocks;
+    private ItemPaletteEntry[] itemEntries;
 
     /**
      * Create a new item registry
@@ -142,40 +143,39 @@ public class Items {
     }
 
     public void initItemIDs(List<StringShortPair> itemIDs) {
-        PacketBuffer buffer = new PacketBuffer(itemIDs.size() * 32);
-        buffer.writeUnsignedVarInt(itemIDs.size());
-        for (StringShortPair itemID : itemIDs) {
-            buffer.writeString(itemID.getBlockId());
-            buffer.writeLShort(itemID.getData());
-            buffer.writeBoolean(false);
+        ItemPaletteEntry[] entries = new ItemPaletteEntry[itemIDs.size()];
+        for (int i = 0; i < itemIDs.size(); i++) {
+            StringShortPair pair = itemIDs.get(i);
+            entries[i] = new ItemPaletteEntry(pair.getStringId(), pair.getNumericId(), false);
+        }
+        this.itemEntries = entries;
 
-            Generator<ItemStack<? extends ItemStack<?>>> item = this.generators.getGenerator(itemID.getBlockId());
+        for (StringShortPair itemID : itemIDs) {
+            Generator<ItemStack<? extends ItemStack<?>>> item = this.generators.getGenerator(itemID.getStringId());
             if (item == null) {
-                LOGGER.warn("Unknown item {} ({})", itemID.getData(), itemID.getBlockId());
+                LOGGER.warn("Unknown item {} ({})", itemID.getNumericId(), itemID.getStringId());
 
                 // Try to generate the implementation
-                String blockId = itemID.getBlockId().split(":")[1];
+                String blockId = itemID.getStringId().split(":")[1];
                 String className = WordUtils.capitalize(blockId, '_', '.').replaceAll("_", "").replaceAll("\\.", "");
 
                 Map<String, String> replace = new HashMap<>();
                 replace.put("NAME", className);
-                replace.put("BLOCK_ID", itemID.getBlockId());
-                replace.put("ITEM_ID", String.valueOf(itemID.getData()));
+                replace.put("BLOCK_ID", itemID.getStringId());
+                replace.put("ITEM_ID", String.valueOf(itemID.getNumericId()));
                 replace.put("ENUM", blockId.replaceAll("\\.", "").toUpperCase());
                 generate("generator/src/main/resources/item_api.txt", "gomint-api/src/main/java/io/gomint/inventory/item/Item" + className + ".java", replace);
                 generate("generator/src/main/resources/item_implementation.txt", "gomint-server/src/main/java/io/gomint/server/inventory/item/Item" + className + ".java", replace);
             }
 
-            String internBlockId = itemID.getBlockId().intern();
-            this.blockIdToItemId.put(internBlockId, itemID.getData());
-            this.itemIdToBlockId.put(itemID.getData(), internBlockId);
+            String internBlockId = itemID.getStringId().intern();
+            this.blockIdToItemId.put(internBlockId, itemID.getNumericId());
+            this.itemIdToBlockId.put(itemID.getNumericId(), internBlockId);
         }
-
-        this.packetCache = buffer;
     }
 
-    public PacketBuffer getPacketCache() {
-        return this.packetCache;
+    public ItemPaletteEntry[] getItemEntries() {
+        return this.itemEntries;
     }
 
     public int getRuntimeId(String material) {
@@ -185,5 +185,4 @@ public class Items {
     public void setBlocks(Blocks blocks) {
         this.blocks = blocks;
     }
-
 }

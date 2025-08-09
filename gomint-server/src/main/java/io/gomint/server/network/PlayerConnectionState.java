@@ -26,7 +26,7 @@ public enum PlayerConnectionState {
     /**
      * We told the client it should get ready for encryption
      */
-    ENCRPYTION_INIT,
+    ENCRYPTION_INIT,
 
     /**
      * Sending resource packs and waiting for the client to decide
@@ -41,6 +41,5 @@ public enum PlayerConnectionState {
     /**
      * The player is entirely connected and is playing on the server.
      */
-    PLAYING;
-
+    PLAYING
 }

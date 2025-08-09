@@ -29,11 +29,9 @@ import io.gomint.taglib.NBTWriter;
 import io.gomint.world.Gamerule;
 import io.gomint.world.block.data.Facing;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.ByteOrder;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import javax.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -570,8 +568,15 @@ public abstract class Packet {
     }
 
     CommandOrigin readCommandOrigin(PacketBuffer buffer) {
-        // Seems to be 0, request uuid, 0, type (0 for player, 3 for server)
-        return new CommandOrigin(buffer.readByte(), buffer.readUUID(), buffer.readByte(), buffer.readByte());
+        int type = buffer.readUnsignedVarInt();
+        UUID uuid = buffer.readUUID();
+        String requestId = buffer.readString();
+
+        if (type == CommandOrigin.ORIGIN_DEV_CONSOLE || type == CommandOrigin.ORIGIN_TEST) {
+            long playerEntityUniqueId = buffer.readSignedVarLong().longValue();
+            return new CommandOrigin(type, uuid, requestId, playerEntityUniqueId);
+        }
+        return new CommandOrigin(type, uuid, requestId);
     }
 
     void writeCommandOrigin(CommandOrigin commandOrigin, PacketBuffer buffer) {

@@ -13,6 +13,7 @@ import io.gomint.server.entity.tileentity.TileEntities;
 import io.gomint.server.entity.tileentity.TileEntity;
 import io.gomint.server.inventory.item.Items;
 import io.gomint.server.maintenance.ReportUploader;
+import io.gomint.server.network.packet.types.BlockPaletteEntry;
 import io.gomint.server.registry.BlockRegistry;
 import io.gomint.server.registry.Generator;
 import io.gomint.server.util.BlockIdentifier;
@@ -39,7 +40,7 @@ public class Blocks {
     private static final Logger LOGGER = LoggerFactory.getLogger(Blocks.class);
     private static long lastReport = 0;
     private BlockRegistry generators;
-    private PacketBuffer packetCache;
+    private BlockPaletteEntry[] blockEntries;
 
     public void init(ClassPath classPath, Items items, TileEntities tileEntities, List<BlockIdentifier> blockIdentifiers) throws IOException {
         this.generators = new BlockRegistry(blockIdentifiers, (clazz, id) -> {
@@ -58,10 +59,6 @@ public class Blocks {
 
         this.generators.register(classPath, "io.gomint.server.world.block");
         this.generators.cleanup();
-    }
-
-    public PacketBuffer packetCache() {
-        return this.packetCache;
     }
 
     public <T extends Block> T get(BlockIdentifier identifier, byte skyLightLevel, byte blockLightLevel,
@@ -149,8 +146,11 @@ public class Blocks {
         return true;
     }
 
-    public void setPacketCache(PacketBuffer packetCache) {
-        this.packetCache = packetCache;
+    public void setBlockEntries(BlockPaletteEntry[] entries) {
+        this.blockEntries = entries;
     }
 
+    public BlockPaletteEntry[] getBlockEntries() {
+        return blockEntries;
+    }
 }
