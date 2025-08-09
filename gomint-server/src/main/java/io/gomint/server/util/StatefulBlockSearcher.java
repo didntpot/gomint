@@ -3,6 +3,7 @@ package io.gomint.server.util;
 import io.gomint.math.BlockPosition;
 import io.gomint.world.World;
 import io.gomint.world.block.Block;
+
 import java.util.function.Predicate;
 
 /**

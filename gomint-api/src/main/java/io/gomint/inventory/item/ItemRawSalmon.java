@@ -13,10 +13,10 @@ public interface ItemRawSalmon extends ItemStack<ItemRawSalmon> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemRawSalmon create( int amount ) {
-        return GoMint.instance().createItemStack( ItemRawSalmon.class, amount );
+    static ItemRawSalmon create(int amount) {
+        return GoMint.instance().createItemStack(ItemRawSalmon.class, amount);
     }
 
 }

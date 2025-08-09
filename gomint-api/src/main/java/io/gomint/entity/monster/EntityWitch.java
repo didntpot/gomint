@@ -16,7 +16,7 @@ public interface EntityWitch extends EntityLiving<EntityWitch> {
      * @return empty, fresh witch
      */
     static EntityWitch create() {
-        return GoMint.instance().createEntity( EntityWitch.class );
+        return GoMint.instance().createEntity(EntityWitch.class);
     }
 
 }

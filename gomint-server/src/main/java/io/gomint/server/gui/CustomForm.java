@@ -2,11 +2,12 @@ package io.gomint.server.gui;
 
 import io.gomint.gui.element.Dropdown;
 import io.gomint.server.gui.element.*;
-import java.util.ArrayList;
-import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author geNAZt

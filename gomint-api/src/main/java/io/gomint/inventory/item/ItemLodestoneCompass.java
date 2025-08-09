@@ -20,10 +20,10 @@ public interface ItemLodestoneCompass extends ItemStack<ItemLodestoneCompass> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemLodestoneCompass create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemLodestoneCompass.class, amount );
+    static ItemLodestoneCompass create(int amount) {
+        return GoMint.instance().createItemStack(ItemLodestoneCompass.class, amount);
     }
 
 }

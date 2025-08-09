@@ -20,23 +20,23 @@ import java.util.Iterator;
 public class CommandValidator extends EnumValidator {
 
     public CommandValidator() {
-        super( null );
+        super(null);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Object validate(String input, CommandSender<?> commandSender ) {
-        return input.equals( values().get( 0 ) ) ? true : null;
+    public Object validate(String input, CommandSender<?> commandSender) {
+        return input.equals(values().get(0)) ? true : null;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String consume( Iterator<String> data ) {
-        if ( data.hasNext() ) {
+    public String consume(Iterator<String> data) {
+        if (data.hasNext()) {
             return data.next();
         }
 

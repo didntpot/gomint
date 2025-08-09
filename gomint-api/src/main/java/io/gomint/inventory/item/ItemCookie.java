@@ -13,10 +13,10 @@ public interface ItemCookie extends ItemFood<ItemCookie> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCookie create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCookie.class, amount );
+    static ItemCookie create(int amount) {
+        return GoMint.instance().createItemStack(ItemCookie.class, amount);
     }
 
 }

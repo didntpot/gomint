@@ -14,10 +14,10 @@ public interface ItemSkull extends ItemStack<ItemSkull> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSkull create( int amount ) {
-        return GoMint.instance().createItemStack( ItemSkull.class, amount );
+    static ItemSkull create(int amount) {
+        return GoMint.instance().createItemStack(ItemSkull.class, amount);
     }
 
     /**

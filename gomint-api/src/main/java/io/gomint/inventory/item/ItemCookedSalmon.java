@@ -13,10 +13,10 @@ public interface ItemCookedSalmon extends ItemFood<ItemCookedSalmon> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCookedSalmon create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCookedSalmon.class, amount );
+    static ItemCookedSalmon create(int amount) {
+        return GoMint.instance().createItemStack(ItemCookedSalmon.class, amount);
     }
 
 }

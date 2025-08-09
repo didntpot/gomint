@@ -13,9 +13,9 @@ public interface ItemHoneyCombBlock extends ItemStack<ItemHoneyCombBlock> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemHoneyCombBlock create( int amount ) {
-        return GoMint.instance().createItemStack( ItemHoneyCombBlock.class, amount );
+    static ItemHoneyCombBlock create(int amount) {
+        return GoMint.instance().createItemStack(ItemHoneyCombBlock.class, amount);
     }
 }

@@ -1,9 +1,10 @@
 package io.gomint.server.jwt;
 
 import io.gomint.server.util.StringUtil;
+import org.json.simple.JSONObject;
+
 import java.security.Key;
 import java.util.Base64;
-import org.json.simple.JSONObject;
 
 /**
  * @author geNAZt

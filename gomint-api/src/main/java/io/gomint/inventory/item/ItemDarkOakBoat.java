@@ -20,10 +20,10 @@ public interface ItemDarkOakBoat extends ItemStack<ItemDarkOakBoat> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemDarkOakBoat create( int amount ) {
-        return GoMint.instance().createItemStack( ItemDarkOakBoat.class, amount );
+    static ItemDarkOakBoat create(int amount) {
+        return GoMint.instance().createItemStack(ItemDarkOakBoat.class, amount);
     }
 
 }

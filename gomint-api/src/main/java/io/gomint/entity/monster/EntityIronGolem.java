@@ -22,7 +22,7 @@ public interface EntityIronGolem extends EntityLiving<EntityIronGolem> {
      * @return empty, fresh iron golem
      */
     static EntityIronGolem create() {
-        return GoMint.instance().createEntity( EntityIronGolem.class );
+        return GoMint.instance().createEntity(EntityIronGolem.class);
     }
 
 }

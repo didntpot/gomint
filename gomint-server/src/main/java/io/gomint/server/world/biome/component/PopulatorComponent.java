@@ -8,6 +8,7 @@
 package io.gomint.server.world.biome.component;
 
 import io.gomint.world.biome.component.Populator;
+
 import java.util.List;
 
 /**

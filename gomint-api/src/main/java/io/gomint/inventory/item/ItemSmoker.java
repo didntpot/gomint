@@ -14,8 +14,8 @@ public interface ItemSmoker extends ItemStack<ItemSmoker> {
      *
      * @param amount which is used for the creation
      */
-    static ItemSmoker create(int amount ) {
-        return GoMint.instance().createItemStack( ItemSmoker.class, amount );
+    static ItemSmoker create(int amount) {
+        return GoMint.instance().createItemStack(ItemSmoker.class, amount);
     }
 
 }

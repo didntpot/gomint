@@ -5,6 +5,7 @@ import io.gomint.player.DeviceInfo;
 import io.gomint.player.PlayerSkin;
 import io.gomint.server.entity.passive.EntityHuman;
 import io.gomint.server.network.Protocol;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -58,7 +59,7 @@ public class PacketPlayerList extends Packet implements PacketClientbound {
 
         if (this.mode == 0) {
             for (int i = 0; i < this.entries.size(); i++) {
-            // Is skin trusted
+                // Is skin trusted
                 buffer.writeBoolean(true);
             }
         }

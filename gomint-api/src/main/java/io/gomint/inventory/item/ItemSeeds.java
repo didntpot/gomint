@@ -13,10 +13,10 @@ public interface ItemSeeds extends ItemStack<ItemSeeds> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSeeds create( int amount ) {
-        return GoMint.instance().createItemStack( ItemSeeds.class, amount );
+    static ItemSeeds create(int amount) {
+        return GoMint.instance().createItemStack(ItemSeeds.class, amount);
     }
 
 }

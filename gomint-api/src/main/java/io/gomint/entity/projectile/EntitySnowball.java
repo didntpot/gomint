@@ -21,7 +21,7 @@ public interface EntitySnowball extends EntityProjectile<EntitySnowball> {
      * @see GoMint#createEntity(Class)
      */
     static EntitySnowball create() {
-        return GoMint.instance().createEntity( EntitySnowball.class );
+        return GoMint.instance().createEntity(EntitySnowball.class);
     }
 
 }

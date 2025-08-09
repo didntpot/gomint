@@ -16,7 +16,7 @@ public interface FormListener<R> {
      * @param consumer which consumes the form response
      * @return this object for chaining
      */
-    FormListener<R> onResponse( Consumer<R> consumer );
+    FormListener<R> onResponse(Consumer<R> consumer);
 
     /**
      * Attach a consumer which gets called when the client closes the form
@@ -25,6 +25,6 @@ public interface FormListener<R> {
      * @param consumer which consumes closing without response
      * @return this object for chaining
      */
-    FormListener<R>  onClose( Consumer<Void> consumer );
+    FormListener<R> onClose(Consumer<Void> consumer);
 
 }

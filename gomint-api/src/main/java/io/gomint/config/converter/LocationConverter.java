@@ -28,7 +28,7 @@ public class LocationConverter extends BaseConverter {
     // InternalConverter accesses this constructor with Reflection to create an instance
     // !!!! DO NOT REMOVE !!!!
     // It will compile but will fail at runtime
-    public LocationConverter( InternalConverter internalConverter ) {
+    public LocationConverter(InternalConverter internalConverter) {
 
     }
 
@@ -36,19 +36,19 @@ public class LocationConverter extends BaseConverter {
      * {@inheritDoc}
      */
     @Override
-    public Object toConfig( Class<?> type, Object object, ParameterizedType parameterizedType ) {
+    public Object toConfig(Class<?> type, Object object, ParameterizedType parameterizedType) {
         Location location = (Location) object;
         Map<String, Object> saveMap = new HashMap<>();
 
-        if ( location.world() != null ) {
-            saveMap.put( "world", location.world().folder() );
+        if (location.world() != null) {
+            saveMap.put("world", location.world().folder());
         }
 
-        saveMap.put( "x", location.x() );
-        saveMap.put( "y", location.y() );
-        saveMap.put( "z", location.z() );
-        saveMap.put( "yaw", location.yaw() );
-        saveMap.put( "pitch", location.pitch() );
+        saveMap.put("x", location.x());
+        saveMap.put("y", location.y());
+        saveMap.put("z", location.z());
+        saveMap.put("yaw", location.yaw());
+        saveMap.put("pitch", location.pitch());
 
         return saveMap;
     }
@@ -57,43 +57,43 @@ public class LocationConverter extends BaseConverter {
      * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings( "unchecked" )
-    public Object fromConfig( Class<?> type, Object object, ParameterizedType parameterizedType ) {
+    @SuppressWarnings("unchecked")
+    public Object fromConfig(Class<?> type, Object object, ParameterizedType parameterizedType) {
         World world = null;
         Float headYaw = null;
         Map<String, Object> locationMap;
 
-        if ( object instanceof Map ) {
+        if (object instanceof Map) {
             locationMap = (Map<String, Object>) object;
         } else {
-            locationMap = (Map<String, Object>) ( (ConfigSection) object ).getRawMap();
+            locationMap = (Map<String, Object>) ((ConfigSection) object).getRawMap();
         }
 
-        float x = super.asFloat( locationMap.get( "x" ) );
-        float y = super.asFloat( locationMap.get( "y" ) );
-        float z = super.asFloat( locationMap.get( "z" ) );
-        float yaw = super.asFloat( locationMap.get( "yaw" ) );
-        float pitch = super.asFloat( locationMap.get( "pitch" ) );
+        float x = super.asFloat(locationMap.get("x"));
+        float y = super.asFloat(locationMap.get("y"));
+        float z = super.asFloat(locationMap.get("z"));
+        float yaw = super.asFloat(locationMap.get("yaw"));
+        float pitch = super.asFloat(locationMap.get("pitch"));
 
-        if ( locationMap.containsKey( "world" ) ) {
+        if (locationMap.containsKey("world")) {
             world = GoMint.instance().world((String) locationMap.get("world"));
         }
 
-        if ( locationMap.containsKey( "headYaw" ) ) {
-            headYaw = (Float) locationMap.get( "headYaw" );
+        if (locationMap.containsKey("headYaw")) {
+            headYaw = (Float) locationMap.get("headYaw");
         }
 
         headYaw = headYaw == null ? yaw : headYaw;
 
-        return new Location( world, x, y, z, headYaw, yaw, pitch );
+        return new Location(world, x, y, z, headYaw, yaw, pitch);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean supports( Class<?> type ) {
-        return Location.class.isAssignableFrom( type );
+    public boolean supports(Class<?> type) {
+        return Location.class.isAssignableFrom(type);
     }
 
 }

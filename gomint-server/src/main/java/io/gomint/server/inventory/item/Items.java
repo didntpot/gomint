@@ -1,7 +1,6 @@
 package io.gomint.server.inventory.item;
 
 import io.gomint.inventory.item.ItemStack;
-import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.packet.types.ItemPaletteEntry;
 import io.gomint.server.registry.Generator;
 import io.gomint.server.registry.StringRegistry;
@@ -14,15 +13,16 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import org.apache.commons.text.WordUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.text.WordUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author geNAZt

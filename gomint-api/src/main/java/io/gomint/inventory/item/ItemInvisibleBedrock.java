@@ -20,10 +20,10 @@ public interface ItemInvisibleBedrock extends ItemStack<ItemInvisibleBedrock> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemInvisibleBedrock create( int amount ) {
-        return GoMint.instance().createItemStack( ItemInvisibleBedrock.class, amount );
+    static ItemInvisibleBedrock create(int amount) {
+        return GoMint.instance().createItemStack(ItemInvisibleBedrock.class, amount);
     }
 
 }

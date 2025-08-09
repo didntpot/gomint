@@ -20,10 +20,10 @@ public interface ItemAcaciaWallSign extends ItemStack<ItemAcaciaWallSign> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemAcaciaWallSign create( int amount ) {
-        return GoMint.instance().createItemStack( ItemAcaciaWallSign.class, amount );
+    static ItemAcaciaWallSign create(int amount) {
+        return GoMint.instance().createItemStack(ItemAcaciaWallSign.class, amount);
     }
 
 }

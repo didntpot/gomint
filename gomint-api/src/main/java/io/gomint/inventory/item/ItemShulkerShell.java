@@ -13,10 +13,10 @@ public interface ItemShulkerShell extends ItemStack<ItemShulkerShell> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemShulkerShell create( int amount ) {
-        return GoMint.instance().createItemStack( ItemShulkerShell.class, amount );
+    static ItemShulkerShell create(int amount) {
+        return GoMint.instance().createItemStack(ItemShulkerShell.class, amount);
     }
 
 }

@@ -23,13 +23,14 @@
 
 package net.minecrell.terminalconsole;
 
-import java.util.List;
 import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.config.Configuration;
 import org.apache.logging.log4j.core.config.plugins.Plugin;
 import org.apache.logging.log4j.core.layout.PatternLayout;
 import org.apache.logging.log4j.core.pattern.*;
 import org.apache.logging.log4j.util.PerformanceSensitive;
+
+import java.util.List;
 
 /**
  * Replaces Minecraft formatting codes in the result of a pattern with

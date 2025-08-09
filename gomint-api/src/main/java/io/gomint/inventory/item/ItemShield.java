@@ -22,7 +22,7 @@ public interface ItemShield extends ItemStack<ItemShield> {
      * @param amount which is used for the creation
      */
     static ItemShield create(int amount) {
-        return GoMint.instance().createItemStack( ItemShield.class, amount );
+        return GoMint.instance().createItemStack(ItemShield.class, amount);
     }
 
 }

@@ -22,6 +22,7 @@ import io.gomint.server.entity.pathfinding.PathfindingEngine;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.WorldAdapter;
 import io.gomint.world.block.data.BlockColor;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 @RegisterInfo(sId = "minecraft:sheep")

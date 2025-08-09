@@ -13,10 +13,10 @@ public interface ItemRail extends ItemStack<ItemRail> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemRail create( int amount ) {
-        return GoMint.instance().createItemStack( ItemRail.class, amount );
+    static ItemRail create(int amount) {
+        return GoMint.instance().createItemStack(ItemRail.class, amount);
     }
 
 }

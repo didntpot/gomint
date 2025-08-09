@@ -13,10 +13,10 @@ public interface ItemBread extends ItemFood<ItemBread> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemBread create( int amount ) {
-        return GoMint.instance().createItemStack( ItemBread.class, amount );
+    static ItemBread create(int amount) {
+        return GoMint.instance().createItemStack(ItemBread.class, amount);
     }
 
 }

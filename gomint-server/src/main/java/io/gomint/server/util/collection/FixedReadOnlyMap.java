@@ -8,6 +8,7 @@
 package io.gomint.server.util.collection;
 
 import io.gomint.taglib.NBTTagCompound;
+
 import java.util.*;
 
 public class FixedReadOnlyMap extends ReadOnlyMap<String, Object> {

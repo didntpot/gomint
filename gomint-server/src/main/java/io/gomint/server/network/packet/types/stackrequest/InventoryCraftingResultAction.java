@@ -10,6 +10,7 @@ package io.gomint.server.network.packet.types.stackrequest;
 import io.gomint.inventory.item.ItemStack;
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.packet.Packet;
+
 import java.util.Arrays;
 
 /**

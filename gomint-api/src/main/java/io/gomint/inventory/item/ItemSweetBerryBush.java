@@ -20,10 +20,10 @@ public interface ItemSweetBerryBush extends ItemStack<ItemSweetBerryBush> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSweetBerryBush create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemSweetBerryBush.class, amount );
+    static ItemSweetBerryBush create(int amount) {
+        return GoMint.instance().createItemStack(ItemSweetBerryBush.class, amount);
     }
 
 }

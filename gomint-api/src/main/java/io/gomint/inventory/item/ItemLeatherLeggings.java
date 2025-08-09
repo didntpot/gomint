@@ -13,10 +13,10 @@ public interface ItemLeatherLeggings extends ItemColoredArmor<ItemLeatherLegging
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemLeatherLeggings create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemLeatherLeggings.class, amount );
+    static ItemLeatherLeggings create(int amount) {
+        return GoMint.instance().createItemStack(ItemLeatherLeggings.class, amount);
     }
 
 }

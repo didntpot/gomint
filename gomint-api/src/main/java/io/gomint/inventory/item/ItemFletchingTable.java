@@ -14,8 +14,8 @@ public interface ItemFletchingTable extends ItemStack<ItemFletchingTable> {
      *
      * @param amount which is used for the creation
      */
-    static ItemFletchingTable create(int amount ) {
-        return GoMint.instance().createItemStack( ItemFletchingTable.class, amount );
+    static ItemFletchingTable create(int amount) {
+        return GoMint.instance().createItemStack(ItemFletchingTable.class, amount);
     }
 
 }

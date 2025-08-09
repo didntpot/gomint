@@ -8,6 +8,7 @@ import io.gomint.server.world.WorldAdapter;
 import io.gomint.server.world.block.Block;
 import io.gomint.world.block.data.Direction;
 import io.gomint.world.block.data.Facing;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 /**

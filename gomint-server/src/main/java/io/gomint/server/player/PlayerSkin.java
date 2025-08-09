@@ -8,6 +8,11 @@
 package io.gomint.server.player;
 
 import io.gomint.server.util.Picture;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,10 +21,6 @@ import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 /**
  * @author BlackyPaw

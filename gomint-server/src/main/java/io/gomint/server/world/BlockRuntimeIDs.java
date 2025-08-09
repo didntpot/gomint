@@ -7,9 +7,7 @@
 
 package io.gomint.server.world;
 
-import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.packet.types.BlockPaletteEntry;
-import io.gomint.server.network.packet.types.ItemPaletteEntry;
 import io.gomint.server.registry.SwitchBlockStateMapper;
 import io.gomint.server.util.BlockIdentifier;
 import io.gomint.server.util.collection.ReadOnlyMap;
@@ -17,15 +15,13 @@ import io.gomint.server.util.collection.SingleKeyChangeMap;
 import io.gomint.server.world.block.Blocks;
 import io.gomint.server.world.block.mapper.BlockStateMapper;
 import io.gomint.taglib.NBTTagCompound;
-import io.gomint.taglib.NBTWriter;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import java.io.IOException;
-import java.nio.ByteOrder;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author geNAZt

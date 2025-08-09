@@ -20,10 +20,10 @@ public interface ItemJungleStandingSign extends ItemStack<ItemJungleStandingSign
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemJungleStandingSign create( int amount ) {
-        return GoMint.instance().createItemStack( ItemJungleStandingSign.class, amount );
+    static ItemJungleStandingSign create(int amount) {
+        return GoMint.instance().createItemStack(ItemJungleStandingSign.class, amount);
     }
 
 }

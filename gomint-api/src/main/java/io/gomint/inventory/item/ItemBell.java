@@ -20,10 +20,10 @@ public interface ItemBell extends ItemStack<ItemBell> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemBell create( int amount ) {
-        return GoMint.instance().createItemStack( ItemBell.class, amount );
+    static ItemBell create(int amount) {
+        return GoMint.instance().createItemStack(ItemBell.class, amount);
     }
 
 }

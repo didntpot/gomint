@@ -13,10 +13,10 @@ public interface ItemSnow extends ItemStack<ItemSnow> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSnow create( int amount ) {
-        return GoMint.instance().createItemStack( ItemSnow.class, amount );
+    static ItemSnow create(int amount) {
+        return GoMint.instance().createItemStack(ItemSnow.class, amount);
     }
 
 }

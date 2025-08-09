@@ -13,10 +13,10 @@ public interface ItemFishingRod extends ItemStack<ItemFishingRod>, ItemBurnable 
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemFishingRod create( int amount ) {
-        return GoMint.instance().createItemStack( ItemFishingRod.class, amount );
+    static ItemFishingRod create(int amount) {
+        return GoMint.instance().createItemStack(ItemFishingRod.class, amount);
     }
 
 }

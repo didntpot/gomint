@@ -17,8 +17,9 @@ import io.gomint.world.WorldType;
 import io.gomint.world.block.data.Axis;
 import io.gomint.world.block.data.LogType;
 import io.gomint.world.generator.CreateOptions;
-import java.util.HashMap;
 import org.junit.jupiter.api.*;
+
+import java.util.HashMap;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)

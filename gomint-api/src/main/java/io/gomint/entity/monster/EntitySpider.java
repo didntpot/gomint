@@ -16,7 +16,7 @@ public interface EntitySpider extends EntityLiving<EntitySpider> {
      * @return empty, fresh spider
      */
     static EntitySpider create() {
-        return GoMint.instance().createEntity( EntitySpider.class );
+        return GoMint.instance().createEntity(EntitySpider.class);
     }
 
 }

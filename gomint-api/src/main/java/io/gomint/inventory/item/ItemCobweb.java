@@ -13,10 +13,10 @@ public interface ItemCobweb extends ItemStack<ItemCobweb> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCobweb create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCobweb.class, amount );
+    static ItemCobweb create(int amount) {
+        return GoMint.instance().createItemStack(ItemCobweb.class, amount);
     }
 
 }

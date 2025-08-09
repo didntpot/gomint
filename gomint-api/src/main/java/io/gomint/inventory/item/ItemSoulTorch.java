@@ -20,10 +20,10 @@ public interface ItemSoulTorch extends ItemStack<ItemSoulTorch> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSoulTorch create( int amount ) {
-        return GoMint.instance().createItemStack( ItemSoulTorch.class, amount );
+    static ItemSoulTorch create(int amount) {
+        return GoMint.instance().createItemStack(ItemSoulTorch.class, amount);
     }
 
 }

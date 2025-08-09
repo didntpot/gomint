@@ -23,7 +23,7 @@ public interface EntityPrimedTNT extends Entity<EntityPrimedTNT> {
      * @return new entity
      */
     static EntityPrimedTNT create() {
-        return GoMint.instance().createEntity( EntityPrimedTNT.class );
+        return GoMint.instance().createEntity(EntityPrimedTNT.class);
     }
 
     /**
@@ -31,7 +31,7 @@ public interface EntityPrimedTNT extends Entity<EntityPrimedTNT> {
      *
      * @param fuseInSeconds fuse time in seconds
      */
-    EntityPrimedTNT fuse(float fuseInSeconds );
+    EntityPrimedTNT fuse(float fuseInSeconds);
 
     /**
      * Get time until explosion in seconds

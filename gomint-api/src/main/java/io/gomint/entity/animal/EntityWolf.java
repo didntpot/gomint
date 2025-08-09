@@ -23,7 +23,7 @@ public interface EntityWolf extends EntityAgeable<EntityWolf> {
      * @return empty, fresh wolf
      */
     static EntityWolf create() {
-        return GoMint.instance().createEntity( EntityWolf.class );
+        return GoMint.instance().createEntity(EntityWolf.class);
     }
 
 }

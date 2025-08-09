@@ -13,10 +13,10 @@ public interface ItemBeacon extends ItemStack<ItemBeacon> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemBeacon create( int amount ) {
-        return GoMint.instance().createItemStack( ItemBeacon.class, amount );
+    static ItemBeacon create(int amount) {
+        return GoMint.instance().createItemStack(ItemBeacon.class, amount);
     }
 
 }

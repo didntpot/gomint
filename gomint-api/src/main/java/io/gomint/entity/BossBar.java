@@ -20,7 +20,7 @@ public interface BossBar {
      *
      * @param player which should be added to this bossbar
      */
-    BossBar addPlayer( EntityPlayer player );
+    BossBar addPlayer(EntityPlayer player);
 
     /**
      * Remove a player from the boss bar. his has to be done manually for
@@ -28,14 +28,14 @@ public interface BossBar {
      *
      * @param player which should be removed from this bossbar
      */
-    BossBar removePlayer( EntityPlayer player );
+    BossBar removePlayer(EntityPlayer player);
 
     /**
      * Set the title of this boss bar
      *
      * @param title of the boss bar
      */
-    BossBar title(String title );
+    BossBar title(String title);
 
     /**
      * Get the title of this boss bar

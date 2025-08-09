@@ -20,10 +20,10 @@ public interface ItemMojangBannerPattern extends ItemStack<ItemMojangBannerPatte
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemMojangBannerPattern create( int amount ) {
-        return GoMint.instance().createItemStack( ItemMojangBannerPattern.class, amount );
+    static ItemMojangBannerPattern create(int amount) {
+        return GoMint.instance().createItemStack(ItemMojangBannerPattern.class, amount);
     }
 
 }

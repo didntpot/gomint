@@ -14,7 +14,8 @@ package io.gomint.config;
  */
 public class InvalidConfigurationException extends Exception {
 
-    public InvalidConfigurationException() {}
+    public InvalidConfigurationException() {
+    }
 
     public InvalidConfigurationException(String msg) {
         super(msg);

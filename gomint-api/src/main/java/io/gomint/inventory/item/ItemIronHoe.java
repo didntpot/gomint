@@ -13,10 +13,10 @@ public interface ItemIronHoe extends ItemHoe<ItemIronHoe> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemIronHoe create( int amount ) {
-        return GoMint.instance().createItemStack( ItemIronHoe.class, amount );
+    static ItemIronHoe create(int amount) {
+        return GoMint.instance().createItemStack(ItemIronHoe.class, amount);
     }
 
 }

@@ -13,10 +13,10 @@ public interface ItemSign extends ItemStack<ItemSign> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSign create( int amount ) {
-        return GoMint.instance().createItemStack( ItemSign.class, amount );
+    static ItemSign create(int amount) {
+        return GoMint.instance().createItemStack(ItemSign.class, amount);
     }
 
 }

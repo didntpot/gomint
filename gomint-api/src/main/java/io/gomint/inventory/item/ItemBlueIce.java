@@ -20,10 +20,10 @@ public interface ItemBlueIce extends ItemStack<ItemBlueIce> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemBlueIce create( int amount ) {
-        return GoMint.instance().createItemStack( ItemBlueIce.class, amount );
+    static ItemBlueIce create(int amount) {
+        return GoMint.instance().createItemStack(ItemBlueIce.class, amount);
     }
 
 }

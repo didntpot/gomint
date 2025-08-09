@@ -13,10 +13,10 @@ public interface ItemDeadBush extends ItemStack<ItemDeadBush> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemDeadBush create( int amount ) {
-        return GoMint.instance().createItemStack( ItemDeadBush.class, amount );
+    static ItemDeadBush create(int amount) {
+        return GoMint.instance().createItemStack(ItemDeadBush.class, amount);
     }
 
 }

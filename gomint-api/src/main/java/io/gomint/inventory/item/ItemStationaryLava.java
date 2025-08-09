@@ -13,10 +13,10 @@ public interface ItemStationaryLava extends ItemStack<ItemStationaryLava> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemStationaryLava create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemStationaryLava.class, amount );
+    static ItemStationaryLava create(int amount) {
+        return GoMint.instance().createItemStack(ItemStationaryLava.class, amount);
     }
 
 }

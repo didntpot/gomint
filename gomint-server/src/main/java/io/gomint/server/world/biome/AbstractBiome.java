@@ -12,6 +12,7 @@ import io.gomint.server.world.biome.component.Component;
 import io.gomint.world.biome.Biome;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+
 import java.util.Set;
 
 /**

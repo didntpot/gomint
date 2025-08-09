@@ -20,10 +20,10 @@ public interface ItemMagmaCubeSpawnEgg extends ItemStack<ItemMagmaCubeSpawnEgg> 
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemMagmaCubeSpawnEgg create( int amount ) {
-        return GoMint.instance().createItemStack( ItemMagmaCubeSpawnEgg.class, amount );
+    static ItemMagmaCubeSpawnEgg create(int amount) {
+        return GoMint.instance().createItemStack(ItemMagmaCubeSpawnEgg.class, amount);
     }
 
 }

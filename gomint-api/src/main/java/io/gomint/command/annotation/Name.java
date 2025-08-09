@@ -17,8 +17,8 @@ import java.lang.annotation.Target;
  * @version 1.0
  * @stability 3
  */
-@Target( ElementType.TYPE )
-@Retention( RetentionPolicy.RUNTIME )
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Name {
 
     String value() default "";

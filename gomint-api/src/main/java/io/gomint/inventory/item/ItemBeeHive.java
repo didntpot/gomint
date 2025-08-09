@@ -21,8 +21,8 @@ public interface ItemBeeHive extends ItemStack<ItemBeeHive> {
      *
      * @param amount which is used for the creation
      */
-    static ItemBeeHive create(int amount ) {
-        return GoMint.instance().createItemStack( ItemBeeHive.class, amount );
+    static ItemBeeHive create(int amount) {
+        return GoMint.instance().createItemStack(ItemBeeHive.class, amount);
     }
 
 }

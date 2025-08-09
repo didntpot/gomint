@@ -160,7 +160,7 @@ public interface EntityLiving<E> extends Entity<E> {
      *
      * @param duration for how long this entity should be on fire
      * @param unit     with which the duration should be multiplied
-     *                 @return entity for chaining
+     * @return entity for chaining
      */
     E burning(long duration, TimeUnit unit);
 

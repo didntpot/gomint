@@ -25,9 +25,9 @@ public class EnumValidator extends ParamValidator<EnumValidator> {
 
     private final List<String> values = new ArrayList<>();
 
-    public EnumValidator( List<String> enumValues ) {
-        if ( enumValues != null ) {
-            this.values.addAll( enumValues );
+    public EnumValidator(List<String> enumValues) {
+        if (enumValues != null) {
+            this.values.addAll(enumValues);
         }
     }
 
@@ -35,8 +35,8 @@ public class EnumValidator extends ParamValidator<EnumValidator> {
      * {@inheritDoc}
      */
     @Override
-    public String consume( Iterator<String> data ) {
-        if ( data.hasNext() ) {
+    public String consume(Iterator<String> data) {
+        if (data.hasNext()) {
             return data.next();
         }
 
@@ -47,8 +47,8 @@ public class EnumValidator extends ParamValidator<EnumValidator> {
      * {@inheritDoc}
      */
     @Override
-    public Object validate(String input, CommandSender<?> commandSender ) {
-        if ( this.values.contains( input ) ) {
+    public Object validate(String input, CommandSender<?> commandSender) {
+        if (this.values.contains(input)) {
             return input;
         }
 
@@ -84,7 +84,7 @@ public class EnumValidator extends ParamValidator<EnumValidator> {
      */
     @Override
     public String helpText() {
-        return Joiner.on( " | " ).join( this.values );
+        return Joiner.on(" | ").join(this.values);
     }
 
 }

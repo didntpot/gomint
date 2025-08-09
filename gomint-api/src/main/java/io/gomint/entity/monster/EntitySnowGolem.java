@@ -22,7 +22,7 @@ public interface EntitySnowGolem extends EntityLiving<EntitySnowGolem> {
      * @return empty, fresh snow golem
      */
     static EntitySnowGolem create() {
-        return GoMint.instance().createEntity( EntitySnowGolem.class );
+        return GoMint.instance().createEntity(EntitySnowGolem.class);
     }
 
 }

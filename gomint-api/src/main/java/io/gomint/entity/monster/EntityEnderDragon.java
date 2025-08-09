@@ -16,7 +16,7 @@ public interface EntityEnderDragon extends EntityLiving<EntityEnderDragon> {
      * @return empty, fresh ender dragon
      */
     static EntityEnderDragon create() {
-        return GoMint.instance().createEntity( EntityEnderDragon.class );
+        return GoMint.instance().createEntity(EntityEnderDragon.class);
     }
 
 }

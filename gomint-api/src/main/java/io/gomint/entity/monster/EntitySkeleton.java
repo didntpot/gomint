@@ -16,7 +16,7 @@ public interface EntitySkeleton extends EntityLiving<EntitySkeleton> {
      * @return empty, fresh skeleton
      */
     static EntitySkeleton create() {
-        return GoMint.instance().createEntity( EntitySkeleton.class );
+        return GoMint.instance().createEntity(EntitySkeleton.class);
     }
 
 }

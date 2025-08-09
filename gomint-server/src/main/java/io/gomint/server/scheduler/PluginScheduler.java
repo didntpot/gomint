@@ -10,6 +10,7 @@ package io.gomint.server.scheduler;
 import io.gomint.plugin.Plugin;
 import io.gomint.scheduler.Scheduler;
 import io.gomint.scheduler.Task;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;

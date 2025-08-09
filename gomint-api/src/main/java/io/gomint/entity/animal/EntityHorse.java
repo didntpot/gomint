@@ -23,7 +23,7 @@ public interface EntityHorse extends EntityAgeable<EntityHorse> {
      * @return empty, fresh horse
      */
     static EntityHorse create() {
-        return GoMint.instance().createEntity( EntityHorse.class );
+        return GoMint.instance().createEntity(EntityHorse.class);
     }
 
 }

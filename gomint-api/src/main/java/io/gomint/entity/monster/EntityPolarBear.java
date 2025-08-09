@@ -16,7 +16,7 @@ public interface EntityPolarBear extends EntityAgeable<EntityPolarBear> {
      * @return empty, fresh polar bear
      */
     static EntityPolarBear create() {
-        return GoMint.instance().createEntity( EntityPolarBear.class );
+        return GoMint.instance().createEntity(EntityPolarBear.class);
     }
 
 }

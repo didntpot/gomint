@@ -16,7 +16,7 @@ public interface EntityArmorStand extends EntityCreature<EntityArmorStand> {
      * @return empty, fresh armor stand
      */
     static EntityArmorStand create() {
-        return GoMint.instance().createEntity( EntityArmorStand.class );
+        return GoMint.instance().createEntity(EntityArmorStand.class);
     }
 
 }

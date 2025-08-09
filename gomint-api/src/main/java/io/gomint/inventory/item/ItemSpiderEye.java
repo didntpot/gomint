@@ -13,10 +13,10 @@ public interface ItemSpiderEye extends ItemFood<ItemSpiderEye> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSpiderEye create( int amount ) {
-        return GoMint.instance().createItemStack( ItemSpiderEye.class, amount );
+    static ItemSpiderEye create(int amount) {
+        return GoMint.instance().createItemStack(ItemSpiderEye.class, amount);
     }
 
 }

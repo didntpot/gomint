@@ -20,10 +20,10 @@ public interface ItemMuleSpawnEgg extends ItemStack<ItemMuleSpawnEgg> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemMuleSpawnEgg create( int amount ) {
-        return GoMint.instance().createItemStack( ItemMuleSpawnEgg.class, amount );
+    static ItemMuleSpawnEgg create(int amount) {
+        return GoMint.instance().createItemStack(ItemMuleSpawnEgg.class, amount);
     }
 
 }

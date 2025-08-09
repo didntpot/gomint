@@ -12,6 +12,7 @@ import io.gomint.event.EventHandler;
 import io.gomint.event.EventListener;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 

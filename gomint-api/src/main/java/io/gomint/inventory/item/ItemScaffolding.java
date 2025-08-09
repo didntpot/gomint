@@ -20,10 +20,10 @@ public interface ItemScaffolding extends ItemStack<ItemScaffolding>, ItemBurnabl
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemScaffolding create( int amount ) {
-        return GoMint.instance().createItemStack( ItemScaffolding.class, amount );
+    static ItemScaffolding create(int amount) {
+        return GoMint.instance().createItemStack(ItemScaffolding.class, amount);
     }
 
 }

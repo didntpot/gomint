@@ -20,10 +20,10 @@ public interface ItemMusicDiscChirp extends ItemStack<ItemMusicDiscChirp> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemMusicDiscChirp create( int amount ) {
-        return GoMint.instance().createItemStack( ItemMusicDiscChirp.class, amount );
+    static ItemMusicDiscChirp create(int amount) {
+        return GoMint.instance().createItemStack(ItemMusicDiscChirp.class, amount);
     }
 
 }

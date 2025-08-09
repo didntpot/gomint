@@ -16,7 +16,7 @@ public interface EntityGuardian extends EntityLiving<EntityGuardian> {
      * @return empty, fresh guardian
      */
     static EntityGuardian create() {
-        return GoMint.instance().createEntity( EntityGuardian.class );
+        return GoMint.instance().createEntity(EntityGuardian.class);
     }
 
 }

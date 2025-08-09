@@ -14,8 +14,8 @@ public interface ItemBannerPattern extends ItemStack<ItemBannerPattern> {
      *
      * @param amount which is used for the creation
      */
-    static ItemBannerPattern create(int amount ) {
-        return GoMint.instance().createItemStack( ItemBannerPattern.class, amount );
+    static ItemBannerPattern create(int amount) {
+        return GoMint.instance().createItemStack(ItemBannerPattern.class, amount);
     }
 
 }

@@ -23,6 +23,6 @@ public interface EntityStrider extends EntityAgeable<EntityStrider> {
      * @return empty, fresh zombie strider
      */
     static EntityStrider create() {
-        return GoMint.instance().createEntity( EntityStrider.class );
+        return GoMint.instance().createEntity(EntityStrider.class);
     }
 }

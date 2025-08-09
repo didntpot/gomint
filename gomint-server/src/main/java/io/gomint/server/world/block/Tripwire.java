@@ -4,6 +4,7 @@ import io.gomint.math.AxisAlignedBB;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockTripwire;
 import io.gomint.world.block.BlockType;
+
 import java.util.Collections;
 import java.util.List;
 

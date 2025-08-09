@@ -11,10 +11,10 @@ public class Messages {
 
     private static final String PARAM_IS_NULL_FORMAT = "Passed parameter '%s' cannot be null";
 
-    public static String paramIsNull( String paramName ) {
-        Preconditions.checkNotNull( paramName, String.format( PARAM_IS_NULL_FORMAT, "paramName" ) );
+    public static String paramIsNull(String paramName) {
+        Preconditions.checkNotNull(paramName, String.format(PARAM_IS_NULL_FORMAT, "paramName"));
 
-        return String.format( PARAM_IS_NULL_FORMAT, paramName );
+        return String.format(PARAM_IS_NULL_FORMAT, paramName);
     }
 
 }

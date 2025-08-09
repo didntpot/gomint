@@ -13,10 +13,10 @@ public interface ItemMinecartWithTnt extends ItemStack<ItemMinecartWithTnt> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemMinecartWithTnt create( int amount ) {
-        return GoMint.instance().createItemStack( ItemMinecartWithTnt.class, amount );
+    static ItemMinecartWithTnt create(int amount) {
+        return GoMint.instance().createItemStack(ItemMinecartWithTnt.class, amount);
     }
 
 }

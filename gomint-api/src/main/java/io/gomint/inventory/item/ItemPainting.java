@@ -13,10 +13,10 @@ public interface ItemPainting extends ItemStack<ItemPainting> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemPainting create( int amount ) {
-        return GoMint.instance().createItemStack( ItemPainting.class, amount );
+    static ItemPainting create(int amount) {
+        return GoMint.instance().createItemStack(ItemPainting.class, amount);
     }
 
 }

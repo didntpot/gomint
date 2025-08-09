@@ -13,10 +13,10 @@ public interface ItemTorch extends ItemStack<ItemTorch> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemTorch create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemTorch.class, amount );
+    static ItemTorch create(int amount) {
+        return GoMint.instance().createItemStack(ItemTorch.class, amount);
     }
 
 }

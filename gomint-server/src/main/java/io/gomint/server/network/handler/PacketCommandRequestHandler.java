@@ -6,6 +6,7 @@ import io.gomint.server.network.PlayerConnection;
 import io.gomint.server.network.packet.PacketCommandOutput;
 import io.gomint.server.network.packet.PacketCommandRequest;
 import io.gomint.server.network.type.OutputMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -20,10 +20,10 @@ public interface ItemPolishedBlackstoneBricks extends ItemStack<ItemPolishedBlac
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemPolishedBlackstoneBricks create( int amount ) {
-        return GoMint.instance().createItemStack( ItemPolishedBlackstoneBricks.class, amount );
+    static ItemPolishedBlackstoneBricks create(int amount) {
+        return GoMint.instance().createItemStack(ItemPolishedBlackstoneBricks.class, amount);
     }
 
 }

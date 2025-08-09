@@ -3,8 +3,8 @@ package io.gomint.server.world.block;
 import io.gomint.inventory.item.ItemShears;
 import io.gomint.inventory.item.ItemStack;
 import io.gomint.inventory.item.ItemVines;
-import io.gomint.math.Vector;
 import io.gomint.math.*;
+import io.gomint.math.Vector;
 import io.gomint.server.entity.Entity;
 import io.gomint.server.entity.EntityLiving;
 import io.gomint.server.registry.RegisterInfo;
@@ -13,6 +13,7 @@ import io.gomint.server.world.block.state.AttachingBlockState;
 import io.gomint.world.block.BlockType;
 import io.gomint.world.block.BlockVines;
 import io.gomint.world.block.data.Facing;
+
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 

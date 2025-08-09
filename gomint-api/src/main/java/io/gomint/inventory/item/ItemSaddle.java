@@ -13,10 +13,10 @@ public interface ItemSaddle extends ItemStack<ItemSaddle> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSaddle create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemSaddle.class, amount );
+    static ItemSaddle create(int amount) {
+        return GoMint.instance().createItemStack(ItemSaddle.class, amount);
     }
 
 }

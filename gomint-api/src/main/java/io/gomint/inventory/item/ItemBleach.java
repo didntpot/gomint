@@ -20,10 +20,10 @@ public interface ItemBleach extends ItemStack<ItemBleach> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemBleach create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemBleach.class, amount );
+    static ItemBleach create(int amount) {
+        return GoMint.instance().createItemStack(ItemBleach.class, amount);
     }
 
 }

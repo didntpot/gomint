@@ -10,11 +10,12 @@ package io.gomint.server.event;
 import com.google.common.base.Preconditions;
 import io.gomint.event.CancellableEvent;
 import io.gomint.event.Event;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * This list sorts and triggers all EventHandlerMethods which have been registered for a event.

@@ -9,6 +9,7 @@ import io.gomint.server.world.block.state.BooleanBlockState;
 import io.gomint.server.world.block.state.HalfBlockState;
 import io.gomint.world.block.BlockSlab;
 import io.gomint.world.block.data.Facing;
+
 import java.util.Collections;
 import java.util.List;
 

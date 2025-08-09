@@ -25,7 +25,7 @@ public class BlockIdentifier {
     private final int runtimeId;
     private NBTTagCompound nbt;
 
-    public BlockIdentifier(String blockId, int runtimeId, NBTTagCompound states)  {
+    public BlockIdentifier(String blockId, int runtimeId, NBTTagCompound states) {
         this.blockId = blockId;
         this.runtimeId = runtimeId;
 

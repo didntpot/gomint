@@ -19,8 +19,8 @@ import java.lang.annotation.Target;
  * @version 1.0
  * @stability 3
  */
-@Retention( RetentionPolicy.RUNTIME )
-@Target( ElementType.TYPE )
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
 public @interface SerializeOptions {
 
     String[] configHeader() default {};

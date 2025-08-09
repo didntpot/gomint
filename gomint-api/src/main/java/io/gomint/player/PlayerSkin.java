@@ -28,14 +28,14 @@ public interface PlayerSkin {
      * @param url which we should fetch
      * @return skin or null on error
      */
-    static PlayerSkin fromURL( String url ) {
+    static PlayerSkin fromURL(String url) {
         try {
-            URL urlObj = new URL( url );
+            URL urlObj = new URL(url);
             URLConnection connection = urlObj.openConnection();
-            try ( InputStream inputStream = connection.getInputStream() ) {
-                return GoMint.instance().createPlayerSkin( inputStream );
+            try (InputStream inputStream = connection.getInputStream()) {
+                return GoMint.instance().createPlayerSkin(inputStream);
             }
-        } catch ( IOException e ) {
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
@@ -68,9 +68,9 @@ public interface PlayerSkin {
      * Save the skin to a given file in PNG format
      *
      * @param out stream to which the image should be saved
-     * @throws IOException which can be thrown in case of errors while saving
      * @return player skin for chaining
+     * @throws IOException which can be thrown in case of errors while saving
      */
-    PlayerSkin saveSkinTo( OutputStream out ) throws IOException;
+    PlayerSkin saveSkinTo(OutputStream out) throws IOException;
 
 }

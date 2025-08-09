@@ -23,7 +23,7 @@ public interface EntityBee extends EntityAgeable<EntityBee> {
      * @return empty, fresh horse
      */
     static EntityBee create() {
-        return GoMint.instance().createEntity( EntityBee.class );
+        return GoMint.instance().createEntity(EntityBee.class);
     }
 
 }

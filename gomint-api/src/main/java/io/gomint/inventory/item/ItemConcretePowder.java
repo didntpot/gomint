@@ -20,10 +20,10 @@ public interface ItemConcretePowder extends ItemStack<ItemConcretePowder> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemConcretePowder create( int amount ) {
-        return GoMint.instance().createItemStack( ItemConcretePowder.class, amount );
+    static ItemConcretePowder create(int amount) {
+        return GoMint.instance().createItemStack(ItemConcretePowder.class, amount);
     }
 
 }

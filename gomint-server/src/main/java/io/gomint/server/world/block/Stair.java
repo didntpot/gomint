@@ -10,6 +10,7 @@ import io.gomint.server.world.block.state.CrossDirectionBlockState;
 import io.gomint.world.block.BlockStair;
 import io.gomint.world.block.data.Direction;
 import io.gomint.world.block.data.Facing;
+
 import java.util.Collections;
 import java.util.List;
 

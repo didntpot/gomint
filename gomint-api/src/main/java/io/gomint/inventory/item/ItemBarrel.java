@@ -21,8 +21,8 @@ public interface ItemBarrel extends ItemStack<ItemBarrel> {
      *
      * @param amount which is used for the creation
      */
-    static ItemBarrel create(int amount ) {
-        return GoMint.instance().createItemStack( ItemBarrel.class, amount );
+    static ItemBarrel create(int amount) {
+        return GoMint.instance().createItemStack(ItemBarrel.class, amount);
     }
 
 }

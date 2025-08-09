@@ -16,6 +16,6 @@ public interface EntityRavager extends EntityLiving<EntityRavager> {
      * @return empty, fresh rabbit
      */
     static EntityRavager create() {
-        return GoMint.instance().createEntity( EntityRavager.class );
+        return GoMint.instance().createEntity(EntityRavager.class);
     }
 }

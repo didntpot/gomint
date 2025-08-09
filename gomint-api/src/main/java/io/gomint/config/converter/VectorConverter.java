@@ -26,7 +26,7 @@ public class VectorConverter extends BaseConverter {
     // InternalConverter accesses this constructor with Reflection to create an instance
     // !!!! DO NOT REMOVE !!!!
     // It will compile but will fail at runtime
-    public VectorConverter( InternalConverter internalConverter ) {
+    public VectorConverter(InternalConverter internalConverter) {
 
     }
 
@@ -34,13 +34,13 @@ public class VectorConverter extends BaseConverter {
      * {@inheritDoc}
      */
     @Override
-    public Object toConfig( Class<?> type, Object object, ParameterizedType parameterizedType ) {
+    public Object toConfig(Class<?> type, Object object, ParameterizedType parameterizedType) {
         Vector vector = (Vector) object;
         Map<String, Object> saveMap = new HashMap<>();
 
-        saveMap.put( "x", vector.x() );
-        saveMap.put( "y", vector.y() );
-        saveMap.put( "z", vector.z() );
+        saveMap.put("x", vector.x());
+        saveMap.put("y", vector.y());
+        saveMap.put("z", vector.z());
 
         return saveMap;
     }
@@ -49,20 +49,20 @@ public class VectorConverter extends BaseConverter {
      * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings( "unchecked" )
-    public Object fromConfig( Class<?> type, Object object, ParameterizedType parameterizedType ) {
+    @SuppressWarnings("unchecked")
+    public Object fromConfig(Class<?> type, Object object, ParameterizedType parameterizedType) {
         Map<String, Object> vectorMap;
 
-        if ( object instanceof Map ) {
+        if (object instanceof Map) {
             vectorMap = (Map<String, Object>) object;
         } else {
-            vectorMap = (Map<String, Object>) ( (ConfigSection) object ).getRawMap();
+            vectorMap = (Map<String, Object>) ((ConfigSection) object).getRawMap();
         }
 
         return new Vector(
-            super.asFloat( vectorMap.get( "x" ) ),
-            super.asFloat( vectorMap.get( "y" ) ),
-            super.asFloat( vectorMap.get( "z" ) )
+            super.asFloat(vectorMap.get("x")),
+            super.asFloat(vectorMap.get("y")),
+            super.asFloat(vectorMap.get("z"))
         );
     }
 
@@ -70,8 +70,8 @@ public class VectorConverter extends BaseConverter {
      * {@inheritDoc}
      */
     @Override
-    public boolean supports( Class<?> type ) {
-        return Vector.class.isAssignableFrom( type );
+    public boolean supports(Class<?> type) {
+        return Vector.class.isAssignableFrom(type);
     }
 
 }

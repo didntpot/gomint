@@ -6,6 +6,7 @@ import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockFlowingLava;
 import io.gomint.world.block.BlockType;
 import io.gomint.world.block.data.Facing;
+
 import java.util.concurrent.TimeUnit;
 
 /**

@@ -20,10 +20,10 @@ public interface ItemGlowStick extends ItemStack<ItemGlowStick> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemGlowStick create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemGlowStick.class, amount );
+    static ItemGlowStick create(int amount) {
+        return GoMint.instance().createItemStack(ItemGlowStick.class, amount);
     }
 
 }

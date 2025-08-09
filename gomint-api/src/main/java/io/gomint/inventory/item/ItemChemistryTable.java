@@ -20,10 +20,10 @@ public interface ItemChemistryTable extends ItemStack<ItemChemistryTable> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemChemistryTable create( int amount ) {
-        return GoMint.instance().createItemStack( ItemChemistryTable.class, amount );
+    static ItemChemistryTable create(int amount) {
+        return GoMint.instance().createItemStack(ItemChemistryTable.class, amount);
     }
 
 }

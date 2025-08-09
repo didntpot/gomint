@@ -7,6 +7,7 @@ import io.gomint.command.annotation.*;
 import io.gomint.command.validator.TargetValidator;
 import io.gomint.command.validator.TextValidator;
 import io.gomint.server.entity.EntityPlayer;
+
 import java.util.Map;
 
 /**

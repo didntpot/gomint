@@ -13,10 +13,10 @@ public interface ItemGoldenAxe extends ItemStack<ItemGoldenAxe> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemGoldenAxe create( int amount ) {
-        return GoMint.instance().createItemStack( ItemGoldenAxe.class, amount );
+    static ItemGoldenAxe create(int amount) {
+        return GoMint.instance().createItemStack(ItemGoldenAxe.class, amount);
     }
 
 }

@@ -23,7 +23,7 @@ public interface EntityCow extends EntityAgeable<EntityCow> {
      * @return empty, fresh cow
      */
     static EntityCow create() {
-        return GoMint.instance().createEntity( EntityCow.class );
+        return GoMint.instance().createEntity(EntityCow.class);
     }
 
 }

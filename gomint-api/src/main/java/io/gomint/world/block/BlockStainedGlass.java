@@ -28,6 +28,6 @@ public interface BlockStainedGlass extends Block {
      *
      * @param color which this block should be
      */
-    BlockStainedGlass color(BlockColor color );
+    BlockStainedGlass color(BlockColor color);
 
 }

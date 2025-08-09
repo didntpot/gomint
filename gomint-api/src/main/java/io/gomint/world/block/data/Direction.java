@@ -25,7 +25,7 @@ public enum Direction {
      * @return opposite face
      */
     public Direction opposite() {
-        switch ( this ) {
+        switch (this) {
             case NORTH:
                 return Direction.SOUTH;
             case SOUTH:
@@ -41,10 +41,11 @@ public enum Direction {
 
     /**
      * Get the block face enum value for this facing value
+     *
      * @return block face value (3d) for this facing (2d)
      */
     public Facing toFacing() {
-        switch ( this ) {
+        switch (this) {
             case NORTH:
                 return Facing.NORTH;
             case EAST:

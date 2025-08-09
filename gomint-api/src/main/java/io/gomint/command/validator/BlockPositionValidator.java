@@ -28,51 +28,51 @@ public class BlockPositionValidator extends ParamValidator<BlockPositionValidato
      * {@inheritDoc}
      */
     @Override
-    public Object validate(String input, CommandSender<?> sender ) {
+    public Object validate(String input, CommandSender<?> sender) {
         // 0 -> x
         // 1 -> y
         // 2 -> z
 
         BlockPosition entityPosition = new BlockPosition(0, 0, 0);
-        if ( sender instanceof PlayerCommandSender ) {
+        if (sender instanceof PlayerCommandSender) {
             // Mojang decided that ~ is the current entity position
-            entityPosition = ( (EntityPlayer) sender ).location().toBlockPosition();
+            entityPosition = ((EntityPlayer) sender).location().toBlockPosition();
         }
 
         // Split string
-        String[] split = input.split( " " );
+        String[] split = input.split(" ");
 
         // Parse x
-        Integer xInt = parsePos( entityPosition.x(), split[0] );
-        if ( xInt == null ) {
+        Integer xInt = parsePos(entityPosition.x(), split[0]);
+        if (xInt == null) {
             return null;
         }
 
-        Integer yInt = parsePos( entityPosition.y(), split[1] );
-        if ( yInt == null ) {
+        Integer yInt = parsePos(entityPosition.y(), split[1]);
+        if (yInt == null) {
             return null;
         }
 
-        Integer zInt = parsePos( entityPosition.z(), split[2] );
-        if ( zInt == null ) {
+        Integer zInt = parsePos(entityPosition.z(), split[2]);
+        if (zInt == null) {
             return null;
         }
 
-        return new BlockPosition( xInt, yInt, zInt );
+        return new BlockPosition(xInt, yInt, zInt);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String consume( Iterator<String> data ) {
+    public String consume(Iterator<String> data) {
         StringBuilder forValidator = new StringBuilder();
-        for ( int i = 0; i < 3; i++ ) {
-            if ( !data.hasNext() ) {
+        for (int i = 0; i < 3; i++) {
+            if (!data.hasNext()) {
                 return null;
             }
 
-            forValidator.append( data.next() ).append(" ");
+            forValidator.append(data.next()).append(" ");
         }
 
         return forValidator.deleteCharAt(forValidator.length() - 1).toString();
@@ -110,40 +110,40 @@ public class BlockPositionValidator extends ParamValidator<BlockPositionValidato
         return "blockpos:x y z";
     }
 
-    private Integer parsePos( int positionValue, String in ) {
-        if ( in.startsWith( "~" ) && positionValue != 0 ) {
+    private Integer parsePos(int positionValue, String in) {
+        if (in.startsWith("~") && positionValue != 0) {
             // Do we have additional data (+/-)?
-            if ( in.length() > 2 ) {
-                if ( in.startsWith( "~+" ) ) {
+            if (in.length() > 2) {
+                if (in.startsWith("~+")) {
                     try {
-                        int diffX = Integer.parseInt( in.substring( 2 ) );
+                        int diffX = Integer.parseInt(in.substring(2));
                         positionValue += diffX;
                         return positionValue;
-                    } catch ( NumberFormatException e ) {
+                    } catch (NumberFormatException e) {
                         return null;
                     }
-                } else if ( in.startsWith( "~-" ) ) {
+                } else if (in.startsWith("~-")) {
                     try {
-                        int diffX = Integer.parseInt( in.substring( 2 ) );
+                        int diffX = Integer.parseInt(in.substring(2));
                         positionValue -= diffX;
                         return positionValue;
-                    } catch ( NumberFormatException e ) {
+                    } catch (NumberFormatException e) {
                         return null;
                     }
                 }
             } else {
                 try {
-                    int diffX = Integer.parseInt( in.substring( 1 ) );
+                    int diffX = Integer.parseInt(in.substring(1));
                     positionValue += diffX;
                     return positionValue;
-                } catch ( NumberFormatException e ) {
+                } catch (NumberFormatException e) {
                     return null;
                 }
             }
         } else {
             try {
-                return Integer.parseInt( in );
-            } catch ( NumberFormatException e ) {
+                return Integer.parseInt(in);
+            } catch (NumberFormatException e) {
                 return null;
             }
         }

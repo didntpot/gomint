@@ -11,12 +11,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -26,9 +21,9 @@ public class ItemCombiner {
     private static final Pattern ID_PATTERN = Pattern.compile("id = ([0-9]+)");
     private static final Pattern SID_PATTERN = Pattern.compile("sId = ([a-z_:\"]+)");
 
-    private static final Map<String, String> REPLACER = new LinkedHashMap<>(){{
-       put("silver", "light_gray");
-       put("_glazed_terracotta", "");
+    private static final Map<String, String> REPLACER = new LinkedHashMap<>() {{
+        put("silver", "light_gray");
+        put("_glazed_terracotta", "");
     }};
 
     private static class ReadItem {
@@ -78,12 +73,12 @@ public class ItemCombiner {
                 int id2 = 99999999;
 
                 Matcher matcher = ID_PATTERN.matcher(o1.content);
-                if ( matcher.find() ) {
+                if (matcher.find()) {
                     id1 = Integer.parseInt(matcher.group(1));
                 }
 
                 matcher = ID_PATTERN.matcher(o2.content);
-                if ( matcher.find() ) {
+                if (matcher.find()) {
                     id2 = Integer.parseInt(matcher.group(1));
                 }
 

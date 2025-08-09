@@ -28,6 +28,6 @@ public interface PlayerInventory extends Inventory<PlayerInventory> {
      *
      * @param slot which should be the new item in hand
      */
-    PlayerInventory itemInHandSlot(byte slot );
+    PlayerInventory itemInHandSlot(byte slot);
 
 }

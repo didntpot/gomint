@@ -23,7 +23,7 @@ public interface EntityRabbit extends EntityLiving<EntityRabbit> {
      * @return empty, fresh rabbit
      */
     static EntityRabbit create() {
-        return GoMint.instance().createEntity( EntityRabbit.class );
+        return GoMint.instance().createEntity(EntityRabbit.class);
     }
 
 }

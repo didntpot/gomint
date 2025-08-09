@@ -3,8 +3,8 @@ package io.gomint.server.network.packet.types.recipe;
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.inventory.item.ItemStack;
 import io.gomint.server.network.packet.Packet;
+
 import java.util.*;
-import javax.annotation.Nullable;
 
 public class ShapedRecipe extends RecipeWithTypeId {
 

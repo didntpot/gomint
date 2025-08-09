@@ -21,21 +21,21 @@ public class Simplex extends Noise {
     private static final double F3;
     private static final double G3;
     private static final int[][] GRAD_3 = {
-        { 1, 1, 0 }, { -1, 1, 0 }, { 1, -1, 0 }, { -1, -1, 0 },
-        { 1, 0, 1 }, { -1, 0, 1 }, { 1, 0, -1 }, { -1, 0, -1 },
-        { 0, 1, 1 }, { 0, -1, 1 }, { 0, 1, -1 }, { 0, -1, -1 }
+        {1, 1, 0}, {-1, 1, 0}, {1, -1, 0}, {-1, -1, 0},
+        {1, 0, 1}, {-1, 0, 1}, {1, 0, -1}, {-1, 0, -1},
+        {0, 1, 1}, {0, -1, 1}, {0, 1, -1}, {0, -1, -1}
     };
 
     static {
-        SQRT_3 = Math.sqrt( 3 );
-        F2 = 0.5 * ( SQRT_3 - 1 );
-        G2 = ( 3 - SQRT_3 ) / 6;
+        SQRT_3 = Math.sqrt(3);
+        F2 = 0.5 * (SQRT_3 - 1);
+        G2 = (3 - SQRT_3) / 6;
         G22 = G2 * 2.0 - 1;
         F3 = 1.0 / 3.0;
         G3 = 1.0 / 6.0;
     }
 
-    public Simplex( FastRandom random, double octaves, double persistence, double expansion ) {
+    public Simplex(FastRandom random, double octaves, double persistence, double expansion) {
         this.octaves = octaves;
         this.persistence = persistence;
         this.expansion = expansion;
@@ -44,12 +44,12 @@ public class Simplex extends Noise {
         this.offsetZ = random.nextFloat() * 256;
         this.perm = new int[512];
 
-        for ( int i = 0; i < 256; ++i ) {
-            this.perm[i] = random.nextInt( 256 );
+        for (int i = 0; i < 256; ++i) {
+            this.perm[i] = random.nextInt(256);
         }
 
-        for ( int i = 0; i < 256; ++i ) {
-            int pos = random.nextInt( 256 - i ) + i;
+        for (int i = 0; i < 256; ++i) {
+            int pos = random.nextInt(256 - i) + i;
             int old = this.perm[i];
             this.perm[i] = this.perm[pos];
             this.perm[pos] = old;
@@ -58,24 +58,24 @@ public class Simplex extends Noise {
     }
 
     @Override
-    public double noise3D(double x, double y, double z ) {
+    public double noise3D(double x, double y, double z) {
         x += this.offsetX;
         y += this.offsetY;
         z += this.offsetZ;
 
         // Skew the input space to determine which simplex cell we're in
-        double s = ( x + y + z ) * F3; // Very nice and simple skew factor for 3D
+        double s = (x + y + z) * F3; // Very nice and simple skew factor for 3D
 
-        int i = (int) ( x + s );
-        int j = (int) ( y + s );
-        int k = (int) ( z + s );
+        int i = (int) (x + s);
+        int j = (int) (y + s);
+        int k = (int) (z + s);
 
-        double t = ( i + j + k ) * G3;
+        double t = (i + j + k) * G3;
 
         // Unskew the cell origin back to (x,y,z) space
-        double x0 = x - ( i - t ); // The x,y,z distances from the cell origin
-        double y0 = y - ( j - t );
-        double z0 = z - ( k - t );
+        double x0 = x - (i - t); // The x,y,z distances from the cell origin
+        double y0 = y - (j - t);
+        double z0 = z - (k - t);
 
         // For the 3D case, the simplex shape is a slightly irregular tetrahedron.
         int i1 = 0;
@@ -86,13 +86,13 @@ public class Simplex extends Noise {
         int k2 = 0;
 
         // Determine which simplex we are in.
-        if ( x0 >= y0 ) {
-            if ( y0 >= z0 ) {
+        if (x0 >= y0) {
+            if (y0 >= z0) {
                 i1 = 1;
                 i2 = 1;
                 j2 = 1;
             } // X Y Z order
-            else if ( x0 >= z0 ) {
+            else if (x0 >= z0) {
                 i1 = 1;
                 j1 = 0;
                 k1 = 0;
@@ -107,12 +107,12 @@ public class Simplex extends Noise {
             }
             // Z X Y order
         } else { // x0<y0
-            if ( y0 < z0 ) {
+            if (y0 < z0) {
                 k1 = 1;
                 j2 = 1;
                 k2 = 1;
             } // Z Y X order
-            else if ( x0 < z0 ) {
+            else if (x0 < z0) {
                 j1 = 1;
                 k1 = 0;
                 i2 = 0;
@@ -152,27 +152,27 @@ public class Simplex extends Noise {
 
         // Calculate the contribution from the four corners
         double t0 = 0.6 - x0 * x0 - y0 * y0 - z0 * z0;
-        if ( t0 > 0 ) {
+        if (t0 > 0) {
             int[] gi0 = GRAD_3[this.perm[ii + this.perm[jj + this.perm[kk]]] % 12];
-            n += t0 * t0 * t0 * t0 * ( gi0[0] * x0 + gi0[1] * y0 + gi0[2] * z0 );
+            n += t0 * t0 * t0 * t0 * (gi0[0] * x0 + gi0[1] * y0 + gi0[2] * z0);
         }
 
         double t1 = 0.6 - x1 * x1 - y1 * y1 - z1 * z1;
-        if ( t1 > 0 ) {
+        if (t1 > 0) {
             int[] gi1 = GRAD_3[this.perm[ii + i1 + this.perm[jj + j1 + this.perm[kk + k1]]] % 12];
-            n += t1 * t1 * t1 * t1 * ( gi1[0] * x1 + gi1[1] * y1 + gi1[2] * z1 );
+            n += t1 * t1 * t1 * t1 * (gi1[0] * x1 + gi1[1] * y1 + gi1[2] * z1);
         }
 
         double t2 = 0.6 - x2 * x2 - y2 * y2 - z2 * z2;
-        if ( t2 > 0 ) {
+        if (t2 > 0) {
             int[] gi2 = GRAD_3[this.perm[ii + i2 + this.perm[jj + j2 + this.perm[kk + k2]]] % 12];
-            n += t2 * t2 * t2 * t2 * ( gi2[0] * x2 + gi2[1] * y2 + gi2[2] * z2 );
+            n += t2 * t2 * t2 * t2 * (gi2[0] * x2 + gi2[1] * y2 + gi2[2] * z2);
         }
 
         double t3 = 0.6 - x3 * x3 - y3 * y3 - z3 * z3;
-        if ( t3 > 0 ) {
+        if (t3 > 0) {
             int[] gi3 = GRAD_3[this.perm[ii + 1 + this.perm[jj + 1 + this.perm[kk + 1]]] % 12];
-            n += t3 * t3 * t3 * t3 * ( gi3[0] * x3 + gi3[1] * y3 + gi3[2] * z3 );
+            n += t3 * t3 * t3 * t3 * (gi3[0] * x3 + gi3[1] * y3 + gi3[2] * z3);
         }
 
         // Add contributions from each corner to get the noise value.
@@ -181,26 +181,26 @@ public class Simplex extends Noise {
     }
 
     @Override
-    public double noise2D(double x, double y ) {
+    public double noise2D(double x, double y) {
         x += this.offsetX;
         y += this.offsetY;
 
         // Skew the input space to determine which simplex cell we're in
-        double s = ( x + y ) * F2; // Hairy factor for 2D
-        int i = (int) ( x + s );
-        int j = (int) ( y + s );
-        double t = ( i + j ) * G2;
+        double s = (x + y) * F2; // Hairy factor for 2D
+        int i = (int) (x + s);
+        int j = (int) (y + s);
+        double t = (i + j) * G2;
 
         // Unskew the cell origin back to (x,y) space
-        double x0 = x - ( i - t ); // The x,y distances from the cell origin
-        double y0 = y - ( j - t );
+        double x0 = x - (i - t); // The x,y distances from the cell origin
+        double y0 = y - (j - t);
 
         // For the 2D case, the simplex shape is an equilateral triangle.
         int i1 = 0;
         int j1 = 0;
 
         // Determine which simplex we are in.
-        if ( x0 > y0 ) {
+        if (x0 > y0) {
             i1 = 1;
         } // lower triangle, XY order: (0,0).(1,0).(1,1)
         else {
@@ -225,21 +225,21 @@ public class Simplex extends Noise {
 
         // Calculate the contribution from the three corners
         double t0 = 0.5 - x0 * x0 - y0 * y0;
-        if ( t0 > 0 ) {
+        if (t0 > 0) {
             int[] gi0 = GRAD_3[this.perm[ii + this.perm[jj]] % 12];
-            n += t0 * t0 * t0 * t0 * ( gi0[0] * x0 + gi0[1] * y0 ); // (x,y) of grad3 used for 2D gradient
+            n += t0 * t0 * t0 * t0 * (gi0[0] * x0 + gi0[1] * y0); // (x,y) of grad3 used for 2D gradient
         }
 
         double t1 = 0.5 - x1 * x1 - y1 * y1;
-        if ( t1 > 0 ) {
+        if (t1 > 0) {
             int[] gi1 = GRAD_3[this.perm[ii + i1 + this.perm[jj + j1]] % 12];
-            n += t1 * t1 * t1 * t1 * ( gi1[0] * x1 + gi1[1] * y1 );
+            n += t1 * t1 * t1 * t1 * (gi1[0] * x1 + gi1[1] * y1);
         }
 
         double t2 = 0.5 - x2 * x2 - y2 * y2;
-        if ( t2 > 0 ) {
+        if (t2 > 0) {
             int[] gi2 = GRAD_3[this.perm[ii + 1 + this.perm[jj + 1]] % 12];
-            n += t2 * t2 * t2 * t2 * ( gi2[0] * x2 + gi2[1] * y2 );
+            n += t2 * t2 * t2 * t2 * (gi2[0] * x2 + gi2[1] * y2);
         }
 
         // Add contributions from each corner to get the noise value.

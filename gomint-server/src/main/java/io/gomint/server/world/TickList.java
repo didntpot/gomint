@@ -8,6 +8,7 @@
 package io.gomint.server.world;
 
 import io.gomint.math.BlockPosition;
+
 import java.util.LinkedList;
 import java.util.Queue;
 

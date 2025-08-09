@@ -22,7 +22,7 @@ public final class FastRandom extends java.util.Random {
      * Generate a new fast random with System.nanoTime() as seed
      */
     public FastRandom() {
-        this( System.nanoTime() );
+        this(System.nanoTime());
     }
 
     /**
@@ -30,7 +30,7 @@ public final class FastRandom extends java.util.Random {
      *
      * @param seed the initial seed
      */
-    public FastRandom( long seed ) {
+    public FastRandom(long seed) {
         this.seed = seed;
     }
 
@@ -40,7 +40,7 @@ public final class FastRandom extends java.util.Random {
      * @param seed which should be used
      */
     @Override
-    public void setSeed( long seed ) {
+    public void setSeed(long seed) {
         this.seed = seed;
     }
 
@@ -53,13 +53,13 @@ public final class FastRandom extends java.util.Random {
      * @return randomized number of bits length
      */
     @Override
-    protected int next( int nbits ) {
+    protected int next(int nbits) {
         long x = this.seed;
-        x ^= ( x << 21 );
-        x ^= ( x >>> 35 );
-        x ^= ( x << 4 );
+        x ^= (x << 21);
+        x ^= (x >>> 35);
+        x ^= (x << 4);
         this.seed = x;
-        x &= ( ( 1L << nbits ) - 1 );
+        x &= ((1L << nbits) - 1);
 
         return (int) x;
     }
@@ -71,9 +71,9 @@ public final class FastRandom extends java.util.Random {
      */
     public static FastRandom current() {
         FastRandom fastRandom = FAST_RANDOM_THREAD_LOCAL.get();
-        if ( fastRandom == null ) {
+        if (fastRandom == null) {
             fastRandom = new FastRandom();
-            FAST_RANDOM_THREAD_LOCAL.set( fastRandom );
+            FAST_RANDOM_THREAD_LOCAL.set(fastRandom);
         }
 
         return fastRandom;

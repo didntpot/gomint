@@ -4,6 +4,7 @@ import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.Protocol;
 import io.gomint.server.player.ResourcePackInfo;
 import io.gomint.server.resource.ResourceResponseStatus;
+
 import java.util.Map;
 
 /**

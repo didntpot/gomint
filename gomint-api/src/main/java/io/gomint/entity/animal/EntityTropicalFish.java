@@ -23,7 +23,7 @@ public interface EntityTropicalFish extends EntityLiving<EntityTropicalFish> {
      * @return empty, fresh tropical fish
      */
     static EntityTropicalFish create() {
-        return GoMint.instance().createEntity( EntityTropicalFish.class );
+        return GoMint.instance().createEntity(EntityTropicalFish.class);
     }
 
 }

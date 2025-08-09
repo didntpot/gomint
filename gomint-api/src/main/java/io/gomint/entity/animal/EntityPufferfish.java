@@ -23,7 +23,7 @@ public interface EntityPufferfish extends EntityLiving<EntityPufferfish> {
      * @return empty, fresh puffer fish
      */
     static EntityPufferfish create() {
-        return GoMint.instance().createEntity( EntityPufferfish.class );
+        return GoMint.instance().createEntity(EntityPufferfish.class);
     }
 
 }

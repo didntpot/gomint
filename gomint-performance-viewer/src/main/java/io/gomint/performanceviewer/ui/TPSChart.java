@@ -4,7 +4,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
@@ -35,39 +34,39 @@ public class TPSChart {
     public TPSChart() {
         final NumberAxis yAxis = new NumberAxis();
 
-        this.xAxis = new NumberAxis( 0, 512, 1000 );
-        this.xAxis.setAutoRanging( false );
+        this.xAxis = new NumberAxis(0, 512, 1000);
+        this.xAxis.setAutoRanging(false);
 
-        this.chart = new LineChart<>(this.xAxis, yAxis );
-        this.chart.setAnimated( false );
-        this.chart.setCreateSymbols( false );
-        this.chart.setLegendVisible( false );
+        this.chart = new LineChart<>(this.xAxis, yAxis);
+        this.chart.setAnimated(false);
+        this.chart.setCreateSymbols(false);
+        this.chart.setLegendVisible(false);
 
         this.fullTimeSeries = new XYChart.Series<>();
         this.actualTimeSeries = new XYChart.Series<>();
         this.averageTimeSeries = new XYChart.Series<>();
 
         this.scrollBar = new ScrollBar();
-        this.scrollBar.valueProperty().addListener( new ChangeListener<Number>() {
+        this.scrollBar.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
-            public void changed( ObservableValue<? extends Number> observable, Number oldValue, Number newValue ) {
-                TPSChart.this.currentDataStart = (int) ( newValue.floatValue() * ( TimeUnit.SECONDS.toNanos( 1 ) / TPSChart.this.tickNanos) * 60 );
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                TPSChart.this.currentDataStart = (int) (newValue.floatValue() * (TimeUnit.SECONDS.toNanos(1) / TPSChart.this.tickNanos) * 60);
                 updateChart();
             }
-        } );
+        });
     }
 
-    public void addData( List<Long> time ) {
-        this.data.addAll( time );
+    public void addData(List<Long> time) {
+        this.data.addAll(time);
     }
 
     public Node getNode() {
-        this.chart.getData().addAll( this.actualTimeSeries, this.fullTimeSeries, this.averageTimeSeries );
-        this.chart.setPrefHeight( 200 );
+        this.chart.getData().addAll(this.actualTimeSeries, this.fullTimeSeries, this.averageTimeSeries);
+        this.chart.setPrefHeight(200);
 
-        this.fullTimeSeries.getNode().setStyle( "-fx-stroke-width: 2px; -fx-stroke: #f34602;" );
-        this.actualTimeSeries.getNode().setStyle( "-fx-stroke-width: 2px; -fx-stroke: #f39502;" );
-        this.averageTimeSeries.getNode().setStyle( "-fx-stroke-width: 2px; -fx-stroke: #45df02;" );
+        this.fullTimeSeries.getNode().setStyle("-fx-stroke-width: 2px; -fx-stroke: #f34602;");
+        this.actualTimeSeries.getNode().setStyle("-fx-stroke-width: 2px; -fx-stroke: #f39502;");
+        this.averageTimeSeries.getNode().setStyle("-fx-stroke-width: 2px; -fx-stroke: #45df02;");
 
         updateChart();
 
@@ -79,32 +78,32 @@ public class TPSChart {
         this.actualTimeSeries.getData().clear();
         this.averageTimeSeries.getData().clear();
 
-        this.xAxis.setLowerBound( this.currentDataStart );
-        this.xAxis.setUpperBound( this.currentDataStart + 60 * ( TimeUnit.SECONDS.toNanos( 1 ) / this.tickNanos ) );
+        this.xAxis.setLowerBound(this.currentDataStart);
+        this.xAxis.setUpperBound(this.currentDataStart + 60 * (TimeUnit.SECONDS.toNanos(1) / this.tickNanos));
 
         List<XYChart.Data<Number, Number>> fullTimeData = new ArrayList<>();
         List<XYChart.Data<Number, Number>> actualTimeData = new ArrayList<>();
         List<XYChart.Data<Number, Number>> averageTimeData = new ArrayList<>();
 
-        int tps = (int) (TimeUnit.SECONDS.toNanos( 1 ) / this.tickNanos);
-        for ( int i = (int) this.xAxis.getLowerBound(); i < this.xAxis.getUpperBound(); i++ ) {
-            if ( this.data.size() > i ) {
-                fullTimeData.add( new XYChart.Data<>( i, this.tickNanos ) );
-                actualTimeData.add( new XYChart.Data<>( i, this.data.get( i ) ) );
+        int tps = (int) (TimeUnit.SECONDS.toNanos(1) / this.tickNanos);
+        for (int i = (int) this.xAxis.getLowerBound(); i < this.xAxis.getUpperBound(); i++) {
+            if (this.data.size() > i) {
+                fullTimeData.add(new XYChart.Data<>(i, this.tickNanos));
+                actualTimeData.add(new XYChart.Data<>(i, this.data.get(i)));
             }
 
-            if ( i > 0 && i % tps == 0 ) {
+            if (i > 0 && i % tps == 0) {
                 // Calc the average
                 double average = 0;
 
-                for ( int x = i - tps; x < i; x++ ) {
-                    average += this.data.get( x );
+                for (int x = i - tps; x < i; x++) {
+                    average += this.data.get(x);
                 }
 
                 average = average / tps;
 
-                for ( int x = i - tps; x < i; x++ ) {
-                    averageTimeData.add( new XYChart.Data<>( x, average ) );
+                for (int x = i - tps; x < i; x++) {
+                    averageTimeData.add(new XYChart.Data<>(x, average));
                 }
             }
         }
@@ -112,24 +111,24 @@ public class TPSChart {
         // Calc the average
         double average = 0;
 
-        for ( int x = (int) (this.xAxis.getUpperBound() - tps); x < this.xAxis.getUpperBound(); x++ ) {
-            average += this.data.get( x );
+        for (int x = (int) (this.xAxis.getUpperBound() - tps); x < this.xAxis.getUpperBound(); x++) {
+            average += this.data.get(x);
         }
 
         average = average / tps;
 
-        for ( int x = (int) (this.xAxis.getUpperBound() - tps); x < this.xAxis.getUpperBound(); x++ ) {
-            averageTimeData.add( new XYChart.Data<>( x, average ) );
+        for (int x = (int) (this.xAxis.getUpperBound() - tps); x < this.xAxis.getUpperBound(); x++) {
+            averageTimeData.add(new XYChart.Data<>(x, average));
         }
 
-        this.fullTimeSeries.getData().addAll( fullTimeData );
-        this.actualTimeSeries.getData().addAll( actualTimeData );
-        this.averageTimeSeries.getData().addAll( averageTimeData );
+        this.fullTimeSeries.getData().addAll(fullTimeData);
+        this.actualTimeSeries.getData().addAll(actualTimeData);
+        this.averageTimeSeries.getData().addAll(averageTimeData);
     }
 
     public Node getScroller() {
-        VBox.setMargin( this.scrollBar, new Insets( 0, 20, 0, 20 ) );
-        this.scrollBar.setMax( ( ( this.data.size() / ( TimeUnit.SECONDS.toNanos( 1 ) / this.tickNanos ) ) / 60 ) - 1 );
+        VBox.setMargin(this.scrollBar, new Insets(0, 20, 0, 20));
+        this.scrollBar.setMax(((this.data.size() / (TimeUnit.SECONDS.toNanos(1) / this.tickNanos)) / 60) - 1);
         return this.scrollBar;
     }
 

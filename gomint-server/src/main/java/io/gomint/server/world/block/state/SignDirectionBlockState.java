@@ -8,6 +8,7 @@
 package io.gomint.server.world.block.state;
 
 import io.gomint.world.block.data.SignDirection;
+
 import java.util.function.Supplier;
 
 /**

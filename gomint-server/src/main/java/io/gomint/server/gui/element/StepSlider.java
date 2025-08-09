@@ -1,10 +1,11 @@
 package io.gomint.server.gui.element;
 
 import io.gomint.server.gui.CustomForm;
-import java.util.ArrayList;
-import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author geNAZt

@@ -14,14 +14,14 @@ package io.gomint.world;
  */
 public enum Difficulty {
 
-    PEACEFUL( 0 ),
-    EASY( 1 ),
-    NORMAL( 2 ),
-    HARD( 3 );
+    PEACEFUL(0),
+    EASY(1),
+    NORMAL(2),
+    HARD(3);
 
     private int difficultyDegree;
 
-    Difficulty( int difficultyDegree ) {
+    Difficulty(int difficultyDegree) {
         this.difficultyDegree = difficultyDegree;
     }
 
@@ -32,8 +32,8 @@ public enum Difficulty {
      * @param degree The degree to get the difficulty of
      * @return The game difficulty or null if not found
      */
-    public static Difficulty valueOf( int degree ) {
-        return ( degree == 0 ? PEACEFUL : ( degree == 1 ? EASY : ( degree == 2 ? NORMAL : ( degree == 3 ? HARD : null ) ) ) );
+    public static Difficulty valueOf(int degree) {
+        return (degree == 0 ? PEACEFUL : (degree == 1 ? EASY : (degree == 2 ? NORMAL : (degree == 3 ? HARD : null))));
     }
 
     /**

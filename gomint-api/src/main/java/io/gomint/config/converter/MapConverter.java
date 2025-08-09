@@ -24,7 +24,7 @@ public class MapConverter implements Converter {
 
     private final InternalConverter internalConverter;
 
-    public MapConverter( InternalConverter internalConverter ) {
+    public MapConverter(InternalConverter internalConverter) {
         this.internalConverter = internalConverter;
     }
 
@@ -32,26 +32,26 @@ public class MapConverter implements Converter {
      * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings( "unchecked" )
-    public Object toConfig( Class<?> type, Object object, ParameterizedType genericType ) throws Exception {
+    @SuppressWarnings("unchecked")
+    public Object toConfig(Class<?> type, Object object, ParameterizedType genericType) throws Exception {
         Map<Object, Object> result = (Map<Object, Object>) object;
 
-        for ( Map.Entry<Object, Object> entry : result.entrySet() ) {
-            if ( entry.getValue() == null ) {
+        for (Map.Entry<Object, Object> entry : result.entrySet()) {
+            if (entry.getValue() == null) {
                 continue;
             }
 
             Class<?> clazz = entry.getValue().getClass();
-            Converter converter = this.internalConverter.getConverter( clazz );
+            Converter converter = this.internalConverter.getConverter(clazz);
             Object value = entry.getValue();
 
             // Ternary operators have been stripped to if statements for readability purposes
 
-            if ( converter != null ) {
-                value = converter.toConfig( clazz, entry.getValue(), null );
+            if (converter != null) {
+                value = converter.toConfig(clazz, entry.getValue(), null);
             }
 
-            result.put( entry.getKey(), value );
+            result.put(entry.getKey(), value);
         }
 
         return result;
@@ -61,48 +61,48 @@ public class MapConverter implements Converter {
      * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings( "unchecked" )
-    public Object fromConfig( Class<?> type, Object object, ParameterizedType genericType ) throws Exception {
-        if ( genericType != null ) {
+    @SuppressWarnings("unchecked")
+    public Object fromConfig(Class<?> type, Object object, ParameterizedType genericType) throws Exception {
+        if (genericType != null) {
             Map<Object, Object> result = new HashMap<>();
 
             try {
-                result = (Map<Object, Object>) ( (Class<?>) genericType.getRawType() ).getDeclaredConstructor().newInstance();
-            } catch ( InstantiationException ignored ) {
+                result = (Map<Object, Object>) ((Class<?>) genericType.getRawType()).getDeclaredConstructor().newInstance();
+            } catch (InstantiationException ignored) {
 
             }
 
-            if ( genericType.getActualTypeArguments().length == 2 ) {
+            if (genericType.getActualTypeArguments().length == 2) {
                 Class<?> keyClass = (Class<?>) genericType.getActualTypeArguments()[0];
 
-                if ( object == null ) {
+                if (object == null) {
                     object = new HashMap<>();
                 }
 
-                Map<?, ?> map = object instanceof Map ? (Map<?,?>) object : ( (ConfigSection) object ).getRawMap();
+                Map<?, ?> map = object instanceof Map ? (Map<?, ?>) object : ((ConfigSection) object).getRawMap();
 
-                for ( Map.Entry<?, ?> entry : map.entrySet() ) {
+                for (Map.Entry<?, ?> entry : map.entrySet()) {
                     Object key;
                     Class<?> clazz;
 
-                    if ( keyClass.equals( Integer.class ) && !( entry.getKey() instanceof Integer ) ) {
-                        key = Integer.valueOf( (String) entry.getKey() );
-                    } else if ( keyClass.equals( Short.class ) && !( entry.getKey() instanceof Short ) ) {
-                        key = Short.valueOf( (String) entry.getKey() );
-                    } else if ( keyClass.equals( Byte.class ) && !( entry.getKey() instanceof Byte ) ) {
-                        key = Byte.valueOf( (String) entry.getKey() );
-                    } else if ( keyClass.equals( Float.class ) && !( entry.getKey() instanceof Float ) ) {
-                        key = Float.valueOf( (String) entry.getKey() );
-                    } else if ( keyClass.equals( Double.class ) && !( entry.getKey() instanceof Double ) ) {
-                        key = Double.valueOf( (String) entry.getKey() );
+                    if (keyClass.equals(Integer.class) && !(entry.getKey() instanceof Integer)) {
+                        key = Integer.valueOf((String) entry.getKey());
+                    } else if (keyClass.equals(Short.class) && !(entry.getKey() instanceof Short)) {
+                        key = Short.valueOf((String) entry.getKey());
+                    } else if (keyClass.equals(Byte.class) && !(entry.getKey() instanceof Byte)) {
+                        key = Byte.valueOf((String) entry.getKey());
+                    } else if (keyClass.equals(Float.class) && !(entry.getKey() instanceof Float)) {
+                        key = Float.valueOf((String) entry.getKey());
+                    } else if (keyClass.equals(Double.class) && !(entry.getKey() instanceof Double)) {
+                        key = Double.valueOf((String) entry.getKey());
                     } else {
                         key = entry.getKey();
                     }
 
                     Type argument = genericType.getActualTypeArguments()[1];
 
-                    if ( argument instanceof ParameterizedType ) {
-                        clazz = (Class<?>) ( (ParameterizedType) argument ).getRawType();
+                    if (argument instanceof ParameterizedType) {
+                        clazz = (Class<?>) ((ParameterizedType) argument).getRawType();
                     } else {
                         clazz = (Class<?>) argument;
                     }
@@ -111,26 +111,26 @@ public class MapConverter implements Converter {
 
                     Object value = entry.getValue();
                     ParameterizedType parameterizedType = null;
-                    Converter converter = this.internalConverter.getConverter( clazz );
+                    Converter converter = this.internalConverter.getConverter(clazz);
 
-                    if ( argument instanceof ParameterizedType ) {
+                    if (argument instanceof ParameterizedType) {
                         parameterizedType = (ParameterizedType) argument;
                     }
 
-                    if ( converter != null ) {
-                        value = converter.fromConfig( clazz, entry.getValue(), parameterizedType );
+                    if (converter != null) {
+                        value = converter.fromConfig(clazz, entry.getValue(), parameterizedType);
                     }
 
-                    result.put( key, value );
+                    result.put(key, value);
                 }
             } else {
-                Converter converter = this.internalConverter.getConverter( (Class<?>) genericType.getRawType() );
+                Converter converter = this.internalConverter.getConverter((Class<?>) genericType.getRawType());
 
-                if ( converter != null ) {
-                    return converter.fromConfig( (Class<?>) genericType.getRawType(), object, null );
+                if (converter != null) {
+                    return converter.fromConfig((Class<?>) genericType.getRawType(), object, null);
                 }
 
-                return object instanceof Map ? (Map<?,?>) object : ( (ConfigSection) object ).getRawMap();
+                return object instanceof Map ? (Map<?, ?>) object : ((ConfigSection) object).getRawMap();
             }
 
             return result;
@@ -143,8 +143,8 @@ public class MapConverter implements Converter {
      * {@inheritDoc}
      */
     @Override
-    public boolean supports( Class<?> type ) {
-        return Map.class.isAssignableFrom( type );
+    public boolean supports(Class<?> type) {
+        return Map.class.isAssignableFrom(type);
     }
 
 }

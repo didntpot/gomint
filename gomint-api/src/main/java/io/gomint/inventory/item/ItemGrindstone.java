@@ -14,8 +14,8 @@ public interface ItemGrindstone extends ItemStack<ItemGrindstone> {
      *
      * @param amount which is used for the creation
      */
-    static ItemGrindstone create(int amount ) {
-        return GoMint.instance().createItemStack( ItemGrindstone.class, amount );
+    static ItemGrindstone create(int amount) {
+        return GoMint.instance().createItemStack(ItemGrindstone.class, amount);
     }
 
 }

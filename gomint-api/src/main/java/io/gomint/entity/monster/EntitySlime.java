@@ -16,7 +16,7 @@ public interface EntitySlime extends EntityLiving<EntitySlime> {
      * @return empty, fresh slime
      */
     static EntitySlime create() {
-        return GoMint.instance().createEntity( EntitySlime.class );
+        return GoMint.instance().createEntity(EntitySlime.class);
     }
 
     /**
@@ -25,6 +25,6 @@ public interface EntitySlime extends EntityLiving<EntitySlime> {
      *
      * @param factor of this slime
      */
-    EntitySlime sizeFactor(int factor );
+    EntitySlime sizeFactor(int factor);
 
 }

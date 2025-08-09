@@ -16,7 +16,7 @@ public interface EntityVex extends EntityLiving<EntityVex> {
      * @return empty, fresh vex
      */
     static EntityVex create() {
-        return GoMint.instance().createEntity( EntityVex.class );
+        return GoMint.instance().createEntity(EntityVex.class);
     }
 
 }

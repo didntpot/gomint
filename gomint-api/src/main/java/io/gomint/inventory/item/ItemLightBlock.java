@@ -20,10 +20,10 @@ public interface ItemLightBlock extends ItemStack<ItemLightBlock> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemLightBlock create( int amount ) {
-        return GoMint.instance().createItemStack( ItemLightBlock.class, amount );
+    static ItemLightBlock create(int amount) {
+        return GoMint.instance().createItemStack(ItemLightBlock.class, amount);
     }
 
     /**

@@ -20,10 +20,10 @@ public interface ItemCrimsonPressurePlate extends ItemStack<ItemCrimsonPressureP
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCrimsonPressurePlate create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCrimsonPressurePlate.class, amount );
+    static ItemCrimsonPressurePlate create(int amount) {
+        return GoMint.instance().createItemStack(ItemCrimsonPressurePlate.class, amount);
     }
 
 }

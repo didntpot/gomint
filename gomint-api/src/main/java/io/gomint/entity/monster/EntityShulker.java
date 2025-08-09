@@ -16,7 +16,7 @@ public interface EntityShulker extends EntityLiving<EntityShulker> {
      * @return empty, fresh shulker
      */
     static EntityShulker create() {
-        return GoMint.instance().createEntity( EntityShulker.class );
+        return GoMint.instance().createEntity(EntityShulker.class);
     }
 
 }

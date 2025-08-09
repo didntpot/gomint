@@ -11,6 +11,7 @@ import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.Protocol;
 import io.gomint.server.network.packet.types.ItemComponentPacketEntry;
 import io.gomint.taglib.NBTWriter;
+
 import java.nio.ByteOrder;
 
 public class PacketItemComponent extends Packet implements PacketClientbound {

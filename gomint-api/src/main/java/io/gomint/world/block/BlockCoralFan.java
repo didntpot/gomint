@@ -8,7 +8,6 @@
 package io.gomint.world.block;
 
 import io.gomint.world.block.data.CoralType;
-import io.gomint.world.block.data.Direction;
 import io.gomint.world.block.data.RotationDirection;
 
 /**

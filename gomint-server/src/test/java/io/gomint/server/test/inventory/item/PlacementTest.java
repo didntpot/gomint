@@ -19,8 +19,9 @@ import io.gomint.world.WorldType;
 import io.gomint.world.block.BlockAir;
 import io.gomint.world.block.data.Facing;
 import io.gomint.world.generator.CreateOptions;
-import java.io.IOException;
 import org.junit.jupiter.api.*;
+
+import java.io.IOException;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

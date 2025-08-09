@@ -26,7 +26,7 @@ public interface Inventory<I> {
      * @param slot The slot which we want to lookup
      * @return The item stack or null if the slot is empty
      */
-    ItemStack<?> item(int slot );
+    ItemStack<?> item(int slot);
 
     /**
      * Set the item into the slot of this inventory
@@ -34,7 +34,7 @@ public interface Inventory<I> {
      * @param slot      The slot in which we want to set this item
      * @param itemStack The item which we want to set into that slot
      */
-    I item(int slot, ItemStack<?> itemStack );
+    I item(int slot, ItemStack<?> itemStack);
 
     /**
      * Add a item to the next free slot in this inventory
@@ -42,7 +42,7 @@ public interface Inventory<I> {
      * @param itemStack which should be added to the inventory
      * @return true if it was stored, false when not
      */
-    boolean addItem( ItemStack<?> itemStack );
+    boolean addItem(ItemStack<?> itemStack);
 
     /**
      * Add a item to the next free slot in this inventory
@@ -50,7 +50,7 @@ public interface Inventory<I> {
      * @param itemStack which should be added to the inventory
      * @return slot which was used for this item, -1 if no slot has been found
      */
-    int addItemWithSlot( ItemStack<?> itemStack );
+    int addItemWithSlot(ItemStack<?> itemStack);
 
     /**
      * Get the size of this inventory
@@ -91,7 +91,7 @@ public interface Inventory<I> {
      * @param itemStack which should be checked against
      * @return true if inventory contains, false if not
      */
-    boolean contains( ItemStack<?> itemStack );
+    boolean contains(ItemStack<?> itemStack);
 
     /**
      * Get a stream of items inside this inventory

@@ -13,10 +13,10 @@ public interface ItemAnvil extends ItemStack<ItemAnvil> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemAnvil create( int amount ) {
-        return GoMint.instance().createItemStack( ItemAnvil.class, amount );
+    static ItemAnvil create(int amount) {
+        return GoMint.instance().createItemStack(ItemAnvil.class, amount);
     }
 
 }

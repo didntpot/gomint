@@ -23,7 +23,7 @@ public interface EntitySquid extends EntityLiving<EntitySquid> {
      * @return empty, fresh squid
      */
     static EntitySquid create() {
-        return GoMint.instance().createEntity( EntitySquid.class );
+        return GoMint.instance().createEntity(EntitySquid.class);
     }
 
 }

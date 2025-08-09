@@ -15,8 +15,8 @@ public interface ButtonList extends Form<String> {
      * @param title of the button list
      * @return fresh button list
      */
-    static ButtonList create( String title ) {
-        return GoMint.instance().createButtonList( title );
+    static ButtonList create(String title) {
+        return GoMint.instance().createButtonList(title);
     }
 
     /**
@@ -25,7 +25,7 @@ public interface ButtonList extends Form<String> {
      * @param content for display
      * @return instance for chaining
      */
-    ButtonList content(String content );
+    ButtonList content(String content);
 
     /**
      * Add a new simple button
@@ -33,7 +33,7 @@ public interface ButtonList extends Form<String> {
      * @param id   of the button ( important for the response )
      * @param text for display
      */
-    ButtonList button(String id, String text );
+    ButtonList button(String id, String text);
 
     /**
      * Add a new image button
@@ -42,6 +42,6 @@ public interface ButtonList extends Form<String> {
      * @param text      for display
      * @param imagePath from where the client should load the image (can be http / https)
      */
-    ButtonList imageButton(String id, String text, String imagePath );
+    ButtonList imageButton(String id, String text, String imagePath);
 
 }

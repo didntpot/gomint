@@ -14,10 +14,10 @@ public interface ItemSapling extends ItemStack<ItemSapling>, ItemBurnable {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSapling create( int amount ) {
-        return GoMint.instance().createItemStack( ItemSapling.class, amount );
+    static ItemSapling create(int amount) {
+        return GoMint.instance().createItemStack(ItemSapling.class, amount);
     }
 
     /**
@@ -25,7 +25,7 @@ public interface ItemSapling extends ItemStack<ItemSapling>, ItemBurnable {
      *
      * @param type of sapling
      */
-    ItemSapling type(LogType type );
+    ItemSapling type(LogType type);
 
     /**
      * Get the type of this sapling

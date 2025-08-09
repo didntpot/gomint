@@ -13,10 +13,10 @@ public interface ItemTrident extends ItemStack<ItemTrident> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemTrident create( int amount ) {
-        return GoMint.instance().createItemStack( ItemTrident.class, amount );
+    static ItemTrident create(int amount) {
+        return GoMint.instance().createItemStack(ItemTrident.class, amount);
     }
 
 }

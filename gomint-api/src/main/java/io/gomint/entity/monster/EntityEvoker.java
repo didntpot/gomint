@@ -16,7 +16,7 @@ public interface EntityEvoker extends EntityLiving<EntityEvoker> {
      * @return empty, fresh evoker
      */
     static EntityEvoker create() {
-        return GoMint.instance().createEntity( EntityEvoker.class );
+        return GoMint.instance().createEntity(EntityEvoker.class);
     }
 
 }

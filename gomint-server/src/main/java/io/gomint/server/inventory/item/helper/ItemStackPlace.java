@@ -8,6 +8,7 @@
 package io.gomint.server.inventory.item.helper;
 
 import io.gomint.server.inventory.Inventory;
+
 import java.util.Objects;
 
 /**

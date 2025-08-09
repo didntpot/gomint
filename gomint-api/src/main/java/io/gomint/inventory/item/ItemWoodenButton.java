@@ -14,10 +14,10 @@ public interface ItemWoodenButton extends ItemStack<ItemWoodenButton>, ItemBurna
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemWoodenButton create( int amount ) {
-        return GoMint.instance().createItemStack( ItemWoodenButton.class, amount );
+    static ItemWoodenButton create(int amount) {
+        return GoMint.instance().createItemStack(ItemWoodenButton.class, amount);
     }
 
     /**

@@ -13,9 +13,9 @@ public interface ItemTurtleShell extends ItemStack<ItemTurtleShell> {
      * Creates a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemTurtleShell create( int amount ) {
-        return GoMint.instance().createItemStack( ItemTurtleShell.class, amount );
+    static ItemTurtleShell create(int amount) {
+        return GoMint.instance().createItemStack(ItemTurtleShell.class, amount);
     }
 }

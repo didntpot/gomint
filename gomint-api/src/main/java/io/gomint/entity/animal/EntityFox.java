@@ -23,6 +23,6 @@ public interface EntityFox extends EntityAgeable<EntityFox> {
      * @return empty, fresh horse
      */
     static EntityFox create() {
-        return GoMint.instance().createEntity( EntityFox.class );
+        return GoMint.instance().createEntity(EntityFox.class);
     }
 }

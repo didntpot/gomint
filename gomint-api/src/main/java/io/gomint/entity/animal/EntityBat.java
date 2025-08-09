@@ -23,7 +23,7 @@ public interface EntityBat extends EntityLiving<EntityBat> {
      * @return empty, fresh bat
      */
     static EntityBat create() {
-        return GoMint.instance().createEntity( EntityBat.class );
+        return GoMint.instance().createEntity(EntityBat.class);
     }
 
 }

@@ -20,10 +20,10 @@ public interface ItemMovingblock extends ItemStack<ItemMovingblock> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemMovingblock create( int amount ) {
-        return GoMint.instance().createItemStack( ItemMovingblock.class, amount );
+    static ItemMovingblock create(int amount) {
+        return GoMint.instance().createItemStack(ItemMovingblock.class, amount);
     }
 
 }

@@ -13,10 +13,10 @@ public interface ItemPaper extends ItemStack<ItemPaper> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemPaper create( int amount ) {
-        return GoMint.instance().createItemStack( ItemPaper.class, amount );
+    static ItemPaper create(int amount) {
+        return GoMint.instance().createItemStack(ItemPaper.class, amount);
     }
 
 }

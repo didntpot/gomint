@@ -20,10 +20,10 @@ public interface ItemJungleBoat extends ItemStack<ItemJungleBoat> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemJungleBoat create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemJungleBoat.class, amount );
+    static ItemJungleBoat create(int amount) {
+        return GoMint.instance().createItemStack(ItemJungleBoat.class, amount);
     }
 
 }

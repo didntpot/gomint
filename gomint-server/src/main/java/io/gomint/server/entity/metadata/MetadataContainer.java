@@ -13,6 +13,7 @@ import io.gomint.server.entity.EntityFlag;
 import io.gomint.taglib.NBTTagCompound;
 import it.unimi.dsi.fastutil.bytes.Byte2ObjectMap;
 import it.unimi.dsi.fastutil.bytes.Byte2ObjectOpenHashMap;
+
 import java.util.Observable;
 
 /**

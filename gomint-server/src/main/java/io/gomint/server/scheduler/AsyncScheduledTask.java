@@ -10,11 +10,12 @@ package io.gomint.server.scheduler;
 import io.gomint.scheduler.Task;
 import io.gomint.util.CompleteHandler;
 import io.gomint.util.ExceptionHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author geNAZt

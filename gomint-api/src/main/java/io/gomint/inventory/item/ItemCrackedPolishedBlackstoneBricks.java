@@ -20,10 +20,10 @@ public interface ItemCrackedPolishedBlackstoneBricks extends ItemStack<ItemCrack
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCrackedPolishedBlackstoneBricks create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCrackedPolishedBlackstoneBricks.class, amount );
+    static ItemCrackedPolishedBlackstoneBricks create(int amount) {
+        return GoMint.instance().createItemStack(ItemCrackedPolishedBlackstoneBricks.class, amount);
     }
 
 }

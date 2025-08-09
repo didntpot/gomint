@@ -23,7 +23,7 @@ public interface EntityLama extends EntityAgeable<EntityLama> {
      * @return empty, fresh lama
      */
     static EntityLama create() {
-        return GoMint.instance().createEntity( EntityLama.class );
+        return GoMint.instance().createEntity(EntityLama.class);
     }
 
 }

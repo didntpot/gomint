@@ -15,7 +15,7 @@ import io.gomint.server.network.Protocol;
  * @author geNAZt
  * @version 2.0
  */
-public class PacketEntityAbsoluteMovement extends Packet  implements PacketClientbound, PacketServerbound {
+public class PacketEntityAbsoluteMovement extends Packet implements PacketClientbound, PacketServerbound {
 
     private static final byte FLAG_ON_GROUND = 0x1;
     private static final byte FLAG_TELEPORTED = 0x2;

@@ -13,10 +13,10 @@ public interface ItemGlowstone extends ItemStack<ItemGlowstone> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemGlowstone create( int amount ) {
-        return GoMint.instance().createItemStack( ItemGlowstone.class, amount );
+    static ItemGlowstone create(int amount) {
+        return GoMint.instance().createItemStack(ItemGlowstone.class, amount);
     }
 
 }

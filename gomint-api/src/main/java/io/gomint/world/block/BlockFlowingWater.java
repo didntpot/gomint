@@ -15,5 +15,4 @@ package io.gomint.world.block;
 public interface BlockFlowingWater extends BlockLiquid<BlockFlowingWater> {
 
 
-
 }

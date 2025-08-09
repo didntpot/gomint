@@ -14,14 +14,7 @@ import io.gomint.world.Biome;
 import io.gomint.world.Chunk;
 import io.gomint.world.World;
 import io.gomint.world.WorldLayer;
-import io.gomint.world.block.BlockCoalOre;
-import io.gomint.world.block.BlockDiamondOre;
-import io.gomint.world.block.BlockDirt;
-import io.gomint.world.block.BlockGoldOre;
-import io.gomint.world.block.BlockGravel;
-import io.gomint.world.block.BlockIronOre;
-import io.gomint.world.block.BlockLapisLazuliOre;
-import io.gomint.world.block.BlockRedstoneOre;
+import io.gomint.world.block.*;
 import io.gomint.world.generator.ChunkGenerator;
 import io.gomint.world.generator.DefinedBlocks;
 import io.gomint.world.generator.GeneratorContext;
@@ -53,11 +46,11 @@ public class NormalGenerator extends ChunkGenerator {
         double bellSize = 1 / (double) SMOOTH_SIZE;
         double bellHeight = 2 * (double) SMOOTH_SIZE;
 
-        for ( int sx = -SMOOTH_SIZE; sx <= SMOOTH_SIZE; ++sx ) {
-            for ( int sz = -SMOOTH_SIZE; sz <= SMOOTH_SIZE; ++sz ) {
+        for (int sx = -SMOOTH_SIZE; sx <= SMOOTH_SIZE; ++sx) {
+            for (int sz = -SMOOTH_SIZE; sz <= SMOOTH_SIZE; ++sz) {
                 double bx = bellSize * sx;
                 double bz = bellSize * sz;
-                GAUSSIAN[sx + SMOOTH_SIZE][sz + SMOOTH_SIZE] = bellHeight * Math.exp( -( bx * bx + bz * bz ) / (double) 2 );
+                GAUSSIAN[sx + SMOOTH_SIZE][sz + SMOOTH_SIZE] = bellHeight * Math.exp(-(bx * bx + bz * bz) / (double) 2);
             }
         }
     }
@@ -77,36 +70,36 @@ public class NormalGenerator extends ChunkGenerator {
      * @param world   for which this generator should generate chunks
      * @param context with which this generator should generate chunks
      */
-    public NormalGenerator( World world, GeneratorContext context ) {
-        super( world, context );
+    public NormalGenerator(World world, GeneratorContext context) {
+        super(world, context);
 
         // Check if we have a seed
-        if ( context.contains( "seed" ) ) {
-            this.seed = context.get( "seed" );
+        if (context.contains("seed")) {
+            this.seed = context.get("seed");
         } else {
             this.seed = ThreadLocalRandom.current().nextLong();
-            context.put( "seed", this.seed );
+            context.put("seed", this.seed);
         }
 
-        this.random = new FastRandom( this.seed );
-        this.noise = new Simplex( this.random, 4, 0.25, 0.03125 );
+        this.random = new FastRandom(this.seed);
+        this.noise = new Simplex(this.random, 4, 0.25, 0.03125);
 
         // Reset random after noise init
-        this.random.setSeed( this.seed );
+        this.random.setSeed(this.seed);
 
-        this.selector = new BiomeSelector( this.random ) {
+        this.selector = new BiomeSelector(this.random) {
             @Override
-            public Biome lookup( double temperature, double downfall, Biome current ) {
-                if ( downfall < 0.25 ) {
-                    if ( temperature < 0.7 ) {
+            public Biome lookup(double temperature, double downfall, Biome current) {
+                if (downfall < 0.25) {
+                    if (temperature < 0.7) {
                         return Biome.OCEAN;
                     } else {
                         return Biome.RIVER;
                     }
-                } else if ( downfall < 0.6 ) {
+                } else if (downfall < 0.6) {
                     return Biome.PLAINS;
-                } else if ( downfall < 0.8 ) {
-                    if ( temperature < 0.75 ) {
+                } else if (downfall < 0.8) {
+                    if (temperature < 0.75) {
                         return Biome.FOREST;
                     } else {
                         return Biome.BIRCH_FOREST;
@@ -118,59 +111,59 @@ public class NormalGenerator extends ChunkGenerator {
         };
 
         // Add needed populators
-        this.generationPopulators.add( new GroundPopulator() );
+        this.generationPopulators.add(new GroundPopulator());
 
-        this.populators.add( new OrePopulator( new OreType[]{
-            new OreType( GoMint.instance().createBlock( BlockCoalOre.class ), 20, 16, 0, 128 ),
-            new OreType( GoMint.instance().createBlock( BlockIronOre.class ), 20, 8, 0, 64 ),
-            new OreType( GoMint.instance().createBlock( BlockRedstoneOre.class ), 8, 7, 0, 16 ),
-            new OreType( GoMint.instance().createBlock( BlockLapisLazuliOre.class ), 1, 6, 0, 32 ),
-            new OreType( GoMint.instance().createBlock( BlockGoldOre.class ), 2, 8, 0, 32 ),
-            new OreType( GoMint.instance().createBlock( BlockDiamondOre.class ), 1, 7, 0, 16 ),
-            new OreType( GoMint.instance().createBlock( BlockDirt.class ), 20, 32, 0, 128 ),
-            new OreType( GoMint.instance().createBlock( BlockGravel.class ), 10, 16, 0, 128 )
-        } ) );
+        this.populators.add(new OrePopulator(new OreType[]{
+            new OreType(GoMint.instance().createBlock(BlockCoalOre.class), 20, 16, 0, 128),
+            new OreType(GoMint.instance().createBlock(BlockIronOre.class), 20, 8, 0, 64),
+            new OreType(GoMint.instance().createBlock(BlockRedstoneOre.class), 8, 7, 0, 16),
+            new OreType(GoMint.instance().createBlock(BlockLapisLazuliOre.class), 1, 6, 0, 32),
+            new OreType(GoMint.instance().createBlock(BlockGoldOre.class), 2, 8, 0, 32),
+            new OreType(GoMint.instance().createBlock(BlockDiamondOre.class), 1, 7, 0, 16),
+            new OreType(GoMint.instance().createBlock(BlockDirt.class), 20, 32, 0, 128),
+            new OreType(GoMint.instance().createBlock(BlockGravel.class), 10, 16, 0, 128)
+        }));
     }
 
     @Override
-    public Chunk generate( int chunkX, int chunkZ ) {
-        this.random.setSeed( 0xdeadbeef ^ ((long) chunkX << 8 ) ^ chunkZ ^ this.seed );
+    public Chunk generate(int chunkX, int chunkZ) {
+        this.random.setSeed(0xdeadbeef ^ ((long) chunkX << 8) ^ chunkZ ^ this.seed);
 
-        Chunk chunk = this.world.generateEmptyChunk( chunkX, chunkZ );
+        Chunk chunk = this.world.generateEmptyChunk(chunkX, chunkZ);
 
         Long2ObjectMap<Biome> biomeCache = new Long2ObjectOpenHashMap<>();
         double[][] smoothHeight = new double[16][16];
         double[][] minHeight = new double[16][16];
 
         double noiseMax = 0;
-        for ( int x = 0; x < 16; ++x ) {
-            for ( int z = 0; z < 16; ++z ) {
+        for (int x = 0; x < 16; ++x) {
+            for (int z = 0; z < 16; ++z) {
                 // Pick biome and calc the weight of it to check for height limits of the biome
                 double minSum = 0;
                 double maxSum = 0;
                 double weightSum = 0;
 
-                Biome biome = this.pickBiome( chunkX * 16 + x, chunkZ * 16 + z ); // For testing we only use plains now
-                chunk.biome( x, z, biome );
+                Biome biome = this.pickBiome(chunkX * 16 + x, chunkZ * 16 + z); // For testing we only use plains now
+                chunk.biome(x, z, biome);
 
-                for ( int sx = -SMOOTH_SIZE; sx <= SMOOTH_SIZE; ++sx ) {
-                    for ( int sz = -SMOOTH_SIZE; sz <= SMOOTH_SIZE; ++sz ) {
+                for (int sx = -SMOOTH_SIZE; sx <= SMOOTH_SIZE; ++sx) {
+                    for (int sz = -SMOOTH_SIZE; sz <= SMOOTH_SIZE; ++sz) {
                         double weight = GAUSSIAN[sx + SMOOTH_SIZE][sz + SMOOTH_SIZE];
 
                         Biome adjacent;
-                        if ( sx == 0 && sz == 0 ) {
+                        if (sx == 0 && sz == 0) {
                             adjacent = biome;
                         } else {
-                            long index = this.chunkHash( chunkX * 16 + x + sx, chunkZ * 16 + z + sz );
+                            long index = this.chunkHash(chunkX * 16 + x + sx, chunkZ * 16 + z + sz);
 
-                            if ( biomeCache.containsKey( index ) ) {
-                                adjacent = biomeCache.get( index );
+                            if (biomeCache.containsKey(index)) {
+                                adjacent = biomeCache.get(index);
                             } else {
-                                biomeCache.put( index, adjacent = this.pickBiome( chunkX * 16 + x + sx, chunkZ * 16 + z + sz ) );
+                                biomeCache.put(index, adjacent = this.pickBiome(chunkX * 16 + x + sx, chunkZ * 16 + z + sz));
                             }
                         }
 
-                        minSum += ( adjacent.minElevation() - 1 ) * weight;
+                        minSum += (adjacent.minElevation() - 1) * weight;
                         maxSum += adjacent.maxElevation() * weight;
                         weightSum += weight;
                     }
@@ -179,96 +172,96 @@ public class NormalGenerator extends ChunkGenerator {
                 minSum /= weightSum;
                 maxSum /= weightSum;
 
-                if ( maxSum > noiseMax ) {
+                if (maxSum > noiseMax) {
                     noiseMax = maxSum;
                 }
 
-                smoothHeight[x][z] = ( maxSum - minSum ) / 2;
+                smoothHeight[x][z] = (maxSum - minSum) / 2;
                 minHeight[x][z] = minSum;
             }
         }
 
         int correctedMax = (int) noiseMax + 1;
-        correctedMax += 8 - ( correctedMax % 8 );
-        if ( correctedMax > 256 ) {
+        correctedMax += 8 - (correctedMax % 8);
+        if (correctedMax > 256) {
             correctedMax = 256;
         }
 
-        double[][][] noiseValues = this.noise.fastNoise3D( 16, correctedMax, 16, 4, 8, 4, chunkX * 16, 0, chunkZ * 16 );
+        double[][][] noiseValues = this.noise.fastNoise3D(16, correctedMax, 16, 4, 8, 4, chunkX * 16, 0, chunkZ * 16);
 
-        for ( int x = 0; x < 16; x++ ) {
-            for ( int z = 0; z < 16; z++ ) {
+        for (int x = 0; x < 16; x++) {
+            for (int z = 0; z < 16; z++) {
                 // We currently only care about noise generation with stones
-                for ( int y = 0; y < correctedMax; ++y ) {
-                    if ( y == 0 ) {
-                        chunk.block( x, y, z, WorldLayer.NORMAL, DefinedBlocks.BEDROCK);
+                for (int y = 0; y < correctedMax; ++y) {
+                    if (y == 0) {
+                        chunk.block(x, y, z, WorldLayer.NORMAL, DefinedBlocks.BEDROCK);
                         continue;
                     }
 
-                    double noiseValue = noiseValues[x][z][y] - 1 / smoothHeight[x][z] * ( y - smoothHeight[x][z] - minHeight[x][z] );
+                    double noiseValue = noiseValues[x][z][y] - 1 / smoothHeight[x][z] * (y - smoothHeight[x][z] - minHeight[x][z]);
                     int waterHeight = 62;
-                    if ( noiseValue > 0 ) {
-                        chunk.block( x, y, z, DefinedBlocks.STONE );
-                    } else if ( y <= waterHeight) {
-                        chunk.block( x, y, z, DefinedBlocks.WATER );
+                    if (noiseValue > 0) {
+                        chunk.block(x, y, z, DefinedBlocks.STONE);
+                    } else if (y <= waterHeight) {
+                        chunk.block(x, y, z, DefinedBlocks.WATER);
                     }
                 }
             }
         }
 
         // Let the generation populators work
-        for ( Populator popluator : this.generationPopulators ) {
-            popluator.populate( this.world, chunk, this.random );
+        for (Populator popluator : this.generationPopulators) {
+            popluator.populate(this.world, chunk, this.random);
         }
 
         return chunk;
     }
 
     @Override
-    public void populate( Chunk chunk ) {
+    public void populate(Chunk chunk) {
         // Reset the seed
-        this.random.setSeed( 0xdeadbeef ^ ((long) chunk.x() << 8 ) ^ chunk.z() ^ this.seed );
+        this.random.setSeed(0xdeadbeef ^ ((long) chunk.x() << 8) ^ chunk.z() ^ this.seed);
 
         // Let the normal populators work
-        for ( Populator populator : this.populators ) {
-            populator.populate( this.world, chunk, this.random );
+        for (Populator populator : this.populators) {
+            populator.populate(this.world, chunk, this.random);
         }
 
         // Let the biome populators work
-        Biome toWorkFor = chunk.biome( 7, 7 );
+        Biome toWorkFor = chunk.biome(7, 7);
         List<Populator> biomePopulators = toWorkFor.populators();
-        if ( biomePopulators != null ) {
-            for ( Populator populator : biomePopulators ) {
-                populator.populate( this.world, chunk, this.random );
+        if (biomePopulators != null) {
+            for (Populator populator : biomePopulators) {
+                populator.populate(this.world, chunk, this.random);
             }
         }
     }
 
-    private Biome pickBiome( int x, int z ) {
+    private Biome pickBiome(int x, int z) {
         long hash = x * 2345803L ^ z * 9236449L ^ this.seed;
         hash *= hash + 223;
 
-        byte xNoise = (byte) ( hash >> 20 & 3 );
-        byte zNoise = (byte) ( hash >> 22 & 3 );
+        byte xNoise = (byte) (hash >> 20 & 3);
+        byte zNoise = (byte) (hash >> 22 & 3);
 
-        if ( xNoise == 3 ) {
+        if (xNoise == 3) {
             xNoise = 1;
         }
 
-        if ( zNoise == 3 ) {
+        if (zNoise == 3) {
             zNoise = 1;
         }
 
-        return this.selector.select( x + xNoise - 1, z + zNoise - 1, null );
+        return this.selector.select(x + xNoise - 1, z + zNoise - 1, null);
     }
 
-    private long chunkHash( int x, int z ) {
-        return ( (long) x << 32 ) + z - Integer.MIN_VALUE;
+    private long chunkHash(int x, int z) {
+        return ((long) x << 32) + z - Integer.MIN_VALUE;
     }
 
     @Override
     public BlockPosition spawnPoint() {
-        return new BlockPosition( 150, 75, 150 );
+        return new BlockPosition(150, 75, 150);
     }
 
 }

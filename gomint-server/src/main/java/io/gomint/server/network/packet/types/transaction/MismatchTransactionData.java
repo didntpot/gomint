@@ -4,7 +4,7 @@ import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.packet.PacketInventoryTransaction;
 import io.gomint.server.network.packet.util.PacketDecodeException;
 
-public class MismatchTransactionData  extends TransactionData {
+public class MismatchTransactionData extends TransactionData {
 
     @Override
     public int getTypeId() {

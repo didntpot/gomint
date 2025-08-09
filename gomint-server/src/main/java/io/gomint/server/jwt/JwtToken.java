@@ -1,13 +1,14 @@
 package io.gomint.server.jwt;
 
 import io.gomint.server.util.StringUtil;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Base64;
 import java.util.Map;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 /**
  * Minimalistic JWT library for use with Mojang's authentication mechanism.

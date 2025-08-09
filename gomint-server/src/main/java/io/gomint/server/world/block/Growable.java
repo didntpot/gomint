@@ -11,6 +11,7 @@ import io.gomint.server.world.UpdateReason;
 import io.gomint.server.world.block.state.ProgressBlockState;
 import io.gomint.world.block.BlockType;
 import io.gomint.world.block.data.Facing;
+
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 

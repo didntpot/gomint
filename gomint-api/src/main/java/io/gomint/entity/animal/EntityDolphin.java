@@ -21,6 +21,6 @@ public interface EntityDolphin extends EntityAgeable<EntityDolphin> {
      * @return empty, fresh dolphin
      */
     static EntityDolphin create() {
-        return GoMint.instance().createEntity( EntityDolphin.class );
+        return GoMint.instance().createEntity(EntityDolphin.class);
     }
 }

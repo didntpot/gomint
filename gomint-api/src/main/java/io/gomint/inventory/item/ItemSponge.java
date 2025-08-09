@@ -13,10 +13,10 @@ public interface ItemSponge extends ItemStack<ItemSponge> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSponge create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemSponge.class, amount );
+    static ItemSponge create(int amount) {
+        return GoMint.instance().createItemStack(ItemSponge.class, amount);
     }
 
 }

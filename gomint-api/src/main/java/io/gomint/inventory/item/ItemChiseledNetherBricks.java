@@ -20,10 +20,10 @@ public interface ItemChiseledNetherBricks extends ItemStack<ItemChiseledNetherBr
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemChiseledNetherBricks create( int amount ) {
-        return GoMint.instance().createItemStack( ItemChiseledNetherBricks.class, amount );
+    static ItemChiseledNetherBricks create(int amount) {
+        return GoMint.instance().createItemStack(ItemChiseledNetherBricks.class, amount);
     }
 
 }

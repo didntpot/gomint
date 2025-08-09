@@ -21,8 +21,8 @@ public interface ItemFrame extends ItemStack<ItemFrame> {
      *
      * @param amount which is used for the creation
      */
-    static ItemFrame create(int amount ) {
-        return GoMint.instance().createItemStack( ItemFrame.class, amount );
+    static ItemFrame create(int amount) {
+        return GoMint.instance().createItemStack(ItemFrame.class, amount);
     }
 
 }

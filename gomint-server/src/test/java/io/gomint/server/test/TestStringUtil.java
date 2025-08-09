@@ -8,10 +8,11 @@
 package io.gomint.server.test;
 
 import io.gomint.server.util.StringUtil;
-import java.nio.charset.StandardCharsets;
-import java.util.Random;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Random;
 
 /**
  * @author geNAZt

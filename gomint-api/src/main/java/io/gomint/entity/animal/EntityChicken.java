@@ -23,7 +23,7 @@ public interface EntityChicken extends EntityAgeable<EntityChicken> {
      * @return empty, fresh chicken
      */
     static EntityChicken create() {
-        return GoMint.instance().createEntity( EntityChicken.class );
+        return GoMint.instance().createEntity(EntityChicken.class);
     }
 
 }

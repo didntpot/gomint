@@ -28,13 +28,13 @@ import io.gomint.taglib.NBTTagCompound;
 import io.gomint.taglib.NBTWriter;
 import io.gomint.world.Gamerule;
 import io.gomint.world.block.data.Facing;
-import java.io.IOException;
-import java.math.BigInteger;
-import java.nio.ByteOrder;
-import java.util.*;
-import javax.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.annotation.Nullable;
+import java.io.IOException;
+import java.nio.ByteOrder;
+import java.util.*;
 
 /**
  * @author BlackyPaw
@@ -134,8 +134,9 @@ public abstract class Packet {
 
     /**
      * Write a item stack without stack id to the packet buffer
+     *
      * @param itemStack which should be written
-     * @param buffer which should be used to write to
+     * @param buffer    which should be used to write to
      */
     public static void writeItemStack(ItemStack<?> itemStack, PacketBuffer buffer) {
         writeItemStack(itemStack, buffer, null);

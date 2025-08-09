@@ -17,10 +17,10 @@ public class ToolbarElement {
 
     public ToolbarElement() {
         this.toolBar = new ToolBar(
-                new Button( "Open" ),
-                new Separator(  ),
-                new Label( "Currently open performance report: " ),
-                this.reportName = new Label( "None" )
+            new Button("Open"),
+            new Separator(),
+            new Label("Currently open performance report: "),
+            this.reportName = new Label("None")
         );
     }
 

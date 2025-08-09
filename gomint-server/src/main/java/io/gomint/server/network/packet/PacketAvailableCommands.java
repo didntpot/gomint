@@ -4,6 +4,7 @@ import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.Protocol;
 import io.gomint.server.network.type.*;
 import io.gomint.server.util.collection.IndexedHashMap;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -215,10 +216,10 @@ public class PacketAvailableCommands extends Packet implements PacketClientbound
     }
 
     protected void putEnumConstraint(
-            CommandEnumConstraint constraint,
-            Map<String, Integer> enumIndexes,
-            Map<String, Integer> enumValueIndexes,
-            PacketBuffer buffer
+        CommandEnumConstraint constraint,
+        Map<String, Integer> enumIndexes,
+        Map<String, Integer> enumValueIndexes,
+        PacketBuffer buffer
     ) {
         buffer.writeLInt(enumValueIndexes.get(constraint.affectedValue()));
         buffer.writeLInt(enumIndexes.get(constraint.commandEnum().enumName()));
@@ -229,12 +230,12 @@ public class PacketAvailableCommands extends Packet implements PacketClientbound
     }
 
     protected void putCommandData(
-            CommandData data,
-            Map<String, Integer> enumIndexes,
-            Map<String, Integer> softEnumIndexes,
-            Map<String, Integer> postfixIndexes,
-            Map<String, Integer> chainedSubCommandDataIndexes,
-            PacketBuffer buffer
+        CommandData data,
+        Map<String, Integer> enumIndexes,
+        Map<String, Integer> softEnumIndexes,
+        Map<String, Integer> postfixIndexes,
+        Map<String, Integer> chainedSubCommandDataIndexes,
+        PacketBuffer buffer
     ) {
         buffer.writeString(data.name());
         buffer.writeString(data.description());
@@ -278,12 +279,12 @@ public class PacketAvailableCommands extends Packet implements PacketClientbound
     }
 
     private void addEnumFn(
-            CommandEnum commandEnum,
-            Map<String, CommandEnum> enums,
-            Map<String, CommandEnum> softEnums,
-            Map<String, Integer> enumIndexes,
-            Map<String, Integer> softEnumIndexes,
-            Map<String, Integer> enumValueIndexes
+        CommandEnum commandEnum,
+        Map<String, CommandEnum> enums,
+        Map<String, CommandEnum> softEnums,
+        Map<String, Integer> enumIndexes,
+        Map<String, Integer> softEnumIndexes,
+        Map<String, Integer> enumValueIndexes
     ) {
         String enumName = commandEnum.enumName();
         if (commandEnum.isSoft()) {

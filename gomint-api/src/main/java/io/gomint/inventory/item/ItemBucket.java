@@ -13,10 +13,10 @@ public interface ItemBucket extends ItemStack<ItemBucket>, ItemBurnable {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemBucket create( int amount ) {
-        return GoMint.instance().createItemStack( ItemBucket.class, amount );
+    static ItemBucket create(int amount) {
+        return GoMint.instance().createItemStack(ItemBucket.class, amount);
     }
 
     /**
@@ -24,7 +24,7 @@ public interface ItemBucket extends ItemStack<ItemBucket>, ItemBurnable {
      *
      * @param type of the content
      */
-    ItemBucket content(Content type );
+    ItemBucket content(Content type);
 
     /**
      * Get the content from this bucket

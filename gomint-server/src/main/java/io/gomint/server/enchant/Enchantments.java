@@ -11,9 +11,10 @@ import io.gomint.server.registry.Generator;
 import io.gomint.server.registry.Registry;
 import io.gomint.server.util.ClassPath;
 import io.gomint.server.util.performance.LambdaConstructionFactory;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 /**
  * @author geNAZt

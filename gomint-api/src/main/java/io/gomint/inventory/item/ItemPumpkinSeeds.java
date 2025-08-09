@@ -13,10 +13,10 @@ public interface ItemPumpkinSeeds extends ItemStack<ItemPumpkinSeeds> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemPumpkinSeeds create( int amount ) {
-        return GoMint.instance().createItemStack( ItemPumpkinSeeds.class, amount );
+    static ItemPumpkinSeeds create(int amount) {
+        return GoMint.instance().createItemStack(ItemPumpkinSeeds.class, amount);
     }
 
 }

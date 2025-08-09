@@ -63,9 +63,9 @@ public class ConfigMapper extends BaseConfigMapper {
      * Deserialize the given map into the field structure of the given class
      *
      * @param section map containing all paths as keys and value
-     * @param clazz which holds the field structure
-     * @throws Exception which can be everything
+     * @param clazz   which holds the field structure
      * @return config mapper for chaining
+     * @throws Exception which can be everything
      */
     public ConfigMapper loadFromMap(Map<?, ?> section, Class<?> clazz) throws Exception {
         if (!clazz.getSuperclass().equals(YamlConfig.class)) {

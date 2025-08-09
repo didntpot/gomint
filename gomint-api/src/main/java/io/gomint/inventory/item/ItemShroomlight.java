@@ -20,10 +20,10 @@ public interface ItemShroomlight extends ItemStack<ItemShroomlight> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemShroomlight create( int amount ) {
-        return GoMint.instance().createItemStack( ItemShroomlight.class, amount );
+    static ItemShroomlight create(int amount) {
+        return GoMint.instance().createItemStack(ItemShroomlight.class, amount);
     }
 
 }

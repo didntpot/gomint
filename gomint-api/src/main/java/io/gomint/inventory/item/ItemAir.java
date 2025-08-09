@@ -13,10 +13,10 @@ public interface ItemAir extends ItemStack<ItemAir> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemAir create( int amount ) {
-        return GoMint.instance().createItemStack( ItemAir.class, 0 );
+    static ItemAir create(int amount) {
+        return GoMint.instance().createItemStack(ItemAir.class, 0);
     }
 
 }

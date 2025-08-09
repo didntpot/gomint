@@ -29,16 +29,16 @@ public class TargetValidator extends ParamValidator<TargetValidator> {
      * {@inheritDoc}
      */
     @Override
-    public Object validate(String input, CommandSender<?> commandSender ) {
+    public Object validate(String input, CommandSender<?> commandSender) {
         Collection<EntityPlayer> searchPool = GoMint.instance().onlinePlayers();
-        if ( commandSender instanceof PlayerCommandSender ) {
-            if ( input.equals( "@s" ) ) {
+        if (commandSender instanceof PlayerCommandSender) {
+            if (input.equals("@s")) {
                 return commandSender;
             }
         }
 
-        for ( EntityPlayer player : searchPool ) {
-            if ( player.playerListName().equals( input ) || player.name().equalsIgnoreCase( input ) ) {
+        for (EntityPlayer player : searchPool) {
+            if (player.playerListName().equals(input) || player.name().equalsIgnoreCase(input)) {
                 return player;
             }
         }
@@ -50,28 +50,28 @@ public class TargetValidator extends ParamValidator<TargetValidator> {
      * {@inheritDoc}
      */
     @Override
-    public String consume( Iterator<String> data ) {
+    public String consume(Iterator<String> data) {
         // Check if we have one element left
-        if ( !data.hasNext() ) {
+        if (!data.hasNext()) {
             return null;
         }
 
         // The first element can either be " to signal that the name has spaces or its the player name itself
         String first = data.next();
-        if ( first.startsWith( "\"" ) ) {
-            if ( first.endsWith( "\"" ) ) {
-                return first.substring( 1, first.length() - 1 );
+        if (first.startsWith("\"")) {
+            if (first.endsWith("\"")) {
+                return first.substring(1, first.length() - 1);
             }
 
-            StringBuilder nameBuilder = new StringBuilder( first.substring( 1 ) );
-            while ( data.hasNext() ) {
+            StringBuilder nameBuilder = new StringBuilder(first.substring(1));
+            while (data.hasNext()) {
                 String current = data.next();
-                if ( current.endsWith( "\"" ) ) {
-                    nameBuilder.append( " " ).append( current, 0, current.length() - 1 );
+                if (current.endsWith("\"")) {
+                    nameBuilder.append(" ").append(current, 0, current.length() - 1);
                     return nameBuilder.toString();
                 }
 
-                nameBuilder.append( " " ).append( current );
+                nameBuilder.append(" ").append(current);
             }
 
             return nameBuilder.toString();

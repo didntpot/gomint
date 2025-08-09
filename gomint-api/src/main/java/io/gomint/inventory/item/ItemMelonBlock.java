@@ -13,10 +13,10 @@ public interface ItemMelonBlock extends ItemStack<ItemMelonBlock> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemMelonBlock create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemMelonBlock.class, amount );
+    static ItemMelonBlock create(int amount) {
+        return GoMint.instance().createItemStack(ItemMelonBlock.class, amount);
     }
 
 }

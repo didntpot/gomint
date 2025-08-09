@@ -20,10 +20,10 @@ public interface ItemBirchTrapdoor extends ItemStack<ItemBirchTrapdoor>, ItemBur
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemBirchTrapdoor create( int amount ) {
-        return GoMint.instance().createItemStack( ItemBirchTrapdoor.class, amount );
+    static ItemBirchTrapdoor create(int amount) {
+        return GoMint.instance().createItemStack(ItemBirchTrapdoor.class, amount);
     }
 
 }

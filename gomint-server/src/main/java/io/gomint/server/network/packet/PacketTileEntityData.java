@@ -6,6 +6,7 @@ import io.gomint.server.network.Protocol;
 import io.gomint.taglib.NBTReader;
 import io.gomint.taglib.NBTTagCompound;
 import io.gomint.taglib.NBTWriter;
+
 import java.nio.ByteOrder;
 
 /**

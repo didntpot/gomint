@@ -17,8 +17,8 @@ import java.lang.annotation.Target;
  * @version 1.0
  * @stability 3
  */
-@Retention( RetentionPolicy.RUNTIME )
-@Target( ElementType.FIELD )
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
 public @interface Comments {
 
     Comment[] value();

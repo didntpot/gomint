@@ -16,6 +16,7 @@ import io.gomint.world.block.data.ConnectionType;
 import io.gomint.world.block.data.Direction;
 import io.gomint.world.block.data.Facing;
 import io.gomint.world.block.data.StoneType;
+
 import java.util.Collections;
 import java.util.List;
 

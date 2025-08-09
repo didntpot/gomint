@@ -20,10 +20,10 @@ public interface ItemFlowerBannerPattern extends ItemStack<ItemFlowerBannerPatte
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemFlowerBannerPattern create( int amount ) {
-        return GoMint.instance().createItemStack( ItemFlowerBannerPattern.class, amount );
+    static ItemFlowerBannerPattern create(int amount) {
+        return GoMint.instance().createItemStack(ItemFlowerBannerPattern.class, amount);
     }
 
 }

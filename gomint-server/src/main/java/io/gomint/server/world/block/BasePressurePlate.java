@@ -11,6 +11,7 @@ import io.gomint.math.AxisAlignedBB;
 import io.gomint.math.MathUtils;
 import io.gomint.server.entity.Entity;
 import io.gomint.server.world.block.state.RedstoneSignalStrength;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;

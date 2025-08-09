@@ -13,10 +13,10 @@ public interface ItemCraftingTable extends ItemStack<ItemCraftingTable>, ItemBur
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCraftingTable create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCraftingTable.class, amount );
+    static ItemCraftingTable create(int amount) {
+        return GoMint.instance().createItemStack(ItemCraftingTable.class, amount);
     }
 
 }

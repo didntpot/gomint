@@ -21,7 +21,7 @@ public interface ItemAxis<I> extends ItemStack<I> {
      *
      * @param axis of the log
      */
-    I axis(Axis axis );
+    I axis(Axis axis);
 
     /**
      * Get the axis of this log

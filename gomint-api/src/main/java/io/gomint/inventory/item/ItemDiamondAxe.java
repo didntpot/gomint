@@ -13,10 +13,10 @@ public interface ItemDiamondAxe extends ItemStack<ItemDiamondAxe> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemDiamondAxe create( int amount ) {
-        return GoMint.instance().createItemStack( ItemDiamondAxe.class, amount );
+    static ItemDiamondAxe create(int amount) {
+        return GoMint.instance().createItemStack(ItemDiamondAxe.class, amount);
     }
 
 }

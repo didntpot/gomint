@@ -1,7 +1,8 @@
 package io.gomint.server.jwt;
 
-import java.util.Map;
 import org.json.simple.JSONObject;
+
+import java.util.Map;
 
 /**
  * @author BlackyPaw

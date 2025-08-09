@@ -16,15 +16,13 @@ package io.gomint.server.world.generator.vanilla.debug;
 
 import io.gomint.server.util.Pair;
 import io.gomint.world.Chunk;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.border.Border;
-import javax.swing.border.MatteBorder;
 
 /**
  * @author geNAZt

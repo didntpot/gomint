@@ -7,10 +7,11 @@
 
 package io.gomint.server.util;
 
+import org.apache.commons.text.WordUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import org.apache.commons.text.WordUtils;
 
 public class SwitchNode {
 

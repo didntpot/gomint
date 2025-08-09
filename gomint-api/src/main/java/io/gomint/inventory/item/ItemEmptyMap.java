@@ -20,10 +20,10 @@ public interface ItemEmptyMap extends ItemStack<ItemEmptyMap> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemEmptyMap create( int amount ) {
-        return GoMint.instance().createItemStack( ItemEmptyMap.class, amount );
+    static ItemEmptyMap create(int amount) {
+        return GoMint.instance().createItemStack(ItemEmptyMap.class, amount);
     }
 
 }

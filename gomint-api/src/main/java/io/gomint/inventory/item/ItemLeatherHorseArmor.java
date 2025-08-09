@@ -20,10 +20,10 @@ public interface ItemLeatherHorseArmor extends ItemStack<ItemLeatherHorseArmor> 
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemLeatherHorseArmor create( int amount ) {
-        return GoMint.instance().createItemStack( ItemLeatherHorseArmor.class, amount );
+    static ItemLeatherHorseArmor create(int amount) {
+        return GoMint.instance().createItemStack(ItemLeatherHorseArmor.class, amount);
     }
 
 }

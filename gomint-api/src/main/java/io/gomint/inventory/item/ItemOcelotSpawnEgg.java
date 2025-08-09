@@ -20,10 +20,10 @@ public interface ItemOcelotSpawnEgg extends ItemStack<ItemOcelotSpawnEgg> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemOcelotSpawnEgg create( int amount ) {
-        return GoMint.instance().createItemStack( ItemOcelotSpawnEgg.class, amount );
+    static ItemOcelotSpawnEgg create(int amount) {
+        return GoMint.instance().createItemStack(ItemOcelotSpawnEgg.class, amount);
     }
 
 }

@@ -13,10 +13,10 @@ public interface ItemGunpowder extends ItemStack<ItemGunpowder> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemGunpowder create( int amount ) {
-        return GoMint.instance().createItemStack( ItemGunpowder.class, amount );
+    static ItemGunpowder create(int amount) {
+        return GoMint.instance().createItemStack(ItemGunpowder.class, amount);
     }
 
 }

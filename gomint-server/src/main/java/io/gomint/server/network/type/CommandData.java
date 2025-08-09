@@ -1,8 +1,9 @@
 package io.gomint.server.network.type;
 
 import io.gomint.server.network.packet.PacketAvailableCommands;
-import java.util.List;
+
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * @author geNAZt

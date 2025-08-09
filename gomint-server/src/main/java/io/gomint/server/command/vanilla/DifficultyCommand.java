@@ -9,6 +9,7 @@ import io.gomint.command.validator.EnumValidator;
 import io.gomint.command.validator.IntegerValidator;
 import io.gomint.server.entity.EntityPlayer;
 import io.gomint.world.Difficulty;
+
 import java.util.Map;
 
 /**

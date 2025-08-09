@@ -10,6 +10,7 @@ import io.gomint.server.world.block.state.BlockfaceBlockState;
 import io.gomint.world.block.BlockSoulTorch;
 import io.gomint.world.block.BlockType;
 import io.gomint.world.block.data.Facing;
+
 import java.util.Collections;
 import java.util.List;
 

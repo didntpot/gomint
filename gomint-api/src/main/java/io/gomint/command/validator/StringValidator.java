@@ -24,16 +24,16 @@ public class StringValidator extends ParamValidator<StringValidator> {
 
     private final Pattern pattern;
 
-    public StringValidator( String regex ) {
-        this.pattern = Pattern.compile( regex );
+    public StringValidator(String regex) {
+        this.pattern = Pattern.compile(regex);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Object validate(String input, CommandSender<?> commandSender ) {
-        if ( this.pattern.matcher( input ).matches() ) {
+    public Object validate(String input, CommandSender<?> commandSender) {
+        if (this.pattern.matcher(input).matches()) {
             return input;
         }
 
@@ -44,8 +44,8 @@ public class StringValidator extends ParamValidator<StringValidator> {
      * {@inheritDoc}
      */
     @Override
-    public String consume( Iterator<String> data ) {
-        if ( data.hasNext() ) {
+    public String consume(Iterator<String> data) {
+        if (data.hasNext()) {
             return data.next();
         }
 

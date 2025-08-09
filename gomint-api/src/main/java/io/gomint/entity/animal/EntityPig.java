@@ -23,7 +23,7 @@ public interface EntityPig extends EntityAgeable<EntityPig> {
      * @return empty, fresh pig
      */
     static EntityPig create() {
-        return GoMint.instance().createEntity( EntityPig.class );
+        return GoMint.instance().createEntity(EntityPig.class);
     }
 
 }

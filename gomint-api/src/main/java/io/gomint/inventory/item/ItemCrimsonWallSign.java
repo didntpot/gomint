@@ -20,10 +20,10 @@ public interface ItemCrimsonWallSign extends ItemStack<ItemCrimsonWallSign> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCrimsonWallSign create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCrimsonWallSign.class, amount );
+    static ItemCrimsonWallSign create(int amount) {
+        return GoMint.instance().createItemStack(ItemCrimsonWallSign.class, amount);
     }
 
 }

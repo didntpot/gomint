@@ -9,6 +9,7 @@ package io.gomint.server.world.block.state;
 
 import io.gomint.math.MathUtils;
 import io.gomint.server.world.block.Block;
+
 import java.util.function.Supplier;
 
 public class RedstoneSignalStrength extends ProgressBlockState {

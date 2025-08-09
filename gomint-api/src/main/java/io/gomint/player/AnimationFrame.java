@@ -21,9 +21,9 @@ public interface AnimationFrame {
      * Save the frame to a given file in PNG format
      *
      * @param out stream to which the image should be saved
-     * @throws IOException which can be thrown in case of errors while saving
      * @return animation frame for chaining
+     * @throws IOException which can be thrown in case of errors while saving
      */
-    AnimationFrame saveTo( OutputStream out ) throws IOException;
+    AnimationFrame saveTo(OutputStream out) throws IOException;
 
 }

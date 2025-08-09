@@ -20,10 +20,10 @@ public interface ItemNetherStar extends ItemStack<ItemNetherStar> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemNetherStar create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemNetherStar.class, amount );
+    static ItemNetherStar create(int amount) {
+        return GoMint.instance().createItemStack(ItemNetherStar.class, amount);
     }
 
 }

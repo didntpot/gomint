@@ -13,9 +13,9 @@ public interface ItemKelp extends ItemStack<ItemKelp> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemKelp create( int amount ) {
-        return GoMint.instance().createItemStack( ItemKelp.class, amount );
+    static ItemKelp create(int amount) {
+        return GoMint.instance().createItemStack(ItemKelp.class, amount);
     }
 }

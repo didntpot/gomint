@@ -21,28 +21,28 @@ public interface ArmorInventory extends Inventory<ArmorInventory> {
      *
      * @param item which should be used
      */
-    ArmorInventory helmet(ItemStack<?> item );
+    ArmorInventory helmet(ItemStack<?> item);
 
     /**
      * Set the chest plate of the inventory
      *
      * @param item which should be used
      */
-    ArmorInventory chestplate(ItemStack<?> item );
+    ArmorInventory chestplate(ItemStack<?> item);
 
     /**
      * Set the leggings of the inventory
      *
      * @param item which should be used
      */
-    ArmorInventory leggings(ItemStack<?> item );
+    ArmorInventory leggings(ItemStack<?> item);
 
     /**
      * Set the boots of the inventory
      *
      * @param item which should be used
      */
-    ArmorInventory boots(ItemStack<?> item );
+    ArmorInventory boots(ItemStack<?> item);
 
     /**
      * Get the helmet in this inventory

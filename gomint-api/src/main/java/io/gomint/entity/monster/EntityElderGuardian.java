@@ -17,7 +17,7 @@ public interface EntityElderGuardian extends EntityLiving<EntityElderGuardian> {
      * @return empty, fresh elder guardian
      */
     static EntityElderGuardian create() {
-        return GoMint.instance().createEntity( EntityElderGuardian.class );
+        return GoMint.instance().createEntity(EntityElderGuardian.class);
     }
 
     /**
@@ -25,6 +25,6 @@ public interface EntityElderGuardian extends EntityLiving<EntityElderGuardian> {
      *
      * @param entity which should be used to shoot the laser to
      */
-    EntityElderGuardian target(Entity<?> entity );
+    EntityElderGuardian target(Entity<?> entity);
 
 }

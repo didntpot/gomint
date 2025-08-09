@@ -23,6 +23,6 @@ public interface EntityTurtle extends EntityAgeable<EntityTurtle> {
      * @return empty, fresh turtle
      */
     static EntityTurtle create() {
-        return GoMint.instance().createEntity( EntityTurtle.class );
+        return GoMint.instance().createEntity(EntityTurtle.class);
     }
 }

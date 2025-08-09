@@ -20,10 +20,10 @@ public interface ItemWanderingTraderSpawnEgg extends ItemStack<ItemWanderingTrad
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemWanderingTraderSpawnEgg create( int amount ) {
-        return GoMint.instance().createItemStack( ItemWanderingTraderSpawnEgg.class, amount );
+    static ItemWanderingTraderSpawnEgg create(int amount) {
+        return GoMint.instance().createItemStack(ItemWanderingTraderSpawnEgg.class, amount);
     }
 
 }

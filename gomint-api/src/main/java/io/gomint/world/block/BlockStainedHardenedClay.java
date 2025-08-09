@@ -28,6 +28,6 @@ public interface BlockStainedHardenedClay extends Block {
      *
      * @param color which this block should be
      */
-    BlockStainedHardenedClay color(BlockColor color );
+    BlockStainedHardenedClay color(BlockColor color);
 
 }

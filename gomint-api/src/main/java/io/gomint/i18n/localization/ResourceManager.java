@@ -44,7 +44,7 @@ public class ResourceManager {
      *
      * @param classLoader The classLoader for which this ResourceManager should load Resources
      */
-    public ResourceManager( ClassLoader classLoader ) {
+    public ResourceManager(ClassLoader classLoader) {
         this.classLoader = classLoader;
     }
 
@@ -53,15 +53,15 @@ public class ResourceManager {
      * and have a Constructor which takes two Arguments, JavaPlugin as first and a String as second Parameter. It also
      * needs to have a empty default Constructor so you can register the ResourceLoader without it having loaded any
      * Resource in it.
-     *
+     * <p>
      * The JavaPlugin will be the Plugin for which this loader should load.
      * The String is the second parameter from {@link LocaleManager#load(Locale, String)}
      *
      * @param loader New loader which can be used to load Resources
      */
-    public synchronized ResourceManager registerLoader( ResourceLoader<?> loader ) {
+    public synchronized ResourceManager registerLoader(ResourceLoader<?> loader) {
         synchronized (this.sharedLock) {
-            this.registerdLoaders.add( loader );
+            this.registerdLoaders.add(loader);
         }
 
         return this;
@@ -74,18 +74,18 @@ public class ResourceManager {
      * @param param  The param which the ResourceLoader should load
      * @throws ResourceLoadFailedException when loading failed
      */
-    private synchronized ResourceManager loadLocale( Locale locale, String param ) throws ResourceLoadFailedException {
+    private synchronized ResourceManager loadLocale(Locale locale, String param) throws ResourceLoadFailedException {
         //Get the correct loader for this param
-        for ( ResourceLoader<?> loader : this.registerdLoaders) {
-            for ( String ending : loader.formats() ) {
-                if ( param.endsWith( ending ) ) {
+        for (ResourceLoader<?> loader : this.registerdLoaders) {
+            for (String ending : loader.formats()) {
+                if (param.endsWith(ending)) {
                     try {
                         synchronized (this.sharedLock) {
-                            this.loadedLocales.put( locale, new SoftReference<>( buildNewResourceLoader( loader, param ) ) );
-                            this.loadedLocaleLoadStrings.put( locale, param );
+                            this.loadedLocales.put(locale, new SoftReference<>(buildNewResourceLoader(loader, param)));
+                            this.loadedLocaleLoadStrings.put(locale, param);
                         }
-                    } catch ( RuntimeException e ) {
-                        throw new ResourceLoadFailedException( e );
+                    } catch (RuntimeException e) {
+                        throw new ResourceLoadFailedException(e);
                     }
                 }
             }
@@ -103,22 +103,22 @@ public class ResourceManager {
      * @param param  The param from {@link LocaleManager#load(Locale, String)}
      * @throws ResourceLoadFailedException when loading failed
      */
-    public synchronized ResourceManager load( Locale locale, String param ) throws ResourceLoadFailedException {
+    public synchronized ResourceManager load(Locale locale, String param) throws ResourceLoadFailedException {
         //Check if locale has already been loaded
-        if (this.loadedLocales.containsKey( locale ) ) {
+        if (this.loadedLocales.containsKey(locale)) {
             synchronized (this.sharedLock) {
                 //Unload the locale and get the new one
-                ResourceLoader<?> loader = this.loadedLocales.get( locale ).get();
-                if ( loader != null ) {
+                ResourceLoader<?> loader = this.loadedLocales.get(locale).get();
+                if (loader != null) {
                     loader.cleanup();
                 }
 
-                this.loadedLocales.remove( locale );
-                this.loadedLocaleLoadStrings.remove( locale );
+                this.loadedLocales.remove(locale);
+                this.loadedLocaleLoadStrings.remove(locale);
             }
         }
 
-        return loadLocale( locale, param );
+        return loadLocale(locale, param);
     }
 
     /**
@@ -127,10 +127,10 @@ public class ResourceManager {
      * @param locale The Locale to check for
      * @throws ResourceLoadFailedException
      */
-    private synchronized void reloadIfGCCleared( Locale locale ) throws ResourceLoadFailedException {
-        if (this.loadedLocales.get( locale ).get() == null ) {
+    private synchronized void reloadIfGCCleared(Locale locale) throws ResourceLoadFailedException {
+        if (this.loadedLocales.get(locale).get() == null) {
             synchronized (this.sharedLock) {
-                loadLocale( locale, this.loadedLocaleLoadStrings.get( locale ) );
+                loadLocale(locale, this.loadedLocaleLoadStrings.get(locale));
             }
         }
     }
@@ -145,27 +145,27 @@ public class ResourceManager {
      * @return The String which has been resolved by the Loader
      * @throws ResourceLoadFailedException
      */
-    public String get( Locale locale, String key ) throws ResourceLoadFailedException {
+    public String get(Locale locale, String key) throws ResourceLoadFailedException {
         //If Locale is not loaded throw a ResourceNotLoadedException
-        if (this.loadedLocales.containsKey( locale ) ) {
+        if (this.loadedLocales.containsKey(locale)) {
             //Check if this Locale contains the key searched for
-            reloadIfGCCleared( locale );
+            reloadIfGCCleared(locale);
 
-            if (this.loadedLocales.get( locale ).get().keys().contains( key ) ) {
-                return this.loadedLocales.get( locale ).get().get( key );
+            if (this.loadedLocales.get(locale).get().keys().contains(key)) {
+                return this.loadedLocales.get(locale).get().get(key);
             }
         }
 
         //Check if there is a Resource for the language only (so you can inherit en to en_US for example)
-        Locale baseLocale = new Locale( locale.getLanguage() );
+        Locale baseLocale = new Locale(locale.getLanguage());
 
         //If Locale is not loaded throw a ResourceNotLoadedException
-        if (this.loadedLocales.containsKey( baseLocale ) ) {
+        if (this.loadedLocales.containsKey(baseLocale)) {
             //Check if this Locale contains the key searched for
-            reloadIfGCCleared( baseLocale );
+            reloadIfGCCleared(baseLocale);
 
-            if (this.loadedLocales.get( baseLocale ).get().keys().contains( key ) ) {
-                return this.loadedLocales.get( baseLocale ).get().get( key );
+            if (this.loadedLocales.get(baseLocale).get().keys().contains(key)) {
+                return this.loadedLocales.get(baseLocale).get().get(key);
             }
         }
 
@@ -178,8 +178,8 @@ public class ResourceManager {
      * @param locale Locale which should be checked for
      * @return true if loaded / false if not
      */
-    public boolean isLoaded( Locale locale ) {
-        return this.loadedLocales.containsKey( locale );
+    public boolean isLoaded(Locale locale) {
+        return this.loadedLocales.containsKey(locale);
     }
 
     /**
@@ -190,28 +190,29 @@ public class ResourceManager {
      * @return A hopefully new ResourceLoader
      * @throws RuntimeException
      */
-    private synchronized ResourceLoader<?> buildNewResourceLoader( ResourceLoader<?> loader, String argument ) {
+    private synchronized ResourceLoader<?> buildNewResourceLoader(ResourceLoader<?> loader, String argument) {
         try {
-            Constructor<?> constructor = loader.getClass().getConstructor( ClassLoader.class, String.class );
-            return (ResourceLoader<?>) constructor.newInstance( this.classLoader, argument );
-        } catch ( NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e ) {
-            throw new RuntimeException( "Could not construct new ResourceLoader", e );
+            Constructor<?> constructor = loader.getClass().getConstructor(ClassLoader.class, String.class);
+            return (ResourceLoader<?>) constructor.newInstance(this.classLoader, argument);
+        } catch (NoSuchMethodException | InvocationTargetException | InstantiationException |
+                 IllegalAccessException e) {
+            throw new RuntimeException("Could not construct new ResourceLoader", e);
         }
     }
 
     /**
      * Reload all ResourceLoaders
-     *
+     * <p>
      * If one of the ResourceLoaders reports an error upon reloading it will get printed to the Plugins Logger
      */
     public synchronized ResourceManager reload() {
         //Reload all ResourceLoaders
-        for ( SoftReference<ResourceLoader<?>> loader : this.loadedLocales.values() ) {
+        for (SoftReference<ResourceLoader<?>> loader : this.loadedLocales.values()) {
             try {
-                if ( loader != null && loader.get() != null ) {
+                if (loader != null && loader.get() != null) {
                     loader.get().reload();
                 }
-            } catch ( ResourceLoadFailedException e ) {
+            } catch (ResourceLoadFailedException e) {
                 e.printStackTrace();
             }
         }
@@ -224,8 +225,8 @@ public class ResourceManager {
      */
     public synchronized void cleanup() {
         // Cleanup all ResourceLoaders
-        for ( SoftReference<ResourceLoader<?>> loader : this.loadedLocales.values() ) {
-            if ( loader != null && loader.get() != null ) {
+        for (SoftReference<ResourceLoader<?>> loader : this.loadedLocales.values()) {
+            if (loader != null && loader.get() != null) {
                 loader.get().cleanup();
             }
         }
@@ -240,7 +241,7 @@ public class ResourceManager {
      * @return ArrayList of Locales
      */
     public List<Locale> getLoadedLocales() {
-        return new ArrayList<>(this.loadedLocales.keySet() );
+        return new ArrayList<>(this.loadedLocales.keySet());
     }
 
 }

@@ -16,6 +16,6 @@ public interface EntityHoglin extends EntityAgeable<EntityHoglin> {
      * @return empty, fresh zombie hoglin
      */
     static EntityHoglin create() {
-        return GoMint.instance().createEntity( EntityHoglin.class );
+        return GoMint.instance().createEntity(EntityHoglin.class);
     }
 }

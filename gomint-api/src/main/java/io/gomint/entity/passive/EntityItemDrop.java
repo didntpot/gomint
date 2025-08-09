@@ -19,7 +19,7 @@ public interface EntityItemDrop extends Entity<EntityItemDrop> {
      * @return new entity
      */
     static EntityItemDrop create() {
-        return GoMint.instance().createEntity( EntityItemDrop.class );
+        return GoMint.instance().createEntity(EntityItemDrop.class);
     }
 
     /**
@@ -36,7 +36,7 @@ public interface EntityItemDrop extends Entity<EntityItemDrop> {
      *
      * @param itemStack which should be used in this entity
      */
-    <T extends ItemStack<T>> EntityItemDrop itemStack(T itemStack );
+    <T extends ItemStack<T>> EntityItemDrop itemStack(T itemStack);
 
     /**
      * Set a new pickup delay
@@ -44,7 +44,7 @@ public interface EntityItemDrop extends Entity<EntityItemDrop> {
      * @param duration the amount of timeUnit to wait
      * @param timeUnit the unit of time to wait
      */
-    EntityItemDrop pickupDelay(long duration, TimeUnit timeUnit );
+    EntityItemDrop pickupDelay(long duration, TimeUnit timeUnit);
 
     /**
      * Get the time when the item drop is allowed to be picked up

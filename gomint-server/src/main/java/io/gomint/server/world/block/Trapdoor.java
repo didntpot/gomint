@@ -19,6 +19,7 @@ import io.gomint.server.world.block.state.HalfBlockState;
 import io.gomint.world.block.BlockTrapdoor;
 import io.gomint.world.block.data.Direction;
 import io.gomint.world.block.data.Facing;
+
 import java.util.Collections;
 import java.util.List;
 

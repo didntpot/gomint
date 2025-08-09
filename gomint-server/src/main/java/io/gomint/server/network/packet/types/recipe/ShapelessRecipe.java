@@ -3,6 +3,7 @@ package io.gomint.server.network.packet.types.recipe;
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.inventory.item.ItemStack;
 import io.gomint.server.network.packet.Packet;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

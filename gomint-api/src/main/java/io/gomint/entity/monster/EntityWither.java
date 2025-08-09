@@ -16,7 +16,7 @@ public interface EntityWither extends EntityLiving<EntityWither> {
      * @return empty, fresh wither
      */
     static EntityWither create() {
-        return GoMint.instance().createEntity( EntityWither.class );
+        return GoMint.instance().createEntity(EntityWither.class);
     }
 
 }

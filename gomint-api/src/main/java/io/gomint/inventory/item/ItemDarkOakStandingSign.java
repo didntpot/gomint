@@ -20,10 +20,10 @@ public interface ItemDarkOakStandingSign extends ItemStack<ItemDarkOakStandingSi
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemDarkOakStandingSign create(int amount ) {
-        return GoMint.instance().createItemStack( ItemDarkOakStandingSign.class, amount );
+    static ItemDarkOakStandingSign create(int amount) {
+        return GoMint.instance().createItemStack(ItemDarkOakStandingSign.class, amount);
     }
 
 }

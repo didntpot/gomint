@@ -22,8 +22,8 @@ public interface ItemGlazedTerracotta extends ItemStack<ItemGlazedTerracotta> {
      *
      * @param amount which is used for the creation
      */
-    static ItemGlazedTerracotta create(int amount ) {
-        return GoMint.instance().createItemStack( ItemGlazedTerracotta.class, amount );
+    static ItemGlazedTerracotta create(int amount) {
+        return GoMint.instance().createItemStack(ItemGlazedTerracotta.class, amount);
     }
 
     /**

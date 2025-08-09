@@ -14,8 +14,8 @@ public interface ItemSmithingTable extends ItemStack<ItemSmithingTable> {
      *
      * @param amount which is used for the creation
      */
-    static ItemSmithingTable create(int amount ) {
-        return GoMint.instance().createItemStack( ItemSmithingTable.class, amount );
+    static ItemSmithingTable create(int amount) {
+        return GoMint.instance().createItemStack(ItemSmithingTable.class, amount);
     }
 
 }

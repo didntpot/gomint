@@ -29,18 +29,18 @@ public final class ParticleData {
     private int b = -1;
     private int a = -1;
 
-    private ParticleData( int r, int g, int b, int a ) {
+    private ParticleData(int r, int g, int b, int a) {
         this.r = r;
         this.g = g;
         this.b = b;
         this.a = a;
     }
 
-    private ParticleData( Block block ) {
+    private ParticleData(Block block) {
         this.block = block;
     }
 
-    private ParticleData( Block block, int face ) {
+    private ParticleData(Block block, int face) {
         this.block = block;
         this.face = face;
     }
@@ -106,10 +106,10 @@ public final class ParticleData {
      * @param face  which should be used in the particle
      * @return particle data which can be used to send particles to the player
      */
-    public static ParticleData blockWithFacing( Block block, int face ) {
-        Preconditions.checkNotNull( block, "Block can't be null" );
+    public static ParticleData blockWithFacing(Block block, int face) {
+        Preconditions.checkNotNull(block, "Block can't be null");
 
-        return new ParticleData( block, face );
+        return new ParticleData(block, face);
     }
 
     /**
@@ -118,10 +118,10 @@ public final class ParticleData {
      * @param block which should be used to provide data for particles
      * @return particle data which can be used to send particles to the player
      */
-    public static ParticleData block( Block block ) {
-        Preconditions.checkNotNull( block, "Block can't be null" );
+    public static ParticleData block(Block block) {
+        Preconditions.checkNotNull(block, "Block can't be null");
 
-        return new ParticleData( block );
+        return new ParticleData(block);
     }
 
     /**
@@ -134,13 +134,13 @@ public final class ParticleData {
      * @return particle data which can be used to send particles to the player
      * @throws IllegalArgumentException when one of the three values is outside of the range of 0 - 255
      */
-    public static ParticleData color( int r, int g, int b, int a ) {
-        Preconditions.checkArgument( r >= 0 && r <= 255, "Red is outside of 0 -> 255" );
-        Preconditions.checkArgument( g >= 0 && g <= 255, "Green is outside of 0 -> 255" );
-        Preconditions.checkArgument( b >= 0 && b <= 255, "Blue is outside of 0 -> 255" );
-        Preconditions.checkArgument( a >= 0 && a <= 255, "Alpha is outside of 0 -> 255" );
+    public static ParticleData color(int r, int g, int b, int a) {
+        Preconditions.checkArgument(r >= 0 && r <= 255, "Red is outside of 0 -> 255");
+        Preconditions.checkArgument(g >= 0 && g <= 255, "Green is outside of 0 -> 255");
+        Preconditions.checkArgument(b >= 0 && b <= 255, "Blue is outside of 0 -> 255");
+        Preconditions.checkArgument(a >= 0 && a <= 255, "Alpha is outside of 0 -> 255");
 
-        return new ParticleData( r, g, b, 255 );
+        return new ParticleData(r, g, b, 255);
     }
 
     /**
@@ -152,8 +152,8 @@ public final class ParticleData {
      * @return particle data which can be used to send particles to the player
      * @throws IllegalArgumentException when one of the three values is outside of the range of 0 - 255
      */
-    public static ParticleData color( int r, int g, int b ) {
-        return ParticleData.color( r, g, b, 255 );
+    public static ParticleData color(int r, int g, int b) {
+        return ParticleData.color(r, g, b, 255);
     }
 
 }

@@ -20,10 +20,10 @@ public interface ItemRecordStrad extends ItemStack<ItemRecordStrad> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemRecordStrad create( int amount ) {
-        return GoMint.instance().createItemStack( ItemRecordStrad.class, amount );
+    static ItemRecordStrad create(int amount) {
+        return GoMint.instance().createItemStack(ItemRecordStrad.class, amount);
     }
 
 }

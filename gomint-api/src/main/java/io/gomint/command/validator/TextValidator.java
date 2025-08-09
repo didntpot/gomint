@@ -25,14 +25,14 @@ public class TextValidator extends ParamValidator<TextValidator> {
      * {@inheritDoc}
      */
     @Override
-    public String consume( Iterator<String> data ) {
+    public String consume(Iterator<String> data) {
         StringBuilder forValidator = new StringBuilder();
-        while ( data.hasNext() ) {
-            forValidator.append( data.next() ).append( " " );
+        while (data.hasNext()) {
+            forValidator.append(data.next()).append(" ");
         }
 
-        if ( forValidator.length() > 0 ) {
-            return forValidator.deleteCharAt( forValidator.length() - 1 ).toString();
+        if (forValidator.length() > 0) {
+            return forValidator.deleteCharAt(forValidator.length() - 1).toString();
         }
 
         return null;
@@ -42,7 +42,7 @@ public class TextValidator extends ParamValidator<TextValidator> {
      * {@inheritDoc}
      */
     @Override
-    public Object validate(String input, CommandSender<?> commandSender ) {
+    public Object validate(String input, CommandSender<?> commandSender) {
         return input;
     }
 

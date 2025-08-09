@@ -13,10 +13,10 @@ public interface ItemFlower extends ItemStack<ItemFlower> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemFlower create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemFlower.class, amount );
+    static ItemFlower create(int amount) {
+        return GoMint.instance().createItemStack(ItemFlower.class, amount);
     }
 
 }

@@ -13,10 +13,10 @@ public interface ItemIronTrapdoor extends ItemStack<ItemIronTrapdoor> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemIronTrapdoor create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemIronTrapdoor.class, amount );
+    static ItemIronTrapdoor create(int amount) {
+        return GoMint.instance().createItemStack(ItemIronTrapdoor.class, amount);
     }
 
 }

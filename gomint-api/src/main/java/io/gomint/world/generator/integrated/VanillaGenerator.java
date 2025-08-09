@@ -27,12 +27,12 @@ public class VanillaGenerator extends ChunkGenerator {
      * @param world   for which this generator should generate chunks
      * @param context with which this generator should generate chunks
      */
-    public VanillaGenerator( World world, GeneratorContext context ) {
-        super( world, context );
+    public VanillaGenerator(World world, GeneratorContext context) {
+        super(world, context);
     }
 
     @Override
-    public Chunk generate( int x, int z ) {
+    public Chunk generate(int x, int z) {
         return null;
     }
 
@@ -42,7 +42,7 @@ public class VanillaGenerator extends ChunkGenerator {
     }
 
     @Override
-    public void populate( Chunk chunk ) {
+    public void populate(Chunk chunk) {
 
     }
 

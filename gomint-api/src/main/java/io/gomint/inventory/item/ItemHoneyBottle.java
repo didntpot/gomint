@@ -15,8 +15,8 @@ public interface ItemHoneyBottle extends ItemFood<ItemHoneyBottle> {
      * @param amount which is used for the creation
      */
 
-    static ItemHoneyBottle create( int amount ) {
-        return GoMint.instance().createItemStack( ItemHoneyBottle.class, amount );
+    static ItemHoneyBottle create(int amount) {
+        return GoMint.instance().createItemStack(ItemHoneyBottle.class, amount);
     }
 
 }

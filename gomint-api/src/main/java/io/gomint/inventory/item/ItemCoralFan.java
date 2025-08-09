@@ -22,10 +22,10 @@ public interface ItemCoralFan extends ItemStack<ItemCoralFan> {
      * Creates a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCoralFan create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCoralFan.class, amount );
+    static ItemCoralFan create(int amount) {
+        return GoMint.instance().createItemStack(ItemCoralFan.class, amount);
     }
 
     /**

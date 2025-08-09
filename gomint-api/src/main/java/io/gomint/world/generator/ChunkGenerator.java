@@ -28,7 +28,7 @@ public abstract class ChunkGenerator {
      * @param world   for which this generator should generate chunks
      * @param context with which this generator should generate chunks
      */
-    public ChunkGenerator( World world, GeneratorContext context ) {
+    public ChunkGenerator(World world, GeneratorContext context) {
         this.world = world;
         this.context = context;
     }
@@ -45,7 +45,7 @@ public abstract class ChunkGenerator {
      * @param z coordinate of the chunk
      * @return proper populated chunk
      */
-    public abstract Chunk generate( int x, int z );
+    public abstract Chunk generate(int x, int z);
 
     /**
      * When you generate a new world using this chunk generator this method returns the worlds spawn. At this stage
@@ -60,7 +60,7 @@ public abstract class ChunkGenerator {
      *
      * @param chunk which should be populated
      */
-    public abstract void populate( Chunk chunk );
+    public abstract void populate(Chunk chunk);
 
     /**
      * Close the generator

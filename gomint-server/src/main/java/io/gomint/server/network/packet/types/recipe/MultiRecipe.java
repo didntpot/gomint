@@ -1,6 +1,7 @@
 package io.gomint.server.network.packet.types.recipe;
 
 import io.gomint.jraknet.PacketBuffer;
+
 import java.util.UUID;
 
 public class MultiRecipe extends RecipeWithTypeId {

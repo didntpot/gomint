@@ -16,7 +16,7 @@ public interface EntityMagmaCube extends EntityLiving<EntityMagmaCube> {
      * @return empty, fresh magma cube
      */
     static EntityMagmaCube create() {
-        return GoMint.instance().createEntity( EntityMagmaCube.class );
+        return GoMint.instance().createEntity(EntityMagmaCube.class);
     }
 
     /**
@@ -25,6 +25,6 @@ public interface EntityMagmaCube extends EntityLiving<EntityMagmaCube> {
      *
      * @param factor of this magma cube
      */
-    EntityMagmaCube sizeFactor(int factor );
+    EntityMagmaCube sizeFactor(int factor);
 
 }

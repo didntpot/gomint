@@ -13,10 +13,10 @@ public interface ItemPortal extends ItemStack<ItemPortal> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemPortal create( int amount ) {
-        return GoMint.instance().createItemStack( ItemPortal.class, amount );
+    static ItemPortal create(int amount) {
+        return GoMint.instance().createItemStack(ItemPortal.class, amount);
     }
 
 }

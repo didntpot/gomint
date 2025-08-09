@@ -24,43 +24,43 @@ public class TreePopulator implements Populator<TreePopulator> {
     private int randomAmount;
     private int baseAmount;
 
-    public TreePopulator( Tree tree ) {
+    public TreePopulator(Tree tree) {
         this.tree = tree;
     }
 
-    public TreePopulator randomAmount(int amount ) {
+    public TreePopulator randomAmount(int amount) {
         this.randomAmount = amount;
         return this;
     }
 
-    public TreePopulator baseAmount(int amount ) {
+    public TreePopulator baseAmount(int amount) {
         this.baseAmount = amount;
         return this;
     }
 
     @Override
-    public TreePopulator populate( World world, Chunk chunk, FastRandom random ) {
-        int amount = random.nextInt( this.randomAmount + 1 ) + this.baseAmount;
-        for ( int i = 0; i < amount; ++i ) {
-            int x = random.nextInt( 15 );
-            int z = random.nextInt( 15 );
-            int y = this.highestWorkableBlock( chunk, x, z );
+    public TreePopulator populate(World world, Chunk chunk, FastRandom random) {
+        int amount = random.nextInt(this.randomAmount + 1) + this.baseAmount;
+        for (int i = 0; i < amount; ++i) {
+            int x = random.nextInt(15);
+            int z = random.nextInt(15);
+            int y = this.highestWorkableBlock(chunk, x, z);
 
-            if ( y != -1 ) {
-                this.tree.grow( world, chunk.x() * 16 + x, y, chunk.z() * 16 + z, random );
+            if (y != -1) {
+                this.tree.grow(world, chunk.x() * 16 + x, y, chunk.z() * 16 + z, random);
             }
         }
 
         return this;
     }
 
-    private int highestWorkableBlock(Chunk chunk, int x, int z ) {
+    private int highestWorkableBlock(Chunk chunk, int x, int z) {
         int y = 255;
-        for ( ; y > 0; --y ) {
-            Block block = chunk.blockAt( x, y, z );
-            if ( block.blockType() == BlockType.DIRT || block.blockType() == BlockType.GRASS_BLOCK ) {
+        for (; y > 0; --y) {
+            Block block = chunk.blockAt(x, y, z);
+            if (block.blockType() == BlockType.DIRT || block.blockType() == BlockType.GRASS_BLOCK) {
                 break;
-            } else if ( block.blockType() != BlockType.AIR && block.blockType() != BlockType.SNOW_LAYER ) {
+            } else if (block.blockType() != BlockType.AIR && block.blockType() != BlockType.SNOW_LAYER) {
                 return -1;
             }
         }

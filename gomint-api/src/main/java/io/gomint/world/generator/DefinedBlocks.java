@@ -8,11 +8,7 @@
 package io.gomint.world.generator;
 
 import io.gomint.GoMint;
-import io.gomint.world.block.Block;
-import io.gomint.world.block.BlockBedrock;
-import io.gomint.world.block.BlockDirt;
-import io.gomint.world.block.BlockStationaryWater;
-import io.gomint.world.block.BlockStone;
+import io.gomint.world.block.*;
 import io.gomint.world.block.data.DirtType;
 
 /**

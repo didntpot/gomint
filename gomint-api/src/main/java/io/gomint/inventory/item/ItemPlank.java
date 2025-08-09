@@ -15,8 +15,8 @@ public interface ItemPlank extends ItemStack<ItemPlank>, ItemBurnable {
      *
      * @param amount which is used for the creation
      */
-    static ItemPlank create(int amount ) {
-        return GoMint.instance().createItemStack( ItemPlank.class, amount );
+    static ItemPlank create(int amount) {
+        return GoMint.instance().createItemStack(ItemPlank.class, amount);
     }
 
     /**

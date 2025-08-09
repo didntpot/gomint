@@ -20,10 +20,10 @@ public interface ItemPoppedChorusFruit extends ItemStack<ItemPoppedChorusFruit> 
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemPoppedChorusFruit create( int amount ) {
-        return GoMint.instance().createItemStack( ItemPoppedChorusFruit.class, amount );
+    static ItemPoppedChorusFruit create(int amount) {
+        return GoMint.instance().createItemStack(ItemPoppedChorusFruit.class, amount);
     }
 
 }

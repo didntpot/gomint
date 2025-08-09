@@ -19,11 +19,7 @@ import io.gomint.permission.PermissionManager;
 import io.gomint.player.ChatType;
 import io.gomint.player.DeviceInfo;
 import io.gomint.scoreboard.Scoreboard;
-import io.gomint.world.Gamemode;
-import io.gomint.world.Particle;
-import io.gomint.world.ParticleData;
-import io.gomint.world.Sound;
-import io.gomint.world.SoundData;
+import io.gomint.world.*;
 
 import java.net.InetSocketAddress;
 import java.util.Locale;
@@ -42,7 +38,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      *
      * @param gamemode The new gamemode to be used
      */
-    EntityPlayer gamemode(Gamemode gamemode );
+    EntityPlayer gamemode(Gamemode gamemode);
 
     /**
      * Get the current gamemode
@@ -63,21 +59,21 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      *
      * @param value true when op, false otherwise
      */
-    EntityPlayer op(boolean value );
+    EntityPlayer op(boolean value);
 
     /**
      * Hide another player from this player
      *
      * @param player The player which should be hidden
      */
-    EntityPlayer hidePlayer( EntityPlayer player );
+    EntityPlayer hidePlayer(EntityPlayer player);
 
     /**
      * Show a hidden player again
      *
      * @param player The player which should be shown again
      */
-    EntityPlayer showPlayer( EntityPlayer player );
+    EntityPlayer showPlayer(EntityPlayer player);
 
     /**
      * Check if given player is hidden to this player
@@ -85,7 +81,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      * @param player The player which should be checked for
      * @return true if this player can't see the player given, false it it can
      */
-    boolean isHidden( EntityPlayer player );
+    boolean isHidden(EntityPlayer player);
 
     /**
      * Opens a inventory for the player
@@ -93,7 +89,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      * @param inventory which should be opened
      * @return true when the client has opened the inventory, false when not
      */
-    boolean openInventory(Inventory<?> inventory );
+    boolean openInventory(Inventory<?> inventory);
 
     /**
      * Close the given inventory
@@ -101,14 +97,14 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      * @param inventory which should be closed
      * @return true when inventory has been close, false otherwise
      */
-    boolean closeInventory(Inventory<?> inventory );
+    boolean closeInventory(Inventory<?> inventory);
 
     /**
      * Send a message to the client, this uses the normal {@link ChatType} enum.
      *
      * @param message which should be send to the client
      */
-    EntityPlayer sendMessage( String message );
+    EntityPlayer sendMessage(String message);
 
     /**
      * Send a message with a given type to the client
@@ -116,7 +112,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      * @param message which should be send
      * @param type    of the message
      */
-    EntityPlayer sendMessage( ChatType type, String... message );
+    EntityPlayer sendMessage(ChatType type, String... message);
 
     /**
      * Get the view distance of this player
@@ -131,7 +127,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      * @param host IP or Hostname for the user to connect to
      * @param port Of the new Server
      */
-    EntityPlayer transfer( String host, int port );
+    EntityPlayer transfer(String host, int port);
 
     /**
      * Return the network latency
@@ -147,7 +143,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      * @param <R>  type of return value from the response
      * @return form listener to attaching for response
      */
-    <R> FormListener<R> showForm( Form<R> form );
+    <R> FormListener<R> showForm(Form<R> form);
 
     /**
      * Set the server settings form
@@ -156,7 +152,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      * @param <R>  type of return value from the response
      * @return form listener to attaching for response
      */
-    <R> FormListener<R> settingsForm(Form<R> form );
+    <R> FormListener<R> settingsForm(Form<R> form);
 
     /**
      * Remove the current stored settings form
@@ -172,11 +168,11 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
 
     /**
      * Set the players permission manager
-     *
+     * <p>
      * This will print out a warning about replacing the permission manager. Since gomint does not hold
      * the API contract anymore this warning simply shows that the API may not behave like the contract says
      * it would.
-     *
+     * <p>
      * If you use a custom permission manager ensure that it calls {@link #sendCommands()} when permissions change
      * so the client gets its commands corrected.
      *
@@ -203,7 +199,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      *
      * @param reason for disconnect
      */
-    EntityPlayer disconnect( String reason );
+    EntityPlayer disconnect(String reason);
 
     /**
      * Get absolute amount of xp in this entity
@@ -224,7 +220,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      *
      * @param xp of this entity
      */
-    EntityPlayer xp(int xp );
+    EntityPlayer xp(int xp);
 
     /**
      * Get exp level of this entity
@@ -238,7 +234,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      *
      * @param level of this entity
      */
-    EntityPlayer level(int level );
+    EntityPlayer level(int level);
 
     /**
      * Play a sound for this player
@@ -248,7 +244,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      * @param pitch    The pitch at which the sound should be played
      * @param data     additional data for the sound
      */
-    EntityPlayer playSound(Vector location, Sound sound, byte pitch, SoundData data );
+    EntityPlayer playSound(Vector location, Sound sound, byte pitch, SoundData data);
 
     /**
      * Play a sound for this player
@@ -257,7 +253,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      * @param sound    The sound which should be played
      * @param pitch    The pitch at which the sound should be played
      */
-    EntityPlayer playSound( Vector location, Sound sound, byte pitch );
+    EntityPlayer playSound(Vector location, Sound sound, byte pitch);
 
     /**
      * Send a particle to this player
@@ -265,7 +261,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      * @param location of the particle in the client
      * @param particle which should be send
      */
-    EntityPlayer sendParticle( Vector location, Particle particle );
+    EntityPlayer sendParticle(Vector location, Particle particle);
 
     /**
      * Send a particle to this player
@@ -274,14 +270,14 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      * @param particle which should be send
      * @param data     which should be used to construct additional data needed to display the particle
      */
-    EntityPlayer sendParticle( Vector location, Particle particle, ParticleData data );
+    EntityPlayer sendParticle(Vector location, Particle particle, ParticleData data);
 
     /**
      * Allow flying for the client
      *
      * @param value if true the client can fly, if false the client can't fly
      */
-    EntityPlayer allowFlight(boolean value );
+    EntityPlayer allowFlight(boolean value);
 
     /**
      * Get the setting for allowing flight
@@ -295,7 +291,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      *
      * @param value if true the player is flying, if false the player doesn't fly
      */
-    EntityPlayer flying(boolean value );
+    EntityPlayer flying(boolean value);
 
     /**
      * Check if this player is flying
@@ -314,14 +310,14 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      * @param fadeout  duration for the fade out effect
      * @param unit     of duration multiplier
      */
-    EntityPlayer sendTitle( String title, String subtitle, long fadein, long duration, long fadeout, TimeUnit unit );
+    EntityPlayer sendTitle(String title, String subtitle, long fadein, long duration, long fadeout, TimeUnit unit);
 
     /**
      * Send a title without subtitle.
      *
      * @param title Big text displayed in the middle of the screen
      */
-    EntityPlayer sendTitle( String title );
+    EntityPlayer sendTitle(String title);
 
     /**
      * Send a title with title and subtitle.
@@ -331,14 +327,14 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      *                 <p>
      *                 Default time for fadein and duration is 1 second
      */
-    EntityPlayer sendTitle( String title, String subtitle );
+    EntityPlayer sendTitle(String title, String subtitle);
 
     /**
      * Toggle gliding status of the player
      *
      * @param value true for gliding, false for not gliding
      */
-    EntityPlayer gliding(boolean value );
+    EntityPlayer gliding(boolean value);
 
     /**
      * Is the player currently gliding?
@@ -367,7 +363,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      * @param command which should be dispatched
      * @return the output of this command
      */
-    CommandOutput dispatchCommand( String command );
+    CommandOutput dispatchCommand(String command);
 
     /**
      * Update the players spawn position. It will be used in sending first chunks (when set in {@link io.gomint.event.player.PlayerPreJoinEvent}.
@@ -375,7 +371,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      *
      * @param spawnLocation which should be used for this player
      */
-    EntityPlayer spawnLocation(Location spawnLocation );
+    EntityPlayer spawnLocation(Location spawnLocation);
 
     /**
      * Get the location of the spawn
@@ -389,7 +385,7 @@ public interface EntityPlayer extends EntityHuman<EntityPlayer> {
      *
      * @param scoreboard which should be displayed to this player
      */
-    EntityPlayer scoreboard(Scoreboard scoreboard );
+    EntityPlayer scoreboard(Scoreboard scoreboard);
 
     /**
      * Get the current scoreboard of a player

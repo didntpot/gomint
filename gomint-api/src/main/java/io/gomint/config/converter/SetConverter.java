@@ -24,7 +24,7 @@ public class SetConverter implements Converter {
 
     private InternalConverter internalConverter;
 
-    public SetConverter( InternalConverter internalConverter ) {
+    public SetConverter(InternalConverter internalConverter) {
         this.internalConverter = internalConverter;
     }
 
@@ -32,18 +32,18 @@ public class SetConverter implements Converter {
      * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings( "unchecked" )
-    public Object toConfig( Class<?> type, Object object, ParameterizedType parameterizedType ) throws Exception {
+    @SuppressWarnings("unchecked")
+    public Object toConfig(Class<?> type, Object object, ParameterizedType parameterizedType) throws Exception {
         Set<Object> values = (Set<Object>) object;
         List<Object> result = new ArrayList<>();
 
-        for ( Object value : values ) {
-            Converter converter = this.internalConverter.getConverter( value.getClass() );
+        for (Object value : values) {
+            Converter converter = this.internalConverter.getConverter(value.getClass());
 
-            if ( converter != null ) {
-                result.add( converter.toConfig( value.getClass(), value, null ) );
+            if (converter != null) {
+                result.add(converter.toConfig(value.getClass(), value, null));
             } else {
-                result.add( value );
+                result.add(value);
             }
         }
 
@@ -54,30 +54,30 @@ public class SetConverter implements Converter {
      * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings( "unchecked" )
-    public Object fromConfig( Class<?> type, Object object, ParameterizedType parameterizedType ) throws Exception {
+    @SuppressWarnings("unchecked")
+    public Object fromConfig(Class<?> type, Object object, ParameterizedType parameterizedType) throws Exception {
         List<Object> values = (List<Object>) object;
         Set<Object> result = new HashSet<>();
 
         try {
             result = (Set<Object>) type.getDeclaredConstructor().newInstance();
-        } catch ( Exception ignored ) {
+        } catch (Exception ignored) {
 
         }
 
-        if ( parameterizedType != null && parameterizedType.getActualTypeArguments()[0] instanceof Class ) {
+        if (parameterizedType != null && parameterizedType.getActualTypeArguments()[0] instanceof Class) {
             Class<?> actualTypeArgument = (Class<?>) parameterizedType.getActualTypeArguments()[0];
-            Converter converter = this.internalConverter.getConverter( actualTypeArgument );
+            Converter converter = this.internalConverter.getConverter(actualTypeArgument);
 
-            if ( converter != null ) {
-                for ( Object value : values ) {
-                    result.add( converter.fromConfig( actualTypeArgument, value, null ) );
+            if (converter != null) {
+                for (Object value : values) {
+                    result.add(converter.fromConfig(actualTypeArgument, value, null));
                 }
             } else {
-                result.addAll( values );
+                result.addAll(values);
             }
         } else {
-            result.addAll( values );
+            result.addAll(values);
         }
 
         return result;
@@ -87,8 +87,8 @@ public class SetConverter implements Converter {
      * {@inheritDoc}
      */
     @Override
-    public boolean supports( Class<?> type ) {
-        return Set.class.isAssignableFrom( type );
+    public boolean supports(Class<?> type) {
+        return Set.class.isAssignableFrom(type);
     }
 
 }

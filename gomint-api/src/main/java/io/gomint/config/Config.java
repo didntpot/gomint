@@ -18,16 +18,16 @@ public interface Config<T> {
 
     T save() throws InvalidConfigurationException;
 
-    T save( File file ) throws InvalidConfigurationException;
+    T save(File file) throws InvalidConfigurationException;
 
     T init() throws InvalidConfigurationException;
 
-    T init( File file ) throws InvalidConfigurationException;
+    T init(File file) throws InvalidConfigurationException;
 
     T reload() throws InvalidConfigurationException;
 
     T load() throws InvalidConfigurationException;
 
-    T load( File file ) throws InvalidConfigurationException;
+    T load(File file) throws InvalidConfigurationException;
 
 }

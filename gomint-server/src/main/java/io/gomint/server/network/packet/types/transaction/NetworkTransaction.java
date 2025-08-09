@@ -3,6 +3,7 @@ package io.gomint.server.network.packet.types.transaction;
 import io.gomint.inventory.item.ItemStack;
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.packet.Packet;
+
 import javax.annotation.Nonnull;
 
 public class NetworkTransaction {

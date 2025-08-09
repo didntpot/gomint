@@ -16,6 +16,7 @@ import io.gomint.world.block.BlockWoodenDoor;
 import io.gomint.world.block.data.Facing;
 import io.gomint.world.block.data.HingeSide;
 import io.gomint.world.block.data.LogType;
+
 import java.util.Collections;
 import java.util.List;
 

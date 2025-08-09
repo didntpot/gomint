@@ -20,10 +20,10 @@ public interface ItemCaveSpiderSpawnEgg extends ItemStack<ItemCaveSpiderSpawnEgg
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCaveSpiderSpawnEgg create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCaveSpiderSpawnEgg.class, amount );
+    static ItemCaveSpiderSpawnEgg create(int amount) {
+        return GoMint.instance().createItemStack(ItemCaveSpiderSpawnEgg.class, amount);
     }
 
 }

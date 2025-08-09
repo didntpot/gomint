@@ -15,9 +15,10 @@ import io.gomint.server.world.CoordinateUtils;
 import io.gomint.world.Chunk;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
-import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Objects;
 
 /**
  * @author geNAZt

@@ -27,22 +27,22 @@ public class VoidGenerator extends ChunkGenerator {
      * @param world   for which this generator should generate chunks
      * @param context with which this generator should generate chunks
      */
-    public VoidGenerator( World world, GeneratorContext context ) {
-        super( world, context );
+    public VoidGenerator(World world, GeneratorContext context) {
+        super(world, context);
     }
 
     @Override
-    public Chunk generate( int x, int z ) {
-        return this.world.generateEmptyChunk( x, z );
+    public Chunk generate(int x, int z) {
+        return this.world.generateEmptyChunk(x, z);
     }
 
     @Override
     public BlockPosition spawnPoint() {
-        return new BlockPosition( 0, 20, 0 );
+        return new BlockPosition(0, 20, 0);
     }
 
     @Override
-    public void populate( Chunk chunk ) {
+    public void populate(Chunk chunk) {
 
     }
 

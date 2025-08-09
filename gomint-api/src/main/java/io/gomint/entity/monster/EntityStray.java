@@ -16,7 +16,7 @@ public interface EntityStray extends EntityLiving<EntityStray> {
      * @return empty, fresh stray
      */
     static EntityStray create() {
-        return GoMint.instance().createEntity( EntityStray.class );
+        return GoMint.instance().createEntity(EntityStray.class);
     }
 
 }

@@ -20,10 +20,10 @@ public interface ItemPiglinBannerPattern extends ItemStack<ItemPiglinBannerPatte
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemPiglinBannerPattern create( int amount ) {
-        return GoMint.instance().createItemStack( ItemPiglinBannerPattern.class, amount );
+    static ItemPiglinBannerPattern create(int amount) {
+        return GoMint.instance().createItemStack(ItemPiglinBannerPattern.class, amount);
     }
 
 }

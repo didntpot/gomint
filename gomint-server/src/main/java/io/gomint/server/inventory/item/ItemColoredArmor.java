@@ -2,7 +2,8 @@ package io.gomint.server.inventory.item;
 
 import io.gomint.inventory.item.ItemStack;
 import io.gomint.world.block.data.BlockColor;
-import java.awt.Color;
+
+import java.awt.*;
 
 /**
  * @author geNAZt

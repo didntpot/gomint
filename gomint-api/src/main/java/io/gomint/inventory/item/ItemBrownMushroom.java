@@ -13,10 +13,10 @@ public interface ItemBrownMushroom extends ItemStack<ItemBrownMushroom> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemBrownMushroom create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemBrownMushroom.class, amount );
+    static ItemBrownMushroom create(int amount) {
+        return GoMint.instance().createItemStack(ItemBrownMushroom.class, amount);
     }
 
 }

@@ -26,6 +26,6 @@ public interface ItemSlab<I> extends ItemStack<I> {
      *
      * @param top if true this slab if on the top, false on the bottom
      */
-    I top(boolean top );
+    I top(boolean top);
 
 }

@@ -15,13 +15,13 @@ import io.gomint.entity.EntityAgeable;
  * @since 2021-01-12
  */
 public interface EntityZombiePiglin extends EntityAgeable<EntityZombiePiglin> {
-    
+
     /**
      * Create a new entity zombie piglin with no config
      *
      * @return empty, fresh zombie piglin
      */
     static EntityZombiePiglin create() {
-        return GoMint.instance().createEntity( EntityZombiePiglin.class );
+        return GoMint.instance().createEntity(EntityZombiePiglin.class);
     }
 }

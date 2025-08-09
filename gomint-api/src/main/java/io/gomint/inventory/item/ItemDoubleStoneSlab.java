@@ -21,10 +21,10 @@ public interface ItemDoubleStoneSlab extends ItemStack<ItemDoubleStoneSlab> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemDoubleStoneSlab create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemDoubleStoneSlab.class, amount );
+    static ItemDoubleStoneSlab create(int amount) {
+        return GoMint.instance().createItemStack(ItemDoubleStoneSlab.class, amount);
     }
 
     /**

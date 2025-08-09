@@ -4,6 +4,7 @@ import io.gomint.entity.EntityPlayer;
 import io.gomint.event.player.PlayerChatEvent;
 import io.gomint.server.network.PlayerConnection;
 import io.gomint.server.network.packet.PacketText;
+
 import java.util.ArrayList;
 import java.util.List;
 

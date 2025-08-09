@@ -13,5 +13,5 @@ package io.gomint.enchant;
  * @stability 3
  */
 public interface EnchantmentEfficiency extends Enchantment {
-    
+
 }

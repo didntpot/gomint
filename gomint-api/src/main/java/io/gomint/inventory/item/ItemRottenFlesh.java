@@ -13,10 +13,10 @@ public interface ItemRottenFlesh extends ItemFood<ItemRottenFlesh> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemRottenFlesh create( int amount ) {
-        return GoMint.instance().createItemStack( ItemRottenFlesh.class, amount );
+    static ItemRottenFlesh create(int amount) {
+        return GoMint.instance().createItemStack(ItemRottenFlesh.class, amount);
     }
 
 }

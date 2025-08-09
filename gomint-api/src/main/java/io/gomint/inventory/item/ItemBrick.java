@@ -13,10 +13,10 @@ public interface ItemBrick extends ItemStack<ItemBrick> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemBrick create( int amount ) {
-        return GoMint.instance().createItemStack( ItemBrick.class, amount );
+    static ItemBrick create(int amount) {
+        return GoMint.instance().createItemStack(ItemBrick.class, amount);
     }
 
 }

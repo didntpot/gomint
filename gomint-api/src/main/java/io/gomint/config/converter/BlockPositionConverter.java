@@ -26,7 +26,7 @@ public class BlockPositionConverter extends BaseConverter {
     // InternalConverter accesses this constructor with Reflection to create an instance
     // !!!! DO NOT REMOVE !!!!
     // It will compile but will fail at runtime
-    public BlockPositionConverter( InternalConverter internalConverter ) {
+    public BlockPositionConverter(InternalConverter internalConverter) {
 
     }
 
@@ -34,13 +34,13 @@ public class BlockPositionConverter extends BaseConverter {
      * {@inheritDoc}
      */
     @Override
-    public Object toConfig( Class<?> type, Object object, ParameterizedType parameterizedType ) {
+    public Object toConfig(Class<?> type, Object object, ParameterizedType parameterizedType) {
         BlockPosition location = (BlockPosition) object;
         Map<String, Object> saveMap = new HashMap<>();
 
-        saveMap.put( "x", location.x() );
-        saveMap.put( "y", location.y() );
-        saveMap.put( "z", location.z() );
+        saveMap.put("x", location.x());
+        saveMap.put("y", location.y());
+        saveMap.put("z", location.z());
 
         return saveMap;
     }
@@ -49,20 +49,20 @@ public class BlockPositionConverter extends BaseConverter {
      * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings( "unchecked" )
-    public Object fromConfig( Class<?> type, Object object, ParameterizedType parameterizedType ) {
+    @SuppressWarnings("unchecked")
+    public Object fromConfig(Class<?> type, Object object, ParameterizedType parameterizedType) {
         Map<String, Object> locationMap;
 
-        if ( object instanceof Map ) {
+        if (object instanceof Map) {
             locationMap = (Map<String, Object>) object;
         } else {
-            locationMap = (Map<String, Object>) ( (ConfigSection) object ).getRawMap();
+            locationMap = (Map<String, Object>) ((ConfigSection) object).getRawMap();
         }
 
         return new BlockPosition(
-            super.asInteger( locationMap.get( "x" ) ),
-            super.asInteger( locationMap.get( "y" ) ),
-            super.asInteger( locationMap.get( "z" ) )
+            super.asInteger(locationMap.get("x")),
+            super.asInteger(locationMap.get("y")),
+            super.asInteger(locationMap.get("z"))
         );
     }
 
@@ -70,8 +70,8 @@ public class BlockPositionConverter extends BaseConverter {
      * {@inheritDoc}
      */
     @Override
-    public boolean supports( Class<?> type ) {
-        return BlockPosition.class.isAssignableFrom( type );
+    public boolean supports(Class<?> type) {
+        return BlockPosition.class.isAssignableFrom(type);
     }
 
 }

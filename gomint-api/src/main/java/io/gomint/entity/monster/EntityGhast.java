@@ -16,7 +16,7 @@ public interface EntityGhast extends EntityLiving<EntityGhast> {
      * @return empty, fresh ghast
      */
     static EntityGhast create() {
-        return GoMint.instance().createEntity( EntityGhast.class );
+        return GoMint.instance().createEntity(EntityGhast.class);
     }
 
 }

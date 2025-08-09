@@ -20,10 +20,10 @@ public interface ItemZoglinSpawnEgg extends ItemStack<ItemZoglinSpawnEgg> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemZoglinSpawnEgg create( int amount ) {
-        return GoMint.instance().createItemStack( ItemZoglinSpawnEgg.class, amount );
+    static ItemZoglinSpawnEgg create(int amount) {
+        return GoMint.instance().createItemStack(ItemZoglinSpawnEgg.class, amount);
     }
 
 }

@@ -16,6 +16,6 @@ public interface EntityPillager extends EntityLiving<EntityPillager> {
      * @return empty, fresh horse
      */
     static EntityPillager create() {
-        return GoMint.instance().createEntity( EntityPillager.class );
+        return GoMint.instance().createEntity(EntityPillager.class);
     }
 }

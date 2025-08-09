@@ -20,10 +20,10 @@ public interface ItemCryingObsidian extends ItemStack<ItemCryingObsidian> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCryingObsidian create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCryingObsidian.class, amount );
+    static ItemCryingObsidian create(int amount) {
+        return GoMint.instance().createItemStack(ItemCryingObsidian.class, amount);
     }
 
 }

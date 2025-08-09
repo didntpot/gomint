@@ -37,7 +37,7 @@ public abstract class FileResourceLoader {
      *
      * @param module The module from and for which this Resource should be loaded
      */
-    public FileResourceLoader( Module module ) {
+    public FileResourceLoader(Module module) {
         this.module = module;
     }
 
@@ -49,29 +49,29 @@ public abstract class FileResourceLoader {
      * @return An InputStreamReader for the Resource (either from out of the JAR or from disk)
      * @throws ResourceLoadFailedException if the Encoding is wrong or the File was not found
      */
-    protected InputStreamReader fileInputStreamReader(String path ) throws ResourceLoadFailedException {
+    protected InputStreamReader fileInputStreamReader(String path) throws ResourceLoadFailedException {
         try {
-            if ( !path.startsWith( "file://" ) ) {
-                InputStream resourceAsStream = this.module.getResourceAsStream( path );
+            if (!path.startsWith("file://")) {
+                InputStream resourceAsStream = this.module.getResourceAsStream(path);
 
-                if ( resourceAsStream != null ) {
+                if (resourceAsStream != null) {
                     //If the file is not on the Disk read it from the JAR
-                    return new InputStreamReader( resourceAsStream, StandardCharsets.UTF_8 );
+                    return new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8);
                 }
             } else {
-                File file = new File( path.substring( 7 ) );
+                File file = new File(path.substring(7));
 
-                if ( file.isFile() ) {
-                    return new InputStreamReader( new FileInputStream( file ), StandardCharsets.UTF_8 );
+                if (file.isFile()) {
+                    return new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8);
                 }
             }
-        } catch ( UnsupportedEncodingException | FileNotFoundException e ) {
-            throw new ResourceLoadFailedException( e );
-        } catch ( IOException e ) {
+        } catch (UnsupportedEncodingException | FileNotFoundException e) {
+            throw new ResourceLoadFailedException(e);
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        throw new ResourceLoadFailedException( "Resource not found" );
+        throw new ResourceLoadFailedException("Resource not found");
     }
 
     /**

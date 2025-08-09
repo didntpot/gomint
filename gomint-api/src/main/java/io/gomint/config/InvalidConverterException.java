@@ -14,7 +14,8 @@ package io.gomint.config;
  */
 public class InvalidConverterException extends Exception {
 
-    public InvalidConverterException() {}
+    public InvalidConverterException() {
+    }
 
     public InvalidConverterException(String msg) {
         super(msg);

@@ -22,25 +22,25 @@ public abstract class BiomeSelector {
 
     private final Biome[] lookup = new Biome[4096];
 
-    public BiomeSelector( FastRandom random ) {
-        this.temperature = new Simplex( random, 2, 0.0625, 0.001953125 );   // These two noises are different because the random seed changes!
-        this.downfall = new Simplex( random, 2, 0.0625, 0.001953125 );
+    public BiomeSelector(FastRandom random) {
+        this.temperature = new Simplex(random, 2, 0.0625, 0.001953125);   // These two noises are different because the random seed changes!
+        this.downfall = new Simplex(random, 2, 0.0625, 0.001953125);
 
-        for ( int i = 0; i < 64; ++i ) {
-            for ( int j = 0; j < 64; ++j ) {
-                Biome biome = this.lookup( i / (double) 63, j / (double) 63, null );
-                this.lookup[i + ( j << 6 )] = biome;
+        for (int i = 0; i < 64; ++i) {
+            for (int j = 0; j < 64; ++j) {
+                Biome biome = this.lookup(i / (double) 63, j / (double) 63, null);
+                this.lookup[i + (j << 6)] = biome;
             }
         }
     }
 
-    public abstract Biome lookup( double temperature, double downfall, Biome current );
+    public abstract Biome lookup(double temperature, double downfall, Biome current);
 
-    public Biome select( int x, int z, Biome current ) {
-        int temp = (int) ( ( ( this.temperature.noise2D( x, z, true ) + 1 ) / 2 ) * 63 );
-        int down = (int) ( ( ( this.downfall.noise2D( x, z, true ) + 1 ) / 2 ) * 63 );
+    public Biome select(int x, int z, Biome current) {
+        int temp = (int) (((this.temperature.noise2D(x, z, true) + 1) / 2) * 63);
+        int down = (int) (((this.downfall.noise2D(x, z, true) + 1) / 2) * 63);
 
-        return this.lookup[temp + ( down << 6 )];
+        return this.lookup[temp + (down << 6)];
     }
 
 }

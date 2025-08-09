@@ -20,10 +20,10 @@ public interface ItemSpruceWallSign extends ItemStack<ItemSpruceWallSign> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSpruceWallSign create( int amount ) {
-        return GoMint.instance().createItemStack( ItemSpruceWallSign.class, amount );
+    static ItemSpruceWallSign create(int amount) {
+        return GoMint.instance().createItemStack(ItemSpruceWallSign.class, amount);
     }
 
 }

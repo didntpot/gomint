@@ -16,8 +16,8 @@ public interface Modal extends Form<Boolean> {
      * @param question to ask
      * @return fresh modal
      */
-    static Modal create( String title, String question ) {
-        return GoMint.instance().createModal( title, question );
+    static Modal create(String title, String question) {
+        return GoMint.instance().createModal(title, question);
     }
 
     /**
@@ -25,13 +25,13 @@ public interface Modal extends Form<Boolean> {
      *
      * @param text which should be used for button labeling
      */
-    Modal trueText(String text );
+    Modal trueText(String text);
 
     /**
      * Set the button text for the false button
      *
      * @param text which should be used for button labeling
      */
-    Modal falseText(String text );
+    Modal falseText(String text);
 
 }

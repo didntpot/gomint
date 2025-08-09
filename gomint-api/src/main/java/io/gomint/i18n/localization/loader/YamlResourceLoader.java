@@ -41,12 +41,12 @@ public class YamlResourceLoader extends FileResourceLoader implements ResourceLo
     /**
      * Load a new YamlResource
      *
-     * @param module   The module for which this Resource should be loaded
-     * @param file          The file to load
+     * @param module The module for which this Resource should be loaded
+     * @param file   The file to load
      * @throws ResourceLoadFailedException if the stream could not be closed
      */
-    public YamlResourceLoader( Module module, String file ) throws ResourceLoadFailedException {
-        super( module );
+    public YamlResourceLoader(Module module, String file) throws ResourceLoadFailedException {
+        super(module);
 
         this.file = file;
         this.load();
@@ -59,28 +59,28 @@ public class YamlResourceLoader extends FileResourceLoader implements ResourceLo
             stream = fileInputStreamReader(this.file);
 
             // Read from the InputStreamReader till he is empty
-            BufferedReader br = new BufferedReader( stream );
+            BufferedReader br = new BufferedReader(stream);
             String line;
             StringBuilder sb = new StringBuilder();
-            while ( ( line = br.readLine() ) != null ) {
-                sb.append( line );
-                sb.append( "\n" );
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+                sb.append("\n");
             }
 
             //Try to read the YamlConfiguration
             Yaml yaml = new Yaml();
-            this.lookup = yaml.load( sb.toString() );
-        } catch ( IOException e ) {
+            this.lookup = yaml.load(sb.toString());
+        } catch (IOException e) {
             this.lookup = null;
-            throw new ResourceLoadFailedException( e );
-        } catch ( ResourceLoadFailedException e ) {
+            throw new ResourceLoadFailedException(e);
+        } catch (ResourceLoadFailedException e) {
             throw e;
         } finally {
-            if ( stream != null ) {
+            if (stream != null) {
                 try {
                     stream.close();
-                } catch ( IOException e ) {
-                    throw new ResourceLoadFailedException( e );
+                } catch (IOException e) {
+                    throw new ResourceLoadFailedException(e);
                 }
             }
         }
@@ -94,16 +94,16 @@ public class YamlResourceLoader extends FileResourceLoader implements ResourceLo
     @Override
     public List<String> keys() {
         List<String> keys = new ArrayList<>();
-        addKeys( keys, "", this.lookup );
+        addKeys(keys, "", this.lookup);
         return keys;
     }
 
-    private void addKeys( List<String> keys, String root, Map<String, Object> lookup ) {
-        for ( Map.Entry<String, Object> entry : lookup.entrySet() ) {
-            if ( entry.getValue() instanceof Map ) {
-                this.addKeys( keys, entry.getKey() + ".", (Map<String, Object>) entry.getValue() );
+    private void addKeys(List<String> keys, String root, Map<String, Object> lookup) {
+        for (Map.Entry<String, Object> entry : lookup.entrySet()) {
+            if (entry.getValue() instanceof Map) {
+                this.addKeys(keys, entry.getKey() + ".", (Map<String, Object>) entry.getValue());
             } else {
-                keys.add( root + entry.getKey() );
+                keys.add(root + entry.getKey());
             }
         }
     }
@@ -115,36 +115,36 @@ public class YamlResourceLoader extends FileResourceLoader implements ResourceLo
      * @return The object from YAML or null if YAML loading was an error
      */
     @Override
-    public String get( String key ) {
+    public String get(String key) {
         // Fast out when parsing the YML did fail
-        if (this.lookup == null ) {
+        if (this.lookup == null) {
             return null;
         }
 
         Object finalData;
 
         // Check if we have a dot in the key
-        if ( key.contains( "." ) ) {
-            String[] keyParts = key.split( "\\." );
+        if (key.contains(".")) {
+            String[] keyParts = key.split("\\.");
 
-            Map<String, Object> current = (Map<String, Object>) this.lookup.get( keyParts[0] );
-            if ( current == null ) {
+            Map<String, Object> current = (Map<String, Object>) this.lookup.get(keyParts[0]);
+            if (current == null) {
                 return null;
             }
 
-            for ( int i = 1; i < keyParts.length - 1; i++ ) {
-                current = (Map<String, Object>) current.get( keyParts[i] );
-                if ( current == null ) {
+            for (int i = 1; i < keyParts.length - 1; i++) {
+                current = (Map<String, Object>) current.get(keyParts[i]);
+                if (current == null) {
                     return null;
                 }
             }
 
-            finalData = current.get( keyParts[keyParts.length - 1] );
+            finalData = current.get(keyParts[keyParts.length - 1]);
         } else {
-            finalData = this.lookup.get( key );
+            finalData = this.lookup.get(key);
         }
 
-        return finalData instanceof String ? (String) finalData : finalData == null ? null : String.valueOf( finalData );
+        return finalData instanceof String ? (String) finalData : finalData == null ? null : String.valueOf(finalData);
     }
 
     /**
@@ -154,7 +154,7 @@ public class YamlResourceLoader extends FileResourceLoader implements ResourceLo
      */
     @Override
     public List<String> formats() {
-        return Arrays.asList( ".yml" );
+        return Arrays.asList(".yml");
     }
 
     /**

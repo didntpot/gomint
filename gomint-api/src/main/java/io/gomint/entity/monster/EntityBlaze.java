@@ -16,7 +16,7 @@ public interface EntityBlaze extends EntityLiving<EntityBlaze> {
      * @return empty, fresh blaze
      */
     static EntityBlaze create() {
-        return GoMint.instance().createEntity( EntityBlaze.class );
+        return GoMint.instance().createEntity(EntityBlaze.class);
     }
 
 }

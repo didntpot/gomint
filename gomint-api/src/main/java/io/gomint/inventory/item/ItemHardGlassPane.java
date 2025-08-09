@@ -20,10 +20,10 @@ public interface ItemHardGlassPane extends ItemStack<ItemHardGlassPane> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemHardGlassPane create( int amount ) {
-        return GoMint.instance().createItemStack( ItemHardGlassPane.class, amount );
+    static ItemHardGlassPane create(int amount) {
+        return GoMint.instance().createItemStack(ItemHardGlassPane.class, amount);
     }
 
 }

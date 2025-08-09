@@ -19,10 +19,10 @@ public class PluginLoadException extends RuntimeException {
      * routine {@link Plugin#onInstall()}
      *
      * @param message which should be used to display this exception
-     * @param ex which was the cause of this exception
+     * @param ex      which was the cause of this exception
      */
-    public PluginLoadException( String message, Exception ex ) {
-        super( message, ex );
+    public PluginLoadException(String message, Exception ex) {
+        super(message, ex);
     }
 
 }

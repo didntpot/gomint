@@ -16,7 +16,7 @@ public interface EntityCreeper extends EntityLiving<EntityCreeper> {
      * @return empty, fresh creeper
      */
     static EntityCreeper create() {
-        return GoMint.instance().createEntity( EntityCreeper.class );
+        return GoMint.instance().createEntity(EntityCreeper.class);
     }
 
     /**
@@ -24,7 +24,7 @@ public interface EntityCreeper extends EntityLiving<EntityCreeper> {
      *
      * @param value true if this creeper should be charged, false if not
      */
-    EntityCreeper charged(boolean value );
+    EntityCreeper charged(boolean value);
 
     /**
      * Is the creeper charged?

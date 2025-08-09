@@ -20,7 +20,7 @@ public interface Biome {
      * Get the component for this biome
      *
      * @param componentClass class of the component which we want to get
-     * @param <Component> type of the component
+     * @param <Component>    type of the component
      * @return null if the biome doesn't have this component, the component instance otherwise
      */
     <Component> Component component(Class<Component> componentClass);

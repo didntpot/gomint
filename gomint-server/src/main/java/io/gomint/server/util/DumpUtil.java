@@ -12,10 +12,11 @@ import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.inventory.Inventory;
 import io.gomint.server.inventory.item.ItemStack;
 import io.gomint.taglib.NBTTagCompound;
-import java.util.List;
-import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author geNAZt

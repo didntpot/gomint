@@ -16,7 +16,7 @@ public interface EntityZombieVillager extends EntityAgeable<EntityZombieVillager
      * @return empty, fresh zombie villager
      */
     static EntityZombieVillager create() {
-        return GoMint.instance().createEntity( EntityZombieVillager.class );
+        return GoMint.instance().createEntity(EntityZombieVillager.class);
     }
 
 }

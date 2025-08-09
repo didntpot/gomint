@@ -2,6 +2,7 @@ package io.gomint.server.network.packet.types.transaction;
 
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.packet.PacketInventoryTransaction;
+
 import java.util.List;
 
 public class NormalTransactionData extends TransactionData {

@@ -13,10 +13,10 @@ public interface ItemPumpkinPie extends ItemFood<ItemPumpkinPie> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemPumpkinPie create( int amount ) {
-        return GoMint.instance().createItemStack( ItemPumpkinPie.class, amount );
+    static ItemPumpkinPie create(int amount) {
+        return GoMint.instance().createItemStack(ItemPumpkinPie.class, amount);
     }
 
 }

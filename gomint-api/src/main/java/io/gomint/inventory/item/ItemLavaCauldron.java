@@ -20,10 +20,10 @@ public interface ItemLavaCauldron extends ItemStack<ItemLavaCauldron> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemLavaCauldron create( int amount ) {
-        return GoMint.instance().createItemStack( ItemLavaCauldron.class, amount );
+    static ItemLavaCauldron create(int amount) {
+        return GoMint.instance().createItemStack(ItemLavaCauldron.class, amount);
     }
 
 }

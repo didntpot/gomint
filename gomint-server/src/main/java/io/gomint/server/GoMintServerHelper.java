@@ -1,6 +1,7 @@
 package io.gomint.server;
 
 import com.google.common.io.CharStreams;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 

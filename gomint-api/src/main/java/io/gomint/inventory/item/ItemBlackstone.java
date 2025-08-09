@@ -20,10 +20,10 @@ public interface ItemBlackstone extends ItemStack<ItemBlackstone> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemBlackstone create( int amount ) {
-        return GoMint.instance().createItemStack( ItemBlackstone.class, amount );
+    static ItemBlackstone create(int amount) {
+        return GoMint.instance().createItemStack(ItemBlackstone.class, amount);
     }
 
 }

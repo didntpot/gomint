@@ -9,13 +9,14 @@ package io.gomint.server.network;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.PooledByteBufAllocator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.crypto.KeyAgreement;
 import java.security.*;
 import java.security.interfaces.ECPublicKey;
 import java.util.Base64;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.crypto.KeyAgreement;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Handles all encryption needs of the Minecraft Pocket Edition Protocol (ECDH Key Exchange and

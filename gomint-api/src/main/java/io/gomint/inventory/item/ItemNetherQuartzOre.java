@@ -13,10 +13,10 @@ public interface ItemNetherQuartzOre extends ItemStack<ItemNetherQuartzOre> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemNetherQuartzOre create( int amount ) {
-        return GoMint.instance().createItemStack( ItemNetherQuartzOre.class, amount );
+    static ItemNetherQuartzOre create(int amount) {
+        return GoMint.instance().createItemStack(ItemNetherQuartzOre.class, amount);
     }
 
 }

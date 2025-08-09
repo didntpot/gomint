@@ -15,8 +15,8 @@ public interface ItemWall extends ItemStack<ItemWall> {
      *
      * @param amount which is used for the creation
      */
-    static ItemWall create(int amount ) {
-        return GoMint.instance().createItemStack( ItemWall.class, amount );
+    static ItemWall create(int amount) {
+        return GoMint.instance().createItemStack(ItemWall.class, amount);
     }
 
     /**

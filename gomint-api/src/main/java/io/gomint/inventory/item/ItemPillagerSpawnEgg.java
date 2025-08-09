@@ -20,10 +20,10 @@ public interface ItemPillagerSpawnEgg extends ItemStack<ItemPillagerSpawnEgg> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemPillagerSpawnEgg create( int amount ) {
-        return GoMint.instance().createItemStack( ItemPillagerSpawnEgg.class, amount );
+    static ItemPillagerSpawnEgg create(int amount) {
+        return GoMint.instance().createItemStack(ItemPillagerSpawnEgg.class, amount);
     }
 
 }

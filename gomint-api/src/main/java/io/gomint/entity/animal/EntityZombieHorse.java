@@ -23,7 +23,7 @@ public interface EntityZombieHorse extends EntityLiving<EntityZombieHorse> {
      * @return empty, fresh zombie horse
      */
     static EntityZombieHorse create() {
-        return GoMint.instance().createEntity( EntityZombieHorse.class );
+        return GoMint.instance().createEntity(EntityZombieHorse.class);
     }
 
 }

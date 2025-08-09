@@ -16,7 +16,7 @@ public interface EntityZombie extends EntityAgeable<EntityZombie> {
      * @return empty, fresh zombie
      */
     static EntityZombie create() {
-        return GoMint.instance().createEntity( EntityZombie.class );
+        return GoMint.instance().createEntity(EntityZombie.class);
     }
 
 }

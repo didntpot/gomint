@@ -14,10 +14,10 @@ public interface ItemSand extends ItemStack<ItemSand> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSand create( int amount ) {
-        return GoMint.instance().createItemStack( ItemSand.class, amount );
+    static ItemSand create(int amount) {
+        return GoMint.instance().createItemStack(ItemSand.class, amount);
     }
 
     /**

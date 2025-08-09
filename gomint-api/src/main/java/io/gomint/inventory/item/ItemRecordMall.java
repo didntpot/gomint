@@ -20,10 +20,10 @@ public interface ItemRecordMall extends ItemStack<ItemRecordMall> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemRecordMall create( int amount ) {
-        return GoMint.instance().createItemStack( ItemRecordMall.class, amount );
+    static ItemRecordMall create(int amount) {
+        return GoMint.instance().createItemStack(ItemRecordMall.class, amount);
     }
 
 }

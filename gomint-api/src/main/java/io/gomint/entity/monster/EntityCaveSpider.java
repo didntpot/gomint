@@ -16,7 +16,7 @@ public interface EntityCaveSpider extends EntityLiving<EntityCaveSpider> {
      * @return empty, fresh cave spider
      */
     static EntityCaveSpider create() {
-        return GoMint.instance().createEntity( EntityCaveSpider.class );
+        return GoMint.instance().createEntity(EntityCaveSpider.class);
     }
 
 }

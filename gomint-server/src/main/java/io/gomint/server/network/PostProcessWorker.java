@@ -6,9 +6,10 @@ import io.gomint.server.network.compression.Compression;
 import io.gomint.server.network.packet.Packet;
 import io.gomint.server.network.packet.PacketBatch;
 import io.netty.buffer.ByteBuf;
-import java.util.function.Consumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.function.Consumer;
 
 /**
  * @author geNAZt

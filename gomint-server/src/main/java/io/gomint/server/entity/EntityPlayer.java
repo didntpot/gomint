@@ -23,8 +23,8 @@ import io.gomint.event.inventory.InventoryOpenEvent;
 import io.gomint.event.player.*;
 import io.gomint.gui.Form;
 import io.gomint.gui.FormListener;
-import io.gomint.math.Vector;
 import io.gomint.math.*;
+import io.gomint.math.Vector;
 import io.gomint.player.ChatType;
 import io.gomint.player.DeviceInfo;
 import io.gomint.plugin.Plugin;
@@ -56,14 +56,15 @@ import io.gomint.taglib.NBTTagCompound;
 import io.gomint.world.*;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.annotation.Nonnull;
 import java.net.InetSocketAddress;
 import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
-import javax.annotation.Nonnull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The entity implementation for players. Players are considered living entities even though they

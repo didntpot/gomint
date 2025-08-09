@@ -23,7 +23,7 @@ public class ListConverter implements Converter {
 
     private InternalConverter internalConverter;
 
-    public ListConverter( InternalConverter internalConverter ) {
+    public ListConverter(InternalConverter internalConverter) {
         this.internalConverter = internalConverter;
     }
 
@@ -31,29 +31,29 @@ public class ListConverter implements Converter {
      * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings( "unchecked" )
-    public Object toConfig( Class<?> type, Object object, ParameterizedType parameterizedType ) throws Exception {
+    @SuppressWarnings("unchecked")
+    public Object toConfig(Class<?> type, Object object, ParameterizedType parameterizedType) throws Exception {
         List<?> values = (List<?>) object;
         List<Object> converted = new ArrayList<>();
 
-        if ( this.internalConverter.getConfig() instanceof BaseConfigMapper ) {
+        if (this.internalConverter.getConfig() instanceof BaseConfigMapper) {
             BaseConfigMapper baseConfigMapper = (BaseConfigMapper) this.internalConverter.getConfig();
-            baseConfigMapper.addCommentPrefix( "-" );
+            baseConfigMapper.addCommentPrefix("-");
         }
 
-        for ( Object value : values ) {
-            Converter converter = this.internalConverter.getConverter( value.getClass() );
+        for (Object value : values) {
+            Converter converter = this.internalConverter.getConverter(value.getClass());
 
-            if ( converter != null ) {
-                converted.add( converter.toConfig( value.getClass(), value, null ) );
+            if (converter != null) {
+                converted.add(converter.toConfig(value.getClass(), value, null));
             } else {
-                converted.add( value );
+                converted.add(value);
             }
         }
 
-        if ( this.internalConverter.getConfig() instanceof BaseConfigMapper ) {
+        if (this.internalConverter.getConfig() instanceof BaseConfigMapper) {
             BaseConfigMapper baseConfigMapper = (BaseConfigMapper) this.internalConverter.getConfig();
-            baseConfigMapper.removeCommentPrefix( "-" );
+            baseConfigMapper.removeCommentPrefix("-");
         }
 
         return converted;
@@ -63,25 +63,25 @@ public class ListConverter implements Converter {
      * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings( "unchecked" )
-    public Object fromConfig( Class<?> type, Object object, ParameterizedType parameterizedType ) throws Exception {
+    @SuppressWarnings("unchecked")
+    public Object fromConfig(Class<?> type, Object object, ParameterizedType parameterizedType) throws Exception {
         List<Object> converted = new ArrayList<>();
 
         try {
-            converted = ( (List<Object>) type.getDeclaredConstructor().newInstance() );
-        } catch ( Exception ignored ) {
+            converted = ((List<Object>) type.getDeclaredConstructor().newInstance());
+        } catch (Exception ignored) {
 
         }
 
         List<Object> values = (List<Object>) object;
 
-        if ( parameterizedType != null && parameterizedType.getActualTypeArguments()[0] instanceof Class ) {
+        if (parameterizedType != null && parameterizedType.getActualTypeArguments()[0] instanceof Class) {
             Class<?> actualTypeArgument = (Class<?>) parameterizedType.getActualTypeArguments()[0];
-            Converter converter = this.internalConverter.getConverter( actualTypeArgument );
+            Converter converter = this.internalConverter.getConverter(actualTypeArgument);
 
-            if ( converter != null ) {
-                for ( Object value : values ) {
-                    converted.add( converter.fromConfig( actualTypeArgument, value, null ) );
+            if (converter != null) {
+                for (Object value : values) {
+                    converted.add(converter.fromConfig(actualTypeArgument, value, null));
                 }
             } else {
                 converted = values;
@@ -97,8 +97,8 @@ public class ListConverter implements Converter {
      * {@inheritDoc}
      */
     @Override
-    public boolean supports( Class<?> type ) {
-        return List.class.isAssignableFrom( type );
+    public boolean supports(Class<?> type) {
+        return List.class.isAssignableFrom(type);
     }
 
 }

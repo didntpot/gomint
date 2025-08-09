@@ -26,16 +26,16 @@ public class OrePopulator implements Populator<OrePopulator> {
     }
 
     @Override
-    public OrePopulator populate( World world, Chunk chunk, FastRandom random ) {
-        for ( OreType type : this.oreTypes ) {
-            Ore ore = new Ore( random, type );
-            for ( int i = 0; i < type.getClusterCount(); i++ ) {
-                int x = random.nextInt( 15 ) + chunk.x() * 16;
-                int y = random.nextInt( type.getMaxHeight() - type.getMinHeight() ) + type.getMinHeight();
-                int z = random.nextInt( 15 ) + chunk.z() * 16;
+    public OrePopulator populate(World world, Chunk chunk, FastRandom random) {
+        for (OreType type : this.oreTypes) {
+            Ore ore = new Ore(random, type);
+            for (int i = 0; i < type.getClusterCount(); i++) {
+                int x = random.nextInt(15) + chunk.x() * 16;
+                int y = random.nextInt(type.getMaxHeight() - type.getMinHeight()) + type.getMinHeight();
+                int z = random.nextInt(15) + chunk.z() * 16;
 
-                if ( ore.canPlaceObject( world, x, y, z ) ) {
-                    ore.placeObject( world, x, y, z );
+                if (ore.canPlaceObject(world, x, y, z)) {
+                    ore.placeObject(world, x, y, z);
                 }
             }
         }

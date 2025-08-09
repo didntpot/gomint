@@ -9,6 +9,7 @@ import io.gomint.server.world.block.state.EnumBlockState;
 import io.gomint.world.block.BlockTallGrass;
 import io.gomint.world.block.BlockType;
 import io.gomint.world.block.data.Facing;
+
 import java.util.ArrayList;
 import java.util.List;
 

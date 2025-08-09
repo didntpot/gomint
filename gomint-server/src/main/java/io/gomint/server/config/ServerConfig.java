@@ -10,6 +10,7 @@ package io.gomint.server.config;
 import io.gomint.config.ConfigSection;
 import io.gomint.config.YamlConfig;
 import io.gomint.config.annotation.Comment;
+
 import java.util.ArrayList;
 import java.util.List;
 

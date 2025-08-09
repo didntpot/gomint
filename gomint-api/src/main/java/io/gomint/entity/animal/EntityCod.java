@@ -23,7 +23,7 @@ public interface EntityCod extends EntityLiving<EntityCod> {
      * @return empty, fresh cod
      */
     static EntityCod create() {
-        return GoMint.instance().createEntity( EntityCod.class );
+        return GoMint.instance().createEntity(EntityCod.class);
     }
 
 }

@@ -6,6 +6,7 @@ import io.gomint.server.network.Protocol;
 import io.gomint.server.network.packet.types.*;
 import io.gomint.taglib.NBTTagCompound;
 import io.gomint.taglib.NBTWriter;
+
 import java.io.IOException;
 import java.nio.ByteOrder;
 import java.util.UUID;

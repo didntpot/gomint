@@ -8,6 +8,7 @@
 package io.gomint.server.jwt;
 
 import io.gomint.server.network.EncryptionKeyFactory;
+
 import java.security.Key;
 import java.security.PublicKey;
 import java.security.interfaces.ECPublicKey;

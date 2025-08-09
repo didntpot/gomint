@@ -23,7 +23,7 @@ public interface EntitySalmon extends EntityLiving<EntitySalmon> {
      * @return empty, fresh salmon
      */
     static EntitySalmon create() {
-        return GoMint.instance().createEntity( EntitySalmon.class );
+        return GoMint.instance().createEntity(EntitySalmon.class);
     }
 
 }

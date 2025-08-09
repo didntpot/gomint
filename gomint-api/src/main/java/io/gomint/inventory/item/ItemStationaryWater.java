@@ -13,10 +13,10 @@ public interface ItemStationaryWater extends ItemStack<ItemStationaryWater> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemStationaryWater create( int amount ) {
-        return GoMint.instance().createItemStack( ItemStationaryWater.class, amount );
+    static ItemStationaryWater create(int amount) {
+        return GoMint.instance().createItemStack(ItemStationaryWater.class, amount);
     }
 
 }

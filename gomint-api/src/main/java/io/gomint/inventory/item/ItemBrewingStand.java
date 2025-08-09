@@ -13,10 +13,10 @@ public interface ItemBrewingStand extends ItemStack<ItemBrewingStand> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemBrewingStand create( int amount ) {
-        return GoMint.instance().createItemStack( ItemBrewingStand.class, amount );
+    static ItemBrewingStand create(int amount) {
+        return GoMint.instance().createItemStack(ItemBrewingStand.class, amount);
     }
 
 }

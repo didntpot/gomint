@@ -13,9 +13,9 @@ public interface ItemNautilusShell extends ItemStack<ItemNautilusShell> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemNautilusShell create( int amount ) {
-        return GoMint.instance().createItemStack( ItemNautilusShell.class, amount );
+    static ItemNautilusShell create(int amount) {
+        return GoMint.instance().createItemStack(ItemNautilusShell.class, amount);
     }
 }

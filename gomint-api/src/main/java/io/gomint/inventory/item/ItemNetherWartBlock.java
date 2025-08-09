@@ -20,10 +20,10 @@ public interface ItemNetherWartBlock extends ItemStack<ItemNetherWartBlock> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemNetherWartBlock create( int amount ) {
-        return GoMint.instance().createItemStack( ItemNetherWartBlock.class, amount );
+    static ItemNetherWartBlock create(int amount) {
+        return GoMint.instance().createItemStack(ItemNetherWartBlock.class, amount);
     }
 
 }

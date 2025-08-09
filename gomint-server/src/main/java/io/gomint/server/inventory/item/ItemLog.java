@@ -6,6 +6,7 @@ import io.gomint.world.block.Block;
 import io.gomint.world.block.BlockLog;
 import io.gomint.world.block.data.Axis;
 import io.gomint.world.block.data.LogType;
+
 import java.time.Duration;
 
 /**

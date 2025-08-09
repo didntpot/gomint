@@ -20,10 +20,10 @@ public interface ItemLodestone extends ItemStack<ItemLodestone> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemLodestone create( int amount ) {
-        return GoMint.instance().createItemStack( ItemLodestone.class, amount );
+    static ItemLodestone create(int amount) {
+        return GoMint.instance().createItemStack(ItemLodestone.class, amount);
     }
 
 }

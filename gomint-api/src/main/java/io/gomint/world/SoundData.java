@@ -19,11 +19,11 @@ public final class SoundData {
     private Instrument instrument = null;
     private Class<? extends Block> block = null;
 
-    private SoundData( Instrument instrument ) {
+    private SoundData(Instrument instrument) {
         this.instrument = instrument;
     }
 
-    private SoundData( Class<? extends Block> blockClass ) {
+    private SoundData(Class<? extends Block> blockClass) {
         this.block = blockClass;
     }
 
@@ -51,8 +51,8 @@ public final class SoundData {
      * @param instrument which should be played
      * @return sound data instance
      */
-    public static SoundData instrument( Instrument instrument ) {
-        return new SoundData( instrument );
+    public static SoundData instrument(Instrument instrument) {
+        return new SoundData(instrument);
     }
 
     /**
@@ -61,8 +61,8 @@ public final class SoundData {
      * @param blockClass for which we need a sound
      * @return sound data instance
      */
-    public static SoundData block( Class<? extends Block> blockClass ) {
-        return new SoundData( blockClass );
+    public static SoundData block(Class<? extends Block> blockClass) {
+        return new SoundData(blockClass);
     }
 
     public enum Instrument {

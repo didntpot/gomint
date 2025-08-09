@@ -13,10 +13,10 @@ public interface ItemCocoa extends ItemStack<ItemCocoa> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCocoa create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCocoa.class, amount );
+    static ItemCocoa create(int amount) {
+        return GoMint.instance().createItemStack(ItemCocoa.class, amount);
     }
 
 }

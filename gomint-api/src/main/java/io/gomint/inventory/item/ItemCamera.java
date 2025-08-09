@@ -20,10 +20,10 @@ public interface ItemCamera extends ItemStack<ItemCamera> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCamera create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCamera.class, amount );
+    static ItemCamera create(int amount) {
+        return GoMint.instance().createItemStack(ItemCamera.class, amount);
     }
 
 }

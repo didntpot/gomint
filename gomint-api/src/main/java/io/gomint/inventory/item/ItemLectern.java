@@ -14,7 +14,7 @@ public interface ItemLectern extends ItemStack<ItemLectern> {
      *
      * @param amount which is used for the creation
      */
-    static ItemLectern create(int amount ) {
-        return GoMint.instance().createItemStack( ItemLectern.class, amount );
+    static ItemLectern create(int amount) {
+        return GoMint.instance().createItemStack(ItemLectern.class, amount);
     }
 }

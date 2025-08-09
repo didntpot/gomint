@@ -23,7 +23,7 @@ public interface EntityDonkey extends EntityAgeable<EntityDonkey> {
      * @return empty, fresh donkey
      */
     static EntityDonkey create() {
-        return GoMint.instance().createEntity( EntityDonkey.class );
+        return GoMint.instance().createEntity(EntityDonkey.class);
     }
 
 }

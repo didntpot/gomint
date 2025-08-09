@@ -16,7 +16,7 @@ public interface EntityHusk extends EntityAgeable<EntityHusk> {
      * @return empty, fresh husk
      */
     static EntityHusk create() {
-        return GoMint.instance().createEntity( EntityHusk.class );
+        return GoMint.instance().createEntity(EntityHusk.class);
     }
 
 }

@@ -18,8 +18,8 @@ public class ResourceNotLoadedException extends Exception {
      *
      * @param cause Exception that triggered this Exception
      */
-    public ResourceNotLoadedException( final Throwable cause ) {
-        super( cause );
+    public ResourceNotLoadedException(final Throwable cause) {
+        super(cause);
     }
 
     /**
@@ -35,8 +35,8 @@ public class ResourceNotLoadedException extends Exception {
      * @param message the detail message (which is saved for later retrieval by the getMessage() method).
      * @param cause   the cause (which is saved for later retrieval by the getCause() method). (A null value is permitted, and indicates that the cause is nonexistent or unknown.)
      */
-    public ResourceNotLoadedException( final String message, final Throwable cause ) {
-        super( message, cause );
+    public ResourceNotLoadedException(final String message, final Throwable cause) {
+        super(message, cause);
     }
 
     /**
@@ -44,7 +44,7 @@ public class ResourceNotLoadedException extends Exception {
      *
      * @param message TThe detail message is saved for later retrieval by the getMessage() method.
      */
-    public ResourceNotLoadedException( final String message ) {
-        super( message );
+    public ResourceNotLoadedException(final String message) {
+        super(message);
     }
 }

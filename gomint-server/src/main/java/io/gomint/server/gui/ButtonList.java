@@ -2,10 +2,11 @@ package io.gomint.server.gui;
 
 import io.gomint.server.gui.element.Button;
 import io.gomint.server.gui.element.ImageButton;
-import java.util.ArrayList;
-import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author geNAZt

@@ -16,7 +16,7 @@ public interface EntityVindicator extends EntityLiving<EntityVindicator> {
      * @return empty, fresh vindicator
      */
     static EntityVindicator create() {
-        return GoMint.instance().createEntity( EntityVindicator.class );
+        return GoMint.instance().createEntity(EntityVindicator.class);
     }
 
 }

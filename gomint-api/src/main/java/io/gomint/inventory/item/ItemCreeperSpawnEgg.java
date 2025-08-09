@@ -20,10 +20,10 @@ public interface ItemCreeperSpawnEgg extends ItemStack<ItemCreeperSpawnEgg> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCreeperSpawnEgg create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCreeperSpawnEgg.class, amount );
+    static ItemCreeperSpawnEgg create(int amount) {
+        return GoMint.instance().createItemStack(ItemCreeperSpawnEgg.class, amount);
     }
 
 }

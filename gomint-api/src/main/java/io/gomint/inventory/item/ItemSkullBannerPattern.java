@@ -20,10 +20,10 @@ public interface ItemSkullBannerPattern extends ItemStack<ItemSkullBannerPattern
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSkullBannerPattern create( int amount ) {
-        return GoMint.instance().createItemStack( ItemSkullBannerPattern.class, amount );
+    static ItemSkullBannerPattern create(int amount) {
+        return GoMint.instance().createItemStack(ItemSkullBannerPattern.class, amount);
     }
 
 }

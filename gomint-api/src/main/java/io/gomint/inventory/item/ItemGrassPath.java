@@ -13,10 +13,10 @@ public interface ItemGrassPath extends ItemStack<ItemGrassPath> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemGrassPath create( int amount ) {
-        return GoMint.instance().createItemStack( ItemGrassPath.class, amount );
+    static ItemGrassPath create(int amount) {
+        return GoMint.instance().createItemStack(ItemGrassPath.class, amount);
     }
 
 }

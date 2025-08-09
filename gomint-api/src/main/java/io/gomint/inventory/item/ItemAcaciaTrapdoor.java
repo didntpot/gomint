@@ -20,10 +20,10 @@ public interface ItemAcaciaTrapdoor extends ItemStack<ItemAcaciaTrapdoor>, ItemB
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemAcaciaTrapdoor create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemAcaciaTrapdoor.class, amount );
+    static ItemAcaciaTrapdoor create(int amount) {
+        return GoMint.instance().createItemStack(ItemAcaciaTrapdoor.class, amount);
     }
 
 }

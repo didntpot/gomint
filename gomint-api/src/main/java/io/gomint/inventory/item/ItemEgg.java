@@ -13,10 +13,10 @@ public interface ItemEgg extends ItemStack<ItemEgg> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemEgg create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemEgg.class, amount );
+    static ItemEgg create(int amount) {
+        return GoMint.instance().createItemStack(ItemEgg.class, amount);
     }
 
 }

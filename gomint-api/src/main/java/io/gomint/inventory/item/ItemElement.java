@@ -14,8 +14,8 @@ public interface ItemElement extends ItemStack<ItemElement> {
      *
      * @param amount which is used for the creation
      */
-    static ItemElement create(int amount ) {
-        return GoMint.instance().createItemStack( ItemElement.class, amount );
+    static ItemElement create(int amount) {
+        return GoMint.instance().createItemStack(ItemElement.class, amount);
     }
 
     enum Type {

@@ -26,7 +26,7 @@ public class BaseConfig implements Serializable {
     protected transient String[] configHeader = null;
     protected transient ConfigMode configMode = ConfigMode.DEFAULT;
     protected transient boolean skipFailedObjects = false;
-    protected transient InternalConverter converter = new InternalConverter( this );
+    protected transient InternalConverter converter = new InternalConverter(this);
 
     /**
      * This function gets called after the File has been loaded and before the converter gets it.
@@ -34,7 +34,7 @@ public class BaseConfig implements Serializable {
      *
      * @param section The root ConfigSection with all sub-nodes loaded into
      */
-    public void update( ConfigSection section ) {
+    public void update(ConfigSection section) {
         /*
          * This is a hook point for custom classes to overwrite when needed to specify a update path
          */
@@ -45,20 +45,20 @@ public class BaseConfig implements Serializable {
      * the converter. How a converter must be build can be looked up in the converter Interface.
      *
      * @param converter converter to be added
-     * @throws InvalidConverterException If the converter has any errors this Exception tells you what
      * @return base config for chaining
+     * @throws InvalidConverterException If the converter has any errors this Exception tells you what
      */
-    public BaseConfig addConverter( Class<?> converter ) throws InvalidConverterException {
-        this.converter.addCustomConverter( converter );
+    public BaseConfig addConverter(Class<?> converter) throws InvalidConverterException {
+        this.converter.addCustomConverter(converter);
         return this;
     }
 
     protected void configureFromSerializeOptionsAnnotation() {
-        if ( !this.getClass().isAnnotationPresent( SerializeOptions.class ) ) {
+        if (!this.getClass().isAnnotationPresent(SerializeOptions.class)) {
             return;
         }
 
-        SerializeOptions options = this.getClass().getAnnotation( SerializeOptions.class );
+        SerializeOptions options = this.getClass().getAnnotation(SerializeOptions.class);
         this.configHeader = options.configHeader();
         this.configMode = options.configMode();
         this.skipFailedObjects = options.skipFailedObjects();
@@ -70,17 +70,17 @@ public class BaseConfig implements Serializable {
      * @param field which may be skipped
      * @return true when it should be skipped, false when not
      */
-    boolean doSkip( Field field ) {
-        if ( Modifier.isTransient( field.getModifiers() ) || Modifier.isFinal( field.getModifiers() ) ) {
+    boolean doSkip(Field field) {
+        if (Modifier.isTransient(field.getModifiers()) || Modifier.isFinal(field.getModifiers())) {
             return true;
         }
 
-        if ( Modifier.isStatic( field.getModifiers() ) ) {
-            if ( !field.isAnnotationPresent( PreserveStatic.class ) ) {
+        if (Modifier.isStatic(field.getModifiers())) {
+            if (!field.isAnnotationPresent(PreserveStatic.class)) {
                 return true;
             }
 
-            PreserveStatic presStatic = field.getAnnotation( PreserveStatic.class );
+            PreserveStatic presStatic = field.getAnnotation(PreserveStatic.class);
             return !presStatic.value();
         }
 

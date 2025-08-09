@@ -11,6 +11,7 @@ import io.gomint.math.BlockPosition;
 import io.gomint.math.Location;
 import io.gomint.math.Vector;
 import io.gomint.server.entity.pathfinding.PathfindingEngine;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 

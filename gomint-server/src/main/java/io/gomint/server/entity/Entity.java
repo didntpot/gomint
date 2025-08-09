@@ -11,8 +11,8 @@ import io.gomint.entity.BossBar;
 import io.gomint.event.entity.EntityDamageEvent;
 import io.gomint.event.entity.EntityTeleportEvent;
 import io.gomint.event.entity.EntityVelocityEvent;
-import io.gomint.math.Vector;
 import io.gomint.math.*;
+import io.gomint.math.Vector;
 import io.gomint.server.entity.component.TransformComponent;
 import io.gomint.server.entity.metadata.MetadataContainer;
 import io.gomint.server.network.PlayerConnection;
@@ -24,11 +24,12 @@ import io.gomint.server.world.WorldAdapter;
 import io.gomint.server.world.block.*;
 import io.gomint.taglib.NBTTagCompound;
 import io.gomint.world.Chunk;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Base class for all entities. Defines accessors to attributes and components that are

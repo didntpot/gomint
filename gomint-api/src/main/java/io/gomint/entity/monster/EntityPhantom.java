@@ -21,7 +21,7 @@ public interface EntityPhantom extends EntityLiving<EntityPhantom> {
      * @return empty, fresh phantom
      */
     static EntityPhantom create() {
-        return GoMint.instance().createEntity( EntityPhantom.class );
+        return GoMint.instance().createEntity(EntityPhantom.class);
     }
 
 }

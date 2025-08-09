@@ -26,7 +26,7 @@ public interface EntityXPOrb extends Entity<EntityXPOrb> {
      * @return empty, fresh xp orb
      */
     static EntityXPOrb create() {
-        return GoMint.instance().createEntity( EntityXPOrb.class );
+        return GoMint.instance().createEntity(EntityXPOrb.class);
     }
 
     /**
@@ -35,7 +35,7 @@ public interface EntityXPOrb extends Entity<EntityXPOrb> {
      * @param duration the amount of timeUnit to wait
      * @param timeUnit the unit of time to wait
      */
-    EntityXPOrb pickupDelay(long duration, TimeUnit timeUnit );
+    EntityXPOrb pickupDelay(long duration, TimeUnit timeUnit);
 
     /**
      * Get the time when the item drop is allowed to be picked up
@@ -49,7 +49,7 @@ public interface EntityXPOrb extends Entity<EntityXPOrb> {
      *
      * @param xpAmount which should be used when collected
      */
-    EntityXPOrb xpAmount(int xpAmount );
+    EntityXPOrb xpAmount(int xpAmount);
 
     /**
      * Amount of XP currently in this orb

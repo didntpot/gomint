@@ -20,10 +20,10 @@ public interface ItemTwistingVines extends ItemStack<ItemTwistingVines> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemTwistingVines create( int amount ) {
-        return GoMint.instance().createItemStack( ItemTwistingVines.class, amount );
+    static ItemTwistingVines create(int amount) {
+        return GoMint.instance().createItemStack(ItemTwistingVines.class, amount);
     }
 
 }

@@ -13,10 +13,10 @@ public interface ItemWheat extends ItemStack<ItemWheat> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemWheat create( int amount ) {
-        return GoMint.instance().createItemStack( ItemWheat.class, amount );
+    static ItemWheat create(int amount) {
+        return GoMint.instance().createItemStack(ItemWheat.class, amount);
     }
 
 }

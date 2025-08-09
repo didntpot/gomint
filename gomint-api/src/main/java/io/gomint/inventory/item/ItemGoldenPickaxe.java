@@ -13,10 +13,10 @@ public interface ItemGoldenPickaxe extends ItemReduceBreaktime<ItemGoldenPickaxe
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemGoldenPickaxe create( int amount ) {
-        return GoMint.instance().createItemStack( ItemGoldenPickaxe.class, amount );
+    static ItemGoldenPickaxe create(int amount) {
+        return GoMint.instance().createItemStack(ItemGoldenPickaxe.class, amount);
     }
 
 }

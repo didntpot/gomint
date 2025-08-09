@@ -31,7 +31,7 @@ public interface ResourceLoader<R> {
      * @param key The key which should be looked up in the Resource
      * @return The translatable Message or null when the Message could not be found in the Resource
      */
-    String get( String key );
+    String get(String key);
 
     /**
      * Get the Formats this Resource can load. All file endings need to include the dot. For example this supports yml Files

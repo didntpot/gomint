@@ -24,7 +24,7 @@ public interface EntityFallingBlock extends Entity<EntityFallingBlock> {
      * @return empty, fresh falling block
      */
     static EntityFallingBlock create() {
-        return GoMint.instance().createEntity( EntityFallingBlock.class );
+        return GoMint.instance().createEntity(EntityFallingBlock.class);
     }
 
     /**
@@ -32,6 +32,6 @@ public interface EntityFallingBlock extends Entity<EntityFallingBlock> {
      *
      * @param block which should be transported
      */
-    EntityFallingBlock block(Block block );
+    EntityFallingBlock block(Block block);
 
 }

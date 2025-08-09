@@ -27,6 +27,6 @@ public interface Form<R> {
      *
      * @param icon which should be used ( can be http / https )
      */
-    Form<R> icon(String icon );
+    Form<R> icon(String icon);
 
 }

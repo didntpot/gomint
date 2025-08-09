@@ -3,7 +3,6 @@ package io.gomint.server.world.block;
 import io.gomint.entity.Entity;
 import io.gomint.event.world.BlockPlaceEvent;
 import io.gomint.inventory.item.ItemStack;
-import io.gomint.jraknet.PacketBuffer;
 import io.gomint.math.AxisAlignedBB;
 import io.gomint.math.BlockPosition;
 import io.gomint.math.Location;
@@ -24,12 +23,13 @@ import io.gomint.server.world.BlockRuntimeIDs;
 import io.gomint.server.world.ChunkSlice;
 import io.gomint.server.world.WorldAdapter;
 import io.gomint.world.block.data.Facing;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author geNAZt

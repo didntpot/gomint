@@ -9,6 +9,7 @@ package io.gomint.server.plugin;
 
 import io.gomint.plugin.PluginVersion;
 import io.gomint.plugin.StartupPriority;
+
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;

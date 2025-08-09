@@ -24,6 +24,6 @@ public interface Populator<E> {
      * @param chunk  which should be populated
      * @param random random instance with which the chunk has been generated
      */
-    E populate( World world, Chunk chunk, FastRandom random );
+    E populate(World world, Chunk chunk, FastRandom random);
 
 }

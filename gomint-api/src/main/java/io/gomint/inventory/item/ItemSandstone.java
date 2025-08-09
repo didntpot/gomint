@@ -13,10 +13,10 @@ public interface ItemSandstone extends ItemStack<ItemSandstone> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSandstone create( int amount ) {
-        return GoMint.instance().createItemStack( ItemSandstone.class, amount );
+    static ItemSandstone create(int amount) {
+        return GoMint.instance().createItemStack(ItemSandstone.class, amount);
     }
 
 }

@@ -13,10 +13,10 @@ public interface ItemDarkOakWoodFenceGate extends ItemStack<ItemDarkOakWoodFence
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemDarkOakWoodFenceGate create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemDarkOakWoodFenceGate.class, amount );
+    static ItemDarkOakWoodFenceGate create(int amount) {
+        return GoMint.instance().createItemStack(ItemDarkOakWoodFenceGate.class, amount);
     }
 
 }

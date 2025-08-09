@@ -5,9 +5,10 @@ import io.gomint.inventory.Inventory;
 import io.gomint.inventory.item.ItemAir;
 import io.gomint.inventory.item.ItemStack;
 import io.gomint.server.entity.EntityPlayer;
-import java.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.*;
 
 /**
  * @author geNAZt

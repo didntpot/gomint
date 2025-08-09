@@ -8,6 +8,7 @@
 package io.gomint.server.crafting;
 
 import io.gomint.inventory.item.ItemStack;
+
 import java.util.*;
 
 /**

@@ -9,9 +9,10 @@ import io.gomint.server.world.CoordinateUtils;
 import io.gomint.server.world.block.Block;
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import it.unimi.dsi.fastutil.longs.LongSet;
-import java.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.*;
 
 /**
  * A pathfinding engine instance may be used to navigate an object through the game world.

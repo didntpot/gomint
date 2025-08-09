@@ -1,8 +1,10 @@
 package io.gomint.server.network.packet.types;
 
 import io.gomint.jraknet.PacketBuffer;
+
 import java.util.HashMap;
 import java.util.Map;
+
 public class Experiments {
 
     private Map<String, Boolean> experiments;

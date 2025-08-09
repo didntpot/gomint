@@ -20,10 +20,10 @@ public interface ItemSalmonBucket extends ItemStack<ItemSalmonBucket> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSalmonBucket create( int amount ) {
-        return GoMint.instance().createItemStack( ItemSalmonBucket.class, amount );
+    static ItemSalmonBucket create(int amount) {
+        return GoMint.instance().createItemStack(ItemSalmonBucket.class, amount);
     }
 
 }

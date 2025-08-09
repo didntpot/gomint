@@ -13,9 +13,9 @@ public interface ItemCampfire extends ItemStack<ItemCampfire> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCampfire create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCampfire.class, amount );
+    static ItemCampfire create(int amount) {
+        return GoMint.instance().createItemStack(ItemCampfire.class, amount);
     }
 }

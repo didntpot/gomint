@@ -13,10 +13,10 @@ public interface ItemBlockOfRedstone extends ItemStack<ItemBlockOfRedstone> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemBlockOfRedstone create( int amount ) {
-        return GoMint.instance().createItemStack( ItemBlockOfRedstone.class, amount );
+    static ItemBlockOfRedstone create(int amount) {
+        return GoMint.instance().createItemStack(ItemBlockOfRedstone.class, amount);
     }
 
 }

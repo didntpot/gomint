@@ -13,10 +13,10 @@ public interface ItemPufferfish extends ItemFood<ItemPufferfish> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemPufferfish create( int amount ) {
-        return GoMint.instance().createItemStack( ItemPufferfish.class, amount );
+    static ItemPufferfish create(int amount) {
+        return GoMint.instance().createItemStack(ItemPufferfish.class, amount);
     }
 
 }

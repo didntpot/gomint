@@ -7,11 +7,12 @@
 
 package io.gomint.server.util.performance;
 
-import java.lang.invoke.MethodHandles;
-import java.lang.reflect.InvocationTargetException;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
+
+import java.lang.invoke.MethodHandles;
+import java.lang.reflect.InvocationTargetException;
 
 public class ASMFactoryConstructionFactory {
 

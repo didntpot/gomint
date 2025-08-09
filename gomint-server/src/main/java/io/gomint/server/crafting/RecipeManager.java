@@ -9,6 +9,7 @@ package io.gomint.server.crafting;
 
 import io.gomint.inventory.item.ItemStack;
 import io.gomint.server.network.packet.PacketCraftingRecipes;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

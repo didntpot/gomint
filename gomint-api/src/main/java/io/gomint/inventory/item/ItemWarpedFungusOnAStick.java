@@ -13,9 +13,9 @@ public interface ItemWarpedFungusOnAStick extends ItemStack<ItemWarpedFungusOnAS
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemWarpedFungusOnAStick create( int amount ) {
-        return GoMint.instance().createItemStack( ItemWarpedFungusOnAStick.class, amount );
+    static ItemWarpedFungusOnAStick create(int amount) {
+        return GoMint.instance().createItemStack(ItemWarpedFungusOnAStick.class, amount);
     }
 }

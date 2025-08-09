@@ -13,10 +13,10 @@ public interface ItemBlockOfEmerald extends ItemStack<ItemBlockOfEmerald> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemBlockOfEmerald create( int amount ) {
-        return GoMint.instance().createItemStack( ItemBlockOfEmerald.class, amount );
+    static ItemBlockOfEmerald create(int amount) {
+        return GoMint.instance().createItemStack(ItemBlockOfEmerald.class, amount);
     }
 
 }

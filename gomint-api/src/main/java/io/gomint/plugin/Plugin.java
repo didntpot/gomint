@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Base class for any plugin to be created for use with the GoMint system. Below you will find an in-depth
  * explanation of the GoMint plugin system.
- *
+ * <p>
  * When creating a plugin you should take care that the plugin implementation class directly inherits from
  * the base Plugin class. It is important that the implementation will not be considered a valid plugin
  * by GoNets plugin loader in case it only indirectly inherits from plugin. There are also several
@@ -33,7 +33,7 @@ import java.util.List;
  * </ul>
  * Furthermore you may specify additional annotation as needed, for example a @Startup annotation to specify
  * upmost priority in loading the specified plugin.
- *
+ * <p>
  * Any plugin will live through up to 4 different stages which will be explained in detail below. Please note
  * that only the very first stage is obligatory (assumed you have been able to put your - correct - implementation,
  * as shown above, into the right folder of the application), that is the DETECTION stage.
@@ -116,7 +116,7 @@ public class Plugin {
      * @return Plugin installation status
      */
     public boolean isInstalled() {
-        return this.pluginManager.isPluginInstalled( this.name );
+        return this.pluginManager.isPluginInstalled(this.name);
     }
 
     /**
@@ -124,8 +124,8 @@ public class Plugin {
      *
      * @param command which should be registered
      */
-    public Plugin registerCommand( Command command ) {
-        this.pluginManager.registerCommand( this, command );
+    public Plugin registerCommand(Command command) {
+        this.pluginManager.registerCommand(this, command);
         return this;
     }
 
@@ -134,9 +134,9 @@ public class Plugin {
      *
      * @param listener The listener which should be registered
      */
-    public Plugin registerListener( EventListener listener ) {
-        this.pluginManager.registerListener( this, listener );
-        this.listeners.add( listener );
+    public Plugin registerListener(EventListener listener) {
+        this.pluginManager.registerListener(this, listener);
+        this.listeners.add(listener);
         return this;
     }
 
@@ -145,9 +145,9 @@ public class Plugin {
      *
      * @param listener which should be unregistered
      */
-    public Plugin unregisterListener( EventListener listener ) {
-        if ( this.listeners.remove( listener ) ) {
-            this.pluginManager.unregisterListener( this, listener );
+    public Plugin unregisterListener(EventListener listener) {
+        if (this.listeners.remove(listener)) {
+            this.pluginManager.unregisterListener(this, listener);
         }
 
         return this;
@@ -158,7 +158,7 @@ public class Plugin {
      * Under all other circumstances invocation of this method will show no effect.
      */
     protected void uninstall() {
-        this.pluginManager.uninstallPlugin( this );
+        this.pluginManager.uninstallPlugin(this);
     }
 
     /**
@@ -169,8 +169,8 @@ public class Plugin {
      * @return the stream for getting this resource, or null if it does not
      * exist
      */
-    public final InputStream resourceAsStream(String name ) {
-        return getClass().getClassLoader().getResourceAsStream( name );
+    public final InputStream resourceAsStream(String name) {
+        return getClass().getClassLoader().getResourceAsStream(name);
     }
 
     /**
@@ -179,7 +179,7 @@ public class Plugin {
      * @return the data folder of this plugin
      */
     public final File dataFolder() {
-        return new File( pluginManager().baseDirectory(), name() );
+        return new File(pluginManager().baseDirectory(), name());
     }
 
     public PluginManager pluginManager() {

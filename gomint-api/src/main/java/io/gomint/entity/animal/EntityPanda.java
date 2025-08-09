@@ -21,6 +21,6 @@ public interface EntityPanda extends EntityAgeable<EntityPanda> {
      * @return empty, fresh panda
      */
     static EntityPanda create() {
-        return GoMint.instance().createEntity( EntityPanda.class );
+        return GoMint.instance().createEntity(EntityPanda.class);
     }
 }

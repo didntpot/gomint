@@ -16,7 +16,7 @@ public enum ColorPalette {
 
     private final String hexValue;
 
-    ColorPalette( String hexValue ) {
+    ColorPalette(String hexValue) {
         this.hexValue = hexValue;
     }
 
@@ -25,7 +25,7 @@ public enum ColorPalette {
     }
 
     public Paint getPaint() {
-        return Paint.valueOf( getHexValue() );
+        return Paint.valueOf(getHexValue());
     }
 
     @Override

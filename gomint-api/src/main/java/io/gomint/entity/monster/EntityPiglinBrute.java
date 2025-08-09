@@ -22,6 +22,6 @@ public interface EntityPiglinBrute extends EntityLiving<EntityPiglinBrute> {
      * @return empty, fresh piglin brute
      */
     static EntityPiglinBrute create() {
-        return GoMint.instance().createEntity( EntityPiglinBrute.class );
+        return GoMint.instance().createEntity(EntityPiglinBrute.class);
     }
 }

@@ -219,7 +219,7 @@ public interface Entity<E> {
      *
      * @param duration which will be multiplied with the given unit
      * @param unit     of time
-     *                 @return entity for chaining
+     * @return entity for chaining
      */
     E age(long duration, TimeUnit unit);
 
@@ -228,7 +228,7 @@ public interface Entity<E> {
      * aging and all the other stuff which requires ticking.
      *
      * @param value true when the entity should tick, false when not
-     *              @return entity for chaining
+     * @return entity for chaining
      */
     E ticking(boolean value);
 
@@ -250,7 +250,7 @@ public interface Entity<E> {
      * Set the scale of this entity
      *
      * @param scale which should be used (defaults to 1)
-     *              @return entity for chaining
+     * @return entity for chaining
      */
     E scale(float scale);
 
@@ -269,7 +269,7 @@ public interface Entity<E> {
      * @param value true when the server shouldn't broadcast packets for this entity (no movement, spawning etc).
      *              when the value was false and will be set to true all players will despawn the entity, except
      *              those who already have {@link #showFor(EntityPlayer)} called before setting this.
-     *              @return entity for chaining
+     * @return entity for chaining
      */
     E hiddenByDefault(boolean value);
 
@@ -279,7 +279,7 @@ public interface Entity<E> {
      * This has NO effect on {@link EntityPlayer} entities.
      *
      * @param player for which this entity should be shown
-     *               @return entity for chaining
+     * @return entity for chaining
      */
     E showFor(EntityPlayer player);
 
@@ -289,7 +289,7 @@ public interface Entity<E> {
      * This has NO effect on {@link EntityPlayer} entities.
      *
      * @param player for which this entity should be hidden
-     *               @return entity for chaining
+     * @return entity for chaining
      */
     E hideFor(EntityPlayer player);
 
@@ -305,7 +305,7 @@ public interface Entity<E> {
      *
      * @param player      the player which has interacted with the entity
      * @param clickVector position where this entity has been interacted at
-     *                    @return entity for chaining
+     * @return entity for chaining
      */
     E interact(EntityPlayer player, Vector clickVector);
 
@@ -321,7 +321,7 @@ public interface Entity<E> {
      * Set the entity invisible for others
      *
      * @param value true when this entity should be invisible, false when not
-     *              @return entity for chaining
+     * @return entity for chaining
      */
     E invisible(boolean value);
 
@@ -336,7 +336,7 @@ public interface Entity<E> {
      * Set this entity immobile
      *
      * @param value true if immobile, false if not
-     *              @return entity for chaining
+     * @return entity for chaining
      */
     E immobile(boolean value);
 
@@ -366,7 +366,7 @@ public interface Entity<E> {
      * Set this entity on fire (it does not get damage, only visual)
      *
      * @param value true for on fire, false for not
-     *              @return entity for chaining
+     * @return entity for chaining
      */
     E burning(boolean value);
 
@@ -381,7 +381,7 @@ public interface Entity<E> {
      * Is this entity affected by gravity?
      *
      * @param value true for yes, false for no
-     *              @return entity for chaining
+     * @return entity for chaining
      */
     E affectedByGravity(boolean value);
 

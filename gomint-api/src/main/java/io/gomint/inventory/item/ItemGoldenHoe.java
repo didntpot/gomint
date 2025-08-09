@@ -13,10 +13,10 @@ public interface ItemGoldenHoe extends ItemHoe<ItemGoldenHoe> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemGoldenHoe create( int amount ) {
-        return GoMint.instance().createItemStack( ItemGoldenHoe.class, amount );
+    static ItemGoldenHoe create(int amount) {
+        return GoMint.instance().createItemStack(ItemGoldenHoe.class, amount);
     }
 
 }

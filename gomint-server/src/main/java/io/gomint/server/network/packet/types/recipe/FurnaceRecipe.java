@@ -4,6 +4,7 @@ import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.inventory.item.ItemStack;
 import io.gomint.server.network.packet.Packet;
 import io.gomint.server.network.packet.PacketCraftingRecipes;
+
 import javax.annotation.Nullable;
 
 public class FurnaceRecipe extends RecipeWithTypeId {

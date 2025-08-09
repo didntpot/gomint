@@ -14,8 +14,8 @@ public interface ItemBlastFurnace extends ItemStack<ItemBlastFurnace> {
      *
      * @param amount which is used for the creation
      */
-    static ItemBlastFurnace create(int amount ) {
-        return GoMint.instance().createItemStack( ItemBlastFurnace.class, amount );
+    static ItemBlastFurnace create(int amount) {
+        return GoMint.instance().createItemStack(ItemBlastFurnace.class, amount);
     }
 
 }

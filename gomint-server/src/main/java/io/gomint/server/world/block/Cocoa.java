@@ -8,6 +8,7 @@ import io.gomint.server.world.block.state.ProgressBlockState;
 import io.gomint.world.block.BlockCocoa;
 import io.gomint.world.block.BlockType;
 import io.gomint.world.block.data.Direction;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 /**

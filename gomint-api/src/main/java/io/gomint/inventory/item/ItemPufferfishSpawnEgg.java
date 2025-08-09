@@ -20,10 +20,10 @@ public interface ItemPufferfishSpawnEgg extends ItemStack<ItemPufferfishSpawnEgg
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemPufferfishSpawnEgg create( int amount ) {
-        return GoMint.instance().createItemStack( ItemPufferfishSpawnEgg.class, amount );
+    static ItemPufferfishSpawnEgg create(int amount) {
+        return GoMint.instance().createItemStack(ItemPufferfishSpawnEgg.class, amount);
     }
 
 }

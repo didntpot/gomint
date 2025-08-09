@@ -13,10 +13,10 @@ public interface ItemPotion extends ItemStack<ItemPotion> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemPotion create( int amount ) {
-        return GoMint.instance().createItemStack( ItemPotion.class, amount );
+    static ItemPotion create(int amount) {
+        return GoMint.instance().createItemStack(ItemPotion.class, amount);
     }
 
 }

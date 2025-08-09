@@ -11,6 +11,7 @@ import io.gomint.command.*;
 import io.gomint.command.validator.CommandValidator;
 import io.gomint.plugin.Plugin;
 import io.gomint.server.entity.CommandPermission;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

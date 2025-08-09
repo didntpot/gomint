@@ -16,7 +16,7 @@ public interface EntityEndermite extends EntityLiving<EntityEndermite> {
      * @return empty, fresh endermite
      */
     static EntityEndermite create() {
-        return GoMint.instance().createEntity( EntityEndermite.class );
+        return GoMint.instance().createEntity(EntityEndermite.class);
     }
 
 }

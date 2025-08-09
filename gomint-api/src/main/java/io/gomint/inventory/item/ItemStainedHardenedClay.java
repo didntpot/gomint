@@ -13,10 +13,10 @@ public interface ItemStainedHardenedClay extends ItemStack<ItemStainedHardenedCl
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemStainedHardenedClay create( int amount ) {
-        return GoMint.instance().createItemStack( ItemStainedHardenedClay.class, amount );
+    static ItemStainedHardenedClay create(int amount) {
+        return GoMint.instance().createItemStack(ItemStainedHardenedClay.class, amount);
     }
 
 }

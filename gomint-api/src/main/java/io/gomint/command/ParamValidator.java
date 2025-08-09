@@ -27,7 +27,7 @@ public abstract class ParamValidator<P> {
      * @param commandSender which submitted the command
      * @return non null object of validation on success (string for example) or null when validation failed
      */
-    public abstract Object validate(String input, CommandSender<?> commandSender );
+    public abstract Object validate(String input, CommandSender<?> commandSender);
 
     /**
      * Consume all parts this validator needs as input from the command
@@ -35,7 +35,7 @@ public abstract class ParamValidator<P> {
      * @param data left from the command which can be consumed
      * @return the concatenated data consumed
      */
-    public abstract String consume( Iterator<String> data );
+    public abstract String consume(Iterator<String> data);
 
     /**
      * Get the type of this param.
@@ -73,7 +73,7 @@ public abstract class ParamValidator<P> {
      *
      * @param optional true when this parameter is optional, false when not
      */
-    public P optional(boolean optional ) {
+    public P optional(boolean optional) {
         this.optional = optional;
         return (P) this;
     }
@@ -93,7 +93,7 @@ public abstract class ParamValidator<P> {
      *
      * @param postfix which should be used
      */
-    public P postfix(String postfix ) {
+    public P postfix(String postfix) {
         this.postfix = postfix;
         return (P) this;
     }

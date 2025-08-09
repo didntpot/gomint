@@ -28,30 +28,30 @@ public interface PermissionManager {
      * @param permission asked for
      * @return true if this manager has the permission, false if not
      */
-    boolean has(String permission );
+    boolean has(String permission);
 
     /**
      * Same behaviour as {@link #has(String)} but with another return behaviour
      *
-     * @param permission asked for
+     * @param permission   asked for
      * @param defaultValue which will be returned when no permission setting has been found
      * @return true if this manager has the permission, defaultValue if not
      */
-    boolean has(String permission, boolean defaultValue );
+    boolean has(String permission, boolean defaultValue);
 
     /**
      * Add a new permission group to this manager
      *
      * @param group which should be added
      */
-    PermissionManager addGroup( Group group );
+    PermissionManager addGroup(Group group);
 
     /**
      * Remove a group from the manager
      *
      * @param group which should be removed
      */
-    PermissionManager removeGroup( Group group );
+    PermissionManager removeGroup(Group group);
 
     /**
      * Add a manager permission. This is the highest override level you can get
@@ -59,14 +59,14 @@ public interface PermissionManager {
      * @param permission which should be set
      * @param value      for the permission, true for grant, false for revoke
      */
-    PermissionManager permission(String permission, boolean value );
+    PermissionManager permission(String permission, boolean value);
 
     /**
      * Remove permission from this manager
      *
      * @param permission which should be removed
      */
-    PermissionManager remove(String permission );
+    PermissionManager remove(String permission);
 
     /**
      * Toggle the op state of this permission manager

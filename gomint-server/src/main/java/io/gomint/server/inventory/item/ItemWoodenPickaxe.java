@@ -6,6 +6,7 @@ import io.gomint.server.entity.AttributeModifier;
 import io.gomint.server.entity.AttributeModifierType;
 import io.gomint.server.entity.EntityPlayer;
 import io.gomint.server.registry.RegisterInfo;
+
 import java.time.Duration;
 
 /**

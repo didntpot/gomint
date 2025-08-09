@@ -20,10 +20,10 @@ public interface ItemRecordWard extends ItemStack<ItemRecordWard> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemRecordWard create( int amount ) {
-        return GoMint.instance().createItemStack( ItemRecordWard.class, amount );
+    static ItemRecordWard create(int amount) {
+        return GoMint.instance().createItemStack(ItemRecordWard.class, amount);
     }
 
 }

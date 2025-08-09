@@ -16,7 +16,7 @@ public interface EntityEnderman extends EntityLiving<EntityEnderman> {
      * @return empty, fresh enderman
      */
     static EntityEnderman create() {
-        return GoMint.instance().createEntity( EntityEnderman.class );
+        return GoMint.instance().createEntity(EntityEnderman.class);
     }
 
 }

@@ -20,10 +20,10 @@ public interface ItemHardStainedGlass extends ItemStack<ItemHardStainedGlass> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemHardStainedGlass create( int amount ) {
-        return GoMint.instance().createItemStack( ItemHardStainedGlass.class, amount );
+    static ItemHardStainedGlass create(int amount) {
+        return GoMint.instance().createItemStack(ItemHardStainedGlass.class, amount);
     }
 
 }

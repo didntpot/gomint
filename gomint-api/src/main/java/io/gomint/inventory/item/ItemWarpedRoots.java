@@ -20,10 +20,10 @@ public interface ItemWarpedRoots extends ItemStack<ItemWarpedRoots> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemWarpedRoots create( int amount ) {
-        return GoMint.instance().createItemStack( ItemWarpedRoots.class, amount );
+    static ItemWarpedRoots create(int amount) {
+        return GoMint.instance().createItemStack(ItemWarpedRoots.class, amount);
     }
 
 }

@@ -13,10 +13,10 @@ public interface ItemSlimeball extends ItemStack<ItemSlimeball> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSlimeball create( int amount ) {
-        return GoMint.instance().createItemStack( ItemSlimeball.class, amount );
+    static ItemSlimeball create(int amount) {
+        return GoMint.instance().createItemStack(ItemSlimeball.class, amount);
     }
 
 }

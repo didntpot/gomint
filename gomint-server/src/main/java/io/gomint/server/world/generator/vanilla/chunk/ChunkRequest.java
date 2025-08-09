@@ -10,6 +10,7 @@ package io.gomint.server.world.generator.vanilla.chunk;
 import io.gomint.math.BlockPosition;
 import io.gomint.server.async.Future;
 import io.gomint.server.world.ChunkAdapter;
+
 import java.util.Objects;
 
 public class ChunkRequest {

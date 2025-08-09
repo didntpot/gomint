@@ -21,8 +21,8 @@ public interface ItemSmoothStone extends ItemStack<ItemSmoothStone> {
      *
      * @param amount which is used for the creation
      */
-    static ItemSmoothStone create(int amount ) {
-        return GoMint.instance().createItemStack( ItemSmoothStone.class, amount );
+    static ItemSmoothStone create(int amount) {
+        return GoMint.instance().createItemStack(ItemSmoothStone.class, amount);
     }
 
 }

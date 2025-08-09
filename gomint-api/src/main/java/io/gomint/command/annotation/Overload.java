@@ -7,20 +7,16 @@
 
 package io.gomint.command.annotation;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Repeatable;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * @author geNAZt
  * @version 1.0
  * @stability 3
  */
-@Target( ElementType.TYPE )
-@Repeatable( Overloads.class )
-@Retention( RetentionPolicy.RUNTIME )
+@Target(ElementType.TYPE)
+@Repeatable(Overloads.class)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Overload {
 
     String permission() default "";

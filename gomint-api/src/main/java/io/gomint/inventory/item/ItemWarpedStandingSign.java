@@ -20,10 +20,10 @@ public interface ItemWarpedStandingSign extends ItemStack<ItemWarpedStandingSign
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemWarpedStandingSign create( int amount ) {
-        return GoMint.instance().createItemStack( ItemWarpedStandingSign.class, amount );
+    static ItemWarpedStandingSign create(int amount) {
+        return GoMint.instance().createItemStack(ItemWarpedStandingSign.class, amount);
     }
 
 }

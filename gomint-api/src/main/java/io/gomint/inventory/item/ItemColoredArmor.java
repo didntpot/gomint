@@ -2,7 +2,7 @@ package io.gomint.inventory.item;
 
 import io.gomint.world.block.data.BlockColor;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * @author geNAZt
@@ -23,13 +23,13 @@ public interface ItemColoredArmor<I> extends ItemStack<I> {
      *
      * @param color which should be used to color this item
      */
-    I color(Color color );
+    I color(Color color);
 
     /**
      * Set the color based on the dye type used
      *
      * @param dyeColor which should be used to calculate the color
      */
-    I color(BlockColor dyeColor );
+    I color(BlockColor dyeColor);
 
 }

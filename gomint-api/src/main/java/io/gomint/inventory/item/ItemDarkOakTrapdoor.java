@@ -20,10 +20,10 @@ public interface ItemDarkOakTrapdoor extends ItemStack<ItemDarkOakTrapdoor>, Ite
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemDarkOakTrapdoor create( int amount ) {
-        return GoMint.instance().createItemStack( ItemDarkOakTrapdoor.class, amount );
+    static ItemDarkOakTrapdoor create(int amount) {
+        return GoMint.instance().createItemStack(ItemDarkOakTrapdoor.class, amount);
     }
 
 }

@@ -13,10 +13,10 @@ public interface ItemInvertedDaylightSensor extends ItemStack<ItemInvertedDaylig
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemInvertedDaylightSensor create( int amount ) {
-        return GoMint.instance().createItemStack( ItemInvertedDaylightSensor.class, amount );
+    static ItemInvertedDaylightSensor create(int amount) {
+        return GoMint.instance().createItemStack(ItemInvertedDaylightSensor.class, amount);
     }
 
 }

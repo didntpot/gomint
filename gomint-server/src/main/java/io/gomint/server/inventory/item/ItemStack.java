@@ -23,10 +23,11 @@ import io.gomint.server.world.block.Blocks;
 import io.gomint.taglib.NBTTagCompound;
 import io.gomint.world.block.Block;
 import io.gomint.world.block.data.Facing;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Represents a stack of up to 255 items of the same type which may

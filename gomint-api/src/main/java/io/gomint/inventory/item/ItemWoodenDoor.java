@@ -15,8 +15,8 @@ public interface ItemWoodenDoor extends ItemStack<ItemWoodenDoor>, ItemBurnable 
      *
      * @param amount which is used for the creation
      */
-    static ItemWoodenDoor create(int amount ) {
-        return GoMint.instance().createItemStack( ItemWoodenDoor.class, amount );
+    static ItemWoodenDoor create(int amount) {
+        return GoMint.instance().createItemStack(ItemWoodenDoor.class, amount);
     }
 
     /**

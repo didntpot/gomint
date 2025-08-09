@@ -13,10 +13,10 @@ public interface ItemBlockOfGold extends ItemStack<ItemBlockOfGold> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemBlockOfGold create( int amount ) {
-        return GoMint.instance().createItemStack( ItemBlockOfGold.class, amount );
+    static ItemBlockOfGold create(int amount) {
+        return GoMint.instance().createItemStack(ItemBlockOfGold.class, amount);
     }
 
 }

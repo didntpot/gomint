@@ -13,10 +13,10 @@ public interface ItemBlockOfCoal extends ItemStack<ItemBlockOfCoal>, ItemBurnabl
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemBlockOfCoal create( int amount ) {
-        return GoMint.instance().createItemStack( ItemBlockOfCoal.class, amount );
+    static ItemBlockOfCoal create(int amount) {
+        return GoMint.instance().createItemStack(ItemBlockOfCoal.class, amount);
     }
 
 }

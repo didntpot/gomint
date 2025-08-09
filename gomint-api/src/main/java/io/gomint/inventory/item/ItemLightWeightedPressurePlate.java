@@ -13,10 +13,10 @@ public interface ItemLightWeightedPressurePlate extends ItemStack<ItemLightWeigh
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemLightWeightedPressurePlate create( int amount ) {
-        return GoMint.instance().createItemStack( ItemLightWeightedPressurePlate.class, amount );
+    static ItemLightWeightedPressurePlate create(int amount) {
+        return GoMint.instance().createItemStack(ItemLightWeightedPressurePlate.class, amount);
     }
 
 }

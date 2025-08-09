@@ -16,11 +16,11 @@ import java.util.Collection;
  */
 public interface ChunkGeneratorRegistry {
 
-    boolean registerGenerator( String name, Class<? extends ChunkGenerator> generatorClass );
+    boolean registerGenerator(String name, Class<? extends ChunkGenerator> generatorClass);
 
-    boolean isGeneratorAvailable( String name );
+    boolean isGeneratorAvailable(String name);
 
-    Class<? extends ChunkGenerator> generatorClass(String name );
+    Class<? extends ChunkGenerator> generatorClass(String name);
 
     Collection<String> registeredGenerators();
 

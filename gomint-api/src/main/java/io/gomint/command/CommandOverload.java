@@ -43,17 +43,17 @@ public class CommandOverload {
      * @param validator which should decide if the parameter is valid
      * @return the command currently build
      */
-    public CommandOverload param( String name, ParamValidator<?> validator ) {
-        if ( this.parameters == null ) {
+    public CommandOverload param(String name, ParamValidator<?> validator) {
+        if (this.parameters == null) {
             this.parameters = new LinkedHashMap<>();
         }
 
         // Special case CommandValidator
-        if ( validator instanceof CommandValidator ) {
-            validator.values().add( name );
+        if (validator instanceof CommandValidator) {
+            validator.values().add(name);
         }
 
-        this.parameters.put( name, validator );
+        this.parameters.put(name, validator);
         return this;
     }
 
@@ -66,18 +66,18 @@ public class CommandOverload {
      * @param optional  true when parameter is optional, false when not
      * @return the command currently build
      */
-    public CommandOverload param( String name, ParamValidator<?> validator, boolean optional ) {
-        if ( this.parameters == null ) {
+    public CommandOverload param(String name, ParamValidator<?> validator, boolean optional) {
+        if (this.parameters == null) {
             this.parameters = new LinkedHashMap<>();
         }
 
         // Special case CommandValidator
-        if ( validator instanceof CommandValidator ) {
-            validator.values().add( name );
+        if (validator instanceof CommandValidator) {
+            validator.values().add(name);
         }
 
-        validator.optional( optional );
-        this.parameters.put( name, validator );
+        validator.optional(optional);
+        this.parameters.put(name, validator);
         return this;
     }
 
@@ -91,19 +91,19 @@ public class CommandOverload {
      * @param postfix   value which should be postfixed to the param
      * @return the command currently build
      */
-    public CommandOverload param( String name, ParamValidator<?> validator, boolean optional, String postfix ) {
-        if ( this.parameters == null ) {
+    public CommandOverload param(String name, ParamValidator<?> validator, boolean optional, String postfix) {
+        if (this.parameters == null) {
             this.parameters = new LinkedHashMap<>();
         }
 
         // Special case CommandValidator
-        if ( validator instanceof CommandValidator ) {
-            validator.values().add( name );
+        if (validator instanceof CommandValidator) {
+            validator.values().add(name);
         }
 
-        validator.optional( optional );
-        validator.postfix( postfix );
-        this.parameters.put( name, validator );
+        validator.optional(optional);
+        validator.postfix(postfix);
+        this.parameters.put(name, validator);
         return this;
     }
 
@@ -115,8 +115,8 @@ public class CommandOverload {
     public int sizeOfOptionals() {
         int count = 0;
 
-        for ( ParamValidator<?> validator : this.parameters.values() ) {
-            if ( validator.optional() ) {
+        for (ParamValidator<?> validator : this.parameters.values()) {
+            if (validator.optional()) {
                 count++;
             }
         }

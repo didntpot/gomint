@@ -3,13 +3,15 @@ package io.gomint.server.network.handler;
 import io.gomint.event.player.PlayerPreJoinEvent;
 import io.gomint.server.network.PlayerConnection;
 import io.gomint.server.network.PlayerConnectionState;
-import io.gomint.server.network.packet.*;
+import io.gomint.server.network.packet.PacketResourcePackResponse;
+import io.gomint.server.network.packet.PacketResourcePackStack;
 import io.gomint.server.resource.PackIdVersion;
 import io.gomint.server.resource.ResourcePack;
-import java.util.ArrayList;
-import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * @author geNAZt

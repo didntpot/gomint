@@ -18,8 +18,8 @@ import io.gomint.permission.GroupManager;
 import io.gomint.player.PlayerSkin;
 import io.gomint.plugin.PluginManager;
 import io.gomint.scoreboard.Scoreboard;
-import io.gomint.world.World;
 import io.gomint.world.Chunk;
+import io.gomint.world.World;
 import io.gomint.world.block.Block;
 import io.gomint.world.generator.ChunkGeneratorRegistry;
 import io.gomint.world.generator.CreateOptions;
@@ -35,7 +35,7 @@ import java.util.UUID;
  * @stability 3
  */
 public interface GoMint {
-    
+
     /**
      * Get the GoMint server instance currently running
      *
@@ -103,8 +103,8 @@ public interface GoMint {
      * Create a new enchantment with the given level
      *
      * @param enchantmentClass which should be used to create
-     * @param level which the enchantment should have
-     * @param <T> generic type of the enchantment
+     * @param level            which the enchantment should have
+     * @param <T>              generic type of the enchantment
      * @return fresh generated enchantment with the level given
      */
     <T extends Enchantment> T createEnchantment(Class<T> enchantmentClass, int level);
@@ -117,7 +117,7 @@ public interface GoMint {
      * @return fresh generated entity
      */
     <T extends Entity<T>> T createEntity(Class<T> entityClass);
-    
+
     /**
      * Create a new itemstack with the given item in it
      *
@@ -197,7 +197,7 @@ public interface GoMint {
      * @return the player or null if not found
      */
     EntityPlayer findPlayerByUUID(UUID target);
-    
+
     /**
      * Get the manager which manages permission groups
      *
@@ -273,7 +273,7 @@ public interface GoMint {
      * @return the world or null if there was a error loading it
      */
     World world(String name);
-    
+
     /**
      * Get a collection of all worlds on this server
      *

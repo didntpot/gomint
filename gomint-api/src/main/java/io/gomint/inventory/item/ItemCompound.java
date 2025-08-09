@@ -20,10 +20,10 @@ public interface ItemCompound extends ItemStack<ItemCompound> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCompound create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCompound.class, amount );
+    static ItemCompound create(int amount) {
+        return GoMint.instance().createItemStack(ItemCompound.class, amount);
     }
 
 }

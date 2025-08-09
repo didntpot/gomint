@@ -20,10 +20,10 @@ public interface ItemRecordMellohi extends ItemStack<ItemRecordMellohi> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemRecordMellohi create( int amount ) {
-        return GoMint.instance().createItemStack( ItemRecordMellohi.class, amount );
+    static ItemRecordMellohi create(int amount) {
+        return GoMint.instance().createItemStack(ItemRecordMellohi.class, amount);
     }
 
 }

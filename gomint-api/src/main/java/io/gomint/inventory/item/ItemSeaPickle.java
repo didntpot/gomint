@@ -13,10 +13,10 @@ public interface ItemSeaPickle extends ItemStack<ItemSeaPickle> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSeaPickle create( int amount ) {
-        return GoMint.instance().createItemStack( ItemSeaPickle.class, amount );
+    static ItemSeaPickle create(int amount) {
+        return GoMint.instance().createItemStack(ItemSeaPickle.class, amount);
     }
 
 }

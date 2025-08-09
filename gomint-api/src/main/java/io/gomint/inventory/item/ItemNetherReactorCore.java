@@ -13,10 +13,10 @@ public interface ItemNetherReactorCore extends ItemStack<ItemNetherReactorCore> 
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemNetherReactorCore create( int amount ) {
-        return GoMint.instance().createItemStack( ItemNetherReactorCore.class, amount );
+    static ItemNetherReactorCore create(int amount) {
+        return GoMint.instance().createItemStack(ItemNetherReactorCore.class, amount);
     }
 
 }

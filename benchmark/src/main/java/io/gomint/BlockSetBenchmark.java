@@ -14,15 +14,7 @@ import io.gomint.world.WorldType;
 import io.gomint.world.block.BlockDirt;
 import io.gomint.world.block.data.DirtType;
 import io.gomint.world.generator.CreateOptions;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Fork;
-import org.openjdk.jmh.annotations.Mode;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.Setup;
-import org.openjdk.jmh.annotations.State;
-import org.openjdk.jmh.annotations.TearDown;
+import org.openjdk.jmh.annotations.*;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -43,7 +35,7 @@ public class BlockSetBenchmark {
 
         this.world = this.server.createWorld("test", new CreateOptions().worldType(WorldType.IN_MEMORY));
 
-        Block block = this.world.blockAt(50,5,50);
+        Block block = this.world.blockAt(50, 5, 50);
         this.log = block.blockType(BlockDirt.class);
     }
 
@@ -54,7 +46,7 @@ public class BlockSetBenchmark {
 
     @Benchmark
     public Block getBlock() {
-        return this.world.blockAt(50,5,50);
+        return this.world.blockAt(50, 5, 50);
     }
 
     @TearDown

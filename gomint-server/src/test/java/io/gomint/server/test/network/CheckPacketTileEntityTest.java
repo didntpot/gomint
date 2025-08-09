@@ -13,10 +13,11 @@ import io.gomint.server.network.Protocol;
 import io.gomint.server.network.packet.PacketTileEntityData;
 import io.gomint.taglib.AllocationLimitReachedException;
 import io.gomint.taglib.NBTTagCompound;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author geNAZt

@@ -20,10 +20,10 @@ public interface ItemAcaciaPressurePlate extends ItemStack<ItemAcaciaPressurePla
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemAcaciaPressurePlate create( int amount ) {
-        return GoMint.instance().createItemStack( ItemAcaciaPressurePlate.class, amount );
+    static ItemAcaciaPressurePlate create(int amount) {
+        return GoMint.instance().createItemStack(ItemAcaciaPressurePlate.class, amount);
     }
 
 }

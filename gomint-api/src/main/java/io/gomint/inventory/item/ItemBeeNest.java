@@ -21,8 +21,8 @@ public interface ItemBeeNest extends ItemStack<ItemBeeNest> {
      *
      * @param amount which is used for the creation
      */
-    static ItemBeeNest create(int amount ) {
-        return GoMint.instance().createItemStack( ItemBeeNest.class, amount );
+    static ItemBeeNest create(int amount) {
+        return GoMint.instance().createItemStack(ItemBeeNest.class, amount);
     }
 
 }

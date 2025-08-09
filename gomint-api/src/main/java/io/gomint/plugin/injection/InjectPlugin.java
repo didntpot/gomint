@@ -16,8 +16,8 @@ import java.lang.annotation.Target;
  * @author geNAZt
  * @version 1.0
  */
-@Target( { ElementType.FIELD } )
-@Retention( RetentionPolicy.RUNTIME )
+@Target({ElementType.FIELD})
+@Retention(RetentionPolicy.RUNTIME)
 public @interface InjectPlugin {
 
     String value() default "detect";

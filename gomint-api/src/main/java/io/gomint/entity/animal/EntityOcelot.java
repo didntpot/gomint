@@ -23,7 +23,7 @@ public interface EntityOcelot extends EntityLiving<EntityOcelot> {
      * @return empty, fresh ocelot
      */
     static EntityOcelot create() {
-        return GoMint.instance().createEntity( EntityOcelot.class );
+        return GoMint.instance().createEntity(EntityOcelot.class);
     }
 
 }

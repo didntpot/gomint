@@ -25,7 +25,7 @@ public class ArrayConverter implements Converter {
 
     private InternalConverter internalConverter;
 
-    public ArrayConverter( InternalConverter internalConverter ) {
+    public ArrayConverter(InternalConverter internalConverter) {
         this.internalConverter = internalConverter;
     }
 
@@ -33,18 +33,18 @@ public class ArrayConverter implements Converter {
      * {@inheritDoc}
      */
     @Override
-    public Object toConfig( Class<?> type, Object object, ParameterizedType parameterizedType ) throws Exception {
+    public Object toConfig(Class<?> type, Object object, ParameterizedType parameterizedType) throws Exception {
         Class<?> singleType = type.getComponentType();
-        Converter converter = this.internalConverter.getConverter( singleType );
+        Converter converter = this.internalConverter.getConverter(singleType);
 
-        if ( converter == null ) {
+        if (converter == null) {
             return object;
         }
 
-        Object[] result = new Object[Array.getLength( object )];
+        Object[] result = new Object[Array.getLength(object)];
 
-        for ( int index = 0; index < result.length; index++ ) {
-            result[index] = converter.toConfig( singleType, Array.get( object, index ), parameterizedType );
+        for (int index = 0; index < result.length; index++) {
+            result[index] = converter.toConfig(singleType, Array.get(object, index), parameterizedType);
         }
 
         return result;
@@ -54,19 +54,19 @@ public class ArrayConverter implements Converter {
      * {@inheritDoc}
      */
     @Override
-    @SuppressWarnings( "unchecked" )
-    public Object fromConfig( Class<?> type, Object object, ParameterizedType parameterizedType ) throws Exception {
+    @SuppressWarnings("unchecked")
+    public Object fromConfig(Class<?> type, Object object, ParameterizedType parameterizedType) throws Exception {
         Class<?> singleType = type.getComponentType();
-        List<?> values = object instanceof List ? (List<?>) object : new ArrayList<>( Arrays.asList( (Object[]) object ) );
-        Object result = Array.newInstance( singleType, values.size() );
-        Converter converter = this.internalConverter.getConverter( singleType );
+        List<?> values = object instanceof List ? (List<?>) object : new ArrayList<>(Arrays.asList((Object[]) object));
+        Object result = Array.newInstance(singleType, values.size());
+        Converter converter = this.internalConverter.getConverter(singleType);
 
-        if ( converter == null ) {
-            return values.toArray( (Object[]) result );
+        if (converter == null) {
+            return values.toArray((Object[]) result);
         }
 
-        for ( int index = 0; index < values.size(); index++ ) {
-            Array.set( result, index, converter.fromConfig( singleType, values.get( index ), parameterizedType ) );
+        for (int index = 0; index < values.size(); index++) {
+            Array.set(result, index, converter.fromConfig(singleType, values.get(index), parameterizedType));
         }
 
         return result;
@@ -76,7 +76,7 @@ public class ArrayConverter implements Converter {
      * {@inheritDoc}
      */
     @Override
-    public boolean supports( Class<?> type ) {
+    public boolean supports(Class<?> type) {
         return type.isArray();
     }
 

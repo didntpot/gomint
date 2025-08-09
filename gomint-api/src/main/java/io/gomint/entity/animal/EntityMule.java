@@ -23,7 +23,7 @@ public interface EntityMule extends EntityAgeable<EntityMule> {
      * @return empty, fresh mule
      */
     static EntityMule create() {
-        return GoMint.instance().createEntity( EntityMule.class );
+        return GoMint.instance().createEntity(EntityMule.class);
     }
 
 }

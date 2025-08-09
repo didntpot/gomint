@@ -5,6 +5,7 @@ import io.gomint.server.entity.EntityLiving;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.world.block.BlockStationaryLava;
 import io.gomint.world.block.BlockType;
+
 import java.util.concurrent.TimeUnit;
 
 /**

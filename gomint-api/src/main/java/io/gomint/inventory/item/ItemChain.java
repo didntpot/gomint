@@ -20,10 +20,10 @@ public interface ItemChain extends ItemStack<ItemChain> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemChain create( int amount ) {
-        return GoMint.instance().createItemStack( ItemChain.class, amount );
+    static ItemChain create(int amount) {
+        return GoMint.instance().createItemStack(ItemChain.class, amount);
     }
 
 }

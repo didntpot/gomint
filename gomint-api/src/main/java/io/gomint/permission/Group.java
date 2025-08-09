@@ -31,14 +31,14 @@ public interface Group {
      * @param permission which should be set
      * @param value      of this permission, true when granted, false when revoked
      */
-    Group permission(String permission, boolean value );
+    Group permission(String permission, boolean value);
 
     /**
      * Remove a permission completely
      *
      * @param permission which should be removed
      */
-    Group removePermission( String permission );
+    Group removePermission(String permission);
 
     /**
      * Get a iterator for all configured permissions

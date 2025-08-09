@@ -9,12 +9,13 @@ package io.gomint.server.world.generator.vanilla.client;
 
 import io.gomint.server.jwt.JwtAlgorithm;
 import io.gomint.server.jwt.JwtSignatureException;
+import org.json.simple.JSONObject;
+
 import java.nio.charset.StandardCharsets;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.Base64;
 import java.util.UUID;
-import org.json.simple.JSONObject;
 
 /**
  * Helper class to create a non-authenticated JWT chain.

@@ -13,10 +13,11 @@ import io.gomint.server.util.Values;
 import it.unimi.dsi.fastutil.Hash;
 import it.unimi.dsi.fastutil.longs.*;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
-import java.util.Arrays;
-import java.util.function.Consumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Arrays;
+import java.util.function.Consumer;
 
 /**
  * @author BlackyPaw

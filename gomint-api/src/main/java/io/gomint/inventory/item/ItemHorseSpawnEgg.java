@@ -20,10 +20,10 @@ public interface ItemHorseSpawnEgg extends ItemStack<ItemHorseSpawnEgg> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemHorseSpawnEgg create( int amount ) {
-        return GoMint.instance().createItemStack( ItemHorseSpawnEgg.class, amount );
+    static ItemHorseSpawnEgg create(int amount) {
+        return GoMint.instance().createItemStack(ItemHorseSpawnEgg.class, amount);
     }
 
 }

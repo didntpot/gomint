@@ -16,6 +16,7 @@ import io.gomint.server.world.biome.component.PopulatorComponent;
 import io.gomint.server.world.biome.component.SpawnableEntitiesComponent;
 import io.gomint.world.block.BlockGravel;
 import io.gomint.world.generator.populator.TallGrassPopulator;
+
 import java.util.Collections;
 import java.util.Set;
 

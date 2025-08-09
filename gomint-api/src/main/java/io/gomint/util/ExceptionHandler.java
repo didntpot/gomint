@@ -10,8 +10,8 @@ package io.gomint.util;
 /**
  * @author geNAZt
  * @version 1.0
- *          <p>
- *          Interface which should be used to catch Exceptions thrown. This is mainly used in the Scheduler for Exception handling
+ * <p>
+ * Interface which should be used to catch Exceptions thrown. This is mainly used in the Scheduler for Exception handling
  * @stability 3
  */
 public interface ExceptionHandler {
@@ -23,6 +23,6 @@ public interface ExceptionHandler {
      * @param e the thrown Exception
      * @return true when the code should be executed further, false if not
      */
-    boolean onException( Exception e );
+    boolean onException(Exception e);
 
 }

@@ -16,7 +16,7 @@ public interface EntityWitherSkeleton extends EntityLiving<EntityWitherSkeleton>
      * @return empty, fresh wither skeleton
      */
     static EntityWitherSkeleton create() {
-        return GoMint.instance().createEntity( EntityWitherSkeleton.class );
+        return GoMint.instance().createEntity(EntityWitherSkeleton.class);
     }
 
 }

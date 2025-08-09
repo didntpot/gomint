@@ -18,12 +18,13 @@ import io.gomint.server.network.packet.types.entity.PropertySyncData;
 import io.gomint.server.util.Values;
 import io.gomint.world.Chunk;
 import it.unimi.dsi.fastutil.longs.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Helper class that manages all entities inside a world.

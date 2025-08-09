@@ -20,6 +20,7 @@ import io.gomint.server.entity.EntityTags;
 import io.gomint.server.entity.EntityType;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.WorldAdapter;
+
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 

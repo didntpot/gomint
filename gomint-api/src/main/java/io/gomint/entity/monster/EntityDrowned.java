@@ -16,7 +16,7 @@ public interface EntityDrowned extends EntityAgeable<EntityDrowned> {
      * @return empty, fresh drowned
      */
     static EntityDrowned create() {
-        return GoMint.instance().createEntity( EntityDrowned.class );
+        return GoMint.instance().createEntity(EntityDrowned.class);
     }
 
 }

@@ -13,6 +13,7 @@ import io.gomint.server.entity.EntityType;
 import io.gomint.server.entity.metadata.MetadataContainer;
 import io.gomint.server.network.Protocol;
 import io.gomint.server.network.packet.types.entity.PropertySyncData;
+
 import java.util.Collection;
 
 /**

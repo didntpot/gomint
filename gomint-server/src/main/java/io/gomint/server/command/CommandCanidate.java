@@ -8,6 +8,7 @@
 package io.gomint.server.command;
 
 import io.gomint.command.CommandOverload;
+
 import java.util.Map;
 
 /**

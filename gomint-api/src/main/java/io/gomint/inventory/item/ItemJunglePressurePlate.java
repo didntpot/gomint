@@ -20,10 +20,10 @@ public interface ItemJunglePressurePlate extends ItemStack<ItemJunglePressurePla
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemJunglePressurePlate create( int amount ) {
-        return GoMint.instance().createItemStack( ItemJunglePressurePlate.class, amount );
+    static ItemJunglePressurePlate create(int amount) {
+        return GoMint.instance().createItemStack(ItemJunglePressurePlate.class, amount);
     }
 
 }

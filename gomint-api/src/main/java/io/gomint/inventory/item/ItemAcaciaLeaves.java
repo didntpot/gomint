@@ -13,10 +13,10 @@ public interface ItemAcaciaLeaves extends ItemStack<ItemAcaciaLeaves> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemAcaciaLeaves create( int amount ) {
-        return GoMint.instance().createItemStack( ItemAcaciaLeaves.class, amount );
+    static ItemAcaciaLeaves create(int amount) {
+        return GoMint.instance().createItemStack(ItemAcaciaLeaves.class, amount);
     }
 
 }

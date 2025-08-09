@@ -14,7 +14,7 @@ public interface ItemSweetBerries extends ItemStack<ItemSweetBerries>, ItemFood<
      *
      * @param amount which is used for the creation
      */
-    static ItemSweetBerries create(int amount ) {
-        return GoMint.instance().createItemStack( ItemSweetBerries.class, amount );
+    static ItemSweetBerries create(int amount) {
+        return GoMint.instance().createItemStack(ItemSweetBerries.class, amount);
     }
 }

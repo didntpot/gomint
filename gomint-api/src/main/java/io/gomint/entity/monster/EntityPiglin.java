@@ -16,7 +16,7 @@ public interface EntityPiglin extends EntityAgeable<EntityPiglin> {
      * @return empty, fresh zombie piglin
      */
     static EntityPiglin create() {
-        return GoMint.instance().createEntity( EntityPiglin.class );
+        return GoMint.instance().createEntity(EntityPiglin.class);
     }
 
 }

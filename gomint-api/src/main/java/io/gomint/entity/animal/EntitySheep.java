@@ -23,7 +23,7 @@ public interface EntitySheep extends EntityAgeable<EntitySheep> {
      * @return empty, fresh sheep
      */
     static EntitySheep create() {
-        return GoMint.instance().createEntity( EntitySheep.class );
+        return GoMint.instance().createEntity(EntitySheep.class);
     }
 
 }

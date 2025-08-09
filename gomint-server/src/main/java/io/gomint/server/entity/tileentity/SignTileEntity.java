@@ -16,6 +16,7 @@ import io.gomint.server.registry.RegisterInfo;
 import io.gomint.server.world.block.Block;
 import io.gomint.server.world.block.Sign;
 import io.gomint.taglib.NBTTagCompound;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;

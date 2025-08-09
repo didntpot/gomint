@@ -27,7 +27,7 @@ public interface EntityHuman<E> extends EntityCreature<E> {
      * @return empty, fresh human
      */
     static EntityHuman<?> create() {
-        return GoMint.instance().createEntity( EntityHuman.class );
+        return GoMint.instance().createEntity(EntityHuman.class);
     }
 
     /**
@@ -60,7 +60,7 @@ public interface EntityHuman<E> extends EntityCreature<E> {
      * @param skin which should be set
      * @return entity for chaining
      */
-    E skin(PlayerSkin skin );
+    E skin(PlayerSkin skin);
 
     /**
      * Get the name which is listed in the tablist (displayName)
@@ -75,7 +75,7 @@ public interface EntityHuman<E> extends EntityCreature<E> {
      * @param displayName which should be used
      * @return entity for chaining
      */
-    E displayName(String displayName );
+    E displayName(String displayName);
 
     /**
      * Get the unique XBOX live id. Is empty string if not in xbox live mode
@@ -97,7 +97,7 @@ public interface EntityHuman<E> extends EntityCreature<E> {
      * @param amount of hunger
      * @return entity for chaining
      */
-    E hunger(float amount );
+    E hunger(float amount);
 
     /**
      * Get the hunger level
@@ -112,7 +112,7 @@ public interface EntityHuman<E> extends EntityCreature<E> {
      * @param amount of saturation
      * @return entity for chaining
      */
-    E saturation(float amount );
+    E saturation(float amount);
 
     /**
      * Get the saturation level
@@ -127,7 +127,7 @@ public interface EntityHuman<E> extends EntityCreature<E> {
      * @param value true for sneaking, false for not sneaking
      * @return entity for chaining
      */
-    E sneaking(boolean value );
+    E sneaking(boolean value);
 
     /**
      * Is this player sneaking?
@@ -142,7 +142,7 @@ public interface EntityHuman<E> extends EntityCreature<E> {
      * @param value true for sprinting, false for not sprinting
      * @return entity for chaining
      */
-    E sprinting(boolean value );
+    E sprinting(boolean value);
 
     /**
      * Check if entity is sprinting
@@ -157,7 +157,7 @@ public interface EntityHuman<E> extends EntityCreature<E> {
      * @param value true for swimming, false for not swimming
      * @return entity for chaining
      */
-    E swimming(boolean value );
+    E swimming(boolean value);
 
     /**
      * Check if entity is swimming
@@ -172,7 +172,7 @@ public interface EntityHuman<E> extends EntityCreature<E> {
      * @param value true for spinning, false for not spinning
      * @return entity for chaining
      */
-    E spinning(boolean value );
+    E spinning(boolean value);
 
     /**
      * Check if entity is spinning
@@ -194,7 +194,7 @@ public interface EntityHuman<E> extends EntityCreature<E> {
      * @param newPlayerListName new player list name
      * @return entity for chaining
      */
-    E playerListName(String newPlayerListName );
+    E playerListName(String newPlayerListName);
 
     /**
      * Get the exhaustion level

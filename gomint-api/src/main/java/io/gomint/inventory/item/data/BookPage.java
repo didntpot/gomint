@@ -26,6 +26,6 @@ public interface BookPage {
      *
      * @param content of the page
      */
-    BookPage content(String content );
+    BookPage content(String content);
 
 }

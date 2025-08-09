@@ -36,28 +36,28 @@ public class LayeredGenerator extends ChunkGenerator {
      * @param world   for which this generator should generate chunks
      * @param context with which this generator should generate chunks
      */
-    public LayeredGenerator( World world, GeneratorContext context ) {
-        super( world, context );
+    public LayeredGenerator(World world, GeneratorContext context) {
+        super(world, context);
 
         this.layers = new ArrayList<>();
 
         // Is there a pre configured layer context?
-        if ( context.contains( "amountOfLayers" ) ) {
-            int amountOfLayers = context.get( "amountOfLayers" );
-            for ( int i = 0; i < amountOfLayers; i++ ) {
-                this.layers.add( context.get( "layer." + i ) );
+        if (context.contains("amountOfLayers")) {
+            int amountOfLayers = context.get("amountOfLayers");
+            for (int i = 0; i < amountOfLayers; i++) {
+                this.layers.add(context.get("layer." + i));
             }
         } else {
             // Default layers are grass, dirt, dirt, bedrock
-            Block bedRock = GoMint.instance().createBlock( BlockBedrock.class );
-            Block dirt = GoMint.instance().createBlock( BlockDirt.class );
-            Block grass = GoMint.instance().createBlock( BlockGrassBlock.class );
+            Block bedRock = GoMint.instance().createBlock(BlockBedrock.class);
+            Block dirt = GoMint.instance().createBlock(BlockDirt.class);
+            Block grass = GoMint.instance().createBlock(BlockGrassBlock.class);
 
             // They need to be stored from bottom up
-            this.layers.add( bedRock );
-            this.layers.add( dirt );
-            this.layers.add( dirt );
-            this.layers.add( grass );
+            this.layers.add(bedRock);
+            this.layers.add(dirt);
+            this.layers.add(dirt);
+            this.layers.add(grass);
         }
     }
 
@@ -66,15 +66,15 @@ public class LayeredGenerator extends ChunkGenerator {
     }
 
     @Override
-    public Chunk generate( int x, int z ) {
-        Chunk chunk = this.world.generateEmptyChunk( x, z );
+    public Chunk generate(int x, int z) {
+        Chunk chunk = this.world.generateEmptyChunk(x, z);
 
         // Layers are starting from the bottom
         int y = 0;
-        for ( Block layer : this.layers ) {
-            for ( int xBlock = 0; xBlock < 16; xBlock++ ) {
-                for ( int zBlock = 0; zBlock < 16; zBlock++ ) {
-                    chunk.block( xBlock, y, zBlock, layer );
+        for (Block layer : this.layers) {
+            for (int xBlock = 0; xBlock < 16; xBlock++) {
+                for (int zBlock = 0; zBlock < 16; zBlock++) {
+                    chunk.block(xBlock, y, zBlock, layer);
                 }
             }
 
@@ -86,11 +86,11 @@ public class LayeredGenerator extends ChunkGenerator {
 
     @Override
     public BlockPosition spawnPoint() {
-        return new BlockPosition( (int) ( Math.random() * 2000 ), this.layers.size(), (int) ( Math.random() * 2000 ) );
+        return new BlockPosition((int) (Math.random() * 2000), this.layers.size(), (int) (Math.random() * 2000));
     }
 
     @Override
-    public void populate( Chunk chunk ) {
+    public void populate(Chunk chunk) {
 
     }
 

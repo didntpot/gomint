@@ -21,6 +21,6 @@ public interface EntityCat extends EntityAgeable<EntityCat> {
      * @return empty, fresh cat
      */
     static EntityCat create() {
-        return GoMint.instance().createEntity( EntityCat.class );
+        return GoMint.instance().createEntity(EntityCat.class);
     }
 }

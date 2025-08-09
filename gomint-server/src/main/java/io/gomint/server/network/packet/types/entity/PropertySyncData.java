@@ -1,6 +1,7 @@
 package io.gomint.server.network.packet.types.entity;
 
 import io.gomint.jraknet.PacketBuffer;
+
 import java.util.HashMap;
 import java.util.Map;
 

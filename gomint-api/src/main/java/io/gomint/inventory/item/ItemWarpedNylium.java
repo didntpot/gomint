@@ -20,10 +20,10 @@ public interface ItemWarpedNylium extends ItemStack<ItemWarpedNylium> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemWarpedNylium create( int amount ) {
-        return GoMint.instance().createItemStack( ItemWarpedNylium.class, amount );
+    static ItemWarpedNylium create(int amount) {
+        return GoMint.instance().createItemStack(ItemWarpedNylium.class, amount);
     }
 
 }

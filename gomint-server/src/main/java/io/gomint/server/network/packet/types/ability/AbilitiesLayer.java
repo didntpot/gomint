@@ -2,9 +2,10 @@ package io.gomint.server.network.packet.types.ability;
 
 import io.gomint.jraknet.PacketBuffer;
 import io.gomint.server.network.packet.util.PacketDecodeException;
+
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.Nullable;
 
 public class AbilitiesLayer {
     public static final int LAYER_CACHE = 0;

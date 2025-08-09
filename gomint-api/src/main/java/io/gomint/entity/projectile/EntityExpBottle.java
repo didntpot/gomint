@@ -22,7 +22,7 @@ public interface EntityExpBottle extends EntityProjectile<EntityExpBottle> {
      * @return fresh exp bottle
      */
     static EntityExpBottle create() {
-        return GoMint.instance().createEntity( EntityExpBottle.class );
+        return GoMint.instance().createEntity(EntityExpBottle.class);
     }
 
 }

@@ -20,10 +20,10 @@ public interface ItemCrimsonFence extends ItemStack<ItemCrimsonFence> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCrimsonFence create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCrimsonFence.class, amount );
+    static ItemCrimsonFence create(int amount) {
+        return GoMint.instance().createItemStack(ItemCrimsonFence.class, amount);
     }
 
 }

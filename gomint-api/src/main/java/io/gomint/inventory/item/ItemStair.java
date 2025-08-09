@@ -14,8 +14,8 @@ public interface ItemStair extends ItemStack<ItemStair> {
      *
      * @param amount which is used for the creation
      */
-    static ItemStair create(int amount ) {
-        return GoMint.instance().createItemStack( ItemStair.class, amount );
+    static ItemStair create(int amount) {
+        return GoMint.instance().createItemStack(ItemStair.class, amount);
     }
 
 }

@@ -12,6 +12,7 @@ import io.gomint.permission.Group;
 import it.unimi.dsi.fastutil.objects.Object2BooleanMap;
 import it.unimi.dsi.fastutil.objects.Object2BooleanOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

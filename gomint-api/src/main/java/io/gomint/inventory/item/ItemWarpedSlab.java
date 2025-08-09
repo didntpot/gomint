@@ -20,10 +20,10 @@ public interface ItemWarpedSlab extends ItemStack<ItemWarpedSlab> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemWarpedSlab create( int amount ) {
-        return GoMint.instance().createItemStack( ItemWarpedSlab.class, amount );
+    static ItemWarpedSlab create(int amount) {
+        return GoMint.instance().createItemStack(ItemWarpedSlab.class, amount);
     }
 
 }

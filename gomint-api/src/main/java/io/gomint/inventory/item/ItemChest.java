@@ -13,10 +13,10 @@ public interface ItemChest extends ItemStack<ItemChest>, ItemBurnable {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemChest create( int amount ) {
-        return GoMint.instance().createItemStack( ItemChest.class, amount );
+    static ItemChest create(int amount) {
+        return GoMint.instance().createItemStack(ItemChest.class, amount);
     }
 
 }

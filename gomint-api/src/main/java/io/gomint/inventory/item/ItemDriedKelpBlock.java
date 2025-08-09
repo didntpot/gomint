@@ -20,10 +20,10 @@ public interface ItemDriedKelpBlock extends ItemStack<ItemDriedKelpBlock>, ItemB
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemDriedKelpBlock create( int amount ) {
-        return GoMint.instance().createItemStack( ItemDriedKelpBlock.class, amount );
+    static ItemDriedKelpBlock create(int amount) {
+        return GoMint.instance().createItemStack(ItemDriedKelpBlock.class, amount);
     }
 
 }

@@ -17,82 +17,82 @@ public enum ChatColor {
     /**
      * Represents black.
      */
-    BLACK( '0' ),
+    BLACK('0'),
 
     /**
      * Represents dark blue.
      */
-    DARK_BLUE( '1' ),
+    DARK_BLUE('1'),
 
     /**
      * Represents dark green.
      */
-    DARK_GREEN( '2' ),
+    DARK_GREEN('2'),
 
     /**
      * Represents dark blue (aqua).
      */
-    DARK_AQUA( '3' ),
+    DARK_AQUA('3'),
 
     /**
      * Represents dark red.
      */
-    DARK_RED( '4' ),
+    DARK_RED('4'),
 
     /**
      * Represents dark purple.
      */
-    DARK_PURPLE( '5' ),
+    DARK_PURPLE('5'),
 
     /**
      * Represents gold.
      */
-    GOLD( '6' ),
+    GOLD('6'),
 
     /**
      * Represents gray.
      */
-    GRAY( '7' ),
+    GRAY('7'),
 
     /**
      * Represents dark gray.
      */
-    DARK_GRAY( '8' ),
+    DARK_GRAY('8'),
 
     /**
      * Represents blue.
      */
-    BLUE( '9' ),
+    BLUE('9'),
 
     /**
      * Represents green.
      */
-    GREEN( 'a' ),
+    GREEN('a'),
 
     /**
      * Represents aqua.
      */
-    AQUA( 'b' ),
+    AQUA('b'),
 
     /**
      * Represents red.
      */
-    RED( 'c' ),
+    RED('c'),
 
     /**
      * Represents light purple.
      */
-    LIGHT_PURPLE( 'd' ),
+    LIGHT_PURPLE('d'),
 
     /**
      * Represents yellow.
      */
-    YELLOW( 'e' ),
+    YELLOW('e'),
 
     /**
      * Represents white.
      */
-    WHITE( 'f' ),
+    WHITE('f'),
 
     /**
      * Represents minecoin gold
@@ -102,32 +102,32 @@ public enum ChatColor {
     /**
      * Represents magical characters that change around randomly.
      */
-    MAGIC( 'k' ),
+    MAGIC('k'),
 
     /**
      * Makes the text bold.
      */
-    BOLD( 'l' ),
+    BOLD('l'),
 
     /**
      * Makes a line appear through the text.
      */
-    STRIKETHROUGH( 'm' ),
+    STRIKETHROUGH('m'),
 
     /**
      * Makes the text appear underlined.
      */
-    UNDERLINE( 'n' ),
+    UNDERLINE('n'),
 
     /**
      * Makes the text italic.
      */
-    ITALIC( 'o' ),
+    ITALIC('o'),
 
     /**
      * Resets all previous chat colors or formats.
      */
-    RESET( 'r' );
+    RESET('r');
 
     private static final char COLOR_CHAR = '\u00A7';
     private final String toString;
@@ -137,8 +137,8 @@ public enum ChatColor {
      *
      * @param code which is used for caching
      */
-    ChatColor( char code ) {
-        this.toString = new String( new char[]{ COLOR_CHAR, code } );
+    ChatColor(char code) {
+        this.toString = new String(new char[]{COLOR_CHAR, code});
     }
 
     /**
@@ -147,26 +147,26 @@ public enum ChatColor {
      * @param input which should be stripped from all colors
      * @return stripped copy of the input
      */
-    public static String stripColor( final String input ) {
-        if ( input == null ) {
+    public static String stripColor(final String input) {
+        if (input == null) {
             return null;
         }
 
         int index = 0;
         char[] output = new char[input.length()];
 
-        for ( int i = 0; i < input.length(); i++ ) {
-            char c = input.charAt( i );
-            if ( c == COLOR_CHAR ) {
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (c == COLOR_CHAR) {
                 // Check next char
-                if ( input.length() > i + 1 ) {
-                    char nc = input.charAt( i + 1 );
-                    if ( ( nc >= '0' && nc <= '9' ) ||
-                        ( nc >= 'A' && nc <= 'G' ) ||
-                        ( nc >= 'a' && nc <= 'g' ) ||
-                        ( nc >= 'K' && nc <= 'O' ) ||
-                        ( nc >= 'k' && nc <= 'o' ) ||
-                        nc == 'R' || nc == 'r' ) {
+                if (input.length() > i + 1) {
+                    char nc = input.charAt(i + 1);
+                    if ((nc >= '0' && nc <= '9') ||
+                        (nc >= 'A' && nc <= 'G') ||
+                        (nc >= 'a' && nc <= 'g') ||
+                        (nc >= 'K' && nc <= 'O') ||
+                        (nc >= 'k' && nc <= 'o') ||
+                        nc == 'R' || nc == 'r') {
                         // CHECKSTYLE:OFF
                         i++;
                         // CHECKSTYLE:ON
@@ -181,7 +181,7 @@ public enum ChatColor {
             }
         }
 
-        return new String( output, 0, index );
+        return new String(output, 0, index);
     }
 
     /**
@@ -191,22 +191,22 @@ public enum ChatColor {
      * @param input        which should be processed
      * @return minecraft escaped color string
      */
-    public static String translateAlternateColorCodes( char altColorChar, String input ) {
+    public static String translateAlternateColorCodes(char altColorChar, String input) {
         int index = 0;
         char[] output = new char[input.length()];
 
-        for ( int i = 0; i < input.length(); i++ ) {
-            char c = input.charAt( i );
-            if ( c == altColorChar ) {
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (c == altColorChar) {
                 // Check next char
-                if ( input.length() > i + 1 ) {
-                    char nc = input.charAt( i + 1 );
-                    if ( ( nc >= '0' && nc <= '9' ) ||
-                        ( nc >= 'A' && nc <= 'G' ) ||
-                        ( nc >= 'a' && nc <= 'g' ) ||
-                        ( nc >= 'K' && nc <= 'O' ) ||
-                        ( nc >= 'k' && nc <= 'o' ) ||
-                        nc == 'R' || nc == 'r' ) {
+                if (input.length() > i + 1) {
+                    char nc = input.charAt(i + 1);
+                    if ((nc >= '0' && nc <= '9') ||
+                        (nc >= 'A' && nc <= 'G') ||
+                        (nc >= 'a' && nc <= 'g') ||
+                        (nc >= 'K' && nc <= 'O') ||
+                        (nc >= 'k' && nc <= 'o') ||
+                        nc == 'R' || nc == 'r') {
                         output[index++] = COLOR_CHAR;
                         output[index++] = nc;
 
@@ -224,7 +224,7 @@ public enum ChatColor {
             }
         }
 
-        return new String( output, 0, index );
+        return new String(output, 0, index);
     }
 
     @Override

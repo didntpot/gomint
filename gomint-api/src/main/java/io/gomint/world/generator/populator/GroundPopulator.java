@@ -23,26 +23,26 @@ import java.util.List;
 public class GroundPopulator implements Populator<GroundPopulator> {
 
     @Override
-    public GroundPopulator populate( World world, Chunk chunk, FastRandom random ) {
-        for ( int x = 0; x < 16; ++x ) {
-            for ( int z = 0; z < 16; ++z ) {
-                Biome biome = chunk.biome( x, z );
+    public GroundPopulator populate(World world, Chunk chunk, FastRandom random) {
+        for (int x = 0; x < 16; ++x) {
+            for (int z = 0; z < 16; ++z) {
+                Biome biome = chunk.biome(x, z);
                 List<Block> ground = biome.ground();
-                if ( ground != null ) {
+                if (ground != null) {
                     // Find highest point in column
                     int y = biome.maxElevation();
-                    for ( ; y > 0; --y ) {
-                        Block block = chunk.blockAt( x, y, z );
-                        if ( !block.transparent() && block.blockType() != BlockType.AIR ) {
+                    for (; y > 0; --y) {
+                        Block block = chunk.blockAt(x, y, z);
+                        if (!block.transparent() && block.blockType() != BlockType.AIR) {
                             break;
                         }
                     }
 
-                    int startY = Math.min( 127, y );
+                    int startY = Math.min(127, y);
                     int endY = startY - ground.size();
-                    for ( y = startY; y > endY && y >= 0; --y ) {
-                        Block block = ground.get( startY - y );
-                        chunk.block( x, y, z, block );
+                    for (y = startY; y > endY && y >= 0; --y) {
+                        Block block = ground.get(startY - y);
+                        chunk.block(x, y, z, block);
                     }
                 }
             }

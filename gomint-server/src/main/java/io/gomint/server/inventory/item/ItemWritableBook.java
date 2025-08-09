@@ -11,6 +11,7 @@ import io.gomint.inventory.item.ItemType;
 import io.gomint.server.inventory.item.data.BookPage;
 import io.gomint.server.registry.RegisterInfo;
 import io.gomint.taglib.NBTTagCompound;
+
 import java.util.List;
 
 /**

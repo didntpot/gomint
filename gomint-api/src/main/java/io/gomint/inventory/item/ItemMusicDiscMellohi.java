@@ -20,10 +20,10 @@ public interface ItemMusicDiscMellohi extends ItemStack<ItemMusicDiscMellohi> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemMusicDiscMellohi create( int amount ) {
-        return GoMint.instance().createItemStack( ItemMusicDiscMellohi.class, amount );
+    static ItemMusicDiscMellohi create(int amount) {
+        return GoMint.instance().createItemStack(ItemMusicDiscMellohi.class, amount);
     }
 
 }

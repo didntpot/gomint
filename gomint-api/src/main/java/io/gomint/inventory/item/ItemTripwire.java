@@ -20,10 +20,10 @@ public interface ItemTripwire extends ItemStack<ItemTripwire> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemTripwire create( int amount ) {
-        return GoMint.instance().createItemStack( ItemTripwire.class, amount );
+    static ItemTripwire create(int amount) {
+        return GoMint.instance().createItemStack(ItemTripwire.class, amount);
     }
 
 }

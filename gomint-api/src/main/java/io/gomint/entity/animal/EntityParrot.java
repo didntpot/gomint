@@ -23,7 +23,7 @@ public interface EntityParrot extends EntityLiving<EntityParrot> {
      * @return empty, fresh parrot
      */
     static EntityParrot create() {
-        return GoMint.instance().createEntity( EntityParrot.class );
+        return GoMint.instance().createEntity(EntityParrot.class);
     }
 
     /**
@@ -31,7 +31,7 @@ public interface EntityParrot extends EntityLiving<EntityParrot> {
      *
      * @param value true if this parrot should be dancing, false if not
      */
-    EntityParrot dancing(boolean value );
+    EntityParrot dancing(boolean value);
 
     /**
      * Is the parrot dancing?

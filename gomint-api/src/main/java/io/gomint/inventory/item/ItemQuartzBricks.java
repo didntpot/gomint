@@ -20,10 +20,10 @@ public interface ItemQuartzBricks extends ItemStack<ItemQuartzBricks> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemQuartzBricks create( int amount ) {
-        return GoMint.instance().createItemStack( ItemQuartzBricks.class, amount );
+    static ItemQuartzBricks create(int amount) {
+        return GoMint.instance().createItemStack(ItemQuartzBricks.class, amount);
     }
 
 }

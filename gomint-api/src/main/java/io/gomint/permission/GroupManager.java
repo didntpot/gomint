@@ -11,7 +11,7 @@ package io.gomint.permission;
  * @author geNAZt
  * @version 1.0
  * @stability 3
- *
+ * <p>
  * The group manager is a global defined manager which manages permission groups. You can define groups which contain
  * certain permission settings. This will help permission plugins attach permission containers to players quickly
  * without the need of loading / creating duplicate data entries.
@@ -24,7 +24,7 @@ public interface GroupManager {
      * @param name for the group
      * @return new or existing group for the name
      */
-    Group group(String name );
+    Group group(String name);
 
     /**
      * Remove given group from the group manager. This does not remove references from {@link PermissionManager}
@@ -33,6 +33,6 @@ public interface GroupManager {
      *
      * @param group which should be removed
      */
-    GroupManager remove(Group group );
+    GroupManager remove(Group group);
 
 }

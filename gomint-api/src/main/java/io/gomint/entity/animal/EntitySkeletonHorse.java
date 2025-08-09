@@ -23,7 +23,7 @@ public interface EntitySkeletonHorse extends EntityLiving<EntitySkeletonHorse> {
      * @return empty, fresh skeleton horse
      */
     static EntitySkeletonHorse create() {
-        return GoMint.instance().createEntity( EntitySkeletonHorse.class );
+        return GoMint.instance().createEntity(EntitySkeletonHorse.class);
     }
 
 }

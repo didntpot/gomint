@@ -30,10 +30,11 @@ import io.gomint.server.util.Values;
 import io.gomint.world.Gamemode;
 import it.unimi.dsi.fastutil.bytes.Byte2ObjectMap;
 import it.unimi.dsi.fastutil.bytes.Byte2ObjectOpenHashMap;
-import java.util.ArrayList;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PacketItemStackRequestHandler implements PacketHandler<PacketItemStackRequest> {
 

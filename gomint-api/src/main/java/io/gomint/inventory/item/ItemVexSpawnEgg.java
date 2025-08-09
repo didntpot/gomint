@@ -20,10 +20,10 @@ public interface ItemVexSpawnEgg extends ItemStack<ItemVexSpawnEgg> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemVexSpawnEgg create( int amount ) {
-        return GoMint.instance().createItemStack( ItemVexSpawnEgg.class, amount );
+    static ItemVexSpawnEgg create(int amount) {
+        return GoMint.instance().createItemStack(ItemVexSpawnEgg.class, amount);
     }
 
 }

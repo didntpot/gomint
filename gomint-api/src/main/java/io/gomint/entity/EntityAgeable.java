@@ -12,7 +12,7 @@ public interface EntityAgeable<E> extends EntityLiving<E> {
      *
      * @param value true if this entity should be a baby, false if not
      */
-    E baby(boolean value );
+    E baby(boolean value);
 
     /**
      * Is the entity a baby?

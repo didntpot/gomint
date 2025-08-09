@@ -20,10 +20,10 @@ public interface ItemCowSpawnEgg extends ItemStack<ItemCowSpawnEgg> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemCowSpawnEgg create( int amount ) {
-        return GoMint.instance().createItemStack( ItemCowSpawnEgg.class, amount );
+    static ItemCowSpawnEgg create(int amount) {
+        return GoMint.instance().createItemStack(ItemCowSpawnEgg.class, amount);
     }
 
 }

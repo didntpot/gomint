@@ -15,7 +15,7 @@ public interface EntityEnderpearl extends EntityProjectile<EntityEnderpearl> {
      * @return fresh thrown enderpearl
      */
     static EntityEnderpearl create() {
-        return GoMint.instance().createEntity( EntityEnderpearl.class );
+        return GoMint.instance().createEntity(EntityEnderpearl.class);
     }
 
 }

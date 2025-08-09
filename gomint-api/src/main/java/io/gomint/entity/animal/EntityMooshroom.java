@@ -23,7 +23,7 @@ public interface EntityMooshroom extends EntityAgeable<EntityMooshroom> {
      * @return empty, fresh mooshroom
      */
     static EntityMooshroom create() {
-        return GoMint.instance().createEntity( EntityMooshroom.class );
+        return GoMint.instance().createEntity(EntityMooshroom.class);
     }
 
 }

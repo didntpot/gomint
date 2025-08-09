@@ -26,9 +26,10 @@ import io.gomint.server.world.block.Block;
 import io.gomint.world.Gamemode;
 import io.gomint.world.block.BlockAir;
 import io.gomint.world.block.data.Facing;
-import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
 
 /**
  * @author geNAZt

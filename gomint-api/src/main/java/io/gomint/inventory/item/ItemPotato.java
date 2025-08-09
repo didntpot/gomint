@@ -20,10 +20,10 @@ public interface ItemPotato extends ItemStack<ItemPotato> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemPotato create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemPotato.class, amount );
+    static ItemPotato create(int amount) {
+        return GoMint.instance().createItemStack(ItemPotato.class, amount);
     }
 
 }

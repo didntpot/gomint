@@ -13,10 +13,10 @@ public interface ItemBow extends ItemStack<ItemBow>, ItemBurnable {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemBow create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemBow.class, amount );
+    static ItemBow create(int amount) {
+        return GoMint.instance().createItemStack(ItemBow.class, amount);
     }
 
 }

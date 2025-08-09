@@ -2,6 +2,7 @@ package io.gomint.server.util.random;
 
 import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
 import it.unimi.dsi.fastutil.objects.Object2DoubleOpenHashMap;
+
 import java.util.Iterator;
 import java.util.NavigableMap;
 import java.util.Random;

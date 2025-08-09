@@ -5,8 +5,9 @@ import io.gomint.math.BlockPosition;
 import io.gomint.server.network.Protocol;
 import io.gomint.server.network.packet.Packet;
 import io.gomint.server.network.packet.types.gamerule.GameRule;
-import java.util.Map;
+
 import javax.annotation.Nullable;
+import java.util.Map;
 
 public class LevelSettings {
     private long seed;

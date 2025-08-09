@@ -13,10 +13,10 @@ public interface ItemJackOLantern extends ItemStack<ItemJackOLantern> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemJackOLantern create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemJackOLantern.class, amount );
+    static ItemJackOLantern create(int amount) {
+        return GoMint.instance().createItemStack(ItemJackOLantern.class, amount);
     }
 
 }

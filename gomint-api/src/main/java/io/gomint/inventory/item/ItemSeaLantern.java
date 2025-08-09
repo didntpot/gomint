@@ -20,10 +20,10 @@ public interface ItemSeaLantern extends ItemStack<ItemSeaLantern> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemSeaLantern create( int amount ) {
-        return GoMint.instance().createItemStack( ItemSeaLantern.class, amount );
+    static ItemSeaLantern create(int amount) {
+        return GoMint.instance().createItemStack(ItemSeaLantern.class, amount);
     }
 
 }

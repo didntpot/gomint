@@ -20,10 +20,10 @@ public interface ItemDarkOakPressurePlate extends ItemStack<ItemDarkOakPressureP
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemDarkOakPressurePlate create( int amount ) {	
-        return GoMint.instance().createItemStack( ItemDarkOakPressurePlate.class, amount );
+    static ItemDarkOakPressurePlate create(int amount) {
+        return GoMint.instance().createItemStack(ItemDarkOakPressurePlate.class, amount);
     }
 
 }

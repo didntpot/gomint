@@ -20,10 +20,10 @@ public interface ItemWarpedFenceGate extends ItemStack<ItemWarpedFenceGate> {
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemWarpedFenceGate create( int amount ) {
-        return GoMint.instance().createItemStack( ItemWarpedFenceGate.class, amount );
+    static ItemWarpedFenceGate create(int amount) {
+        return GoMint.instance().createItemStack(ItemWarpedFenceGate.class, amount);
     }
 
 }

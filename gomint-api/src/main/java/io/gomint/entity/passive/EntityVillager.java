@@ -16,7 +16,7 @@ public interface EntityVillager extends EntityAgeable<EntityVillager> {
      * @return empty, fresh villager
      */
     static EntityVillager create() {
-        return GoMint.instance().createEntity( EntityVillager.class );
+        return GoMint.instance().createEntity(EntityVillager.class);
     }
 
     /**
@@ -24,7 +24,7 @@ public interface EntityVillager extends EntityAgeable<EntityVillager> {
      *
      * @param profession of the villager
      */
-    EntityVillager profession(Profession profession );
+    EntityVillager profession(Profession profession);
 
     /**
      * Get the current profession of a villager

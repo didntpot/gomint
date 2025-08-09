@@ -25,10 +25,10 @@ public class IntegerValidator extends ParamValidator<IntegerValidator> {
      * {@inheritDoc}
      */
     @Override
-    public Object validate(String input, CommandSender<?> commandSender ) {
+    public Object validate(String input, CommandSender<?> commandSender) {
         try {
-            return Integer.parseInt( input );
-        } catch ( NumberFormatException e ) {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
             return null;
         }
     }
@@ -37,8 +37,8 @@ public class IntegerValidator extends ParamValidator<IntegerValidator> {
      * {@inheritDoc}
      */
     @Override
-    public String consume( Iterator<String> data ) {
-        if ( data.hasNext() ) {
+    public String consume(Iterator<String> data) {
+        if (data.hasNext()) {
             return data.next();
         }
 

@@ -13,10 +13,10 @@ public interface ItemTrappedChest extends ItemStack<ItemTrappedChest>, ItemBurna
      * Create a new item stack with given class and amount
      *
      * @param amount which is used for the creation
-	 * @return freshly generated item
+     * @return freshly generated item
      */
-    static ItemTrappedChest create( int amount ) {
-        return GoMint.instance().createItemStack( ItemTrappedChest.class, amount );
+    static ItemTrappedChest create(int amount) {
+        return GoMint.instance().createItemStack(ItemTrappedChest.class, amount);
     }
 
 }

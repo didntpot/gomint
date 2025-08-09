@@ -16,7 +16,7 @@ public interface EntitySilverfish extends EntityLiving<EntitySilverfish> {
      * @return empty, fresh silverfish
      */
     static EntitySilverfish create() {
-        return GoMint.instance().createEntity( EntitySilverfish.class );
+        return GoMint.instance().createEntity(EntitySilverfish.class);
     }
 
 }

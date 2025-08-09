@@ -14,7 +14,7 @@ public interface ItemCartographyTable extends ItemStack<ItemCartographyTable> {
      *
      * @param amount which is used for the creation
      */
-    static ItemCartographyTable create(int amount ) {
-        return GoMint.instance().createItemStack( ItemCartographyTable.class, amount );
+    static ItemCartographyTable create(int amount) {
+        return GoMint.instance().createItemStack(ItemCartographyTable.class, amount);
     }
 }
